@@ -58,13 +58,13 @@ RECEITAS = [("ReceitasExcetoIntraOrcamentarias", "Total arrecadado"), ("ReceitaT
             ("ReceitaDeContribuicoes", "Contribuições"), ("ReceitaPatrimonial", "Receita patrimonial"),
             ("ReceitaAgropecuaria", "Receita agropecuária"), ("ReceitaIndustrial", "Receita industrial"),
             ("ReceitaDeServicos", "Receita de serviços"), ("TransferenciasCorrentes", "Transferências correntes"),
-            ("TransferenciasCorrentesDaUniaoEDeSuasEntidades", "da União"),
+            ("TransferenciasCorrentesDaUniaoEDeSuasEntidades", "das quais, da União"),
             ("OutrasReceitasCorrentes", "Outras receitas correntes"), ("ReceitasDeOperacoesDeCredito", "Empréstimos (operações de crédito)"),
             ("AlienacaoDeBens", "Venda de bens"), ("AmortizacoesDeEmprestimos", "Amortização de empréstimos concedidos"),
             ("TransferenciasDeCapital", "Transferências de capital"), ("OutrasReceitasDeCapital", "Outras receitas de capital")]
 DESPESAS = [("DespesasExcetoIntraOrcamentarias", "Total"), ("PessoalEEncargosSociais", "Pessoal e encargos"),
-            ("JurosEEncargosDaDivida", "Juros da dívida"), ("TransferenciasAMunicipios", "Repasses a municípios"),
-            ("DemaisDespesasCorrentes", "Custeio e demais despesas"), ("Investimentos", "Investimentos"),
+            ("JurosEEncargosDaDivida", "Juros da dívida"), ("OutrasDespesasCorrentes", "Custeio, repasses e outras"),
+            ("TransferenciasAMunicipios", "dos quais, repasses a municípios"), ("Investimentos", "Investimentos"),
             ("InversoesFinanceiras", "Inversões financeiras"), ("AmortizacaoDaDivida", "Amortização da dívida")]
 FUNCOES = """Legislativa|Judiciária|Essencial à Justiça|Administração|Defesa Nacional|Segurança Pública|Relações Exteriores|
 Assistência Social|Previdência Social|Saúde|Trabalho|Educação|Cultura|Direitos da Cidadania|Urbanismo|Habitação|Saneamento|
