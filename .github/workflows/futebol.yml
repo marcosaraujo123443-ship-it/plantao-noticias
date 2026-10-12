@@ -1,0 +1,27 @@
+name: Tabelas do futebol
+on:
+  schedule:
+    - cron: "20 * * * *"   # de hora em hora
+  workflow_dispatch:
+  push:
+    paths: ["scripts/futebol.py", ".github/workflows/futebol.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: futebol
+  cancel-in-progress: false
+jobs:
+  coletar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Coletar classificações
+        run: python3 scripts/futebol.py
+      - name: Publicar futebol.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add futebol.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Tabelas $(date -u +%H:%M) UTC"
+          for i in 1 2 3; do git pull --rebase -q origin main && git push -q origin main && break; sleep 5; done
