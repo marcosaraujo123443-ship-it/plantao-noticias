@@ -284,7 +284,7 @@ footer a{font-weight:600}
 
   /* Contas dos estados (Tesouro Nacional, SICONFI) */
   var EST=null, UF='SP', EP='atual', nf1=new Intl.NumberFormat('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1});
-  try{UF=localStorage.getItem('plantao-uf')||'SP'}catch(e){}
+  try{UF=localStorage.getItem('plantao-uf')||'BR'}catch(e){}
   var PER=['','janeiro e fevereiro','janeiro a abril','janeiro a junho','janeiro a agosto','janeiro a outubro','ano completo'];
   function rs(v){ if(v==null) return '–'; var a=Math.abs(v), s=v<0?'−':''; if(a>=1e9) return s+'R$ '+nf1.format(a/1e9)+' bi'; if(a>=1e6) return s+'R$ '+nf1.format(a/1e6)+' mi'; return s+'R$ '+nf0.format(a); }
   function pc(a,b){ return (a!=null&&b)?nf1.format(a/b*100)+'%':'–'; }
@@ -293,10 +293,10 @@ footer a{font-weight:600}
     var box=document.querySelector('[data-contas]'); if(!box||!EST||!EST.estados) return;
     var sel=box.querySelector('[data-uf]');
     if(!sel.options.length){
-      sel.innerHTML=Object.keys(EST.estados).map(function(k){return EST.estados[k]}).sort(function(a,b){return a.nome.localeCompare(b.nome,'pt-BR')})
-        .map(function(e){return '<option value="'+esc(e.sigla)+'">'+esc(e.nome)+' ('+esc(e.sigla)+')</option>'}).join('');
+      sel.innerHTML=Object.keys(EST.estados).map(function(k){return EST.estados[k]}).sort(function(a,b){var o={BR:0,UF:1};return ((a.sigla in o?o[a.sigla]:2)-(b.sigla in o?o[b.sigla]:2))||a.nome.localeCompare(b.nome,'pt-BR')})
+        .map(function(e){return '<option value="'+esc(e.sigla)+'">'+esc(e.nome)+(e.sigla==='BR'||e.sigla==='UF'?'':' ('+esc(e.sigla)+')')+'</option>'}).join('');
     }
-    if(!EST.estados[UF]) UF='SP';
+    if(!EST.estados[UF]) UF=EST.estados.BR?'BR':'SP';
     sel.value=UF;
     var e=EST.estados[UF], b=e[EP];
     var bAnt=box.querySelector('[data-ep="anterior"]'); bAnt.hidden=!e.anterior;
@@ -305,7 +305,7 @@ footer a{font-weight:600}
     if(e.atual) box.querySelector('[data-ep="atual"]').textContent=String(e.atual.ano);
     if(e.anterior) bAnt.textContent=String(e.anterior.ano);
     if(!b){ box.querySelector('[data-per]').textContent='O estado ainda não enviou dados ao Tesouro.'; return; }
-    box.querySelector('[data-per]').textContent=e.nome+', '+(b.periodo===6?'ano de '+b.ano+' completo':PER[b.periodo]+' de '+b.ano+' (último bimestre enviado pelo estado)')+'.';
+    box.querySelector('[data-per]').textContent=e.nome+', '+(b.periodo===6?'ano de '+b.ano+' completo':PER[b.periodo]+' de '+b.ano+(UF==='BR'?' (último bimestre publicado)':UF==='UF'?'':' (último bimestre enviado pelo estado)'))+(b.estados?', '+b.estados+' estados somados':'')+'.';
     var R=b.receitas, D=b.despesas, rt=linha(R,'Total arrecadado'), dt=linha(D,'Total'), inv=linha(D,'Investimentos');
     var saldo=(rt.realizado!=null&&dt.liquidado!=null)?rt.realizado-dt.liquidado:null, sx=saldo==null?'flat':saldo>=0?'up':'down';
     box.querySelector('[data-uc]').innerHTML=
@@ -314,7 +314,7 @@ footer a{font-weight:600}
       '<div class="ic"><span>Saldo</span><b class="'+sx+'">'+rs(saldo)+'</b><i class="flat">'+(saldo==null?'':saldo>=0?'arrecadou mais do que gastou':'gastou mais do que arrecadou')+'</i></div>'+
       '<div class="ic"><span>Investimentos</span><b>'+rs(inv.liquidado)+'</b><i class="flat">'+pc(inv.liquidado,dt.liquidado)+' do gasto</i></div>'+
       (b.populacao?'<div class="ic"><span>Arrecadado por habitante</span><b>'+rs(rt.realizado/b.populacao)+'</b><i class="flat">'+nf0.format(b.populacao)+' habitantes</i></div>':'');
-    box.querySelector('[data-ur]').innerHTML=R.filter(function(r){return r.realizado}).map(function(r){
+    box.querySelector('[data-ur]').innerHTML=R.filter(function(r){return r.realizado&&!(UF==='BR'&&/^das quais/.test(r.n))}).map(function(r){
       var c=r.n==='Total arrecadado'?' class="tot"':/^[a-z]/.test(r.n)?' class="sub"':'';
       return '<tr'+c+'><td>'+esc(r.n)+'</td><td class="n">'+rs(r.realizado)+'</td><td class="n">'+pc(r.realizado,r.previsto)+'</td></tr>'}).join('');
     box.querySelector('[data-ud]').innerHTML=D.filter(function(r){return r.empenhado||r.pago}).map(function(r){

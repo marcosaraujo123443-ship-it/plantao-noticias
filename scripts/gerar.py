@@ -71,9 +71,9 @@ for s in SECOES:
     if s == "Política":
         painel = '''<div class="painel contas" data-contas>
   <section class="quadro">
-    <header><h3>Contas públicas dos estados</h3>
+    <header><h3>Contas públicas</h3>
       <div class="filtros-uf">
-        <label>Estado <select data-uf aria-label="Escolher estado"></select></label>
+        <label>Governo <select data-uf aria-label="Escolher o Brasil ou um estado"></select></label>
         <div class="seg" role="group" aria-label="Período"><button class="on" data-ep="atual" aria-pressed="true">Ano atual</button><button data-ep="anterior" aria-pressed="false">Ano passado</button></div>
       </div>
       <p class="per" data-per>Carregando dados do Tesouro Nacional…</p></header>
@@ -118,7 +118,7 @@ for s in SECOES:
   <p class="nota" data-nota></p>
 </div>'''
     lista = f'<ol class="lista">{li or "<li><p>Sem notícias nesta atualização.</p></li>"}</ol>'
-    corpo = f'<div class="dupla">{painel}{lista}</div>' if s == "Futebol" else painel + lista
+    corpo = f'<div class="dupla">{painel}{lista}</div>' if s in ("Futebol", "Política") else painel + lista
     paginas += f'''<section class="pagina" id="pg-{slug(s)}" data-pg="{slug(s)}" hidden>
   <div class="sec-t s-{slug(s)}"><h2>{e(s)}</h2><span>{len(por_sec[s])} notícias</span></div>
   {corpo}
