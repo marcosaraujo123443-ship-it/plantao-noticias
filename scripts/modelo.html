@@ -130,6 +130,7 @@ h2 a:hover,h3 a:hover,h4 a:hover{text-decoration:underline;text-decoration-thick
 .acoes tr:last-child td{border-bottom:0}
 .acoes td:first-child{font:600 14px var(--f-mono)}
 .acoes .n{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+@media (min-width:1000px){.dupla{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"lista painel";gap:32px;align-items:start}.dupla>.painel{grid-area:painel;margin-top:12px}.dupla>.lista{grid-area:lista}}
 .fut-t{width:100%;border-collapse:collapse;font-size:14px}
 .fut-t th{font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-2);font-weight:600;padding:8px 6px;border-bottom:1px solid var(--rule);text-align:right}
 .fut-t td{padding:7px 6px;border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}

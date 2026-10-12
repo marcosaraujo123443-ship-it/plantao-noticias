@@ -117,9 +117,11 @@ for s in SECOES:
   </div>
   <p class="nota" data-nota></p>
 </div>'''
+    lista = f'<ol class="lista">{li or "<li><p>Sem notícias nesta atualização.</p></li>"}</ol>'
+    corpo = f'<div class="dupla">{painel}{lista}</div>' if s == "Futebol" else painel + lista
     paginas += f'''<section class="pagina" id="pg-{slug(s)}" data-pg="{slug(s)}" hidden>
   <div class="sec-t s-{slug(s)}"><h2>{e(s)}</h2><span>{len(por_sec[s])} notícias</span></div>
-  {painel}<ol class="lista">{li or "<li><p>Sem notícias nesta atualização.</p></li>"}</ol>
+  {corpo}
 </section>'''
 
 tabs = '<button class="tab on" data-tab="inicio" aria-pressed="true">Início</button>' + "".join(
