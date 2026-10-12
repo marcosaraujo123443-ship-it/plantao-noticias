@@ -1,0 +1,28 @@
+name: Cotações do agro
+on:
+  schedule:
+    - cron: "10,40 11-22 * * 1-5"   # a cada 30 min em dia útil
+    - cron: "45 1 * * *"
+  workflow_dispatch:
+  push:
+    paths: ["scripts/agro.py", ".github/workflows/agro.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: agro
+  cancel-in-progress: false
+jobs:
+  coletar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Coletar cotações do agro
+        run: python3 scripts/agro.py
+      - name: Publicar agro.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add agro.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Agro $(date -u +%H:%M) UTC"
+          for i in 1 2 3; do git pull --rebase -q origin main && git push -q origin main && break; sleep 5; done
