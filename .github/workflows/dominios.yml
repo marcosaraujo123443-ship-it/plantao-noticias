@@ -1,0 +1,15 @@
+name: Verificar domínios (temporário)
+on:
+  push:
+    paths: [".github/workflows/dominios.yml"]
+jobs:
+  ver:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for n in plantaonoticias plantaohoje plantaodiario plantaoagora plantaoemfoco plantaoinforma plantaobr plantaonews plantaoja plantaoexpresso plantaopontual plantaoalerta radarplantao giroplantao plantaodahora horadoplantao plantaodigital plantaoonline; do
+            b=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "https://rdap.registro.br/domain/$n.com.br")
+            c=$(curl -sL -o /dev/null -w '%{http_code}' --max-time 20 "https://rdap.verisign.com/com/v1/domain/$n.com")
+            echo "RESULTADO $n com.br=$b com=$c"
+            sleep 1
+          done
