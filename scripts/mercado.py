@@ -7,8 +7,8 @@ UA = {"User-Agent": "Mozilla/5.0 (compatible; PlantaoNoticias/1.0)"}
 ACOES = [("PETR4", "Petrobras"), ("VALE3", "Vale"), ("ITUB4", "Itaú"), ("BBDC4", "Bradesco"),
          ("BBAS3", "Banco do Brasil"), ("B3SA3", "B3"), ("ABEV3", "Ambev"), ("WEGE3", "WEG"),
          ("ITSA4", "Itaúsa"), ("BPAC11", "BTG Pactual"), ("SUZB3", "Suzano"), ("PRIO3", "PRIO"),
-         ("JBSS3", "JBS"), ("RENT3", "Localiza"), ("EMBR3", "Embraer"), ("GGBR4", "Gerdau"),
-         ("RADL3", "Raia Drogasil"), ("LREN3", "Renner"), ("MGLU3", "Magazine Luiza"), ("ELET3", "Eletrobras")]
+         ("RENT3", "Localiza"), ("EMBJ3", "Embraer"), ("GGBR4", "Gerdau"),
+         ("RADL3", "Raia Drogasil"), ("LREN3", "Renner"), ("MGLU3", "Magazine Luiza"), ("AXIA3", "Axia (Eletrobras)"), ("CMIG4", "Cemig")]
 
 def get(url, headers=UA):
     with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=20) as r:
