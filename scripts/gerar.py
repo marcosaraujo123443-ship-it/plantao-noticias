@@ -86,6 +86,17 @@ for s in SECOES:
     <p class="nota">Fonte: Tesouro Nacional, SICONFI (Relatório Resumido da Execução Orçamentária, enviado pelos próprios estados a cada bimestre). Valores acumulados no ano, sem as operações intraorçamentárias.</p>
   </section>
 </div>'''
+    if s == "Agro":
+        painel = '''<div class="painel" data-agro>
+  <section class="quadro">
+    <header><h3>Cotações do agro</h3>
+      <div class="seg" role="group" aria-label="Tipo de cotação"><button class="on" data-ag="ind" aria-pressed="true">Indicadores</button><button data-ag="bol" aria-pressed="false">Bolsas</button><button data-ag="pra" aria-pressed="false">Por praça</button></div>
+      <label class="ag-pr" hidden>Produto <select data-agp aria-label="Escolher produto"></select></label>
+      <p class="per" data-agt>Carregando cotações…</p></header>
+    <div class="tw" data-agb></div>
+    <p class="nota" data-agn></p>
+  </section>
+</div>'''
     if s == "Futebol":
         painel = '''<div class="painel" data-fut>
   <section class="quadro">
@@ -118,7 +129,7 @@ for s in SECOES:
   <p class="nota" data-nota></p>
 </div>'''
     lista = f'<ol class="lista">{li or "<li><p>Sem notícias nesta atualização.</p></li>"}</ol>'
-    corpo = f'<div class="dupla">{painel}{lista}</div>' if s in ("Futebol", "Política") else painel + lista
+    corpo = f'<div class="dupla">{painel}{lista}</div>' if s in ("Futebol", "Política", "Agro") else painel + lista
     paginas += f'''<section class="pagina" id="pg-{slug(s)}" data-pg="{slug(s)}" hidden>
   <div class="sec-t s-{slug(s)}"><h2>{e(s)}</h2><span>{len(por_sec[s])} notícias</span></div>
   {corpo}

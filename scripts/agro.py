@@ -38,9 +38,90 @@ def tabelas(pg):
                         "cab": cab, "linhas": linhas[:12]})
     return out
 
+def num(s):
+    s = (s or "").replace("%", "").replace("+", "").replace(".", "").replace(",", ".").strip()
+    try: return float(s)
+    except ValueError: return None
+
+# (página, regex do título, nome no site, unidade, coluna do preço, coluna da variação, variação em pontos?)
+INDICADORES = [
+    ("soja", r"Indicador da Soja ESALQ/B3 - Paranaguá", "Soja (Paranaguá)", "R$/sc 60 kg", 1, 2, False),
+    ("milho", r"Indicador do Milho", "Milho (Campinas)", "R$/sc 60 kg", 1, 2, False),
+    ("boi-gordo", r"Indicador do Boi Gordo", "Boi gordo (SP)", "R$/@", 1, 2, False),
+    ("boi-gordo", r"Bezerro", "Bezerro (MS)", "R$/cabeça", 1, 2, False),
+    ("cafe", r"Café Arábica - Cepea", "Café arábica", "R$/sc 60 kg", 1, 2, False),
+    ("cafe", r"Café Robusta", "Café robusta", "R$/sc 60 kg", 1, 2, False),
+    ("trigo", r"Preço Médio do Trigo", "Trigo (PR)", "R$/t", 2, 3, False),
+    ("algodao", r"Algodão - Indicador", "Algodão em pluma", "centavos de R$/lb", 1, 2, False),
+    ("sucroenergetico", r"Açúcar Cristal Cepea/Esalq - SP$", "Açúcar cristal (SP)", "R$/sc 50 kg", 1, 2, False),
+    ("sucroenergetico", r"Indicador Semanal Etanol Hidratado Cepea", "Etanol hidratado (semanal)", "R$/litro", 1, 2, False),
+    ("arroz", r"Indicador Arroz em Casca", "Arroz em casca (RS)", "R$/sc 50 kg", 1, 2, False),
+    ("frango", r"Frango Congelado", "Frango congelado", "R$/kg", 1, 2, False),
+    ("suinos", r"Indicador do Suíno Vivo", "Suíno vivo", "R$/kg", 2, 3, False),
+    ("laranja", r"Laranja Indústria", "Laranja (indústria)", "R$/cx 40,8 kg", 1, 2, False),
+]
+BOLSAS = [
+    ("boi-gordo", r"Boi Gordo - B3", "B3", "Boi gordo", "R$/@", 1, 2, False),
+    ("milho", r"Milho - B3", "B3", "Milho", "R$/sc 60 kg", 1, 2, False),
+    ("soja", r"Soja CME - B3", "B3", "Soja", "US$/sc 60 kg", 1, 2, False),
+    ("cafe", r"Café Arábica 4/5 - B3", "B3", "Café arábica", "US$/sc 60 kg", 1, 2, False),
+    ("sucroenergetico", r"Etanol - B3", "B3", "Etanol", "R$/m³", 1, 2, False),
+    ("soja", r"^Soja - Bolsa de Chicago", "Chicago", "Soja", "US$/bushel", 1, 3, False),
+    ("soja", r"Farelo de Soja - Bolsa de Chicago", "Chicago", "Farelo de soja", "US$/t curta", 1, 3, False),
+    ("soja", r"Óleo de Soja - Bolsa de Chicago", "Chicago", "Óleo de soja", "US$/lb", 1, 3, False),
+    ("milho", r"Milho - Bolsa de Chicago", "Chicago", "Milho", "US$/bushel", 1, 3, False),
+    ("trigo", r"Trigo - Bolsa de Chicago", "Chicago", "Trigo", "US$/bushel", 1, 3, False),
+    ("cafe", r"Café - Bolsa de Nova Iorque", "Nova York", "Café arábica", "¢/lb", 1, 3, True),
+    ("cafe", r"Café - Bolsa de Londres", "Londres", "Café robusta", "US$/t", 1, 2, True),
+    ("sucroenergetico", r"Açúcar - Bolsa de Nova Iorque", "Nova York", "Açúcar", "¢/lb", 1, 2, True),
+    ("algodao", r"Algodão - Bolsa de Nova Iorque", "Nova York", "Algodão", "¢/lb", 1, 3, True),
+    ("laranja", r"Suco de Laranja - Bolsa", "Nova York", "Suco de laranja", "¢/lb", 1, 2, True),
+]
+PRACAS = [("soja", r"^Soja - Mercado Físico$", "Soja", "R$/sc 60 kg"), ("milho", r"^Milho - Mercado Físico$", "Milho", "R$/sc 60 kg"),
+          ("boi-gordo", r"Mercado Físico - Scot", "Boi gordo (à vista)", "R$/@"),
+          ("cafe", r"Café Arábica-Mercado Físico \(Tipo 6 ", "Café arábica (tipo 6)", "R$/sc 60 kg"),
+          ("trigo", r"^Trigo - Mercado Físico$", "Trigo", "R$/sc"), ("arroz", r"^Arroz - Mercado Físico$", "Arroz", "R$/sc 50 kg"),
+          ("algodao", r"Algodão - IMEA", "Algodão (MT)", "R$/@"), ("leite", r"Leite - Preços ao Produtor", "Leite ao produtor", "R$/litro"),
+          ("suinos", r"Suínos - Bolsas", "Suíno vivo", "R$/kg"), ("feijao", r"Feijão Preto Tipo 1", "Feijão preto", "R$/sc")]
+
+def achar(paginas, pag, rx):
+    return next((t for t in paginas.get(pag, []) if re.search(rx, t["titulo"])), None)
+
+def pct(preco, var, pontos):
+    if var is None: return None
+    if not pontos: return var
+    base = (preco or 0) - var
+    return var / base * 100 if base else None
+
+def montar(paginas):
+    ind, bol, pr = [], [], []
+    for pag, rx, nome, un, cp, cv, pts in INDICADORES:
+        t = achar(paginas, pag, rx)
+        if not t: continue
+        l = t["linhas"][0]
+        if len(l) <= max(cp, cv) or num(l[cp]) is None: continue
+        ind.append({"nome": nome, "un": un, "preco": num(l[cp]), "var": pct(num(l[cp]), num(l[cv]), pts),
+                    "data": l[0] if re.match(r"\d", l[0]) else "", "fonte": t["fonte"]})
+    for pag, rx, bolsa, nome, un, cp, cv, pts in BOLSAS:
+        t = achar(paginas, pag, rx)
+        if not t: continue
+        l = next((l for l in t["linhas"] if len(l) > max(cp, cv) and num(l[cp]) is not None), None)
+        if not l: continue
+        bol.append({"bolsa": bolsa, "nome": nome, "un": un, "venc": l[0], "preco": num(l[cp]),
+                    "var": pct(num(l[cp]), num(l[cv]), pts)})
+    for pag, rx, nome, un in PRACAS:
+        t = achar(paginas, pag, rx)
+        if not t: continue
+        linhas = [[l[0], num(l[1]), num(l[-1]) if len(l) > 2 else None] for l in t["linhas"] if len(l) >= 2 and num(l[1]) is not None]
+        if t["titulo"].startswith("Mercado Físico - Scot"):
+            linhas = [[l[0], num(l[1]), None] for l in t["linhas"] if len(l) >= 2 and num(l[1]) is not None]
+        if linhas: pr.append({"nome": nome, "un": un, "fonte": t["fonte"], "linhas": linhas})
+    return ind, bol, pr
+
 def main():
     paginas, erros = {}, []
-    for p in PAGINAS:
+    if len(sys.argv) > 1: paginas = json.load(open(sys.argv[1], encoding="utf-8"))["paginas"]
+    for p in ([] if paginas else PAGINAS):
         try:
             paginas[p] = tabelas(texto(BASE + p))
         except Exception as e:
@@ -48,9 +129,10 @@ def main():
         time.sleep(1)
     if not any(paginas.values()): raise SystemExit("Nada coletado: " + "; ".join(erros))
     with open("agro.json", "w", encoding="utf-8") as f:
-        json.dump({"atualizado_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "paginas": paginas, "erros": erros},
-                  f, ensure_ascii=False, indent=0)
-    print({p: len(t) for p, t in paginas.items()}, erros)
+        ind, bol, pr = montar(paginas)
+        json.dump({"atualizado_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "fonte": "Notícias Agrícolas",
+                   "indicadores": ind, "bolsas": bol, "pracas": pr, "erros": erros}, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"{len(ind)} indicadores, {len(bol)} bolsas, {len(pr)} tabelas por praça", erros)
 
 if __name__ == "__main__":
     main()

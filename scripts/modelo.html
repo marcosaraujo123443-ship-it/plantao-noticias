@@ -131,6 +131,14 @@ h2 a:hover,h3 a:hover,h4 a:hover{text-decoration:underline;text-decoration-thick
 .acoes td:first-child{font:600 14px var(--f-mono)}
 .acoes .n{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 @media (min-width:1000px){.dupla{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"lista painel";gap:32px;align-items:start}.dupla>.painel{grid-area:painel;margin-top:12px}.dupla>.lista{grid-area:lista}}
+[data-agro] .tw{margin:0 16px}
+[data-agro] .ag-pr{display:flex;gap:8px;align-items:center;font:600 13px var(--f-body);color:var(--ink-2)}
+[data-agro] .ag-pr select{font:600 15px var(--f-body);color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:7px 10px}
+[data-agro] .ag-pr[hidden]{display:none}
+.tab-m td .un{display:block;font-size:11.5px;color:var(--ink-2);font-weight:400}
+.tab-m td.wrap{white-space:normal}
+[data-agro] .nota{padding:10px 16px 16px}
+@media (max-width:520px){[data-agro] .tw{margin:0 8px}}
 .fut-t{width:100%;border-collapse:collapse;font-size:14px}
 .fut-t th{font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-2);font-weight:600;padding:8px 6px;border-bottom:1px solid var(--rule);text-align:right}
 .fut-t td{padding:7px 6px;border-bottom:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -238,12 +246,56 @@ footer a{font-weight:600}
     if(rolar) window.scrollTo({top:0});
     if(id==='politica'&&window.carregarContas) window.carregarContas();
     if(id==='futebol'&&window.carregarFut) window.carregarFut();
+    if(id==='agro'&&window.carregarAgro) window.carregarAgro();
   }
   document.addEventListener('click',function(ev){
     var el=ev.target.closest('[data-tab]'); if(!el) return;
     ev.preventDefault(); abrir(el.dataset.tab,true);
   });
   abrir((location.hash||'#inicio').slice(1),false);
+
+  /* Cotações do agro (Notícias Agrícolas: Cepea/Esalq, B3, CME, ICE) */
+  var AGRO=null, AG='ind', AGP=0;
+  function nfp(v){ return v==null?'–':new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:v<10?4:2}).format(v); }
+  function vcel(v){ var x=vr(v); return '<td class="n '+x.c+'">'+(v==null?'–':x.t)+'</td>'; }
+  function quadroAgro(){
+    var box=document.querySelector('[data-agro]'); if(!box||!AGRO) return;
+    box.querySelectorAll('[data-ag]').forEach(function(x){var on=x.dataset.ag===AG;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on)});
+    var lp=box.querySelector('.ag-pr'), sel=box.querySelector('[data-agp]'), P=AGRO.pracas||[];
+    lp.hidden=AG!=='pra';
+    if(!sel.options.length) sel.innerHTML=P.map(function(p,i){return '<option value="'+i+'">'+esc(p.nome)+'</option>'}).join('');
+    var t='', h='';
+    if(AG==='ind'){
+      var d=(AGRO.indicadores||[]).map(function(i){return i.data}).filter(Boolean).sort().pop();
+      t='Preços de referência no mercado físico brasileiro (Cepea/Esalq)'+(d?', fechamento de '+d.replace(/^.* - /,'').slice(0,5):'')+'.';
+      h='<table class="tab-m"><thead><tr><th>Produto</th><th class="n">Preço</th><th class="n">Dia</th></tr></thead><tbody>'+
+        (AGRO.indicadores||[]).map(function(i){return '<tr><td class="wrap">'+esc(i.nome)+'<span class="un">'+esc(i.un)+'</span></td><td class="n">'+nfp(i.preco)+'</td>'+vcel(i.var)+'</tr>'}).join('')+'</tbody></table>';
+    } else if(AG==='bol'){
+      t='Contrato mais próximo de cada bolsa: B3 (São Paulo), CME (Chicago) e ICE (Nova York e Londres).';
+      h='<table class="tab-m"><thead><tr><th>Contrato</th><th class="n">Preço</th><th class="n">Dia</th></tr></thead><tbody>'+
+        (AGRO.bolsas||[]).map(function(b){return '<tr><td class="wrap">'+esc(b.nome)+' <span style="color:var(--ink-2)">· '+esc(b.bolsa)+'</span><span class="un">'+esc(b.venc)+' · '+esc(b.un)+'</span></td><td class="n">'+nfp(b.preco)+'</td>'+vcel(b.var)+'</tr>'}).join('')+'</tbody></table>';
+    } else {
+      var p=P[AGP]||P[0]; sel.value=String(P.indexOf(p));
+      t=p?('Preço pago ao produtor em cada praça, em '+p.un+'.'):'';
+      h=p?'<table class="tab-m"><thead><tr><th>Praça</th><th class="n">Preço</th><th class="n">Dia</th></tr></thead><tbody>'+
+        p.linhas.map(function(l){return '<tr><td class="wrap">'+esc(l[0])+'</td><td class="n">'+nfp(l[1])+'</td>'+vcel(l[2])+'</tr>'}).join('')+'</tbody></table>':'';
+    }
+    box.querySelector('[data-agt]').textContent=t;
+    box.querySelector('[data-agb]').innerHTML=h;
+    if(AGRO.atualizado_utc){
+      var hr=new Date(AGRO.atualizado_utc).toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+      box.querySelector('[data-agn]').textContent='Consultado em '+hr+' (horário de Brasília). Fontes: Cepea/Esalq, B3, CME Group, ICE e cooperativas, reunidos pelo Notícias Agrícolas. Valores com atraso; apenas informativo.';
+    }
+  }
+  document.addEventListener('click',function(ev){ var b=ev.target.closest('[data-ag]'); if(b){ AG=b.dataset.ag; quadroAgro(); } });
+  document.addEventListener('change',function(ev){ if(ev.target.matches('[data-agp]')){ AGP=+ev.target.value; quadroAgro(); } });
+  window.carregarAgro=function(){
+    if(AGRO||!/^https?:/.test(location.protocol)) return;
+    AGRO={};
+    fetch('agro.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){AGRO=d||{};quadroAgro()})
+      .catch(function(){var p=document.querySelector('[data-agt]'); if(p) p.textContent='Não foi possível carregar as cotações agora.'; AGRO=null});
+  };
+  if((location.hash||'')==='#agro') window.carregarAgro();
 
   /* Tabelas do futebol (ESPN) */
   var FUT=null, LIGA='bra.1';

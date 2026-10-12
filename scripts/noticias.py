@@ -43,8 +43,25 @@ def limpa(t):
     t = html.unescape(re.sub(r"<[^>]+>", " ", t or ""))
     return re.sub(r"\s+", " ", t).strip()
 
+def sem_credito(t):
+    """Tira o crédito da foto do começo do texto ("Foto: Fulano/Agência Brasil Texto...")."""
+    m = re.match(r"(Foto|Imagem|Crédito)s?:\s*", t or "")
+    if not m: return t
+    r = t[m.end():]
+    if "/" in r[:60]:
+        r = r[r.index("/") + 1:].lstrip()
+        ws = r.split(" ")
+        for k in (2, 1):
+            if len(ws) > k and all(w[:1].isupper() for w in ws[:k]) and ws[k][:1].isupper():
+                return " ".join(ws[k:])
+        return " ".join(ws[1:])
+    ws = r.split(" ")
+    for i in range(1, min(len(ws), 5)):
+        if ws[i][:1].isupper(): return " ".join(ws[i:])
+    return ""
+
 def resumo(t):
-    t = limpa(t)
+    t = sem_credito(limpa(t))
     t = re.sub(r"\s*(The post|O post|Leia mais|Continue lendo).*$", "", t)
     m = re.match(r"(.{40,240}?[.!?])(\s|$)", t)
     r = m.group(1) if m else t[:220]
@@ -95,7 +112,7 @@ def main():
                 velho = por_link.get(it["link"], {})
                 por_link[it["link"]] = {"secao": velho.get("secao", secao), "fonte": fonte, "editoria": velho.get("secao", secao),
                                         "titulo": it["titulo"], "link": it["link"], "data": it["data"],
-                                        "resumo": it["resumo"] or velho.get("resumo", "")}
+                                        "resumo": it["resumo"] or resumo(velho.get("resumo", ""))}
                 n += 1
             print(f"{secao:8} {fonte:17} {n} itens")
         except Exception as e:
