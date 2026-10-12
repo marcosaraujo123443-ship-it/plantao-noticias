@@ -144,7 +144,7 @@ def main():
     if soma: estados["UF"] = soma
     br = estados.get("BR", {})
     for k in ("atual", "anterior"):
-        if br.get(k) and not br[k].get("populacao") and soma and soma.get(k):
+        if br.get(k) and soma and soma.get(k):  # o RREO da União traz população errada
             br[k]["populacao"] = soma[k]["populacao"]
     if not any(e.get("atual") for e in estados.values()):
         raise SystemExit("Nenhum estado coletado: " + "; ".join(erros))
