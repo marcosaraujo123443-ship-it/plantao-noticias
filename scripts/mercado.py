@@ -36,10 +36,16 @@ def main():
             ind.append({"nome": nome, "valor": float(fx[k]["bid"]), "var": float(fx[k]["pctChange"]), "tipo": "brl"})
     except Exception as e:
         erros.append(f"moedas (awesomeapi): {e}")
-        for sym, nome in (("BRL%3DX", "Dólar"), ("EURBRL%3DX", "Euro"), ("BTC-BRL", "Bitcoin")):
+        usd = None
+        for sym, nome in (("BRL%3DX", "Dólar"), ("EURBRL%3DX", "Euro")):
             try:
                 p, v = yahoo(sym); ind.append({"nome": nome, "valor": p, "var": v, "tipo": "brl"})
+                if nome == "Dólar": usd = p
             except Exception as e2: erros.append(f"{nome}: {e2}")
+        try:
+            p, v = yahoo("BTC-USD")
+            if usd: ind.append({"nome": "Bitcoin", "valor": p * usd, "var": v, "tipo": "brl"})
+        except Exception as e2: erros.append(f"Bitcoin: {e2}")
     for serie, nome in ((432, "Selic"), (13522, "IPCA 12m")):
         try:
             v = get(f"https://api.bcb.gov.br/dados/serie/bcdata.sgs.{serie}/dados/ultimos/1?formato=json")[-1]["valor"]
