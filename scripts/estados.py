@@ -30,7 +30,7 @@ def get(params):
 
 def rreo(uf, ano, periodo, anexo):
     return get({"an_exercicio": ano, "nr_periodo": periodo, "co_tipo_demonstrativo": "RREO",
-                "no_anexo": anexo, "co_esfera": "E", "id_ente": uf})
+                "no_anexo": anexo, "co_esfera": "U" if uf == 1 else "E", "id_ente": uf})
 
 def intra(cod):
     return "Intra" in cod and "Exceto" not in cod
@@ -97,13 +97,35 @@ def balanco(uf, ano, periodo):
     pop = next((i.get("populacao") for i in a1 if i.get("populacao")), None)
     return {"ano": ano, "periodo": periodo, "populacao": pop, "receitas": rec, "despesas": desp, "funcoes": func}
 
+def somar(lista):
+    """Soma das contas dos 27 estados no período que a maioria já enviou."""
+    out = {"sigla": "UF", "nome": "Todos os estados (soma)"}
+    for k in ("atual", "anterior"):
+        pers = [(e[k]["ano"], e[k]["periodo"]) for e in lista if e.get(k)]
+        if not pers: continue
+        alvo = max(set(pers), key=pers.count)
+        bs = [e[k] for e in lista if e.get(k) and (e[k]["ano"], e[k]["periodo"]) == alvo]
+        b = {"ano": alvo[0], "periodo": alvo[1], "estados": len(bs), "populacao": sum(x.get("populacao") or 0 for x in bs) or None}
+        for parte in ("receitas", "despesas", "funcoes"):
+            ordem, tot = [], {}
+            for x in bs:
+                for r in x.get(parte, []):
+                    if r["n"].startswith("dos quais"): continue  # nem todo estado detalha
+                    if r["n"] not in tot: tot[r["n"]] = {"n": r["n"]}; ordem.append(r["n"])
+                    for c, v in r.items():
+                        if c != "n" and isinstance(v, (int, float)): tot[r["n"]][c] = tot[r["n"]].get(c, 0) + v
+            b[parte] = [tot[n] for n in ordem]
+        b["funcoes"].sort(key=lambda r: r.get("liquidado", 0), reverse=True)
+        out[k] = b
+    return out if out.get("atual") else None
+
 def main():
     agora = datetime.now(timezone.utc)
     anterior = {}
     try: anterior = json.load(open("estados.json", encoding="utf-8")).get("estados", {})
     except Exception: pass
     estados, erros = {}, []
-    for cod, (sigla, nome) in UFS.items():
+    for cod, (sigla, nome) in [(1, ("BR", "Brasil (Governo Federal)"))] + list(UFS.items()):
         e = {"sigla": sigla, "nome": nome, "ibge": cod}
         try:
             atual = None
@@ -118,6 +140,12 @@ def main():
             e = anterior.get(sigla, e)
         estados[sigla] = e
         time.sleep(0.5)
+    soma = somar([e for s, e in estados.items() if s != "BR"])
+    if soma: estados["UF"] = soma
+    br = estados.get("BR", {})
+    for k in ("atual", "anterior"):
+        if br.get(k) and not br[k].get("populacao") and soma and soma.get(k):
+            br[k]["populacao"] = soma[k]["populacao"]
     if not any(e.get("atual") for e in estados.values()):
         raise SystemExit("Nenhum estado coletado: " + "; ".join(erros))
     with open("estados.json", "w", encoding="utf-8") as f:
