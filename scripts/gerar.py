@@ -86,6 +86,16 @@ for s in SECOES:
     <p class="nota">Fonte: Tesouro Nacional, SICONFI (Relatório Resumido da Execução Orçamentária, enviado pelos próprios estados a cada bimestre). Valores acumulados no ano, sem as operações intraorçamentárias.</p>
   </section>
 </div>'''
+    if s == "Futebol":
+        painel = '''<div class="painel" data-fut>
+  <section class="quadro">
+    <header><h3>Classificação</h3>
+      <div class="filtros-uf"><label>Campeonato <select data-liga aria-label="Escolher campeonato"></select></label></div>
+      <p class="per" data-ftemp>Carregando a tabela…</p></header>
+    <div data-ftab></div>
+    <p class="nota" data-fnota></p>
+  </section>
+</div>'''
     if s == "Mercado":
         painel = '''<div class="painel">
   <div class="ind-grid" data-ind></div>
