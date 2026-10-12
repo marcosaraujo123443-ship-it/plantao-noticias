@@ -1,11 +1,23 @@
 {
- "atualizado_utc": "2026-10-12T17:59:46Z",
+ "atualizado_utc": "2026-10-12T18:00:50Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
    "valor": 209066.9,
    "var": 1.3805159538357037,
    "tipo": "pts"
+  },
+  {
+   "nome": "Dólar",
+   "valor": 4.9863,
+   "var": -0.11018069634198824,
+   "tipo": "brl"
+  },
+  {
+   "nome": "Euro",
+   "valor": 5.5642,
+   "var": -0.33316615318478293,
+   "tipo": "brl"
   },
   {
    "nome": "Selic",
@@ -125,6 +137,7 @@
   }
  ],
  "erros": [
-  "moedas: HTTP Error 429: Too Many Requests"
+  "moedas (awesomeapi): HTTP Error 429: Too Many Requests",
+  "Bitcoin: HTTP Error 404: Not Found"
  ]
 }
