@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Manchetes de fontes confiáveis, atualizadas 6 vezes por dia.">
+<meta property="og:title" content="Plantão de Notícias">
+<meta property="og:description" content="Manchetes de fontes confiáveis, atualizadas 6 vezes por dia.">
+</head>
+<body>
+<title>Plantão de Notícias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: portal de notícias. Faixa de identidade, capa (manchete + destaques), depois "Últimas" com coluna lateral de fontes */
+:root{
+  --paper:#f6f7f9; --card:#ffffff; --ink:#111a2b; --ink-2:#4a5568; --rule:#dde2ea;
+  --brand:#b4121b; --brand-ink:#ffffff; --band:#111a2b; --band-ink:#e9edf4;
+  --ab:#1f6f43; --p360:#1d4ed8; --sen:#7c3aed; --cam:#b45309;
+  --f-head:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0d131d; --card:#151d2a; --ink:#e8edf5; --ink-2:#a3aec0; --rule:#26324a;
+  --brand:#e5484d; --brand-ink:#ffffff; --band:#070b12; --band-ink:#e8edf5;
+  --ab:#4cc38a; --p360:#7aa2ff; --sen:#b794f6; --cam:#f0a44b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0d131d; --card:#151d2a; --ink:#e8edf5; --ink-2:#a3aec0; --rule:#26324a;
+  --brand:#e5484d; --brand-ink:#ffffff; --band:#070b12; --band-ink:#e8edf5;
+  --ab:#4cc38a; --p360:#7aa2ff; --sen:#b794f6; --cam:#f0a44b; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:16px/1.55 var(--f-body);margin:0}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:2px}
+.gut{max-width:1160px;margin:0 auto;padding-inline:16px}
+
+/* Faixa superior */
+.topo{background:var(--band);color:var(--band-ink)}
+.topo .gut{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-block:14px}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none}
+.selo{background:var(--brand);color:var(--brand-ink);font:700 13px var(--f-body);letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:3px}
+.nome{font:700 24px/1 var(--f-head);letter-spacing:-.01em}
+.topo-dir{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;font-size:13px;opacity:.92}
+.tg{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--band-ink);border:1px solid color-mix(in srgb,var(--band-ink) 35%,transparent);padding:7px 12px;border-radius:999px;text-decoration:none;font-weight:600}
+.tg:hover{border-color:var(--band-ink)}
+.tg svg{width:16px;height:16px;fill:currentColor}
+.faixa{border-bottom:1px solid var(--rule);background:var(--card)}
+.faixa .gut{display:flex;flex-wrap:wrap;gap:6px 22px;padding-block:9px;font:500 12.5px var(--f-mono);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.faixa b{color:var(--ink);font-weight:500}
+.vivo{display:inline-flex;align-items:center;gap:7px;color:var(--brand)}
+.vivo i{width:7px;height:7px;border-radius:50%;background:var(--brand);animation:pulso 2s ease-in-out infinite}
+@keyframes pulso{50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){.vivo i{animation:none}}
+
+main.gut{display:grid;gap:36px;padding-block:28px 56px}
+
+/* Capa */
+.capa{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:28px}
+.lead{background:var(--card);border:1px solid var(--rule);border-top:4px solid var(--brand);padding:26px 26px 24px;display:grid;gap:12px;align-content:start}
+.lead h2{font:700 clamp(28px,3.6vw,40px)/1.12 var(--f-head);margin:0;text-wrap:balance;letter-spacing:-.01em}
+.lead p{margin:0;font-size:18px;color:var(--ink-2);max-width:60ch}
+.ler{font-weight:600;font-size:14px;color:var(--brand);text-decoration:none}
+.ler:hover{text-decoration:underline}
+.dests{display:grid;gap:0;align-content:start}
+.dest{display:grid;gap:6px;padding-block:16px;border-bottom:1px solid var(--rule)}
+.dest:first-child{padding-top:0}
+.dest h3{font:600 19px/1.25 var(--f-head);margin:0;text-wrap:balance}
+.dest p{margin:0;font-size:14.5px;color:var(--ink-2)}
+h2 a,h3 a,h4 a{text-decoration:none}
+h2 a:hover,h3 a:hover,h4 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:12.5px;color:var(--ink-2)}
+.fonte{font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:11.5px;color:var(--c,var(--ink))}
+.f-agência-brasil{--c:var(--ab)} .f-poder360{--c:var(--p360)} .f-agência-senado{--c:var(--sen)} .f-agência-câmara{--c:var(--cam)}
+.meta time{font-family:var(--f-mono);font-size:12px;font-variant-numeric:tabular-nums}
+.ed::before{content:"";display:inline-block;width:3px;height:3px;border-radius:50%;background:var(--ink-2);margin-right:12px;vertical-align:middle;opacity:.6}
+.meta time::before{content:"";display:inline-block;width:3px;height:3px;border-radius:50%;background:var(--ink-2);margin-right:12px;vertical-align:middle;opacity:.6}
+
+/* Últimas + lateral */
+.corpo{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:36px;align-items:start}
+.sec-t{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:14px}
+.sec-t h2{font:700 13px var(--f-body);letter-spacing:.12em;text-transform:uppercase;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.chip{font:500 13.5px var(--f-body);border:1px solid var(--rule);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.chip span{color:var(--ink-2);font-variant-numeric:tabular-nums;margin-left:3px}
+.chip.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.chip.on span{color:var(--paper);opacity:.75}
+.lista{list-style:none;margin:0;padding:0;display:grid}
+.lista li{display:grid;gap:5px;padding-block:15px;border-bottom:1px solid var(--rule)}
+.lista h4{font:600 18px/1.3 var(--f-head);margin:0;text-wrap:balance}
+
+aside{display:grid;gap:20px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
+.box{background:var(--card);border:1px solid var(--rule);padding:18px;display:grid;gap:12px}
+.box h2{font:700 12.5px var(--f-body);letter-spacing:.12em;text-transform:uppercase;margin:0}
+.box p{margin:0;font-size:14px;color:var(--ink-2)}
+.fontes{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.fontes li{display:grid;gap:2px;font-size:13.5px;color:var(--ink-2)}
+.box-tg{background:var(--band);color:var(--band-ink);border-color:var(--band)}
+.box-tg p{color:var(--band-ink);opacity:.85}
+.box-tg a.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;background:var(--brand);color:var(--brand-ink);text-decoration:none;font-weight:700;padding:10px 14px;border-radius:4px}
+.box-tg a.btn svg{width:16px;height:16px;fill:currentColor}
+.hor{font:500 13px var(--f-mono);font-variant-numeric:tabular-nums;color:var(--ink)}
+
+footer{border-top:1px solid var(--rule);background:var(--card)}
+footer .gut{padding-block:22px;font-size:13px;color:var(--ink-2);display:grid;gap:6px}
+footer p{margin:0;max-width:80ch}
+
+@media (max-width:900px){
+  .capa,.corpo{grid-template-columns:minmax(0,1fr)}
+  aside{position:static}
+}
+@media (max-width:520px){
+  .lead{padding:20px 18px}
+  .topo-dir .data{display:none}
+}
+</style>
+
+<header class="topo">
+  <div class="gut">
+    <a class="marca" href="#ultimas"><span class="selo">Plantão</span><span class="nome">de Notícias</span></a>
+    <div class="topo-dir">
+      <span class="data">Segunda-feira, 12 de outubro de 2026</span>
+      <a class="tg" href="https://t.me/plantaodenoticias" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.7.2 1.4 1.3z"/></svg>Canal no Telegram</a>
+    </div>
+  </div>
+</header>
+<div class="faixa">
+  <div class="gut">
+    <span class="vivo"><i></i>Atualizado às <b style="color:inherit">13:30</b></span>
+    <span>Atualização 6× ao dia: <b>01h · 05h · 09h · 13h · 17h · 21h</b></span>
+    <span>Horário de Brasília</span>
+  </div>
+</div>
+
+<main class="gut">
+  <section class="capa" aria-label="Destaques">
+    <article class="lead" data-f="agência-brasil">
+  <div class="meta"><span class="fonte f-agência-brasil">Agência Brasil</span><span class="ed">Esportes</span><time datetime="2026-10-11T23:58:00Z">há 16 h</time></div>
+  <h2><a href="https://agenciabrasil.ebc.com.br/esportes/noticia/2026-10/henrique-marques-leva-ouro-o-2o-do-brasil-em-grand-prix-de-taekwond" target="_blank" rel="noopener">Henrique Marques leva ouro, o 2º do Brasil em Grand Prix de taekwondo</a></h2>
+  <p>O atleta brasileiro de taekwondo Henrique Marques, de 22 anos, garantiu a segunda medalha de ouro do Brasil.</p>
+  <a class="ler" href="https://agenciabrasil.ebc.com.br/esportes/noticia/2026-10/henrique-marques-leva-ouro-o-2o-do-brasil-em-grand-prix-de-taekwond" target="_blank" rel="noopener">Ler na Agência Brasil →</a>
+</article>
+    <div class="dests"><article class="dest" data-f="poder360">
+  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Saúde</span><time datetime="2026-10-11T15:54:57Z">11/10 · 12:54</time></div>
+  <h3><a href="https://www.poder360.com.br/poder-saude/estudo-identifica-alvo-para-tratar-doenca-de-chagas/" target="_blank" rel="noopener">Estudo identifica alvo para tratar doença de Chagas</a></h3>
+  <p>Pesquisa da USP reduziu proteína do parasita e interrompeu etapa essencial do ciclo de infecção em testes de laboratório.</p>
+</article></div>
+  </section>
+
+  <div class="corpo">
+    <section id="ultimas" aria-label="Últimas notícias">
+      <div class="sec-t"><h2>Últimas</h2></div>
+      <nav class="chips" aria-label="Filtrar por fonte"><button class="chip on" data-f="todas" aria-pressed="true">Todas <span>26</span></button><button class="chip" data-f="agência-brasil" aria-pressed="false">Agência Brasil <span>6</span></button><button class="chip" data-f="poder360" aria-pressed="false">Poder360 <span>8</span></button><button class="chip" data-f="agência-câmara" aria-pressed="false">Agência Câmara <span>6</span></button><button class="chip" data-f="agência-senado" aria-pressed="false">Agência Senado <span>6</span></button></nav>
+      <ol class="lista" id="lista"><li data-f="agência-brasil">
+  <div class="meta"><span class="fonte f-agência-brasil">Agência Brasil</span><span class="ed">Política</span><time datetime="2026-10-11T22:46:00Z">há 17 h</time></div>
+  <h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/flavio-passa-domingo-reunido-com-prefeitos-e-vereadores-de-sao-paulo" target="_blank" rel="noopener">Flávio passa domingo reunido com prefeitos e vereadores de São Paulo</a></h4>
+</li><li data-f="agência-brasil">
+  <div class="meta"><span class="fonte f-agência-brasil">Agência Brasil</span><span class="ed">Esportes</span><time datetime="2026-10-11T21:48:00Z">há 18 h</time></div>
+  <h4><a href="https://agenciabrasil.ebc.com.br/esportes/noticia/2026-10/corinthians-anuncia-seedorf-como-novo-tecnico-ate-dezembro-de-2027" target="_blank" rel="noopener">Corinthians anuncia Seedorf como novo técnico até dezembro de 2027</a></h4>
+</li><li data-f="agência-brasil">
+  <div class="meta"><span class="fonte f-agência-brasil">Agência Brasil</span><span class="ed">Justiça</span><time datetime="2026-10-11T21:23:00Z">há 19 h</time></div>
+  <h4><a href="https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/derrubar-canal-com-eleitores-limita-mobilizacao-dizem-especialistas" target="_blank" rel="noopener">Derrubar canal com eleitores limita mobilização, dizem especialistas</a></h4>
+</li><li data-f="agência-brasil">
+  <div class="meta"><span class="fonte f-agência-brasil">Agência Brasil</span><span class="ed">Justiça</span><time datetime="2026-10-11T21:02:00Z">há 19 h</time></div>
+  <h4><a href="https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/tse-barra-anuncios-de-lula-acusando-flavio-de-ser-contra-escala-6x1" target="_blank" rel="noopener">TSE barra anúncios de Lula acusando Flávio de ser contra escala 6x1</a></h4>
+</li><li data-f="agência-brasil">
+  <div class="meta"><span class="fonte f-agência-brasil">Agência Brasil</span><span class="ed">Política</span><time datetime="2026-10-11T19:49:00Z">há 20 h</time></div>
+  <h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/ato-pela-reeleicao-de-lula-leva-milhares-a-avenida-paulista" target="_blank" rel="noopener">Ato pela reeleição de Lula leva milhares à Avenida Paulista</a></h4>
+</li><li data-f="agência-brasil">
+  <div class="meta"><span class="fonte f-agência-brasil">Agência Brasil</span><span class="ed">Política</span><time datetime="2026-10-11T19:30:00Z">há 21 h</time></div>
+  <h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/corregedor-derruba-decisao-que-suspendeu-canal-exercito-do-lula" target="_blank" rel="noopener">Corregedor derruba decisão que suspendeu canal Exército do Lula</a></h4>
+</li><li data-f="poder360">
+  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Eleições 2026</span><time datetime="2026-10-11T15:44:02Z">11/10 · 12:44</time></div>
+  <h4><a href="https://www.poder360.com.br/poder-eleicoes-2026/flavio-pede-ao-tse-cassacao-de-lula-por-rede-de-desinformacao/" target="_blank" rel="noopener">Flávio pede ao TSE cassação de Lula por rede de desinformação</a></h4>
+</li><li data-f="poder360">
+  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Eleições 2026</span><time datetime="2026-10-11T15:15:40Z">11/10 · 12:15</time></div>
+  <h4><a href="https://www.poder360.com.br/poder-eleicoes-2026/sidonio-palmeira-deixara-secom-para-ajudar-na-campanha-de-lula/" target="_blank" rel="noopener">Sidônio Palmeira deixará Secom para ajudar na campanha de Lula</a></h4>
+</li><li data-f="poder360">
+  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Gente</span><time datetime="2026-10-11T14:44:16Z">11/10 · 11:44</time></div>
+  <h4><a href="https://www.poder360.com.br/poder-gente/morre-heidi-burge-ex-jogadora-de-basquete-que-inspirou-filme-da-disney/" target="_blank" rel="noopener">Morre Heidi Burge, ex-jogadora de basquete que inspirou filme da Disney</a></h4>
+</li><li data-f="poder360">
+  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Congresso</span><time datetime="2026-10-11T14:41:03Z">11/10 · 11:41</time></div>
+  <h4><a href="https://www.poder360.com.br/poder-congresso/projeto-cria-multas-de-ate-r-100-mil-por-pichacao/" target="_blank" rel="noopener">Projeto cria multas de até R$ 100 mil por pichação</a></h4>
+</li><li data-f="poder360">
+  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Internacional</span><time datetime="2026-10-11T14:39:05Z">11/10 · 11:39</time></div>
+  <h4><a href="https://www.poder360.com.br/poder-internacional/ataque-ao-aeroporto-de-riad-na-arabia-saudita-deixa-mortos-e-feridos/" target="_blank" rel="noopener">Ataque ao aeroporto de Riad, na Arábia Saudita, mata 12 e fere 309</a></h4>
+</li><li data-f="poder360">
+  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Brasil</span><time datetime="2026-10-11T14:23:29Z">11/10 · 11:23</time></div>
+  <h4><a href="https://www.poder360.com.br/poder-brasil/mega-sena-sorteia-premio-de-r-112-milhoes/" target="_blank" rel="noopener">Mega-Sena acumula prêmio de R$ 112 milhões; leia os números</a></h4>
+</li><li data-f="poder360">
+  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Governo</span><time datetime="2026-10-11T14:23:26Z">11/10 · 11:23</time></div>
+  <h4><a href="https://www.poder360.com.br/poder-governo/escudo-das-americas-poe-brasil-em-um-cerco-diz-celso-amorim/" target="_blank" rel="noopener">Escudo das Américas põe Brasil em um cerco, diz Celso Amorim</a></h4>
+</li><li data-f="poder360">
+  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Justiça</span><time datetime="2026-10-11T14:18:59Z">11/10 · 11:18</time></div>
+  <h4><a href="https://www.poder360.com.br/poder-justica/stj-define-prazo-para-cobrar-emprestimo-sem-data-de-devolucao/" target="_blank" rel="noopener">STJ define prazo para cobrar empréstimo sem data de devolução</a></h4>
+</li><li data-f="agência-câmara">
+  <div class="meta"><span class="fonte f-agência-câmara">Agência Câmara</span><span class="ed">Câmara</span><time datetime="2026-10-09T22:15:00Z">09/10 · 19:15</time></div>
+  <h4><a href="https://www.camara.leg.br/noticias/1306357-projeto-pune-empresas-que-atrasarem-pagamento-de-medicos" target="_blank" rel="noopener">Projeto pune empresas que atrasarem pagamento de médicos</a></h4>
+</li><li data-f="agência-senado">
+  <div class="meta"><span class="fonte f-agência-senado">Agência Senado</span><span class="ed">Senado</span><time datetime="2026-10-09T21:54:51Z">09/10 · 18:54</time></div>
+  <h4><a href="https://www12.senado.leg.br/noticias/audios/2026/10/consultoria-de-orcamento-aponta-divergencias-entre-previsoes-para-pib-e-inflacao-de-2027" target="_blank" rel="noopener">Consultoria de Orçamento aponta divergências entre previsões para PIB e inflação de 2027</a></h4>
+</li><li data-f="agência-senado">
+  <div class="meta"><span class="fonte f-agência-senado">Agência Senado</span><span class="ed">Senado</span><time datetime="2026-10-09T21:39:05Z">09/10 · 18:39</time></div>
+  <h4><a href="https://www12.senado.leg.br/noticias/materias/2026/10/09/fim-da-6-x-1-senado-pode-concluir-1o-turno-da-votacao-em-mais-duas-sessoes" target="_blank" rel="noopener">Fim da escala 6x1: Davi marca votação em 1º turno para quarta</a></h4>
+</li><li data-f="agência-senado">
+  <div class="meta"><span class="fonte f-agência-senado">Agência Senado</span><span class="ed">Senado</span><time datetime="2026-10-09T20:17:10Z">09/10 · 17:17</time></div>
+  <h4><a href="https://www12.senado.leg.br/noticias/audios/2026/10/mapa-nacional-da-violencia-de-genero-e-apresentado-em-forum-internacional" target="_blank" rel="noopener">Mapa Nacional da Violência de Gênero é apresentado em fórum internacional</a></h4>
+</li><li data-f="agência-senado">
+  <div class="meta"><span class="fonte f-agência-senado">Agência Senado</span><span class="ed">Congresso</span><time datetime="2026-10-09T18:05:58Z">09/10 · 15:05</time></div>
+  <h4><a href="https://www12.senado.leg.br/noticias/materias/2026/10/09/congresso-fara-sessao-solene-pelo-dia-mundial-da-alimentacao" target="_blank" rel="noopener">Congresso fará sessão solene pelo Dia Mundial da Alimentação</a></h4>
+</li><li data-f="agência-câmara">
+  <div class="meta"><span class="fonte f-agência-câmara">Agência Câmara</span><span class="ed">Câmara</span><time datetime="2026-10-09T17:17:00Z">09/10 · 14:17</time></div>
+  <h4><a href="https://www.camara.leg.br/noticias/1306625-projeto-exclui-salario-de-jovem-aprendiz-do-calculo-de-renda-do-bolsa-familia" target="_blank" rel="noopener">Projeto exclui salário de Jovem Aprendiz do cálculo de renda do Bolsa Família</a></h4>
+</li><li data-f="agência-senado">
+  <div class="meta"><span class="fonte f-agência-senado">Agência Senado</span><span class="ed">Senado</span><time datetime="2026-10-09T17:04:01Z">09/10 · 14:04</time></div>
+  <h4><a href="https://www12.senado.leg.br/noticias/materias/2026/10/09/judiciario-economia-e-seguranca-estao-entre-as-prioridades-de-senadores-eleitos" target="_blank" rel="noopener">Judiciário, economia e segurança estão entre as prioridades de senadores eleitos</a></h4>
+</li><li data-f="agência-senado">
+  <div class="meta"><span class="fonte f-agência-senado">Agência Senado</span><span class="ed">Senado</span><time datetime="2026-10-09T15:09:57Z">09/10 · 12:09</time></div>
+  <h4><a href="https://www12.senado.leg.br/noticias/materias/2026/10/09/medida-provisoria-libera-r-7-52-bilhoes-para-custear-subsidios-a-combustiveis" target="_blank" rel="noopener">Medida provisória libera R$ 7,52 bilhões para subsidiar combustíveis</a></h4>
+</li><li data-f="agência-câmara">
+  <div class="meta"><span class="fonte f-agência-câmara">Agência Câmara</span><span class="ed">Câmara</span><time datetime="2026-10-09T14:37:00Z">09/10 · 11:37</time></div>
+  <h4><a href="https://www.camara.leg.br/noticias/1310518-governo-edita-9a-medida-provisoria-para-conter-efeito-da-guerra-no-preco-dos-combustiveis" target="_blank" rel="noopener">Governo edita 9ª medida provisória para conter efeito da guerra no preço dos combustíveis</a></h4>
+</li><li data-f="agência-câmara">
+  <div class="meta"><span class="fonte f-agência-câmara">Agência Câmara</span><span class="ed">Câmara</span><time datetime="2026-10-09T14:36:00Z">09/10 · 11:36</time></div>
+  <h4><a href="https://www.camara.leg.br/noticias/1310450-quatro-medidas-provisorias-perdem-a-validade-sem-aprovacao-do-congresso" target="_blank" rel="noopener">Quatro medidas provisórias perdem a validade sem aprovação do Congresso</a></h4>
+</li><li data-f="agência-câmara">
+  <div class="meta"><span class="fonte f-agência-câmara">Agência Câmara</span><span class="ed">Câmara</span><time datetime="2026-10-09T14:35:00Z">09/10 · 11:35</time></div>
+  <h4><a href="https://www.camara.leg.br/noticias/1310205-camara-tera-seis-deputados-com-deficiencia-em-2027" target="_blank" rel="noopener">Câmara terá seis deputados com deficiência em 2027</a></h4>
+</li><li data-f="agência-câmara">
+  <div class="meta"><span class="fonte f-agência-câmara">Agência Câmara</span><span class="ed">Câmara</span><time datetime="2026-10-09T14:31:00Z">09/10 · 11:31</time></div>
+  <h4><a href="https://www.camara.leg.br/noticias/1310470-consultorias-da-camara-e-do-senado-indicam-necessidade-de-ajustes-no-projeto-do-orcamento-para-2027" target="_blank" rel="noopener">Consultorias da Câmara e do Senado indicam necessidade de ajustes no projeto do Orçamento para 2027</a></h4>
+</li></ol>
+    </section>
+    <aside>
+      <div class="box box-tg">
+        <h2>Receba no Telegram</h2>
+        <p>As manchetes novas chegam no canal a cada atualização.</p>
+        <a class="btn" href="https://t.me/plantaodenoticias" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.7.2 1.4 1.3z"/></svg>Entrar no canal</a>
+      </div>
+      <div class="box">
+        <h2>Nossas fontes</h2>
+        <ul class="fontes"><li><span class="fonte f-agência-brasil">Agência Brasil</span><span>Agência pública de notícias da EBC.</span></li><li><span class="fonte f-poder360">Poder360</span><span>Jornal digital de política e poder.</span></li><li><span class="fonte f-agência-câmara">Agência Câmara</span><span>Notícias oficiais da Câmara dos Deputados.</span></li><li><span class="fonte f-agência-senado">Agência Senado</span><span>Notícias oficiais do Senado Federal.</span></li></ul>
+        <p>Só publicamos manchetes de veículos com redação identificada. Cada link leva à matéria original.</p>
+      </div>
+      <div class="box">
+        <h2>Próximas atualizações</h2>
+        <span class="hor">01h · 05h · 09h · 13h · 17h · 21h</span>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="gut">
+    <p><b>Plantão de Notícias</b> reúne 28 manchetes de 4 fontes. Títulos e resumos pertencem aos veículos de origem.</p>
+    <p>Confira a matéria completa no site da fonte antes de compartilhar.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var chips=[].slice.call(document.querySelectorAll('.chip'));
+  var itens=[].slice.call(document.querySelectorAll('#lista > li'));
+  function aplicar(f){
+    chips.forEach(function(c){var on=c.dataset.f===f;c.classList.toggle('on',on);c.setAttribute('aria-pressed',on)});
+    itens.forEach(function(li){li.hidden=!(f==='todas'||li.dataset.f===f)});
+    try{localStorage.setItem('fonte',f)}catch(e){}
+  }
+  chips.forEach(function(c){c.addEventListener('click',function(){aplicar(c.dataset.f)})});
+  try{var s=localStorage.getItem('fonte'); if(s&&chips.some(function(c){return c.dataset.f===s})) aplicar(s);}catch(e){}
+})();
+</script>
+
+</body>
+</html>
