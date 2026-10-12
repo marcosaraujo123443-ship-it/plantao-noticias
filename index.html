@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Manchetes de fontes confiáveis, atualizadas 6 vezes por dia.">
+<meta name="description" content="Política, IA, futebol, agro e mercado: manchetes de fontes confiáveis, atualizadas 6 vezes por dia.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="Plantão de Notícias">
 <meta property="og:description" content="Manchetes de fontes confiáveis, atualizadas 6 vezes por dia.">
@@ -11,268 +11,286 @@
 <body>
 <title>Plantão de Notícias</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* Layout: portal de notícias. Faixa de identidade, capa (manchete + destaques), depois "Últimas" com coluna lateral de fontes */
+/* Layout: portal. Cabeçalho, barra rolante da bolsa, abas por tema; Início = manchete + destaques + blocos por seção; cada aba = lista completa (Mercado com painel) */
 :root{
   --paper:#f6f7f9; --card:#ffffff; --ink:#111a2b; --ink-2:#4a5568; --rule:#dde2ea;
-  --brand:#b4121b; --brand-ink:#ffffff; --band:#111a2b; --band-ink:#e9edf4;
-  --ab:#1f6f43; --p360:#1d4ed8; --sen:#7c3aed; --cam:#b45309;
+  --brand:#b4121b; --band:#111a2b; --band-ink:#e9edf4; --tick:#0b1220;
+  --up:#137a3d; --down:#c0262d;
+  --pol:#1d4ed8; --ia:#7c3aed; --fut:#15803d; --agro:#a16207; --merc:#0f766e;
   --f-head:"Source Serif 4",Georgia,"Times New Roman",serif;
   --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --paper:#0d131d; --card:#151d2a; --ink:#e8edf5; --ink-2:#a3aec0; --rule:#26324a;
-  --brand:#e5484d; --brand-ink:#ffffff; --band:#070b12; --band-ink:#e8edf5;
-  --ab:#4cc38a; --p360:#7aa2ff; --sen:#b794f6; --cam:#f0a44b; color-scheme:dark}}
+  --brand:#e5484d; --band:#070b12; --band-ink:#e8edf5; --tick:#03060b;
+  --up:#3ecf7a; --down:#ff6b6b;
+  --pol:#7aa2ff; --ia:#b794f6; --fut:#4cc38a; --agro:#e0b04a; --merc:#3fc4b5; color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#0d131d; --card:#151d2a; --ink:#e8edf5; --ink-2:#a3aec0; --rule:#26324a;
-  --brand:#e5484d; --brand-ink:#ffffff; --band:#070b12; --band-ink:#e8edf5;
-  --ab:#4cc38a; --p360:#7aa2ff; --sen:#b794f6; --cam:#f0a44b; color-scheme:dark}
+  --brand:#e5484d; --band:#070b12; --band-ink:#e8edf5; --tick:#03060b;
+  --up:#3ecf7a; --down:#ff6b6b;
+  --pol:#7aa2ff; --ia:#b794f6; --fut:#4cc38a; --agro:#e0b04a; --merc:#3fc4b5; color-scheme:dark}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{background:var(--paper);color:var(--ink);font:16px/1.55 var(--f-body);margin:0}
 a{color:inherit}
 a:focus-visible,button:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:2px}
-.gut{max-width:1160px;margin:0 auto;padding-inline:16px}
+.gut{max-width:1180px;margin:0 auto;padding-inline:16px}
+.s-politica{--c:var(--pol)} .s-ia{--c:var(--ia)} .s-futebol{--c:var(--fut)} .s-agro{--c:var(--agro)} .s-mercado{--c:var(--merc)}
 
-/* Faixa superior */
+/* Cabeçalho */
 .topo{background:var(--band);color:var(--band-ink)}
 .topo .gut{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-block:14px}
 .marca{display:flex;align-items:center;gap:12px;text-decoration:none}
-.selo{background:var(--brand);color:var(--brand-ink);font:700 13px var(--f-body);letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:3px}
 .logo{display:inline-flex;width:38px;height:38px;flex:none}.logo svg{width:100%;height:100%;display:block}
 .nome{font:500 24px/1 var(--f-head);letter-spacing:-.01em;white-space:nowrap}.nome b{font-weight:700}
-.topo-dir{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;font-size:13px;opacity:.92}
-.tg{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--band-ink);border:1px solid color-mix(in srgb,var(--band-ink) 35%,transparent);padding:7px 12px;border-radius:999px;text-decoration:none;font-weight:600}
-.tg:hover{border-color:var(--band-ink)}
-.tg svg{width:16px;height:16px;fill:currentColor}
-.faixa{border-bottom:1px solid var(--rule);background:var(--card)}
-.faixa .gut{display:flex;flex-wrap:wrap;gap:6px 22px;padding-block:9px;font:500 12.5px var(--f-mono);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.topo-dir{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;font-size:13px}
+.tg{display:inline-flex;align-items:center;gap:8px;color:var(--band-ink);border:1px solid color-mix(in srgb,var(--band-ink) 35%,transparent);padding:7px 12px;border-radius:999px;text-decoration:none;font-weight:600}
+.tg:hover{border-color:var(--band-ink)} .tg svg{width:16px;height:16px;fill:currentColor}
+
+/* Barra rolante */
+.ticker{background:var(--tick);color:#e9edf4;overflow:hidden;border-top:1px solid #1d2840;font:500 13px var(--f-mono);font-variant-numeric:tabular-nums}
+.ticker-in{display:flex;width:max-content;animation:rolar var(--dur,60s) linear infinite}
+.ticker:hover .ticker-in{animation-play-state:paused}
+.ticker-grp{display:flex;align-items:center}
+.tk{display:inline-flex;align-items:baseline;gap:8px;padding:9px 18px;border-right:1px solid #1d2840;white-space:nowrap}
+.tk b{font-weight:500;color:#fff;letter-spacing:.02em}
+.tk .v{color:#c9d2e3}
+.tk .up{color:#3ecf7a} .tk .down{color:#ff6b6b}
+.tk-vazio{padding:9px 18px;color:#a3aec0}
+@keyframes rolar{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker{overflow-x:auto}.ticker-in{animation:none}}
+
+/* Abas */
+.nav{background:var(--card);border-bottom:1px solid var(--rule);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-block:0}
+.tabs::-webkit-scrollbar{display:none}
+.tab{font:600 14.5px var(--f-body);background:none;border:0;color:var(--ink-2);padding:13px 12px 11px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab.on{color:var(--ink);border-bottom-color:var(--brand)}
+.faixa{font:500 12.5px var(--f-mono);color:var(--ink-2);display:flex;flex-wrap:wrap;gap:4px 20px;padding-block:12px 0;font-variant-numeric:tabular-nums}
 .faixa b{color:var(--ink);font-weight:500}
 .vivo{display:inline-flex;align-items:center;gap:7px;color:var(--brand)}
 .vivo i{width:7px;height:7px;border-radius:50%;background:var(--brand);animation:pulso 2s ease-in-out infinite}
 @keyframes pulso{50%{opacity:.35}}
 @media (prefers-reduced-motion:reduce){.vivo i{animation:none}}
 
-main.gut{display:grid;gap:36px;padding-block:28px 56px}
-
-/* Capa */
-.capa{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:28px}
-.lead{background:var(--card);border:1px solid var(--rule);border-top:4px solid var(--brand);padding:26px 26px 24px;display:grid;gap:12px;align-content:start}
-.lead h2{font:700 clamp(28px,3.6vw,40px)/1.12 var(--f-head);margin:0;text-wrap:balance;letter-spacing:-.01em}
-.lead p{margin:0;font-size:18px;color:var(--ink-2);max-width:60ch}
-.ler{font-weight:600;font-size:14px;color:var(--brand);text-decoration:none}
-.ler:hover{text-decoration:underline}
-.dests{display:grid;gap:0;align-content:start}
-.dest{display:grid;gap:6px;padding-block:16px;border-bottom:1px solid var(--rule)}
-.dest:first-child{padding-top:0}
-.dest h3{font:600 19px/1.25 var(--f-head);margin:0;text-wrap:balance}
-.dest p{margin:0;font-size:14.5px;color:var(--ink-2)}
+main.gut{display:grid;gap:34px;padding-block:20px 56px}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;font-size:12.5px;color:var(--ink-2)}
+.sec{font-weight:700;letter-spacing:.07em;text-transform:uppercase;font-size:11.5px;color:var(--c)}
+.fonte{font-weight:600;color:var(--ink)}
+.meta time{font-family:var(--f-mono);font-size:12px}
+.meta > *+*::before{content:"";display:inline-block;width:3px;height:3px;border-radius:50%;background:var(--ink-2);opacity:.6;margin-right:10px;vertical-align:middle}
 h2 a,h3 a,h4 a{text-decoration:none}
 h2 a:hover,h3 a:hover,h4 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
 
-.meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:12.5px;color:var(--ink-2)}
-.fonte{font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:11.5px;color:var(--c,var(--ink))}
-.f-agência-brasil{--c:var(--ab)} .f-poder360{--c:var(--p360)} .f-agência-senado{--c:var(--sen)} .f-agência-câmara{--c:var(--cam)}
-.meta time{font-family:var(--f-mono);font-size:12px;font-variant-numeric:tabular-nums}
-.ed::before{content:"";display:inline-block;width:3px;height:3px;border-radius:50%;background:var(--ink-2);margin-right:12px;vertical-align:middle;opacity:.6}
-.meta time::before{content:"";display:inline-block;width:3px;height:3px;border-radius:50%;background:var(--ink-2);margin-right:12px;vertical-align:middle;opacity:.6}
+/* Capa */
+.capa{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px}
+.lead{align-self:start;background:var(--card);border:1px solid var(--rule);border-top:4px solid var(--brand);padding:24px;display:grid;gap:12px;align-content:start}
+.lead h2{font:700 clamp(27px,3.4vw,38px)/1.12 var(--f-head);margin:0;text-wrap:balance;letter-spacing:-.01em}
+.lead p{margin:0;font-size:17.5px;color:var(--ink-2);max-width:60ch}
+.dests{display:grid;align-content:start}
+.dest{display:grid;gap:5px;padding-block:13px;border-bottom:1px solid var(--rule)}
+.dest:first-child{padding-top:0}
+.dest h3{font:600 18px/1.28 var(--f-head);margin:0;text-wrap:balance}
 
-/* Últimas + lateral */
-.corpo{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:36px;align-items:start}
-.sec-t{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:14px}
-.sec-t h2{font:700 13px var(--f-body);letter-spacing:.12em;text-transform:uppercase;margin:0}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
-.chip{font:500 13.5px var(--f-body);border:1px solid var(--rule);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
-.chip span{color:var(--ink-2);font-variant-numeric:tabular-nums;margin-left:3px}
-.chip.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-.chip.on span{color:var(--paper);opacity:.75}
-.lista{list-style:none;margin:0;padding:0;display:grid}
-.lista li{display:grid;gap:5px;padding-block:15px;border-bottom:1px solid var(--rule)}
-.lista h4{font:600 18px/1.3 var(--f-head);margin:0;text-wrap:balance}
+/* Blocos por seção */
+.blocos{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:22px}
+.bloco{background:var(--card);border:1px solid var(--rule);padding:18px 18px 8px;display:grid;align-content:start;gap:4px}
+.bloco header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:2px solid var(--c);padding-bottom:8px;margin-bottom:4px}
+.bloco h2{font:700 20px var(--f-head);margin:0;color:var(--c)}
+.ver{font-size:13.5px;font-weight:600;text-decoration:none;color:var(--ink-2)}
+.ver:hover{color:var(--c)}
+.bloco ol,.lista{list-style:none;margin:0;padding:0;display:grid}
+.bloco li{display:grid;gap:3px;padding-block:11px;border-bottom:1px solid var(--rule)}
+.bloco li:last-child{border-bottom:0}
+.bloco h4{font:600 16.5px/1.3 var(--f-head);margin:0;text-wrap:balance}
+.bloco li:first-child h4{font-size:19px}
 
-aside{display:grid;gap:20px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
-.box{background:var(--card);border:1px solid var(--rule);padding:18px;display:grid;gap:12px}
-.box h2{font:700 12.5px var(--f-body);letter-spacing:.12em;text-transform:uppercase;margin:0}
-.box p{margin:0;font-size:14px;color:var(--ink-2)}
-.fontes{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.fontes li{display:grid;gap:2px;font-size:13.5px;color:var(--ink-2)}
-.box-tg{background:var(--band);color:var(--band-ink);border-color:var(--band)}
-.box-tg p{color:var(--band-ink);opacity:.85}
-.box-tg a.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;background:var(--brand);color:var(--brand-ink);text-decoration:none;font-weight:700;padding:10px 14px;border-radius:4px}
-.box-tg a.btn svg{width:16px;height:16px;fill:currentColor}
-.hor{font:500 13px var(--f-mono);font-variant-numeric:tabular-nums;color:var(--ink)}
+/* Mini indicadores (bloco Mercado) */
+.mini-ind{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;padding-block:8px 6px}
+.mi{background:var(--paper);border:1px solid var(--rule);padding:8px 10px;display:grid;gap:1px;min-width:0}
+.mi span{font-size:11.5px;color:var(--ink-2);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.mi b{font:600 14px var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.mi i{font:500 12px var(--f-mono);font-style:normal}
+.up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--ink-2)}
+
+/* Páginas de seção */
+.sec-t{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:3px solid var(--c);padding-bottom:8px;margin-bottom:6px}
+.sec-t h2{font:700 30px var(--f-head);margin:0;color:var(--c)}
+.sec-t span{font-size:13px;color:var(--ink-2)}
+.lista li{display:grid;gap:4px;padding-block:15px;border-bottom:1px solid var(--rule)}
+.lista h4{font:600 19px/1.3 var(--f-head);margin:0;text-wrap:balance}
+.lista p{margin:0;color:var(--ink-2);font-size:15px;max-width:70ch}
+.pagina{display:grid;gap:8px}
+
+/* Painel de mercado */
+.painel{display:grid;gap:16px;margin-block:10px 14px}
+.ind-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,170px),1fr));gap:12px}
+.ic{background:var(--card);border:1px solid var(--rule);padding:14px 16px;display:grid;gap:4px;min-width:0}
+.ic span{font-size:12px;color:var(--ink-2);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.ic b{font:600 22px/1.1 var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ic i{font:500 13px var(--f-mono);font-style:normal}
+.acoes-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--rule)}
+.acoes{width:100%;border-collapse:collapse;font-size:14.5px}
+.acoes th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2);font-weight:600;padding:10px 14px;border-bottom:1px solid var(--rule)}
+.acoes td{padding:9px 14px;border-bottom:1px solid var(--rule)}
+.acoes tr:last-child td{border-bottom:0}
+.acoes td:first-child{font:600 14px var(--f-mono)}
+.acoes .n{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.nota{margin:0;font-size:12.5px;color:var(--ink-2)}
 
 footer{border-top:1px solid var(--rule);background:var(--card)}
 footer .gut{padding-block:22px;font-size:13px;color:var(--ink-2);display:grid;gap:6px}
-footer p{margin:0;max-width:80ch}
+footer p{margin:0;max-width:85ch}
+footer a{font-weight:600}
 
-@media (max-width:900px){
-  .capa,.corpo{grid-template-columns:minmax(0,1fr)}
-  aside{position:static}
-}
-@media (max-width:520px){
-  .lead{padding:20px 18px}
-  .topo-dir .data{display:none}
-}
+@media (max-width:900px){.capa{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:520px){.acoes th:nth-child(2),.acoes td:nth-child(2){display:none}.acoes td,.acoes th{padding-inline:10px}.lead{padding:18px}.topo-dir .data{display:none}}
 </style>
 
 <header class="topo">
   <div class="gut">
-    <a class="marca" href="#ultimas"><span class="logo"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTowMGU5MzIxMi0wNGI0LTQyOGQtOTQzYy02NTM4NDU5YjZlNjIAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaCSHS8pFeTqRt46bwyezlrkAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDphOWVlZGI3OC1mNWIzLTQzOTQtYWRjMy05NzllYzk4ZjMwN2FscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoUqZE7nY92wzSENrTPKFEIwAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggUnqVX90OAum7VDJXnapf7E9jVj+t5l+X5XNeRP9v+nikZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaHvo8bVD9rgpSFUviBXy4CkAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCDZL/agokZZ2DKQG6D1byuzT+FOyZZ+baXsMSEK4evvamRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBh7Zmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjAwZTkzMjEyLTA0YjQtNDI4ZC05NDNjLTY1Mzg0NTliNmU2Mi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmE1ZGExOGUyLWIyOGItNDRhOC1iYjljLWRhYTU4YWRmYzQzZHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCBSepVf3Q4C6btUMledql/sT2NWP63mX5flc15E/2/6eKJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggAEbZTpK8U40lR7nK+A1ydSxboearj+IaTgokhw2LNCWiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggRH91IOqL4Ubqu6ySwbyeLY2ogN7mN/D3HZuQaA/jepN0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQETA1Ch+zH/GrCXckl3LAKtXAcl4yc6zKWMGqS0zn66hNxVIV5fQIgrA0mvm5VnarTup7PCzX5UHHnBfleM0qh8=</c2pa:manifest></metadata><circle cx="32" cy="32" r="30" fill="#b4121b"/><g stroke="#fff" stroke-width="3.5" stroke-linecap="round"><path d="M32 10V5M51.05 21l4.33-2.5M51.05 43l4.33 2.5M32 54v5M12.95 43l-4.33 2.5M12.95 21l-4.33-2.5"/></g><path d="M24 46V18h8.5a8.5 8.5 0 0 1 0 17H24" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/></svg></span><span class="nome"><b>Plantão</b> de Notícias</span></a>
+    <a class="marca" href="#inicio" data-tab="inicio"><span class="logo"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTowMGU5MzIxMi0wNGI0LTQyOGQtOTQzYy02NTM4NDU5YjZlNjIAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaCSHS8pFeTqRt46bwyezlrkAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDphOWVlZGI3OC1mNWIzLTQzOTQtYWRjMy05NzllYzk4ZjMwN2FscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoUqZE7nY92wzSENrTPKFEIwAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggUnqVX90OAum7VDJXnapf7E9jVj+t5l+X5XNeRP9v+nikZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaHvo8bVD9rgpSFUviBXy4CkAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCDZL/agokZZ2DKQG6D1byuzT+FOyZZ+baXsMSEK4evvamRuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBh7Zmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjAwZTkzMjEyLTA0YjQtNDI4ZC05NDNjLTY1Mzg0NTliNmU2Mi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmE1ZGExOGUyLWIyOGItNDRhOC1iYjljLWRhYTU4YWRmYzQzZHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCBSepVf3Q4C6btUMledql/sT2NWP63mX5flc15E/2/6eKJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggAEbZTpK8U40lR7nK+A1ydSxboearj+IaTgokhw2LNCWiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggRH91IOqL4Ubqu6ySwbyeLY2ogN7mN/D3HZuQaA/jepN0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQETA1Ch+zH/GrCXckl3LAKtXAcl4yc6zKWMGqS0zn66hNxVIV5fQIgrA0mvm5VnarTup7PCzX5UHHnBfleM0qh8=</c2pa:manifest></metadata><circle cx="32" cy="32" r="30" fill="#b4121b"/><g stroke="#fff" stroke-width="3.5" stroke-linecap="round"><path d="M32 10V5M51.05 21l4.33-2.5M51.05 43l4.33 2.5M32 54v5M12.95 43l-4.33 2.5M12.95 21l-4.33-2.5"/></g><path d="M24 46V18h8.5a8.5 8.5 0 0 1 0 17H24" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/></svg></span><span class="nome"><b>Plantão</b> de Notícias</span></a>
     <div class="topo-dir">
       <span class="data">Segunda-feira, 12 de outubro de 2026</span>
       <a class="tg" href="https://t.me/plantaodenoticias" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.7.2 1.4 1.3z"/></svg>Canal no Telegram</a>
     </div>
   </div>
 </header>
-<div class="faixa">
-  <div class="gut">
-    <span class="vivo"><i></i>Atualizado às <b style="color:inherit">13:30</b></span>
-    <span>Atualização 6× ao dia: <b>01h · 05h · 09h · 13h · 17h · 21h</b></span>
-    <span>Horário de Brasília</span>
-  </div>
-</div>
+<div class="ticker" aria-label="Cotações da bolsa"><div class="ticker-in" id="ticker"><span class="tk-vazio">Carregando cotações…</span></div></div>
+<nav class="nav" aria-label="Seções"><div class="gut tabs"><button class="tab on" data-tab="inicio" aria-pressed="true">Início</button><button class="tab" data-tab="politica" aria-pressed="false">Política</button><button class="tab" data-tab="ia" aria-pressed="false">IA</button><button class="tab" data-tab="futebol" aria-pressed="false">Futebol</button><button class="tab" data-tab="agro" aria-pressed="false">Agro</button><button class="tab" data-tab="mercado" aria-pressed="false">Mercado</button></div></nav>
 
 <main class="gut">
-  <section class="capa" aria-label="Destaques">
-    <article class="lead" data-f="agência-brasil">
-  <div class="meta"><span class="fonte f-agência-brasil">Agência Brasil</span><span class="ed">Esportes</span><time datetime="2026-10-11T23:58:00Z">há 16 h</time></div>
-  <h2><a href="https://agenciabrasil.ebc.com.br/esportes/noticia/2026-10/henrique-marques-leva-ouro-o-2o-do-brasil-em-grand-prix-de-taekwond" target="_blank" rel="noopener">Henrique Marques leva ouro, o 2º do Brasil em Grand Prix de taekwondo</a></h2>
-  <p>O atleta brasileiro de taekwondo Henrique Marques, de 22 anos, garantiu a segunda medalha de ouro do Brasil.</p>
-  <a class="ler" href="https://agenciabrasil.ebc.com.br/esportes/noticia/2026-10/henrique-marques-leva-ouro-o-2o-do-brasil-em-grand-prix-de-taekwond" target="_blank" rel="noopener">Ler na Agência Brasil →</a>
-</article>
-    <div class="dests"><article class="dest" data-f="poder360">
-  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Saúde</span><time datetime="2026-10-11T15:54:57Z">11/10 · 12:54</time></div>
-  <h3><a href="https://www.poder360.com.br/poder-saude/estudo-identifica-alvo-para-tratar-doenca-de-chagas/" target="_blank" rel="noopener">Estudo identifica alvo para tratar doença de Chagas</a></h3>
-  <p>Pesquisa da USP reduziu proteína do parasita e interrompeu etapa essencial do ciclo de infecção em testes de laboratório.</p>
-</article></div>
-  </section>
-
-  <div class="corpo">
-    <section id="ultimas" aria-label="Últimas notícias">
-      <div class="sec-t"><h2>Últimas</h2></div>
-      <nav class="chips" aria-label="Filtrar por fonte"><button class="chip on" data-f="todas" aria-pressed="true">Todas <span>26</span></button><button class="chip" data-f="agência-brasil" aria-pressed="false">Agência Brasil <span>6</span></button><button class="chip" data-f="poder360" aria-pressed="false">Poder360 <span>8</span></button><button class="chip" data-f="agência-câmara" aria-pressed="false">Agência Câmara <span>6</span></button><button class="chip" data-f="agência-senado" aria-pressed="false">Agência Senado <span>6</span></button></nav>
-      <ol class="lista" id="lista"><li data-f="agência-brasil">
-  <div class="meta"><span class="fonte f-agência-brasil">Agência Brasil</span><span class="ed">Política</span><time datetime="2026-10-11T22:46:00Z">há 17 h</time></div>
-  <h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/flavio-passa-domingo-reunido-com-prefeitos-e-vereadores-de-sao-paulo" target="_blank" rel="noopener">Flávio passa domingo reunido com prefeitos e vereadores de São Paulo</a></h4>
-</li><li data-f="agência-brasil">
-  <div class="meta"><span class="fonte f-agência-brasil">Agência Brasil</span><span class="ed">Esportes</span><time datetime="2026-10-11T21:48:00Z">há 18 h</time></div>
-  <h4><a href="https://agenciabrasil.ebc.com.br/esportes/noticia/2026-10/corinthians-anuncia-seedorf-como-novo-tecnico-ate-dezembro-de-2027" target="_blank" rel="noopener">Corinthians anuncia Seedorf como novo técnico até dezembro de 2027</a></h4>
-</li><li data-f="agência-brasil">
-  <div class="meta"><span class="fonte f-agência-brasil">Agência Brasil</span><span class="ed">Justiça</span><time datetime="2026-10-11T21:23:00Z">há 19 h</time></div>
-  <h4><a href="https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/derrubar-canal-com-eleitores-limita-mobilizacao-dizem-especialistas" target="_blank" rel="noopener">Derrubar canal com eleitores limita mobilização, dizem especialistas</a></h4>
-</li><li data-f="agência-brasil">
-  <div class="meta"><span class="fonte f-agência-brasil">Agência Brasil</span><span class="ed">Justiça</span><time datetime="2026-10-11T21:02:00Z">há 19 h</time></div>
-  <h4><a href="https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/tse-barra-anuncios-de-lula-acusando-flavio-de-ser-contra-escala-6x1" target="_blank" rel="noopener">TSE barra anúncios de Lula acusando Flávio de ser contra escala 6x1</a></h4>
-</li><li data-f="agência-brasil">
-  <div class="meta"><span class="fonte f-agência-brasil">Agência Brasil</span><span class="ed">Política</span><time datetime="2026-10-11T19:49:00Z">há 20 h</time></div>
-  <h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/ato-pela-reeleicao-de-lula-leva-milhares-a-avenida-paulista" target="_blank" rel="noopener">Ato pela reeleição de Lula leva milhares à Avenida Paulista</a></h4>
-</li><li data-f="agência-brasil">
-  <div class="meta"><span class="fonte f-agência-brasil">Agência Brasil</span><span class="ed">Política</span><time datetime="2026-10-11T19:30:00Z">há 21 h</time></div>
-  <h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/corregedor-derruba-decisao-que-suspendeu-canal-exercito-do-lula" target="_blank" rel="noopener">Corregedor derruba decisão que suspendeu canal Exército do Lula</a></h4>
-</li><li data-f="poder360">
-  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Eleições 2026</span><time datetime="2026-10-11T15:44:02Z">11/10 · 12:44</time></div>
-  <h4><a href="https://www.poder360.com.br/poder-eleicoes-2026/flavio-pede-ao-tse-cassacao-de-lula-por-rede-de-desinformacao/" target="_blank" rel="noopener">Flávio pede ao TSE cassação de Lula por rede de desinformação</a></h4>
-</li><li data-f="poder360">
-  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Eleições 2026</span><time datetime="2026-10-11T15:15:40Z">11/10 · 12:15</time></div>
-  <h4><a href="https://www.poder360.com.br/poder-eleicoes-2026/sidonio-palmeira-deixara-secom-para-ajudar-na-campanha-de-lula/" target="_blank" rel="noopener">Sidônio Palmeira deixará Secom para ajudar na campanha de Lula</a></h4>
-</li><li data-f="poder360">
-  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Gente</span><time datetime="2026-10-11T14:44:16Z">11/10 · 11:44</time></div>
-  <h4><a href="https://www.poder360.com.br/poder-gente/morre-heidi-burge-ex-jogadora-de-basquete-que-inspirou-filme-da-disney/" target="_blank" rel="noopener">Morre Heidi Burge, ex-jogadora de basquete que inspirou filme da Disney</a></h4>
-</li><li data-f="poder360">
-  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Congresso</span><time datetime="2026-10-11T14:41:03Z">11/10 · 11:41</time></div>
-  <h4><a href="https://www.poder360.com.br/poder-congresso/projeto-cria-multas-de-ate-r-100-mil-por-pichacao/" target="_blank" rel="noopener">Projeto cria multas de até R$ 100 mil por pichação</a></h4>
-</li><li data-f="poder360">
-  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Internacional</span><time datetime="2026-10-11T14:39:05Z">11/10 · 11:39</time></div>
-  <h4><a href="https://www.poder360.com.br/poder-internacional/ataque-ao-aeroporto-de-riad-na-arabia-saudita-deixa-mortos-e-feridos/" target="_blank" rel="noopener">Ataque ao aeroporto de Riad, na Arábia Saudita, mata 12 e fere 309</a></h4>
-</li><li data-f="poder360">
-  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Brasil</span><time datetime="2026-10-11T14:23:29Z">11/10 · 11:23</time></div>
-  <h4><a href="https://www.poder360.com.br/poder-brasil/mega-sena-sorteia-premio-de-r-112-milhoes/" target="_blank" rel="noopener">Mega-Sena acumula prêmio de R$ 112 milhões; leia os números</a></h4>
-</li><li data-f="poder360">
-  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Governo</span><time datetime="2026-10-11T14:23:26Z">11/10 · 11:23</time></div>
-  <h4><a href="https://www.poder360.com.br/poder-governo/escudo-das-americas-poe-brasil-em-um-cerco-diz-celso-amorim/" target="_blank" rel="noopener">Escudo das Américas põe Brasil em um cerco, diz Celso Amorim</a></h4>
-</li><li data-f="poder360">
-  <div class="meta"><span class="fonte f-poder360">Poder360</span><span class="ed">Justiça</span><time datetime="2026-10-11T14:18:59Z">11/10 · 11:18</time></div>
-  <h4><a href="https://www.poder360.com.br/poder-justica/stj-define-prazo-para-cobrar-emprestimo-sem-data-de-devolucao/" target="_blank" rel="noopener">STJ define prazo para cobrar empréstimo sem data de devolução</a></h4>
-</li><li data-f="agência-câmara">
-  <div class="meta"><span class="fonte f-agência-câmara">Agência Câmara</span><span class="ed">Câmara</span><time datetime="2026-10-09T22:15:00Z">09/10 · 19:15</time></div>
-  <h4><a href="https://www.camara.leg.br/noticias/1306357-projeto-pune-empresas-que-atrasarem-pagamento-de-medicos" target="_blank" rel="noopener">Projeto pune empresas que atrasarem pagamento de médicos</a></h4>
-</li><li data-f="agência-senado">
-  <div class="meta"><span class="fonte f-agência-senado">Agência Senado</span><span class="ed">Senado</span><time datetime="2026-10-09T21:54:51Z">09/10 · 18:54</time></div>
-  <h4><a href="https://www12.senado.leg.br/noticias/audios/2026/10/consultoria-de-orcamento-aponta-divergencias-entre-previsoes-para-pib-e-inflacao-de-2027" target="_blank" rel="noopener">Consultoria de Orçamento aponta divergências entre previsões para PIB e inflação de 2027</a></h4>
-</li><li data-f="agência-senado">
-  <div class="meta"><span class="fonte f-agência-senado">Agência Senado</span><span class="ed">Senado</span><time datetime="2026-10-09T21:39:05Z">09/10 · 18:39</time></div>
-  <h4><a href="https://www12.senado.leg.br/noticias/materias/2026/10/09/fim-da-6-x-1-senado-pode-concluir-1o-turno-da-votacao-em-mais-duas-sessoes" target="_blank" rel="noopener">Fim da escala 6x1: Davi marca votação em 1º turno para quarta</a></h4>
-</li><li data-f="agência-senado">
-  <div class="meta"><span class="fonte f-agência-senado">Agência Senado</span><span class="ed">Senado</span><time datetime="2026-10-09T20:17:10Z">09/10 · 17:17</time></div>
-  <h4><a href="https://www12.senado.leg.br/noticias/audios/2026/10/mapa-nacional-da-violencia-de-genero-e-apresentado-em-forum-internacional" target="_blank" rel="noopener">Mapa Nacional da Violência de Gênero é apresentado em fórum internacional</a></h4>
-</li><li data-f="agência-senado">
-  <div class="meta"><span class="fonte f-agência-senado">Agência Senado</span><span class="ed">Congresso</span><time datetime="2026-10-09T18:05:58Z">09/10 · 15:05</time></div>
-  <h4><a href="https://www12.senado.leg.br/noticias/materias/2026/10/09/congresso-fara-sessao-solene-pelo-dia-mundial-da-alimentacao" target="_blank" rel="noopener">Congresso fará sessão solene pelo Dia Mundial da Alimentação</a></h4>
-</li><li data-f="agência-câmara">
-  <div class="meta"><span class="fonte f-agência-câmara">Agência Câmara</span><span class="ed">Câmara</span><time datetime="2026-10-09T17:17:00Z">09/10 · 14:17</time></div>
-  <h4><a href="https://www.camara.leg.br/noticias/1306625-projeto-exclui-salario-de-jovem-aprendiz-do-calculo-de-renda-do-bolsa-familia" target="_blank" rel="noopener">Projeto exclui salário de Jovem Aprendiz do cálculo de renda do Bolsa Família</a></h4>
-</li><li data-f="agência-senado">
-  <div class="meta"><span class="fonte f-agência-senado">Agência Senado</span><span class="ed">Senado</span><time datetime="2026-10-09T17:04:01Z">09/10 · 14:04</time></div>
-  <h4><a href="https://www12.senado.leg.br/noticias/materias/2026/10/09/judiciario-economia-e-seguranca-estao-entre-as-prioridades-de-senadores-eleitos" target="_blank" rel="noopener">Judiciário, economia e segurança estão entre as prioridades de senadores eleitos</a></h4>
-</li><li data-f="agência-senado">
-  <div class="meta"><span class="fonte f-agência-senado">Agência Senado</span><span class="ed">Senado</span><time datetime="2026-10-09T15:09:57Z">09/10 · 12:09</time></div>
-  <h4><a href="https://www12.senado.leg.br/noticias/materias/2026/10/09/medida-provisoria-libera-r-7-52-bilhoes-para-custear-subsidios-a-combustiveis" target="_blank" rel="noopener">Medida provisória libera R$ 7,52 bilhões para subsidiar combustíveis</a></h4>
-</li><li data-f="agência-câmara">
-  <div class="meta"><span class="fonte f-agência-câmara">Agência Câmara</span><span class="ed">Câmara</span><time datetime="2026-10-09T14:37:00Z">09/10 · 11:37</time></div>
-  <h4><a href="https://www.camara.leg.br/noticias/1310518-governo-edita-9a-medida-provisoria-para-conter-efeito-da-guerra-no-preco-dos-combustiveis" target="_blank" rel="noopener">Governo edita 9ª medida provisória para conter efeito da guerra no preço dos combustíveis</a></h4>
-</li><li data-f="agência-câmara">
-  <div class="meta"><span class="fonte f-agência-câmara">Agência Câmara</span><span class="ed">Câmara</span><time datetime="2026-10-09T14:36:00Z">09/10 · 11:36</time></div>
-  <h4><a href="https://www.camara.leg.br/noticias/1310450-quatro-medidas-provisorias-perdem-a-validade-sem-aprovacao-do-congresso" target="_blank" rel="noopener">Quatro medidas provisórias perdem a validade sem aprovação do Congresso</a></h4>
-</li><li data-f="agência-câmara">
-  <div class="meta"><span class="fonte f-agência-câmara">Agência Câmara</span><span class="ed">Câmara</span><time datetime="2026-10-09T14:35:00Z">09/10 · 11:35</time></div>
-  <h4><a href="https://www.camara.leg.br/noticias/1310205-camara-tera-seis-deputados-com-deficiencia-em-2027" target="_blank" rel="noopener">Câmara terá seis deputados com deficiência em 2027</a></h4>
-</li><li data-f="agência-câmara">
-  <div class="meta"><span class="fonte f-agência-câmara">Agência Câmara</span><span class="ed">Câmara</span><time datetime="2026-10-09T14:31:00Z">09/10 · 11:31</time></div>
-  <h4><a href="https://www.camara.leg.br/noticias/1310470-consultorias-da-camara-e-do-senado-indicam-necessidade-de-ajustes-no-projeto-do-orcamento-para-2027" target="_blank" rel="noopener">Consultorias da Câmara e do Senado indicam necessidade de ajustes no projeto do Orçamento para 2027</a></h4>
-</li></ol>
-    </section>
-    <aside>
-      <div class="box box-tg">
-        <h2>Receba no Telegram</h2>
-        <p>As manchetes novas chegam no canal a cada atualização.</p>
-        <a class="btn" href="https://t.me/plantaodenoticias" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.7.2 1.4 1.3z"/></svg>Entrar no canal</a>
-      </div>
-      <div class="box">
-        <h2>Nossas fontes</h2>
-        <ul class="fontes"><li><span class="fonte f-agência-brasil">Agência Brasil</span><span>Agência pública de notícias da EBC.</span></li><li><span class="fonte f-poder360">Poder360</span><span>Jornal digital de política e poder.</span></li><li><span class="fonte f-agência-câmara">Agência Câmara</span><span>Notícias oficiais da Câmara dos Deputados.</span></li><li><span class="fonte f-agência-senado">Agência Senado</span><span>Notícias oficiais do Senado Federal.</span></li></ul>
-        <p>Só publicamos manchetes de veículos com redação identificada. Cada link leva à matéria original.</p>
-      </div>
-      <div class="box">
-        <h2>Próximas atualizações</h2>
-        <span class="hor">01h · 05h · 09h · 13h · 17h · 21h</span>
-      </div>
-    </aside>
+  <div class="faixa">
+    <span class="vivo"><i></i>Notícias atualizadas às&nbsp;<b style="color:inherit">15:10</b></span>
+    <span>6× ao dia: <b>01h · 05h · 09h · 13h · 17h · 21h</b></span>
+    <span>Horário de Brasília</span>
   </div>
+  <div class="pagina" id="pg-inicio" data-pg="inicio">
+    <section class="capa" aria-label="Destaques">
+      <article class="lead">
+  <div class="meta"><span class="sec s-futebol">Futebol</span><span class="fonte">Gazeta Esportiva</span><time datetime="2026-10-12T17:55:23Z">há menos de 1 h</time></div>
+  <h2><a href="https://www.gazetaesportiva.com/times/flamengo/danilo-passa-por-cirurgia-e-flamengo-reclama-de-nova-fratura-no-elenco/" target="_blank" rel="noopener">Danilo passa por cirurgia e Flamengo reclama de nova fratura no elenco</a></h2>
+  
+</article>
+      <div class="dests"><article class="dest"><div class="meta"><span class="sec s-politica">Política</span><span class="fonte">InfoMoney</span><time datetime="2026-10-12T10:00:00Z">há 8 h</time></div><h3><a href="https://www.infomoney.com.br/politica/como-esta-a-disputa-entre-flavio-e-lula-nas-primeiras-pesquisas-do-2o-turno/" target="_blank" rel="noopener">Como está a disputa entre Flávio e Lula nas primeiras pesquisas do 2º turno</a></h3></article><article class="dest"><div class="meta"><span class="sec s-ia">IA</span><span class="fonte">Olhar Digital</span><time datetime="2026-10-12T17:54:50Z">há menos de 1 h</time></div><h3><a href="https://olhardigital.com.br/2026/10/12/inteligencia-artificial/meta-lanca-muse-wonder-nova-ia-para-competir-com-openai-e-anthropic/" target="_blank" rel="noopener">Meta lança Muse Wonder, nova IA para competir com OpenAI e Anthropic</a></h3></article><article class="dest"><div class="meta"><span class="sec s-agro">Agro</span><span class="fonte">Canal Rural</span><time datetime="2026-10-12T14:32:15Z">há 3 h</time></div><h3><a href="https://www.canalrural.com.br/previsao-do-tempo/alerta-de-tempestade-com-ventos-de-ate-100-km-h-e-ampliado-pelo-inmet/" target="_blank" rel="noopener">Alerta de tempestade com ventos de até 100 km/h é ampliado pelo Inmet</a></h3></article><article class="dest"><div class="meta"><span class="sec s-mercado">Mercado</span><span class="fonte">InfoMoney</span><time datetime="2026-10-12T09:00:00Z">há 9 h</time></div><h3><a href="https://www.infomoney.com.br/mercados/temporada-de-balancos-nos-eua-tera-regua-mais-alta-e-menos-surpresas-diz-xp/" target="_blank" rel="noopener">Temporada de balanços nos EUA terá régua mais alta e menos surpresas, diz XP</a></h3></article></div>
+    </section>
+    <div class="blocos" style="margin-top:30px"><section class="bloco s-politica">
+  <header><h2>Política</h2><a class="ver" href="#politica" data-tab="politica">Ver tudo →</a></header>
+  <ol><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-11T22:46:00Z">há 19 h</time></div><h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/flavio-passa-domingo-reunido-com-prefeitos-e-vereadores-de-sao-paulo" target="_blank" rel="noopener">Flávio passa domingo reunido com prefeitos e vereadores de São Paulo</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-11T21:02:00Z">há 21 h</time></div><h4><a href="https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/tse-barra-anuncios-de-lula-acusando-flavio-de-ser-contra-escala-6x1" target="_blank" rel="noopener">TSE barra anúncios de Lula acusando Flávio de ser contra escala 6x1</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-11T19:49:00Z">há 22 h</time></div><h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/ato-pela-reeleicao-de-lula-leva-milhares-a-avenida-paulista" target="_blank" rel="noopener">Ato pela reeleição de Lula leva milhares à Avenida Paulista</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-11T19:27:00Z">há 22 h</time></div><h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/corregedor-derruba-decisao-que-suspendeu-canal-exercito-do-lula" target="_blank" rel="noopener">Corregedor derruba decisão que suspendeu canal Exército do Lula</a></h4></li><li><div class="meta"><span class="fonte">Poder360</span><time datetime="2026-10-11T15:44:02Z">11/10</time></div><h4><a href="https://www.poder360.com.br/poder-eleicoes-2026/flavio-pede-ao-tse-cassacao-de-lula-por-rede-de-desinformacao/" target="_blank" rel="noopener">Flávio pede ao TSE cassação de Lula por rede de desinformação</a></h4></li></ol>
+</section><section class="bloco s-ia">
+  <header><h2>IA</h2><a class="ver" href="#ia" data-tab="ia">Ver tudo →</a></header>
+  <ol><li><div class="meta"><span class="fonte">Olhar Digital</span><time datetime="2026-10-12T16:26:37Z">há 1 h</time></div><h4><a href="https://olhardigital.com.br/2026/10/12/pro/amazon-negocia-compra-de-startup-de-ia-avaliada-em-us-7-bilhoes/" target="_blank" rel="noopener">Amazon negocia compra de startup de IA avaliada em US$ 7 bilhões</a></h4></li><li><div class="meta"><span class="fonte">Olhar Digital</span><time datetime="2026-10-12T14:32:09Z">há 3 h</time></div><h4><a href="https://olhardigital.com.br/2026/10/12/pro/microsoft-aposta-em-chip-proprio-para-reduzir-custos-da-ia-na-nuvem/" target="_blank" rel="noopener">Microsoft aposta em chip próprio para reduzir custos da IA na nuvem</a></h4></li><li><div class="meta"><span class="fonte">Olhar Digital</span><time datetime="2026-10-12T10:41:52Z">há 7 h</time></div><h4><a href="https://olhardigital.com.br/2026/10/12/inteligencia-artificial/fmi-estima-que-ia-pode-afetar-40-dos-empregos-ao-longo-do-tempo/" target="_blank" rel="noopener">FMI estima que IA pode afetar 40% dos empregos ao longo do tempo</a></h4></li><li><div class="meta"><span class="fonte">Olhar Digital</span><time datetime="2026-10-11T12:35:22Z">11/10</time></div><h4><a href="https://olhardigital.com.br/2026/10/11/inteligencia-artificial/ceo-da-microsoft-diz-que-ia-precisa-de-freio-controlado-por-humanos/" target="_blank" rel="noopener">CEO da Microsoft diz que IA precisa de freio controlado por humanos</a></h4></li><li><div class="meta"><span class="fonte">Olhar Digital</span><time datetime="2026-10-10T20:18:24Z">10/10</time></div><h4><a href="https://olhardigital.com.br/2026/10/10/inteligencia-artificial/china-restringe-chatbots-que-simulam-namoros-e-amizades-virtuais/" target="_blank" rel="noopener">China restringe chatbots que simulam namoros e amizades virtuais</a></h4></li></ol>
+</section><section class="bloco s-futebol">
+  <header><h2>Futebol</h2><a class="ver" href="#futebol" data-tab="futebol">Ver tudo →</a></header>
+  <ol><li><div class="meta"><span class="fonte">Gazeta Esportiva</span><time datetime="2026-10-12T17:17:42Z">há menos de 1 h</time></div><h4><a href="https://www.gazetaesportiva.com/times/palmeiras/sosa-trauma-palmeiras-preparacao-semifinal-libertadores/" target="_blank" rel="noopener">Sosa sofre trauma na coxa, e Palmeiras abre preparação para semifinal da Libertadores</a></h4></li><li><div class="meta"><span class="fonte">Gazeta Esportiva</span><time datetime="2026-10-12T17:08:12Z">há 1 h</time></div><h4><a href="https://www.gazetaesportiva.com/times/corinthians/torcida-do-corinthians-protesta-em-frente-ao-parque-sao-jorge-por-intervencao-judicial/" target="_blank" rel="noopener">Torcida do Corinthians protesta em frente ao Parque São Jorge por intervenção judicial</a></h4></li><li><div class="meta"><span class="fonte">Gazeta Esportiva</span><time datetime="2026-10-12T16:48:31Z">há 1 h</time></div><h4><a href="https://www.gazetaesportiva.com/todas-as-noticias/simeone-defende-julian-alvarez-antes-do-duelo-contra-o-united/" target="_blank" rel="noopener">Simeone defende Julián Álvarez antes do duelo contra o Manchester United</a></h4></li><li><div class="meta"><span class="fonte">Gazeta Esportiva</span><time datetime="2026-10-12T16:18:23Z">há 1 h</time></div><h4><a href="https://www.gazetaesportiva.com/campeonatos/laliga/osasuna-demite-tecnico-luis-ramis-e-traz-de-volta-jagoba-arrasate/" target="_blank" rel="noopener">Osasuna demite técnico Luis Ramis e traz de volta Jagoba Arrasate</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-11T21:48:00Z">há 20 h</time></div><h4><a href="https://agenciabrasil.ebc.com.br/esportes/noticia/2026-10/corinthians-anuncia-seedorf-como-novo-tecnico-ate-dezembro-de-2027" target="_blank" rel="noopener">Corinthians anuncia Seedorf como novo técnico até dezembro de 2027</a></h4></li></ol>
+</section><section class="bloco s-agro">
+  <header><h2>Agro</h2><a class="ver" href="#agro" data-tab="agro">Ver tudo →</a></header>
+  <ol><li><div class="meta"><span class="fonte">Canal Rural</span><time datetime="2026-10-12T14:20:20Z">há 3 h</time></div><h4><a href="https://www.canalrural.com.br/economia/alckmin-e-andre-de-paula-anunciam-marca-de-700-mercados-abertos-para-o-agro/" target="_blank" rel="noopener">Alckmin e André de Paula anunciam marca de 700 mercados abertos para o agro</a></h4></li><li><div class="meta"><span class="fonte">Canal Rural</span><time datetime="2026-10-12T10:22:37Z">há 7 h</time></div><h4><a href="https://www.canalrural.com.br/economia/bradseg-mantem-foco-em-seguro-rural-e-descarta-crescer-com-perda-de-rentabilidade/" target="_blank" rel="noopener">Bradseg mantém foco em seguro rural e descarta crescer com perda de rentabilidade</a></h4></li><li><div class="meta"><span class="fonte">Canal Rural</span><time datetime="2026-10-12T09:01:00Z">há 9 h</time></div><h4><a href="https://www.canalrural.com.br/agricultura/produtor-vira-engenheiro-agronomo-para-ajudar-o-pai-e-hoje-soma-7-milhoes-de-seguidores-nas-redes/" target="_blank" rel="noopener">Produtor vira engenheiro agrônomo para ajudar o pai e hoje soma 7 milhões de seguidores nas redes</a></h4></li><li><div class="meta"><span class="fonte">Canal Rural</span><time datetime="2026-10-11T22:01:00Z">há 20 h</time></div><h4><a href="https://www.canalrural.com.br/pecuaria/arroba-do-boi-gordo-chega-a-r-380-com-apetite-para-mais/" target="_blank" rel="noopener">Arroba do boi gordo chega a R$ 380 com apetite para mais</a></h4></li><li><div class="meta"><span class="fonte">Canal Rural</span><time datetime="2026-10-11T20:03:00Z">há 22 h</time></div><h4><a href="https://www.canalrural.com.br/agricultura/estudo-aponta-que-aquarios-com-divisorias-aumentam-o-bem-estar-de-tilapias/" target="_blank" rel="noopener">Estudo aponta que aquários com divisórias aumentam o bem-estar de tilápias</a></h4></li></ol>
+</section><section class="bloco s-mercado">
+  <header><h2>Mercado</h2><a class="ver" href="#mercado" data-tab="mercado">Ver tudo →</a></header>
+  <div class="mini-ind" data-mini></div><ol><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-10T14:47:00Z">10/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/bets-mais-de-r-1-bilhao-foram-devolvidos-apostadores" target="_blank" rel="noopener">Bets: mais de R$ 1 bilhão foram devolvidos a apostadores</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-09T22:07:00Z">09/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/dolar-cai-r-498-e-acumula-perda-de-444-na-semana" target="_blank" rel="noopener">Dólar cai a R$ 4,98 e acumula perda de 4,44% na semana</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-09T20:59:00Z">09/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/reforma-tributaria-86-das-notas-fiscais-destacam-cbs" target="_blank" rel="noopener">Reforma Tributária: 86% das notas fiscais destacam a CBS</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-09T16:42:00Z">09/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/pix-ultrapassa-1-bilhao-de-chaves-cadastradas-no-brasil" target="_blank" rel="noopener">Pix ultrapassa 1 bilhão de chaves cadastradas no Brasil</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-09T16:40:00Z">09/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/tributos-da-gasolina-sao-zerados-e-subsidios-combustiveis-ampliados" target="_blank" rel="noopener">Tributos da gasolina são zerados e subsídios a combustíveis, ampliados</a></h4></li></ol>
+</section></div>
+  </div>
+  <section class="pagina" id="pg-politica" data-pg="politica" hidden>
+  <div class="sec-t s-politica"><h2>Política</h2><span>14 notícias</span></div>
+  <ol class="lista"><li><div class="meta"><span class="fonte">InfoMoney</span><time datetime="2026-10-12T10:00:00Z">há 8 h</time></div><h4><a href="https://www.infomoney.com.br/politica/como-esta-a-disputa-entre-flavio-e-lula-nas-primeiras-pesquisas-do-2o-turno/" target="_blank" rel="noopener">Como está a disputa entre Flávio e Lula nas primeiras pesquisas do 2º turno</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-11T22:46:00Z">há 19 h</time></div><h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/flavio-passa-domingo-reunido-com-prefeitos-e-vereadores-de-sao-paulo" target="_blank" rel="noopener">Flávio passa domingo reunido com prefeitos e vereadores de São Paulo</a></h4><p>O senador e candidato à presidência pelo PL, Flávio Bolsonaro, cumpriu agenda neste domingo (11).</p></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-11T21:02:00Z">há 21 h</time></div><h4><a href="https://agenciabrasil.ebc.com.br/justica/noticia/2026-10/tse-barra-anuncios-de-lula-acusando-flavio-de-ser-contra-escala-6x1" target="_blank" rel="noopener">TSE barra anúncios de Lula acusando Flávio de ser contra escala 6x1</a></h4><p>O ministro André Mendonça, do Tribunal Superior Eleitoral (TSE), proibiu neste domingo (11) a campanha de veicular os anúncios.</p></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-11T19:49:00Z">há 22 h</time></div><h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/ato-pela-reeleicao-de-lula-leva-milhares-a-avenida-paulista" target="_blank" rel="noopener">Ato pela reeleição de Lula leva milhares à Avenida Paulista</a></h4><p>Uma manifestação pela reeleição do presidente Luiz Inácio Lula da Silva (PT) ocupou a avenida neste domingo (11).</p></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-11T19:27:00Z">há 22 h</time></div><h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/corregedor-derruba-decisao-que-suspendeu-canal-exercito-do-lula" target="_blank" rel="noopener">Corregedor derruba decisão que suspendeu canal Exército do Lula</a></h4><p>O corregedor-geral eleitoral, ministro Ricardo Villas Bôas Cueva, derrubou neste domingo (11) a decisão.</p></li><li><div class="meta"><span class="fonte">Poder360</span><time datetime="2026-10-11T15:44:02Z">11/10</time></div><h4><a href="https://www.poder360.com.br/poder-eleicoes-2026/flavio-pede-ao-tse-cassacao-de-lula-por-rede-de-desinformacao/" target="_blank" rel="noopener">Flávio pede ao TSE cassação de Lula por rede de desinformação</a></h4><p>Petição diz que 218 posts falsos ou sem contexto tiveram 11,6 mi de visualizações em 62h e beneficiaram a chapa do presidente.</p></li><li><div class="meta"><span class="fonte">Poder360</span><time datetime="2026-10-11T15:15:40Z">11/10</time></div><h4><a href="https://www.poder360.com.br/poder-eleicoes-2026/sidonio-palmeira-deixara-secom-para-ajudar-na-campanha-de-lula/" target="_blank" rel="noopener">Sidônio Palmeira deixará Secom para ajudar na campanha de Lula</a></h4><p>Secretária-executiva Samara Castro deve assumir a secretaria durante o afastamento do ministro.</p></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-11T15:13:00Z">11/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/meta-alega-problemas-tecnicos-para-menor-alcance-de-lula-nas-redes" target="_blank" rel="noopener">Meta alega &quot;problemas técnicos&quot; para menor alcance de Lula nas redes</a></h4></li><li><div class="meta"><span class="fonte">Poder360</span><time datetime="2026-10-11T14:41:03Z">11/10</time></div><h4><a href="https://www.poder360.com.br/poder-congresso/projeto-cria-multas-de-ate-r-100-mil-por-pichacao/" target="_blank" rel="noopener">Projeto cria multas de até R$ 100 mil por pichação</a></h4><p>Texto também obriga infrator a pagar pela restauração e cria cadastro nacional de reincidência por depredação urbana.</p></li><li><div class="meta"><span class="fonte">Poder360</span><time datetime="2026-10-11T14:23:26Z">11/10</time></div><h4><a href="https://www.poder360.com.br/poder-governo/escudo-das-americas-poe-brasil-em-um-cerco-diz-celso-amorim/" target="_blank" rel="noopener">Escudo das Américas põe Brasil em um cerco, diz Celso Amorim</a></h4><p>Assessor de Lula critica iniciativa de Trump que trata crime organizado como terrorismo.</p></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-10T23:49:00Z">10/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/lula-faz-comicio-em-natal-e-flavio-participa-de-moto-carreata-no-rio" target="_blank" rel="noopener">Lula faz comício em Natal e Flávio participa de moto-carreata no Rio</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-10T21:58:00Z">10/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/apos-ameacas-de-morte-deputada-eleita-ana-elisa-recebera-protecao" target="_blank" rel="noopener">Após ameaças de morte, deputada eleita Ana Elisa receberá proteção</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-10T00:34:00Z">09/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/alcolumbre-marca-votacao-da-pec-pelo-fim-da-6x1-para-quarta-feira" target="_blank" rel="noopener">Alcolumbre marca votação da PEC pelo fim da 6x1 para quarta-feira</a></h4></li><li><div class="meta"><span class="fonte">Agência Senado</span><time datetime="2026-10-09T21:39:05Z">09/10</time></div><h4><a href="https://www12.senado.leg.br/noticias/materias/2026/10/09/fim-da-6-x-1-senado-pode-concluir-1o-turno-da-votacao-em-mais-duas-sessoes" target="_blank" rel="noopener">Fim da escala 6x1: Davi marca votação em 1º turno para quarta</a></h4></li></ol>
+</section><section class="pagina" id="pg-ia" data-pg="ia" hidden>
+  <div class="sec-t s-ia"><h2>IA</h2><span>9 notícias</span></div>
+  <ol class="lista"><li><div class="meta"><span class="fonte">Olhar Digital</span><time datetime="2026-10-12T17:54:50Z">há menos de 1 h</time></div><h4><a href="https://olhardigital.com.br/2026/10/12/inteligencia-artificial/meta-lanca-muse-wonder-nova-ia-para-competir-com-openai-e-anthropic/" target="_blank" rel="noopener">Meta lança Muse Wonder, nova IA para competir com OpenAI e Anthropic</a></h4></li><li><div class="meta"><span class="fonte">Olhar Digital</span><time datetime="2026-10-12T16:26:37Z">há 1 h</time></div><h4><a href="https://olhardigital.com.br/2026/10/12/pro/amazon-negocia-compra-de-startup-de-ia-avaliada-em-us-7-bilhoes/" target="_blank" rel="noopener">Amazon negocia compra de startup de IA avaliada em US$ 7 bilhões</a></h4></li><li><div class="meta"><span class="fonte">Olhar Digital</span><time datetime="2026-10-12T14:32:09Z">há 3 h</time></div><h4><a href="https://olhardigital.com.br/2026/10/12/pro/microsoft-aposta-em-chip-proprio-para-reduzir-custos-da-ia-na-nuvem/" target="_blank" rel="noopener">Microsoft aposta em chip próprio para reduzir custos da IA na nuvem</a></h4></li><li><div class="meta"><span class="fonte">Olhar Digital</span><time datetime="2026-10-12T10:41:52Z">há 7 h</time></div><h4><a href="https://olhardigital.com.br/2026/10/12/inteligencia-artificial/fmi-estima-que-ia-pode-afetar-40-dos-empregos-ao-longo-do-tempo/" target="_blank" rel="noopener">FMI estima que IA pode afetar 40% dos empregos ao longo do tempo</a></h4></li><li><div class="meta"><span class="fonte">Olhar Digital</span><time datetime="2026-10-11T12:35:22Z">11/10</time></div><h4><a href="https://olhardigital.com.br/2026/10/11/inteligencia-artificial/ceo-da-microsoft-diz-que-ia-precisa-de-freio-controlado-por-humanos/" target="_blank" rel="noopener">CEO da Microsoft diz que IA precisa de freio controlado por humanos</a></h4></li><li><div class="meta"><span class="fonte">Olhar Digital</span><time datetime="2026-10-10T20:18:24Z">10/10</time></div><h4><a href="https://olhardigital.com.br/2026/10/10/inteligencia-artificial/china-restringe-chatbots-que-simulam-namoros-e-amizades-virtuais/" target="_blank" rel="noopener">China restringe chatbots que simulam namoros e amizades virtuais</a></h4></li><li><div class="meta"><span class="fonte">Tecnoblog</span><time datetime="2026-10-08T20:15:34Z">08/10</time></div><h4><a href="https://tecnoblog.net/noticias/chatgpt-para-adolescentes-falha-em-testes-contra-dependencia-emocional/" target="_blank" rel="noopener">ChatGPT para Adolescentes falha em testes de dependência emocional</a></h4></li><li><div class="meta"><span class="fonte">Tecnoblog</span><time datetime="2026-10-07T22:25:40Z">07/10</time></div><h4><a href="https://tecnoblog.net/noticias/microsoft-coloca-copilot-e-ia-ate-na-barra-de-busca-do-windows/" target="_blank" rel="noopener">Windows coloca IA até na barra de busca</a></h4></li><li><div class="meta"><span class="fonte">Tecnoblog</span><time datetime="2026-10-07T15:45:02Z">07/10</time></div><h4><a href="https://tecnoblog.net/noticias/google-libera-detector-de-ia-para-qualquer-pessoa/" target="_blank" rel="noopener">Google libera detector de IA para qualquer pessoa</a></h4></li></ol>
+</section><section class="pagina" id="pg-futebol" data-pg="futebol" hidden>
+  <div class="sec-t s-futebol"><h2>Futebol</h2><span>7 notícias</span></div>
+  <ol class="lista"><li><div class="meta"><span class="fonte">Gazeta Esportiva</span><time datetime="2026-10-12T17:55:23Z">há menos de 1 h</time></div><h4><a href="https://www.gazetaesportiva.com/times/flamengo/danilo-passa-por-cirurgia-e-flamengo-reclama-de-nova-fratura-no-elenco/" target="_blank" rel="noopener">Danilo passa por cirurgia e Flamengo reclama de nova fratura no elenco</a></h4></li><li><div class="meta"><span class="fonte">Gazeta Esportiva</span><time datetime="2026-10-12T17:17:42Z">há menos de 1 h</time></div><h4><a href="https://www.gazetaesportiva.com/times/palmeiras/sosa-trauma-palmeiras-preparacao-semifinal-libertadores/" target="_blank" rel="noopener">Sosa sofre trauma na coxa, e Palmeiras abre preparação para semifinal da Libertadores</a></h4></li><li><div class="meta"><span class="fonte">Gazeta Esportiva</span><time datetime="2026-10-12T17:08:12Z">há 1 h</time></div><h4><a href="https://www.gazetaesportiva.com/times/corinthians/torcida-do-corinthians-protesta-em-frente-ao-parque-sao-jorge-por-intervencao-judicial/" target="_blank" rel="noopener">Torcida do Corinthians protesta em frente ao Parque São Jorge por intervenção judicial</a></h4></li><li><div class="meta"><span class="fonte">Gazeta Esportiva</span><time datetime="2026-10-12T16:48:31Z">há 1 h</time></div><h4><a href="https://www.gazetaesportiva.com/todas-as-noticias/simeone-defende-julian-alvarez-antes-do-duelo-contra-o-united/" target="_blank" rel="noopener">Simeone defende Julián Álvarez antes do duelo contra o Manchester United</a></h4></li><li><div class="meta"><span class="fonte">Gazeta Esportiva</span><time datetime="2026-10-12T16:18:23Z">há 1 h</time></div><h4><a href="https://www.gazetaesportiva.com/campeonatos/laliga/osasuna-demite-tecnico-luis-ramis-e-traz-de-volta-jagoba-arrasate/" target="_blank" rel="noopener">Osasuna demite técnico Luis Ramis e traz de volta Jagoba Arrasate</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-11T21:48:00Z">há 20 h</time></div><h4><a href="https://agenciabrasil.ebc.com.br/esportes/noticia/2026-10/corinthians-anuncia-seedorf-como-novo-tecnico-ate-dezembro-de-2027" target="_blank" rel="noopener">Corinthians anuncia Seedorf como novo técnico até dezembro de 2027</a></h4><p>O Corinthians anunciou neste domingo (11) a contratação do holandês Clarence Seedorf, de 50 anos.</p></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-10T22:22:00Z">10/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/esportes/noticia/2026-10/selecao-feminina-faz-3-1-na-argentina-em-primeiro-jogo-no-beira-rio" target="_blank" rel="noopener">Seleção feminina faz 3 a 1 na Argentina em primeiro jogo no Beira-Rio</a></h4></li></ol>
+</section><section class="pagina" id="pg-agro" data-pg="agro" hidden>
+  <div class="sec-t s-agro"><h2>Agro</h2><span>6 notícias</span></div>
+  <ol class="lista"><li><div class="meta"><span class="fonte">Canal Rural</span><time datetime="2026-10-12T14:32:15Z">há 3 h</time></div><h4><a href="https://www.canalrural.com.br/previsao-do-tempo/alerta-de-tempestade-com-ventos-de-ate-100-km-h-e-ampliado-pelo-inmet/" target="_blank" rel="noopener">Alerta de tempestade com ventos de até 100 km/h é ampliado pelo Inmet</a></h4></li><li><div class="meta"><span class="fonte">Canal Rural</span><time datetime="2026-10-12T14:20:20Z">há 3 h</time></div><h4><a href="https://www.canalrural.com.br/economia/alckmin-e-andre-de-paula-anunciam-marca-de-700-mercados-abertos-para-o-agro/" target="_blank" rel="noopener">Alckmin e André de Paula anunciam marca de 700 mercados abertos para o agro</a></h4></li><li><div class="meta"><span class="fonte">Canal Rural</span><time datetime="2026-10-12T10:22:37Z">há 7 h</time></div><h4><a href="https://www.canalrural.com.br/economia/bradseg-mantem-foco-em-seguro-rural-e-descarta-crescer-com-perda-de-rentabilidade/" target="_blank" rel="noopener">Bradseg mantém foco em seguro rural e descarta crescer com perda de rentabilidade</a></h4></li><li><div class="meta"><span class="fonte">Canal Rural</span><time datetime="2026-10-12T09:01:00Z">há 9 h</time></div><h4><a href="https://www.canalrural.com.br/agricultura/produtor-vira-engenheiro-agronomo-para-ajudar-o-pai-e-hoje-soma-7-milhoes-de-seguidores-nas-redes/" target="_blank" rel="noopener">Produtor vira engenheiro agrônomo para ajudar o pai e hoje soma 7 milhões de seguidores nas redes</a></h4></li><li><div class="meta"><span class="fonte">Canal Rural</span><time datetime="2026-10-11T22:01:00Z">há 20 h</time></div><h4><a href="https://www.canalrural.com.br/pecuaria/arroba-do-boi-gordo-chega-a-r-380-com-apetite-para-mais/" target="_blank" rel="noopener">Arroba do boi gordo chega a R$ 380 com apetite para mais</a></h4></li><li><div class="meta"><span class="fonte">Canal Rural</span><time datetime="2026-10-11T20:03:00Z">há 22 h</time></div><h4><a href="https://www.canalrural.com.br/agricultura/estudo-aponta-que-aquarios-com-divisorias-aumentam-o-bem-estar-de-tilapias/" target="_blank" rel="noopener">Estudo aponta que aquários com divisórias aumentam o bem-estar de tilápias</a></h4></li></ol>
+</section><section class="pagina" id="pg-mercado" data-pg="mercado" hidden>
+  <div class="sec-t s-mercado"><h2>Mercado</h2><span>8 notícias</span></div>
+  <div class="painel">
+  <div class="ind-grid" data-ind></div>
+  <div class="acoes-wrap"><table class="acoes"><thead><tr><th>Ação</th><th>Empresa</th><th class="n">Preço (R$)</th><th class="n">Variação</th></tr></thead><tbody data-acoes></tbody></table></div>
+  <p class="nota" data-nota></p>
+</div><ol class="lista"><li><div class="meta"><span class="fonte">InfoMoney</span><time datetime="2026-10-12T09:00:00Z">há 9 h</time></div><h4><a href="https://www.infomoney.com.br/mercados/temporada-de-balancos-nos-eua-tera-regua-mais-alta-e-menos-surpresas-diz-xp/" target="_blank" rel="noopener">Temporada de balanços nos EUA terá régua mais alta e menos surpresas, diz XP</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-10T14:47:00Z">10/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/bets-mais-de-r-1-bilhao-foram-devolvidos-apostadores" target="_blank" rel="noopener">Bets: mais de R$ 1 bilhão foram devolvidos a apostadores</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-09T22:07:00Z">09/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/dolar-cai-r-498-e-acumula-perda-de-444-na-semana" target="_blank" rel="noopener">Dólar cai a R$ 4,98 e acumula perda de 4,44% na semana</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-09T20:59:00Z">09/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/reforma-tributaria-86-das-notas-fiscais-destacam-cbs" target="_blank" rel="noopener">Reforma Tributária: 86% das notas fiscais destacam a CBS</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-09T16:42:00Z">09/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/pix-ultrapassa-1-bilhao-de-chaves-cadastradas-no-brasil" target="_blank" rel="noopener">Pix ultrapassa 1 bilhão de chaves cadastradas no Brasil</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-09T16:40:00Z">09/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/tributos-da-gasolina-sao-zerados-e-subsidios-combustiveis-ampliados" target="_blank" rel="noopener">Tributos da gasolina são zerados e subsídios a combustíveis, ampliados</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-09T13:48:00Z">09/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/inpc-inflacao-que-corrige-salarios-acumula-429-em-12-meses" target="_blank" rel="noopener">INPC, inflação que corrige salários, acumula 4,29% em 12 meses</a></h4></li><li><div class="meta"><span class="fonte">Agência Brasil</span><time datetime="2026-10-09T13:06:00Z">09/10</time></div><h4><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/inflacao-oficial-de-setembro-fica-em-082-mostra-ibge" target="_blank" rel="noopener">Inflação oficial de setembro fica em 0,82%, mostra IBGE</a></h4></li></ol>
+</section>
 </main>
 
 <footer>
   <div class="gut">
-    <p><b>Plantão de Notícias</b> reúne 28 manchetes de 4 fontes. Títulos e resumos pertencem aos veículos de origem.</p>
-    <p>Confira a matéria completa no site da fonte antes de compartilhar.</p>
+    <p><b>Plantão de Notícias</b> reúne 44 manchetes de 8 fontes: Gazeta Esportiva, Olhar Digital, Canal Rural, InfoMoney, Agência Brasil, Poder360, Agência Senado, Tecnoblog. Títulos pertencem aos veículos de origem; cada link leva à matéria original.</p>
+    <p>Cotações com atraso, apenas informativas. Não são recomendação de investimento. <a href="https://t.me/plantaodenoticias" target="_blank" rel="noopener">Siga no Telegram</a>.</p>
   </div>
 </footer>
 
+<script type="application/json" id="mercado-dados">{"atualizado_utc": "2026-10-12T17:59:46Z", "indicadores": [{"nome": "Ibovespa", "valor": 209066.9, "var": 1.3805159538357037, "tipo": "pts"}, {"nome": "Selic", "valor": 13.75, "var": null, "tipo": "pct"}, {"nome": "IPCA 12m", "valor": 4.58, "var": null, "tipo": "pct"}], "acoes": [{"ticker": "PETR4", "nome": "Petrobras", "preco": 56.0, "var": 0.9372746935832899}, {"ticker": "VALE3", "nome": "Vale", "preco": 67.9, "var": 0.3843879361324687}, {"ticker": "ITUB4", "nome": "Itaú", "preco": 50.47, "var": 2.269503546099294}, {"ticker": "BBDC4", "nome": "Bradesco", "preco": 21.61, "var": 0.46490004649000216}, {"ticker": "BBAS3", "nome": "Banco do Brasil", "preco": 24.64, "var": 1.5663643858202736}, {"ticker": "B3SA3", "nome": "B3", "preco": 23.35, "var": 2.547211242863434}, {"ticker": "ABEV3", "nome": "Ambev", "preco": 15.99, "var": -0.9907120743033904}, {"ticker": "WEGE3", "nome": "WEG", "preco": 51.47, "var": -0.5794861889125036}, {"ticker": "ITSA4", "nome": "Itaúsa", "preco": 16.31, "var": 1.6199376947040323}, {"ticker": "BPAC11", "nome": "BTG Pactual", "preco": 81.5, "var": 5.202013682715889}, {"ticker": "SUZB3", "nome": "Suzano", "preco": 42.67, "var": -0.23380874444705046}, {"ticker": "PRIO3", "nome": "PRIO", "preco": 64.45, "var": 1.098039215686275}, {"ticker": "RENT3", "nome": "Localiza", "preco": 54.51, "var": 4.185779816513757}, {"ticker": "GGBR4", "nome": "Gerdau", "preco": 25.69, "var": 3.71417036737991}, {"ticker": "RADL3", "nome": "Raia Drogasil", "preco": 21.46, "var": 3.073967339097017}, {"ticker": "LREN3", "nome": "Renner", "preco": 15.06, "var": 11.555555555555564}, {"ticker": "MGLU3", "nome": "Magazine Luiza", "preco": 12.22, "var": 19.21951219512197}], "erros": ["moedas: HTTP Error 429: Too Many Requests"]}</script>
 <script>
 (function(){
-  var chips=[].slice.call(document.querySelectorAll('.chip'));
-  var itens=[].slice.call(document.querySelectorAll('#lista > li'));
-  function aplicar(f){
-    chips.forEach(function(c){var on=c.dataset.f===f;c.classList.toggle('on',on);c.setAttribute('aria-pressed',on)});
-    itens.forEach(function(li){li.hidden=!(f==='todas'||li.dataset.f===f)});
-    try{localStorage.setItem('fonte',f)}catch(e){}
+  /* Abas */
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var pgs=[].slice.call(document.querySelectorAll('[data-pg]'));
+  function abrir(id,rolar){
+    if(!pgs.some(function(p){return p.dataset.pg===id})) id='inicio';
+    pgs.forEach(function(p){p.hidden=p.dataset.pg!==id});
+    tabs.forEach(function(t){var on=t.dataset.tab===id;t.classList.toggle('on',on);t.setAttribute('aria-pressed',on);if(on&&t.scrollIntoView)t.scrollIntoView({block:'nearest',inline:'nearest'})});
+    try{history.replaceState(null,'',id==='inicio'?location.pathname:'#'+id)}catch(e){}
+    if(rolar) window.scrollTo({top:0});
   }
-  chips.forEach(function(c){c.addEventListener('click',function(){aplicar(c.dataset.f)})});
-  try{var s=localStorage.getItem('fonte'); if(s&&chips.some(function(c){return c.dataset.f===s})) aplicar(s);}catch(e){}
+  document.addEventListener('click',function(ev){
+    var el=ev.target.closest('[data-tab]'); if(!el) return;
+    ev.preventDefault(); abrir(el.dataset.tab,true);
+  });
+  abrir((location.hash||'#inicio').slice(1),false);
+
+  /* Mercado */
+  var nf2=new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+  var nf0=new Intl.NumberFormat('pt-BR',{maximumFractionDigits:0});
+  function val(i){
+    if(i.tipo==='pts') return nf0.format(i.valor)+' pts';
+    if(i.tipo==='pct') return nf2.format(i.valor)+'%';
+    if(i.nome==='Bitcoin') return 'R$ '+nf0.format(i.valor);
+    return 'R$ '+nf2.format(i.valor);
+  }
+  function vr(v){
+    if(v==null||isNaN(v)) return {t:i18('ao ano'),c:'flat'};
+    var s=(v>0?'▲ +':v<0?'▼ ':'')+nf2.format(v)+'%';
+    return {t:s,c:v>0?'up':v<0?'down':'flat'};
+  }
+  function i18(t){return t}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function desenhar(d){
+    if(!d||(!d.indicadores&&!d.acoes)) return;
+    var ind=d.indicadores||[], ac=d.acoes||[];
+    var itens=ind.map(function(i){var x=vr(i.var);return '<span class="tk"><b>'+esc(i.nome)+'</b><span class="v">'+val(i)+'</span>'+(i.var!=null?'<span class="'+x.c+'">'+x.t+'</span>':'')+'</span>'})
+      .concat(ac.map(function(a){var x=vr(a.var);return '<span class="tk"><b>'+esc(a.ticker)+'</b><span class="v">'+nf2.format(a.preco)+'</span><span class="'+x.c+'">'+x.t+'</span></span>'}));
+    var tk=document.getElementById('ticker');
+    if(itens.length){
+      var g='<div class="ticker-grp">'+itens.join('')+'</div>';
+      tk.innerHTML=g+g.replace('class="ticker-grp"','class="ticker-grp" aria-hidden="true"');
+      tk.style.setProperty('--dur',Math.max(30,itens.length*4)+'s');
+    }
+    var cards=ind.map(function(i){var x=vr(i.var);return '<div class="ic"><span>'+esc(i.nome)+'</span><b>'+val(i)+'</b><i class="'+x.c+'">'+(i.var!=null?x.t+' no dia':(i.nome==='Selic'?'meta ao ano':'acumulado'))+'</i></div>'}).join('');
+    document.querySelectorAll('[data-ind]').forEach(function(el){el.innerHTML=cards});
+    var mini=ind.filter(function(i){return ['Ibovespa','Dólar','Bitcoin','Euro'].indexOf(i.nome)>=0}).slice(0,3)
+      .map(function(i){var x=vr(i.var);return '<div class="mi"><span>'+esc(i.nome)+'</span><b>'+val(i)+'</b><i class="'+x.c+'">'+x.t+'</i></div>'}).join('');
+    document.querySelectorAll('[data-mini]').forEach(function(el){el.innerHTML=mini});
+    var linhas=ac.map(function(a){var x=vr(a.var);return '<tr><td>'+esc(a.ticker)+'</td><td>'+esc(a.nome)+'</td><td class="n">'+nf2.format(a.preco)+'</td><td class="n '+x.c+'">'+x.t+'</td></tr>'}).join('');
+    document.querySelectorAll('[data-acoes]').forEach(function(el){el.innerHTML=linhas});
+    if(d.atualizado_utc){
+      var dt=new Date(d.atualizado_utc);
+      var h=dt.toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+      document.querySelectorAll('[data-nota]').forEach(function(el){el.textContent='Cotações de '+h+' (horário de Brasília), com atraso. Fontes: Yahoo Finance, AwesomeAPI e Banco Central. Apenas informativo.'});
+    }
+  }
+  try{desenhar(JSON.parse(document.getElementById('mercado-dados').textContent||'{}'))}catch(e){}
+  function buscar(){
+    if(!/^https?:/.test(location.protocol)) return;
+    fetch('mercado.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(desenhar).catch(function(){});
+  }
+  buscar(); setInterval(buscar,5*60*1000);
 })();
 </script>
-
 </body>
 </html>
