@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-10-12T18:00:50Z",
+ "atualizado_utc": "2026-10-12T18:03:47Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -17,6 +17,12 @@
    "nome": "Euro",
    "valor": 5.5642,
    "var": -0.33316615318478293,
+   "tipo": "brl"
+  },
+  {
+   "nome": "Bitcoin",
+   "valor": 411040.305159,
+   "var": -1.4808598375987692,
    "tipo": "brl"
   },
   {
@@ -112,6 +118,12 @@
    "var": 4.185779816513757
   },
   {
+   "ticker": "EMBJ3",
+   "nome": "Embraer",
+   "preco": 89.21,
+   "var": -0.5462653288740293
+  },
+  {
    "ticker": "GGBR4",
    "nome": "Gerdau",
    "preco": 25.69,
@@ -134,10 +146,21 @@
    "nome": "Magazine Luiza",
    "preco": 12.22,
    "var": 19.21951219512197
+  },
+  {
+   "ticker": "AXIA3",
+   "nome": "Axia (Eletrobras)",
+   "preco": 59.84,
+   "var": 0.7746716066015402
+  },
+  {
+   "ticker": "CMIG4",
+   "nome": "Cemig",
+   "preco": 12.13,
+   "var": 0.4971002485501197
   }
  ],
  "erros": [
-  "moedas (awesomeapi): HTTP Error 429: Too Many Requests",
-  "Bitcoin: HTTP Error 404: Not Found"
+  "moedas (awesomeapi): HTTP Error 429: Too Many Requests"
  ]
 }
