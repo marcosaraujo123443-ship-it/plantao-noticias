@@ -48,6 +48,7 @@ def resumo(t):
     t = re.sub(r"\s*(The post|O post|Leia mais|Continue lendo).*$", "", t)
     m = re.match(r"(.{40,240}?[.!?])(\s|$)", t)
     r = m.group(1) if m else t[:220]
+    if re.match(r"(Foto|Imagem|Crédito)s?:", r): return ""
     return r if len(r) > 20 else ""
 
 def data_iso(s):
