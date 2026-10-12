@@ -1,0 +1,41 @@
+name: Publicar no Cloudflare Pages
+on:
+  push:
+    branches: [main]
+  workflow_run:
+    workflows: ["Notícias", "Cotações da bolsa", "Contas dos estados", "Tabelas do futebol", "Cotações do agro"]
+    types: [completed]
+  workflow_dispatch:
+concurrency:
+  group: cloudflare
+  cancel-in-progress: true
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Verificar credenciais
+        id: cred
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "Secrets do Cloudflare ainda não configurados; nada a publicar."; echo "ok=0" >> "$GITHUB_OUTPUT"
+          else echo "ok=1" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/checkout@v4
+        if: steps.cred.outputs.ok == '1'
+        with:
+          ref: main
+      - name: Montar a pasta do site
+        if: steps.cred.outputs.ok == '1'
+        run: |
+          mkdir -p dist
+          cp *.html *.json *.png *.jpg dist/ 2>/dev/null || true
+          [ -f ads.txt ] && cp ads.txt dist/ || true
+          rm -f dist/telegram_enviados.json
+          ls dist
+      - name: Publicar
+        if: steps.cred.outputs.ok == '1'
+        run: |
+          npx --yes wrangler@3 pages project create plantaoinforma --production-branch main >/dev/null 2>&1 || true
+          npx --yes wrangler@3 pages deploy dist --project-name plantaoinforma --branch main --commit-dirty=true

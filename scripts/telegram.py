@@ -5,7 +5,7 @@ import json, os, html, urllib.parse, urllib.request
 from datetime import datetime, timedelta, timezone
 
 CANAL = os.environ.get("TELEGRAM_CANAL", "@plantaodenoticias")
-SITE = "https://marcosaraujo123443-ship-it.github.io/plantao-noticias/"
+SITE = os.environ.get("SITE_URL") or "https://marcosaraujo123443-ship-it.github.io/plantao-noticias/"
 BRT = timezone(timedelta(hours=-3))
 
 def main():
@@ -22,7 +22,7 @@ def main():
     novos = sorted((i for i in itens if i["link"] not in enviados), key=lambda i: i["data"], reverse=True)[:10]
     if not novos:
         print("Sem manchetes novas."); return
-    linhas = [f"<b>📰 Plantão de Notícias · {agora:%d/%m %H:%M}</b>", ""]
+    linhas = [f"<b>📰 Plantão Informa · {agora:%d/%m %H:%M}</b>", ""]
     for i in novos:
         linhas.append(f'• <a href="{html.escape(i["link"])}">{html.escape(i["titulo"])}</a> — <i>{html.escape(i["secao"])} · {html.escape(i["fonte"])}</i>')
     linhas += ["", f'<a href="{SITE}">Site completo, com cotações</a>']

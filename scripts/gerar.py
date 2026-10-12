@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Gera a página do Plantão de Notícias.
+"""Gera a página do Plantão Informa.
 Uso: python3 gerar.py <dir-com-noticias.json> [caminho/mercado.json] [saida/index.html]
 Com o 3º argumento, grava só o site nesse caminho (modo GitHub Actions)."""
-import json, sys, html
+import json, os, sys, html
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -153,17 +153,21 @@ if not saida_site:
     (d / "noticias.html").write_text(out, encoding="utf-8")
     site = d / "site"; site.mkdir(exist_ok=True)
     saida_site = site / "index.html"
+SITE = os.environ.get("SITE_URL") or "https://marcosaraujo123443-ship-it.github.io/plantao-noticias/"
+redir = ("<script>if(/github\\.io$/.test(location.hostname))location.replace(" + json.dumps(SITE) + "+location.hash)</script>\n"
+         if "github.io" not in SITE else "")
 saida_site.write_text(
     '<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
     '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
-    '<meta name="description" content="Política, IA, futebol, agro e mercado: manchetes de fontes confiáveis, atualizadas 6 vezes por dia.">\n'
+    '<meta name="description" content="Política, IA, futebol, agro e mercado: manchetes de fontes confiáveis, atualizadas de hora em hora, com cotações, contas públicas e tabelas.">\n'
     '<link rel="icon" href="favicon.png" type="image/png">\n'
     '<link rel="apple-touch-icon" href="apple-touch-icon.png">\n'
     '<meta name="theme-color" content="#0b1f3a">\n'
-    '<meta property="og:image" content="https://marcosaraujo123443-ship-it.github.io/plantao-noticias/logo.jpg">\n'
-    '<meta property="og:url" content="https://marcosaraujo123443-ship-it.github.io/plantao-noticias/">\n'
+    f'<link rel="canonical" href="{SITE}">\n' + redir +
+    f'<meta property="og:image" content="{SITE}logo.jpg">\n'
+    f'<meta property="og:url" content="{SITE}">\n'
     '<meta name="twitter:card" content="summary">\n'
-    '<meta property="og:title" content="Plantão de Notícias">\n'
-    '<meta property="og:description" content="Manchetes de fontes confiáveis, atualizadas 6 vezes por dia.">\n'
+    '<meta property="og:title" content="Plantão Informa">\n'
+    '<meta property="og:description" content="Manchetes de fontes confiáveis, atualizadas de hora em hora.">\n'
     '</head>\n<body>\n' + out + '\n</body>\n</html>\n', encoding="utf-8")
 print("ok", len(itens), "itens", {s: len(v) for s, v in por_sec.items()}, "mercado:", bool(mercado))
