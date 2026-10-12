@@ -68,6 +68,24 @@ paginas = ""
 for s in SECOES:
     li = "".join(f'<li>{meta(i)}<h4>{a(i)}</h4>{resumo(i)}</li>' for i in por_sec[s])
     painel = ""
+    if s == "Política":
+        painel = '''<div class="painel contas" data-contas>
+  <section class="quadro">
+    <header><h3>Contas públicas dos estados</h3>
+      <div class="filtros-uf">
+        <label>Estado <select data-uf aria-label="Escolher estado"></select></label>
+        <div class="seg" role="group" aria-label="Período"><button class="on" data-ep="atual" aria-pressed="true">Ano atual</button><button data-ep="anterior" aria-pressed="false">Ano passado</button></div>
+      </div>
+      <p class="per" data-per>Carregando dados do Tesouro Nacional…</p></header>
+    <div class="ind-grid" data-uc></div>
+    <div class="quadros">
+      <div class="tw"><table class="tab-m"><thead><tr><th>Receitas</th><th class="n">Arrecadado</th><th class="n">% do previsto</th></tr></thead><tbody data-ur></tbody></table></div>
+      <div class="tw"><table class="tab-m"><thead><tr><th>Despesas por tipo</th><th class="n">Empenhado</th><th class="n">Pago</th></tr></thead><tbody data-ud></tbody></table></div>
+      <div class="tw"><table class="tab-m"><thead><tr><th>Para onde vai o dinheiro</th><th class="n">Liquidado</th><th class="n">% do total</th></tr></thead><tbody data-uf2></tbody></table></div>
+    </div>
+    <p class="nota">Fonte: Tesouro Nacional, SICONFI (Relatório Resumido da Execução Orçamentária, enviado pelos próprios estados a cada bimestre). Valores acumulados no ano, sem as operações intraorçamentárias.</p>
+  </section>
+</div>'''
     if s == "Mercado":
         painel = '''<div class="painel">
   <div class="ind-grid" data-ind></div>
