@@ -53,15 +53,47 @@ REC = {"previsto": r"PREVISÃO ATUALIZADA.*", "realizado": r"Até o Bimestre.*"}
 DESP = {"dotacao": r"DOTAÇÃO ATUALIZADA.*", "empenhado": r"DESPESAS EMPENHADAS ATÉ O BIMESTRE.*",
         "liquidado": r"DESPESAS LIQUIDADAS ATÉ O BIMESTRE.*", "pago": r"DESPESAS PAGAS ATÉ O BIMESTRE.*"}
 
+# Linhas mostradas no site (códigos de conta padronizados do SICONFI) e rótulos curtos
+RECEITAS = [("ReceitasExcetoIntraOrcamentarias", "Total arrecadado"), ("ReceitaTributaria", "Impostos, taxas e contribuições de melhoria"),
+            ("ReceitaDeContribuicoes", "Contribuições"), ("ReceitaPatrimonial", "Receita patrimonial"),
+            ("ReceitaAgropecuaria", "Receita agropecuária"), ("ReceitaIndustrial", "Receita industrial"),
+            ("ReceitaDeServicos", "Receita de serviços"), ("TransferenciasCorrentes", "Transferências correntes"),
+            ("TransferenciasCorrentesDaUniaoEDeSuasEntidades", "da União"),
+            ("OutrasReceitasCorrentes", "Outras receitas correntes"), ("ReceitasDeOperacoesDeCredito", "Empréstimos (operações de crédito)"),
+            ("AlienacaoDeBens", "Venda de bens"), ("AmortizacoesDeEmprestimos", "Amortização de empréstimos concedidos"),
+            ("TransferenciasDeCapital", "Transferências de capital"), ("OutrasReceitasDeCapital", "Outras receitas de capital")]
+DESPESAS = [("DespesasExcetoIntraOrcamentarias", "Total"), ("PessoalEEncargosSociais", "Pessoal e encargos"),
+            ("JurosEEncargosDaDivida", "Juros da dívida"), ("TransferenciasAMunicipios", "Repasses a municípios"),
+            ("DemaisDespesasCorrentes", "Custeio e demais despesas"), ("Investimentos", "Investimentos"),
+            ("InversoesFinanceiras", "Inversões financeiras"), ("AmortizacaoDaDivida", "Amortização da dívida")]
+FUNCOES = """Legislativa|Judiciária|Essencial à Justiça|Administração|Defesa Nacional|Segurança Pública|Relações Exteriores|
+Assistência Social|Previdência Social|Saúde|Trabalho|Educação|Cultura|Direitos da Cidadania|Urbanismo|Habitação|Saneamento|
+Gestão Ambiental|Ciência e Tecnologia|Agricultura|Organização Agrária|Indústria|Comércio e Serviços|Comunicações|Energia|
+Transporte|Desporto e Lazer|Encargos Especiais""".replace("\n", "").split("|")
+
+def escolher(linhas, lista):
+    por_cod = {}
+    for r in linhas: por_cod.setdefault(r["cod"][:45], r)
+    out = []
+    for cod, rot in lista:
+        r = por_cod.get(cod[:45])
+        if r: out.append({"n": rot, **{k: v for k, v in r.items() if k not in ("cod", "conta")}})
+    return out
+
 def balanco(uf, ano, periodo):
     a1 = rreo(uf, ano, periodo, "RREO-Anexo 01")
     if not a1: return None
-    rec = [r for r in tabela(a1, REC) if "realizado" in r]
-    desp = [r for r in tabela(a1, DESP) if "liquidado" in r or "empenhado" in r]
+    rec = escolher(tabela(a1, REC), RECEITAS)
+    desp = escolher(tabela(a1, DESP), DESPESAS)
+    func = []
     try:
-        func = [r for r in tabela(rreo(uf, ano, periodo, "RREO-Anexo 02"), DESP) if "liquidado" in r or "empenhado" in r]
+        vistos = set()
+        for r in tabela(rreo(uf, ano, periodo, "RREO-Anexo 02"), {"liquidado": DESP["liquidado"]}):
+            if r["conta"] in FUNCOES and r["conta"] not in vistos and r.get("liquidado"):
+                vistos.add(r["conta"]); func.append({"n": r["conta"], "liquidado": r["liquidado"]})
+        func.sort(key=lambda r: r["liquidado"], reverse=True)
     except Exception:
-        func = []
+        pass
     pop = next((i.get("populacao") for i in a1 if i.get("populacao")), None)
     return {"ano": ano, "periodo": periodo, "populacao": pop, "receitas": rec, "despesas": desp, "funcoes": func}
 
