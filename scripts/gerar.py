@@ -82,9 +82,9 @@ for s in SECOES:
     <section class="quadro" aria-label="Fundos imobiliários">
       <header><h3>Fundos imobiliários</h3>
         <div class="seg" role="group" aria-label="Ordenar FIIs">
-          <button class="on" data-ff="vm" aria-pressed="true">Valor de mercado</button><button data-ff="dy" aria-pressed="false">Maior DY</button><button data-ff="pvp" aria-pressed="false">Menor P/VP</button>
+          <button class="on" data-ff="vm" aria-pressed="true">Valor de mercado</button><button data-ff="dy" aria-pressed="false">Maior DY</button><button data-ff="pvp" aria-pressed="false">Menor P/VP</button><button data-ff="altas" aria-pressed="false">Maiores altas</button><button data-ff="baixas" aria-pressed="false">Maiores baixas</button>
         </div></header>
-      <div class="tw"><table class="tab-m"><thead><tr><th>Fundo</th><th class="seg-col">Segmento</th><th class="n">Cotação</th><th class="n">DY 12m</th><th class="n">P/VP</th><th class="n">Valor merc.</th></tr></thead><tbody data-fb></tbody></table></div>
+      <div class="tw"><table class="tab-m"><thead><tr><th>Fundo</th><th class="seg-col">Segmento</th><th class="n">Cotação</th><th class="n">Dia</th><th class="n">DY 12m</th><th class="n">P/VP</th><th class="n">Valor merc.</th></tr></thead><tbody data-fb></tbody></table></div>
     </section>
   </div>
   <p class="nota" data-nota></p>

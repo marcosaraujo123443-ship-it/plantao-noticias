@@ -170,6 +170,10 @@ def main():
     maiores.sort(key=lambda a: a["vm"], reverse=True)
     try:
         lista_fii = fiis()
+        cf = cotacoes([f["papel"] for f in lista_fii])
+        for f in lista_fii:
+            if f["papel"] in cf:
+                f["cotacao"], f["var"] = cf[f["papel"]]
     except Exception as e:
         erros.append(f"fiis: {e}"); lista_fii = anterior.get("fiis", [])
     out = {"atualizado_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -177,7 +181,7 @@ def main():
            "maiores": maiores[:20], "fiis": lista_fii, "vm_cache": vmc, "erros": erros}
     with open("mercado.json", "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=1)
-    print(f"{len(ind)} indicadores, {len(acoes)} ações, {len(ibov)} do Ibovespa, {len(maiores)} com valor de mercado, {len(lista_fii)} FIIs, erros: {erros}")
+    print(f"{len(ind)} indicadores, {len(acoes)} ações, {len(ibov)} do Ibovespa, {len(maiores)} com valor de mercado, {len(lista_fii)} FIIs ({sum(1 for f in lista_fii if f.get("var") is not None)} com variação), erros: {erros}")
 
 if __name__ == "__main__":
     main()

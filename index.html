@@ -248,9 +248,9 @@ footer a{font-weight:600}
     <section class="quadro" aria-label="Fundos imobiliários">
       <header><h3>Fundos imobiliários</h3>
         <div class="seg" role="group" aria-label="Ordenar FIIs">
-          <button class="on" data-ff="vm" aria-pressed="true">Valor de mercado</button><button data-ff="dy" aria-pressed="false">Maior DY</button><button data-ff="pvp" aria-pressed="false">Menor P/VP</button>
+          <button class="on" data-ff="vm" aria-pressed="true">Valor de mercado</button><button data-ff="dy" aria-pressed="false">Maior DY</button><button data-ff="pvp" aria-pressed="false">Menor P/VP</button><button data-ff="altas" aria-pressed="false">Maiores altas</button><button data-ff="baixas" aria-pressed="false">Maiores baixas</button>
         </div></header>
-      <div class="tw"><table class="tab-m"><thead><tr><th>Fundo</th><th class="seg-col">Segmento</th><th class="n">Cotação</th><th class="n">DY 12m</th><th class="n">P/VP</th><th class="n">Valor merc.</th></tr></thead><tbody data-fb></tbody></table></div>
+      <div class="tw"><table class="tab-m"><thead><tr><th>Fundo</th><th class="seg-col">Segmento</th><th class="n">Cotação</th><th class="n">Dia</th><th class="n">DY 12m</th><th class="n">P/VP</th><th class="n">Valor merc.</th></tr></thead><tbody data-fb></tbody></table></div>
     </section>
   </div>
   <p class="nota" data-nota></p>
@@ -323,9 +323,11 @@ footer a{font-weight:600}
     var L=(ULT.fiis||[]).slice();
     if(FF==='dy') L=L.filter(function(f){return f.dy>0&&f.pvp>0}).sort(function(a,b){return b.dy-a.dy});
     else if(FF==='pvp') L=L.filter(function(f){return f.pvp>0.3}).sort(function(a,b){return a.pvp-b.pvp});
+    else if(FF==='altas') L=L.filter(function(f){return f.var!=null}).sort(function(a,b){return b.var-a.var});
+    else if(FF==='baixas') L=L.filter(function(f){return f.var!=null}).sort(function(a,b){return a.var-b.var});
     else L.sort(function(a,b){return b.vm-a.vm});
-    L=L.slice(0,15);
-    b.innerHTML=L.length?L.map(function(f){return '<tr><td>'+esc(f.papel)+'</td><td class="nm seg-col">'+esc(f.segmento)+'</td><td class="n">'+nf2.format(f.cotacao)+'</td><td class="n">'+nf2.format(f.dy)+'%</td><td class="n">'+nf2.format(f.pvp)+'</td><td class="n">'+bi(f.vm)+'</td></tr>'}).join(''):'<tr><td colspan="6" class="nm">Aguardando dados dos fundos.</td></tr>';
+    L=L.slice(0,(FF==='altas'||FF==='baixas')?10:15);
+    b.innerHTML=L.length?L.map(function(f){return '<tr><td>'+esc(f.papel)+'</td><td class="nm seg-col">'+esc(f.segmento)+'</td><td class="n">'+nf2.format(f.cotacao)+'</td><td class="n '+vr(f.var).c+'">'+(f.var!=null?vr(f.var).t:'–')+'</td><td class="n">'+nf2.format(f.dy)+'%</td><td class="n">'+nf2.format(f.pvp)+'</td><td class="n">'+bi(f.vm)+'</td></tr>'}).join(''):'<tr><td colspan="7" class="nm">Aguardando dados dos fundos.</td></tr>';
   }
   document.addEventListener('click',function(ev){
     var a=ev.target.closest('[data-af]'), f=ev.target.closest('[data-ff]');
