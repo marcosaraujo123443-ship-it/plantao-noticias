@@ -1,0 +1,130 @@
+{
+ "atualizado_utc": "2026-10-12T17:59:46Z",
+ "indicadores": [
+  {
+   "nome": "Ibovespa",
+   "valor": 209066.9,
+   "var": 1.3805159538357037,
+   "tipo": "pts"
+  },
+  {
+   "nome": "Selic",
+   "valor": 13.75,
+   "var": null,
+   "tipo": "pct"
+  },
+  {
+   "nome": "IPCA 12m",
+   "valor": 4.58,
+   "var": null,
+   "tipo": "pct"
+  }
+ ],
+ "acoes": [
+  {
+   "ticker": "PETR4",
+   "nome": "Petrobras",
+   "preco": 56.0,
+   "var": 0.9372746935832899
+  },
+  {
+   "ticker": "VALE3",
+   "nome": "Vale",
+   "preco": 67.9,
+   "var": 0.3843879361324687
+  },
+  {
+   "ticker": "ITUB4",
+   "nome": "Itaú",
+   "preco": 50.47,
+   "var": 2.269503546099294
+  },
+  {
+   "ticker": "BBDC4",
+   "nome": "Bradesco",
+   "preco": 21.61,
+   "var": 0.46490004649000216
+  },
+  {
+   "ticker": "BBAS3",
+   "nome": "Banco do Brasil",
+   "preco": 24.64,
+   "var": 1.5663643858202736
+  },
+  {
+   "ticker": "B3SA3",
+   "nome": "B3",
+   "preco": 23.35,
+   "var": 2.547211242863434
+  },
+  {
+   "ticker": "ABEV3",
+   "nome": "Ambev",
+   "preco": 15.99,
+   "var": -0.9907120743033904
+  },
+  {
+   "ticker": "WEGE3",
+   "nome": "WEG",
+   "preco": 51.47,
+   "var": -0.5794861889125036
+  },
+  {
+   "ticker": "ITSA4",
+   "nome": "Itaúsa",
+   "preco": 16.31,
+   "var": 1.6199376947040323
+  },
+  {
+   "ticker": "BPAC11",
+   "nome": "BTG Pactual",
+   "preco": 81.5,
+   "var": 5.202013682715889
+  },
+  {
+   "ticker": "SUZB3",
+   "nome": "Suzano",
+   "preco": 42.67,
+   "var": -0.23380874444705046
+  },
+  {
+   "ticker": "PRIO3",
+   "nome": "PRIO",
+   "preco": 64.45,
+   "var": 1.098039215686275
+  },
+  {
+   "ticker": "RENT3",
+   "nome": "Localiza",
+   "preco": 54.51,
+   "var": 4.185779816513757
+  },
+  {
+   "ticker": "GGBR4",
+   "nome": "Gerdau",
+   "preco": 25.69,
+   "var": 3.71417036737991
+  },
+  {
+   "ticker": "RADL3",
+   "nome": "Raia Drogasil",
+   "preco": 21.46,
+   "var": 3.073967339097017
+  },
+  {
+   "ticker": "LREN3",
+   "nome": "Renner",
+   "preco": 15.06,
+   "var": 11.555555555555564
+  },
+  {
+   "ticker": "MGLU3",
+   "nome": "Magazine Luiza",
+   "preco": 12.22,
+   "var": 19.21951219512197
+  }
+ ],
+ "erros": [
+  "moedas: HTTP Error 429: Too Many Requests"
+ ]
+}
