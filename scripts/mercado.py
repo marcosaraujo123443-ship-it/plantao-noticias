@@ -34,7 +34,12 @@ def main():
         fx = get("https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL")
         for k, nome in (("USDBRL", "Dólar"), ("EURBRL", "Euro"), ("BTCBRL", "Bitcoin")):
             ind.append({"nome": nome, "valor": float(fx[k]["bid"]), "var": float(fx[k]["pctChange"]), "tipo": "brl"})
-    except Exception as e: erros.append(f"moedas: {e}")
+    except Exception as e:
+        erros.append(f"moedas (awesomeapi): {e}")
+        for sym, nome in (("BRL%3DX", "Dólar"), ("EURBRL%3DX", "Euro"), ("BTC-BRL", "Bitcoin")):
+            try:
+                p, v = yahoo(sym); ind.append({"nome": nome, "valor": p, "var": v, "tipo": "brl"})
+            except Exception as e2: erros.append(f"{nome}: {e2}")
     for serie, nome in ((432, "Selic"), (13522, "IPCA 12m")):
         try:
             v = get(f"https://api.bcb.gov.br/dados/serie/bcdata.sgs.{serie}/dados/ultimos/1?formato=json")[-1]["valor"]
