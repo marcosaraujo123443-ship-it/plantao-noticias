@@ -77,6 +77,14 @@ h2 a,h3 a,h4 a{text-decoration:none}
 h2 a:hover,h3 a:hover,h4 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
 
 /* Capa */
+.boasvindas{margin-top:18px;margin-bottom:26px;background:var(--card);border:1px solid var(--rule);border-left:4px solid var(--brand);padding:18px 22px}
+.boasvindas h2{font:700 22px/1.2 var(--f-head);margin:0 0 6px}
+.boasvindas p{margin:0;color:var(--ink-2);max-width:80ch}
+.boasvindas ul{list-style:none;margin:12px 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:6px 24px}
+.boasvindas li{color:var(--ink-2);font-size:14.5px;line-height:1.45}
+.boasvindas li a{color:var(--brand);text-decoration:none;margin-right:6px}
+.boasvindas .bv-tg{font-size:14px}.boasvindas .bv-tg a{color:var(--brand)}
+@media (max-width:520px){.boasvindas{padding:14px 16px}}
 .capa{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px}
 .lead{align-self:start;background:var(--card);border:1px solid var(--rule);border-top:4px solid var(--brand);padding:24px;display:grid;gap:12px;align-content:start}
 .lead h2{font:700 clamp(27px,3.4vw,38px)/1.12 var(--f-head);margin:0;text-wrap:balance;letter-spacing:-.01em}
@@ -212,10 +220,22 @@ footer a{font-weight:600}
 <main class="gut">
   <div class="faixa">
     <span class="vivo"><i></i>Notícias atualizadas às&nbsp;<b style="color:inherit">{{HORA}}</b></span>
-    <span>De hora em hora, das 7h às 23h · Telegram: <b>{{HORARIOS}}</b></span>
+    <span>Manchetes atualizadas de hora em hora, das 7h às 23h · cotações a cada 15 minutos no pregão</span>
     <span>Horário de Brasília</span>
   </div>
   <div class="pagina" id="pg-inicio" data-pg="inicio">
+    <section class="boasvindas" aria-label="Boas-vindas">
+      <h2>Bem-vindo ao Plantão Informa</h2>
+      <p>As notícias mais importantes do dia em um só lugar, reunidas de veículos e órgãos de imprensa confiáveis e atualizadas de hora em hora. Cada manchete traz um resumo curto e o link para a matéria completa.</p>
+      <ul>
+        <li><a href="#politica" data-tab="politica"><b>Política</b></a> Congresso, governo e as receitas e despesas da União e de cada estado.</li>
+        <li><a href="#ia" data-tab="ia"><b>IA</b></a> O que há de novo em inteligência artificial e tecnologia.</li>
+        <li><a href="#futebol" data-tab="futebol"><b>Futebol</b></a> Notícias e a classificação do Brasileirão e das principais ligas do mundo.</li>
+        <li><a href="#agro" data-tab="agro"><b>Agro</b></a> Notícias do campo e cotações de soja, milho, boi, café e outras commodities.</li>
+        <li><a href="#mercado" data-tab="mercado"><b>Mercado</b></a> Economia, maiores altas e quedas da bolsa, dólar e fundos imobiliários.</li>
+      </ul>
+      <p class="bv-tg">Prefere receber no celular? Siga o canal no Telegram <a href="https://t.me/plantaodenoticias" target="_blank" rel="noopener">@plantaodenoticias</a>, com resumos às {{HORARIOS}}.</p>
+    </section>
     <section class="capa" aria-label="Destaques">
       {{LEAD}}
       <div class="dests">{{DESTAQUES}}</div>

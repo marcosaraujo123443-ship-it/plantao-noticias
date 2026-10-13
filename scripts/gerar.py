@@ -138,7 +138,8 @@ for s in SECOES:
 tabs = '<button class="tab on" data-tab="inicio" aria-pressed="true">Início</button>' + "".join(
     f'<button class="tab" data-tab="{slug(s)}" aria-pressed="false">{e(s)}</button>' for s in SECOES)
 fontes_txt = ", ".join(e(f) for f in fontes)
-horarios = " · ".join(f"{h:02d}h" for h in (1, 5, 9, 13, 17, 21))
+_hs = [f"{h}h" for h in (1, 5, 9, 13, 17, 21)]
+horarios = ", ".join(_hs[:-1]) + " e " + _hs[-1]
 merc_json = json.dumps(mercado, ensure_ascii=False).replace("</", "<\\/")
 
 tpl = (Path(__file__).parent / "modelo.html").read_text(encoding="utf-8")
