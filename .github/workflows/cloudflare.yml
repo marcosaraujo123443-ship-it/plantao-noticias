@@ -31,7 +31,7 @@ jobs:
         run: |
           mkdir -p dist
           cp *.html *.json *.png *.jpg dist/ 2>/dev/null || true
-          [ -f ads.txt ] && cp ads.txt dist/ || true
+          for f in ads.txt robots.txt sitemap.xml; do [ -f $f ] && cp $f dist/ || true; done
           rm -f dist/telegram_enviados.json
           ls dist
       - name: Publicar
