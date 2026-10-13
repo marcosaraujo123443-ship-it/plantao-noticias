@@ -5,7 +5,7 @@ import json, os, html, urllib.parse, urllib.request
 from datetime import datetime, timedelta, timezone
 
 CANAL = os.environ.get("TELEGRAM_CANAL", "@plantaodenoticias")
-SITE = os.environ.get("SITE_URL") or "https://marcosaraujo123443-ship-it.github.io/plantao-noticias/"
+SITE = os.environ.get("SITE_URL") or "https://plantaoinforma.com.br/"
 BRT = timezone(timedelta(hours=-3))
 
 def main():

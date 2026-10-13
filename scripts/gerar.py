@@ -2,7 +2,7 @@
 """Gera a página do Plantão Informa.
 Uso: python3 gerar.py <dir-com-noticias.json> [caminho/mercado.json] [saida/index.html]
 Com o 3º argumento, grava só o site nesse caminho (modo GitHub Actions)."""
-import json, os, sys, html
+import urllib.parse, json, os, sys, html
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -154,9 +154,11 @@ if not saida_site:
     (d / "noticias.html").write_text(out, encoding="utf-8")
     site = d / "site"; site.mkdir(exist_ok=True)
     saida_site = site / "index.html"
-SITE = os.environ.get("SITE_URL") or "https://marcosaraujo123443-ship-it.github.io/plantao-noticias/"
-redir = ("<script>if(/github\\.io$/.test(location.hostname))location.replace(" + json.dumps(SITE) + "+location.hash)</script>\n"
-         if "github.io" not in SITE else "")
+SITE = os.environ.get("SITE_URL") or "https://plantaoinforma.com.br/"
+_host = urllib.parse.urlsplit(SITE).hostname or ""
+# Visitantes do github.io, do .com, do www e do pages.dev vão para o endereço oficial
+redir = ("<script>(function(h){if(h!==" + json.dumps(_host) + "&&!/^(localhost|127\\.|\\[|$)/.test(h))location.replace("
+         + json.dumps(SITE) + "+location.hash)})(location.hostname)</script>\n" if "github.io" not in SITE else "")
 saida_site.write_text(
     '<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
     '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
