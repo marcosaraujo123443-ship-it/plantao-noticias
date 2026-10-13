@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-10-13T21:40:15Z",
+ "atualizado_utc": "2026-10-13T21:56:36Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -9,20 +9,20 @@
   },
   {
    "nome": "Dólar",
-   "valor": 5.0261,
-   "var": 0.9459730869652461,
+   "valor": 5.0139,
+   "var": 0.7009439646515236,
    "tipo": "brl"
   },
   {
    "nome": "Euro",
-   "valor": 5.628,
-   "var": 1.1993598619027823,
+   "valor": 5.6217,
+   "var": 1.0860769963857209,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 419196.944922,
-   "var": 2.0176703702270427,
+   "valor": 418236.423921,
+   "var": 2.031577864279588,
    "tipo": "brl"
   },
   {
@@ -1761,6 +1761,7 @@
   }
  },
  "erros": [
-  "moedas (awesomeapi): HTTP Error 429: Too Many Requests"
+  "moedas (awesomeapi): HTTP Error 429: Too Many Requests",
+  "fiis: <urlopen error timed out>"
  ]
 }
