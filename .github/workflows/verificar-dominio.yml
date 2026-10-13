@@ -1,0 +1,12 @@
+name: Verificar domínio (temporário)
+on: [push, workflow_dispatch]
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for u in https://plantaoinforma.com.br/ https://www.plantaoinforma.com.br/ https://plantaoinforma.com/ https://www.plantaoinforma.com/ https://plantaoinforma.pages.dev/; do
+            echo "== $u"; curl -sS -o /tmp/p -w "%{http_code} %{url_effective} %{ssl_verify_result}\n" -L --max-time 20 "$u" || true
+            grep -o "<title>[^<]*" /tmp/p || true; grep -c "Bem-vindo ao Plantão Informa" /tmp/p || true
+          done
+          for d in plantaoinforma.com.br plantaoinforma.com; do echo "== NS/MX $d"; dig +short NS $d; dig +short MX $d; dig +short TXT $d; done
