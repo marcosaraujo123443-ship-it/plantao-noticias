@@ -9,7 +9,7 @@ from email.utils import parsedate_to_datetime
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
       "Accept": "application/rss+xml, application/xml, text/xml, */*"}
 SECOES = ["Política", "IA", "Futebol", "Agro", "Mercado"]
-POR_SECAO, POR_FONTE, MAX_DIAS = 12, 5, 7
+POR_SECAO, POR_FONTE, MAX_DIAS = 15, 4, 7
 FUT = re.compile(r"futebol|sele[çc][ãa]o|brasileir[ãa]o|libertadores|copa do brasil|sul-americana|t[ée]cnico|gol|"
                  r"flamengo|palmeiras|corinthians|s[ãa]o paulo|santos|vasco|gr[êe]mio|internacional|botafogo|"
                  r"fluminense|cruzeiro|atl[ée]tico|bahia|fortaleza|cbf|fifa", re.I)
