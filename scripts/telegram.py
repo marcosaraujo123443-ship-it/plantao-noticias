@@ -19,7 +19,9 @@ def main():
     try: enviados = set(json.load(open("telegram_enviados.json", encoding="utf-8")))
     except Exception: enviados = set()
     itens = json.load(open("noticias.json", encoding="utf-8"))["itens"]
-    novos = sorted((i for i in itens if i["link"] not in enviados), key=lambda i: i["data"], reverse=True)[:10]
+    def links(i): return {i["link"]} | {t["link"] for t in i.get("tambem", [])}
+    # Assunto já enviado por outro veículo também conta como enviado
+    novos = sorted((i for i in itens if not links(i) & enviados), key=lambda i: i["data"], reverse=True)[:10]
     if not novos:
         print("Sem manchetes novas."); return
     linhas = [f"<b>📰 Plantão Informa · {agora:%d/%m %H:%M}</b>", ""]
@@ -31,7 +33,7 @@ def main():
     with urllib.request.urlopen(f"https://api.telegram.org/bot{token}/sendMessage", data=dados, timeout=30) as r:
         ok = json.loads(r.read().decode()).get("ok")
     if not ok: raise SystemExit("Telegram recusou a mensagem")
-    enviados |= {i["link"] for i in itens}
+    enviados |= {l for i in itens for l in links(i)}
     json.dump(sorted(enviados)[-2000:], open("telegram_enviados.json", "w", encoding="utf-8"), ensure_ascii=False, indent=0)
     print(f"Enviadas {len(novos)} manchetes.")
 

@@ -35,7 +35,12 @@ fontes = list(dict.fromkeys(i["fonte"] for i in itens))
 def meta(i, sec=False):
     s = f'<span class="sec s-{slug(i["secao"])}">{e(i["secao"])}</span>' if sec else ""
     return (f'<div class="meta">{s}<span class="fonte">{e(i["fonte"])}</span>'
-            f'<time datetime="{e(i["data"])}">{rel(parse(i["data"]))}</time></div>')
+            f'<time datetime="{e(i["data"])}">{rel(parse(i["data"]))}</time>{tambem(i)}</div>')
+def tambem(i):
+    """Outros veículos que deram o mesmo assunto (agrupados pelo noticias.py)."""
+    if not i.get("tambem"): return ""
+    links = ", ".join(f'<a href="{e(t["link"])}" target="_blank" rel="noopener">{e(t["fonte"])}</a>' for t in i["tambem"][:3])
+    return f'<span class="tb">também em {links}</span>'
 def a(i, cls=""):
     return f'<a{cls} href="{e(i["link"])}" target="_blank" rel="noopener">{e(i["titulo"])}</a>'
 

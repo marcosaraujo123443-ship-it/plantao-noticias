@@ -1,8 +1,0 @@
-name: Testar feeds (temporário)
-on: [push, workflow_dispatch]
-jobs:
-  testar:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: python3 scripts/testar_feeds.py
