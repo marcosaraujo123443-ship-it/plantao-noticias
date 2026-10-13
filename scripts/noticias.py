@@ -45,15 +45,6 @@ FEEDS = [
     ("Mercado", "Agência Brasil", "https://agenciabrasil.ebc.com.br/rss/economia/feed.xml", None),
     ("Mercado", "InfoMoney", "https://www.infomoney.com.br/feed/",
      link_tem("/mercados/", "/economia/", "/consumo/", "/business/", "/onde-investir/")),
-    ("Política", "Folha", "https://feeds.folha.uol.com.br/poder/rss091.xml", None),
-    ("Política", "Estadão", "https://www.estadao.com.br/arc/outboundfeeds/feeds/rss/sections/politica/", None),
-    ("IA", "Folha", "https://feeds.folha.uol.com.br/tec/rss091.xml", lambda it: bool(IA.search(it["titulo"] + " " + it["resumo"]))),
-    ("Futebol", "Folha", "https://feeds.folha.uol.com.br/esporte/rss091.xml", lambda it: bool(FUT.search(it["titulo"] + " " + it["resumo"]))),
-    ("Futebol", "Estadão", "https://www.estadao.com.br/arc/outboundfeeds/feeds/rss/sections/esportes/", link_tem("/futebol/")),
-    ("Agro", "Estadão", "https://www.estadao.com.br/arc/outboundfeeds/feeds/rss/sections/agro/", None),
-    ("Mercado", "Folha", "https://feeds.folha.uol.com.br/mercado/rss091.xml", None),
-    ("Mercado", "Estadão", "https://www.estadao.com.br/arc/outboundfeeds/feeds/rss/sections/economia/",
-     lambda it: "/agro" not in it["link"]),
     ("Mercado", "g1", "https://g1.globo.com/rss/g1/economia/", lambda it: "/agronegocios/" not in it["link"]),
     ("Mercado", "CNN Brasil", "https://www.cnnbrasil.com.br/feed/",
      lambda it: "/economia/" in it["link"] and not re.search(r"branded-content|/inteligencia-artificial/|/tecnologia/", it["link"])),
@@ -152,7 +143,6 @@ def itens_do_feed(xml):
             elif n in ("title", "description", "summary", "pubDate", "date", "published", "updated"):
                 campos.setdefault(n, c.text or "")
         link = campos.get("link", "").strip()
-        if "/redir/" in link and "*http" in link: link = link.split("*", 1)[1]  # Folha embrulha o link num redirecionador
         yield {"titulo": limpa(campos.get("title")), "link": link,
                "resumo": resumo(campos.get("description") or campos.get("summary")),
                "data": data_iso(campos.get("pubDate") or campos.get("date") or campos.get("published") or campos.get("updated"))}
@@ -180,7 +170,8 @@ def main():
         except Exception as e:
             erros.append(f"{fonte} ({secao}): {e}"); print(f"ERRO {fonte}: {e}")
     limite = (datetime.now(timezone.utc) - timedelta(days=MAX_DIAS)).strftime("%Y-%m-%dT%H:%M:%SZ")
-    unicos = agrupar([dict(i) for i in por_link.values() if i["data"] >= limite])
+    ativas = {f for _, f, _, _ in FEEDS}  # fonte retirada da lista some do site na hora
+    unicos = agrupar([dict(i) for i in por_link.values() if i["data"] >= limite and i["fonte"] in ativas])
     final = []
     for s in SECOES:
         lst, por_fonte = [], Counter()
