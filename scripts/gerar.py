@@ -10,6 +10,8 @@ d = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).parent)
 merc_path = Path(sys.argv[2]) if len(sys.argv) > 2 else Path("/home/claude/plantao-noticias/mercado.json")
 data = json.loads((d / "noticias.json").read_text(encoding="utf-8"))
 mercado = json.loads(merc_path.read_text(encoding="utf-8")) if merc_path.exists() else {}
+try: res = json.loads((d / "resumo.json").read_text(encoding="utf-8"))
+except Exception: res = None
 BRT = timezone(timedelta(hours=-3))
 DIAS = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"]
 MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"]
@@ -48,6 +50,16 @@ def resumo(i): return f'<p>{e(i["resumo"])}</p>' if i.get("resumo") else ""
 
 # Manchete: a mais recente com resumo (senão a mais recente)
 lead = itens[0]
+# Resumo do Plantão (escrito por IA no resumo.py); some se tiver mais de 14 horas
+resumo_html = ""
+if res and (upd - parse(res["gerado_utc"])).total_seconds() < 14 * 3600:
+    hr = parse(res["gerado_utc"])
+    pars = "".join(f'<p><a href="#{slug(x["secao"])}" data-tab="{slug(x["secao"])}" class="s-{slug(x["secao"])}">{e(x["secao"])}</a> {e(x["texto"])}</p>' for x in res["secoes"])
+    resumo_html = (f'<section class="resumo" aria-label="Resumo do Plantão"><h2>Resumo do Plantão <time datetime="{e(res["gerado_utc"])}">{hr:%H}h{hr:%M}</time></h2>'
+                   f'<p class="abre">{e(res["abertura"])}</p>{pars}'
+                   '<p class="ia">Resumo escrito automaticamente por inteligência artificial a partir das notícias desta página. '
+                   'Confira os detalhes nas matérias originais.</p></section>')
+
 lead_html = f'''<article class="lead">
   {meta(lead, True)}
   <h2>{a(lead)}</h2>
@@ -155,7 +167,7 @@ merc_json = json.dumps(mercado, ensure_ascii=False).replace("</", "<\\/")
 tpl = (Path(__file__).parent / "modelo.html").read_text(encoding="utf-8")
 out = tpl
 for k, v in {"DATA": f"{DIAS[upd.weekday()]}, {upd.day} de {MESES[upd.month-1]} de {upd.year}",
-             "HORA": f"{upd:%H:%M}", "LEAD": lead_html, "DESTAQUES": dest_html, "BLOCOS": blocos,
+             "HORA": f"{upd:%H:%M}", "LEAD": lead_html, "RESUMO": resumo_html, "DESTAQUES": dest_html, "BLOCOS": blocos,
              "PAGINAS": paginas, "TABS": tabs, "HORARIOS": horarios, "FONTES": fontes_txt,
              "TOTAL": str(len(itens)), "NFONTES": str(len(fontes)), "MERCADO": merc_json}.items():
     out = out.replace("{{" + k + "}}", v)
