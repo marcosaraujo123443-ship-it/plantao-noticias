@@ -8,7 +8,6 @@ on:
     paths: ["scripts/resumo.py", "scripts/telegram.py", "scripts/noticias.py", "scripts/gerar.py", "scripts/modelo.html", ".github/workflows/noticias.yml"]
 permissions:
   contents: write
-  models: read
 concurrency:
   group: noticias
   cancel-in-progress: false
@@ -21,10 +20,10 @@ jobs:
           ref: main
       - name: Ler feeds
         run: python3 scripts/noticias.py
-      - name: Resumo do Plantão (IA grátis do GitHub Models)
+      - name: Resumo do Plantão (IA grátis do Gemini)
         continue-on-error: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           RESUMO_FORCAR: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}
         run: python3 scripts/resumo.py
       - name: Gerar a página
