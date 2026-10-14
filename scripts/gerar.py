@@ -88,6 +88,7 @@ for s in SECOES:
       <div class="tw"><table class="tab-m"><thead><tr><th>Despesas por tipo</th><th class="n">Empenhado</th><th class="n">Pago</th></tr></thead><tbody data-ud></tbody></table></div>
       <div class="tw"><table class="tab-m"><thead><tr><th>Para onde vai o dinheiro</th><th class="n">Liquidado</th><th class="n">% do total</th></tr></thead><tbody data-uf2></tbody></table></div>
     </div>
+    <a class="mais" data-ulink href="contas/">Ver todas as contas públicas →</a>
     <p class="nota">Fonte: Tesouro Nacional, SICONFI (Relatório Resumido da Execução Orçamentária, enviado pelos próprios estados a cada bimestre). Valores acumulados no ano, sem as operações intraorçamentárias.</p>
   </section>
 </div>'''
@@ -99,6 +100,7 @@ for s in SECOES:
       <label class="ag-pr" hidden>Produto <select data-agp aria-label="Escolher produto"></select></label>
       <p class="per" data-agt>Carregando cotações…</p></header>
     <div class="tw" data-agb></div>
+    <a class="mais" href="agro.html">Ver todas as cotações do agro →</a>
     <p class="nota" data-agn></p>
   </section>
 </div>'''
@@ -109,6 +111,7 @@ for s in SECOES:
       <div class="filtros-uf"><label>Campeonato <select data-liga aria-label="Escolher campeonato"></select></label></div>
       <p class="per" data-ftemp>Carregando a tabela…</p></header>
     <div data-ftab></div>
+    <a class="mais" data-flink href="tabelas/">Ver todas as tabelas →</a>
     <p class="nota" data-fnota></p>
   </section>
 </div>'''
@@ -122,6 +125,7 @@ for s in SECOES:
           <button class="on" data-af="altas" aria-pressed="true">Maiores altas</button><button data-af="quedas" aria-pressed="false">Maiores quedas</button><button data-af="maiores" aria-pressed="false">Maiores empresas</button>
         </div></header>
       <div class="tw"><table class="tab-m"><thead data-ah></thead><tbody data-ab></tbody></table></div>
+      <a class="mais" href="acoes.html">Ver todas as ações →</a>
     </section>
     <section class="quadro" aria-label="Fundos imobiliários">
       <header><h3>Fundos imobiliários</h3>
@@ -129,6 +133,7 @@ for s in SECOES:
           <button class="on" data-ff="vm" aria-pressed="true">Valor de mercado</button><button data-ff="dy" aria-pressed="false">Maior DY</button><button data-ff="pvp" aria-pressed="false">Menor P/VP</button><button data-ff="altas" aria-pressed="false">Maiores altas</button><button data-ff="baixas" aria-pressed="false">Maiores baixas</button>
         </div></header>
       <div class="tw"><table class="tab-m"><thead><tr><th>Fundo</th><th class="seg-col">Segmento</th><th class="n">Cotação</th><th class="n">Dia</th><th class="n">DY 12m</th><th class="n">P/VP</th><th class="n">Valor merc.</th></tr></thead><tbody data-fb></tbody></table></div>
+      <a class="mais" href="fiis.html">Ver todos os fundos imobiliários →</a>
     </section>
   </div>
   <p class="nota" data-nota></p>
