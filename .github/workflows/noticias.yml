@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Ler feeds
         run: python3 scripts/noticias.py
       - name: Resumo do Plantão (IA grátis do GitHub Models)
