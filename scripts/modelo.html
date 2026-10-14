@@ -489,5 +489,17 @@ footer a{font-weight:600}
     fetch('mercado.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(desenhar).catch(function(){});
   }
   buscar(); setInterval(buscar,5*60*1000);
+
+  /* Página aberta: a cada 30 min (ou ao voltar para a aba depois disso), recarrega se houver notícias novas */
+  var mAtu=document.querySelector('meta[name="atualizado"]'), base=mAtu&&mAtu.content, checado=Date.now();
+  function checarNovas(){
+    if(document.hidden) return;
+    checado=Date.now();
+    fetch('noticias.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){
+      if(base&&d&&d.atualizado_utc&&d.atualizado_utc!==base) location.reload();
+    }).catch(function(){});
+  }
+  setInterval(checarNovas,30*60*1000);
+  document.addEventListener('visibilitychange',function(){ if(!document.hidden&&Date.now()-checado>=30*60*1000) checarNovas(); });
 })();
 </script>

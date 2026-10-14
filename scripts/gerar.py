@@ -172,6 +172,7 @@ saida_site.write_text(
     '<link rel="apple-touch-icon" href="apple-touch-icon.png">\n'
     '<meta name="theme-color" content="#0b1f3a">\n'
     f'<link rel="canonical" href="{SITE}">\n' + redir +
+    f'<meta name="atualizado" content="{e(data["atualizado_utc"])}">\n' +
     f'<meta property="og:image" content="{SITE}logo.jpg">\n'
     f'<meta property="og:url" content="{SITE}">\n'
     '<meta name="twitter:card" content="summary">\n'
