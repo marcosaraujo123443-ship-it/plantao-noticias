@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Escreve o "Resumo do Plantão" com um modelo grátis do GitHub Models e grava resumo.json (roda no GitHub Actions).
 Só gera nos horários de RESUMO_HORAS (Brasília), quando ainda não há resumo ou com RESUMO_FORCAR."""
-import json, os, re, urllib.request
+import json, os, re, urllib.error, urllib.request
 from datetime import datetime, timedelta, timezone
 
 API = "https://models.github.ai/inference/chat/completions"
+API_ANTIGA = "https://models.inference.ai.azure.com/chat/completions"
 MODELO = os.environ.get("RESUMO_MODELO", "openai/gpt-4.1-mini")
 BRT = timezone(timedelta(hours=-3))
 POR_SECAO = 6
@@ -31,6 +32,23 @@ def material(dados):
         partes.append(f"## {s}\n" + "\n".join(f"- [{i['fonte']}] {i['titulo']}. {i.get('resumo') or ''}".strip() for i in itens))
     return "\n\n".join(partes)
 
+def perguntar(corpo, token):
+    # tenta o endpoint atual do GitHub Models e, se vier vazio ou com erro, o endpoint antigo
+    tentativas = [(API, corpo), (API_ANTIGA, dict(corpo, model=MODELO.split("/")[-1]))]
+    for url, c in tentativas:
+        req = urllib.request.Request(url, data=json.dumps(c).encode(), method="POST", headers={
+            "Authorization": f"Bearer {token}", "Content-Type": "application/json",
+            "Accept": "application/json", "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "plantao-informa"})
+        try:
+            with urllib.request.urlopen(req, timeout=90) as r:
+                bruto = r.read().decode("utf-8", "replace")
+                print(url, "->", r.status, len(bruto), "bytes")
+        except urllib.error.HTTPError as err:
+            print(url, "-> erro", err.code, err.read().decode("utf-8", "replace")[:400]); continue
+        try: return json.loads(bruto)["choices"][0]["message"]["content"]
+        except Exception: print("Resposta inesperada:", bruto[:400])
+    raise SystemExit("GitHub Models não respondeu.")
+
 def main():
     agora = datetime.now(BRT)
     token = os.environ.get("GITHUB_TOKEN")
@@ -39,10 +57,7 @@ def main():
     dados = json.load(open("noticias.json", encoding="utf-8"))
     corpo = {"model": MODELO, "temperature": 0.3, "max_tokens": 900,
              "messages": [{"role": "system", "content": INSTRUCOES}, {"role": "user", "content": material(dados)}]}
-    req = urllib.request.Request(API, data=json.dumps(corpo).encode(), method="POST",
-                                 headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=90) as r:
-        texto = json.load(r)["choices"][0]["message"]["content"]
+    texto = perguntar(corpo, token)
     m = re.search(r"\{.*\}", texto, re.S)
     res = json.loads(m.group(0) if m else texto)
     secoes = [{"secao": x["secao"], "texto": x["texto"].strip()} for x in res.get("secoes", [])
