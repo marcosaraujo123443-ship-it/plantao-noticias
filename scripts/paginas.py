@@ -82,7 +82,7 @@ def pagina(caminho, titulo, descricao, corpo, trilha=None, atualizado=None):
     doc = f"""<!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(titulo)} · Plantão Informa</title><meta name="description" content="{e(descricao)}">
-<link rel="canonical" href="{e(url)}"><link rel="icon" href="{raiz}favicon.png" type="image/png"><meta name="theme-color" content="#0b1f3a">
+<link rel="canonical" href="{e(url)}"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0b1f3a">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Plantão Informa"><meta property="og:title" content="{e(titulo)}">
 <meta property="og:description" content="{e(descricao)}"><meta property="og:url" content="{e(url)}"><meta property="og:image" content="{SITE}logo.jpg">
 <style>{CSS}</style></head><body>

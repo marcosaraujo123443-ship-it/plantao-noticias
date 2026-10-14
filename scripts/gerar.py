@@ -173,8 +173,10 @@ saida_site.write_text(
     '<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'
     '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
     '<meta name="description" content="Política, IA, futebol, agro e mercado: manchetes de fontes confiáveis, atualizadas de hora em hora, com cotações, contas públicas e tabelas.">\n'
-    '<link rel="icon" href="favicon.png" type="image/png">\n'
-    '<link rel="apple-touch-icon" href="apple-touch-icon.png">\n'
+    '<link rel="icon" href="/favicon.ico" sizes="any">\n'
+    '<link rel="icon" href="/favicon.png" type="image/png">\n'
+    '<link rel="apple-touch-icon" href="/apple-touch-icon.png">\n'
+    '<link rel="manifest" href="/site.webmanifest">\n'
     '<meta name="theme-color" content="#0b1f3a">\n'
     f'<link rel="canonical" href="{SITE}">\n' + redir +
     f'<meta name="atualizado" content="{e(data["atualizado_utc"])}">\n' +
