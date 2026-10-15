@@ -161,9 +161,19 @@ def renovar():
     print(f"Token renovado; vale por mais {res.get('expires_in', 0) // 86400} dias.", file=sys.stderr)
     print(res["access_token"])
 
+def _falha(msg):
+    # Mostra o motivo como anotação no resumo da execução do GitHub (sem expor o token)
+    print("::error::" + str(msg).replace("\n", " ")[:900])
+
 if __name__ == "__main__":
+  try:
     acao = sys.argv[1] if len(sys.argv) > 1 else ""
     if acao == "gerar": gerar(sys.argv[2])
     elif acao == "publicar": publicar(sys.argv[2])
     elif acao == "renovar": renovar()
     else: raise SystemExit(__doc__)
+  except SystemExit as e:
+    if e.code not in (None, 0) and not isinstance(e.code, int): _falha(e.code)
+    raise
+  except Exception as e:
+    _falha(repr(e)); raise
