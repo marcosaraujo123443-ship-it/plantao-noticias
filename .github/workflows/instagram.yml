@@ -1,9 +1,16 @@
 name: Instagram
 on:
   schedule:
+    # Cada post tem 3 horários: o GitHub às vezes pula um agendamento; o que já foi postado não se repete.
     - cron: "43 10 * * 1-5"   # 7h43 de Brasília: cotações do agro (fechamento do dia anterior)
+    - cron: "13 11 * * 1-5"   # 8h13: agro (reserva)
+    - cron: "41 11 * * 1-5"   # 8h41: agro (reserva)
     - cron: "50 21 * * 1-5"   # 18h50: como fechou o mercado
+    - cron: "17 22 * * 1-5"   # 19h17: mercado (reserva)
+    - cron: "47 22 * * 1-5"   # 19h47: mercado (reserva)
     - cron: "12 22 * * *"     # 19h12: carrossel do Resumo do Plantão (feito às 18h)
+    - cron: "33 22 * * *"     # 19h33: resumo (reserva)
+    - cron: "4 23 * * *"      # 20h04: resumo (reserva)
   workflow_dispatch:
     inputs:
       tipo:
@@ -39,9 +46,9 @@ jobs:
         id: tipo
         run: |
           case "${{ github.event.schedule }}" in
-            "43 10 * * 1-5") t=agro ;;
-            "50 21 * * 1-5") t=mercado ;;
-            "12 22 * * *")   t=resumo ;;
+            "43 10 * * 1-5"|"13 11 * * 1-5"|"41 11 * * 1-5") t=agro ;;
+            "50 21 * * 1-5"|"17 22 * * 1-5"|"47 22 * * 1-5") t=mercado ;;
+            "12 22 * * *"|"33 22 * * *"|"4 23 * * *")       t=resumo ;;
             *)               t="${{ inputs.tipo }}" ;;
           esac
           echo "tipo=$t" >> "$GITHUB_OUTPUT"; echo "Post: $t"
@@ -59,7 +66,7 @@ jobs:
       - name: Subir as imagens (o Instagram busca por URL pública)
         id: subir
         # Postagem automática só depois de ligada: variável IG_ATIVO = 1 (Settings → Secrets and variables → Actions → Variables)
-        if: steps.gerar.outputs.publicar == '1' && !inputs.so_ver && env.IG_TOKEN != '' && (github.event_name == 'workflow_dispatch' || vars.IG_ATIVO == '1')
+        if: steps.gerar.outputs.publicar == '1' && (github.event_name == 'schedule' || !inputs.so_ver) && env.IG_TOKEN != '' && (github.event_name == 'workflow_dispatch' || vars.IG_ATIVO == '1')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -82,5 +89,8 @@ jobs:
           git commit -q -m "Instagram: ${{ steps.tipo.outputs.tipo }} postado"
           for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin main && break; sleep 5; done
       - name: Aviso
-        if: steps.gerar.outputs.publicar == '1' && env.IG_TOKEN == ''
-        run: echo "::warning::Secret IG_TOKEN não configurado; os cards foram gerados (veja Artifacts) mas nada foi postado."
+        if: steps.gerar.outputs.publicar == '1' && steps.subir.outcome == 'skipped'
+        run: |
+          if [ -z "$IG_TOKEN" ]; then echo "::warning::Secret IG_TOKEN não configurado; nada foi postado."
+          elif [ "${{ github.event_name }}" = "schedule" ] && [ "${{ vars.IG_ATIVO }}" != "1" ]; then echo "::warning::Variável IG_ATIVO não está com valor 1; postagem automática desligada."
+          else echo "::notice::Só geração para conferência (cards em Artifacts)."; fi
