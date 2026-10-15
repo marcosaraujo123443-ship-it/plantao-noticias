@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Publica no Instagram do Plantão Informa (roda no GitHub Actions).
 
-    python3 scripts/instagram.py gerar    resumo|mercado|agro   -> desenha os cards em instagram/ e a legenda
-    python3 scripts/instagram.py publicar resumo|mercado|agro   -> envia à API do Instagram as imagens já no GitHub
+    python3 scripts/instagram.py gerar    resumo|mercado|agro|reel   -> desenha os cards (ou o vídeo) em instagram/ e a legenda
+    python3 scripts/instagram.py publicar resumo|mercado|agro|reel   -> envia à API do Instagram (imagens pela URL do GitHub;
+                                                                          o vídeo do reel vai direto, por upload)
     python3 scripts/instagram.py renovar                        -> renova o token (imprime o novo em stdout)
 
 Secrets: IG_TOKEN (obrigatório) e IG_USER_ID (opcional; se faltar, é descoberto pelo token).
@@ -21,6 +22,7 @@ API = "https://graph.instagram.com/v23.0"
 BRT = timezone(timedelta(hours=-3))
 TAGS = {"resumo": "#noticias #resumododia #plantaoinforma #brasil #politica #economia #futebol #agro",
         "mercado": "#ibovespa #dolar #bolsadevalores #acoes #mercadofinanceiro #investimentos #plantaoinforma",
+        "reel": "#noticias #resumododia #plantaoinforma #brasil #reels #politica #economia",
         "agro": "#agro #agronegocio #soja #milho #boigordo #cafe #cotacoes #plantaoinforma"}
 
 def utc(s): return datetime.strptime(s, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
@@ -41,6 +43,14 @@ def chave_e_legenda(tipo):
                "🔗 Manchetes atualizadas de hora em hora, cotações e tabelas no site: link na bio.\n\n"
                "Resumo feito com auxílio de inteligência artificial a partir de veículos confiáveis.\n\n" + TAGS[tipo])
         return "resumo " + r["gerado_utc"], leg
+    if tipo == "reel":
+        r = cards.ler("resumo.json")
+        if agora - utc(r["gerado_utc"]) > timedelta(hours=8): return None, "resumo antigo (mais de 8 h)"
+        q = utc(r["gerado_utc"]).astimezone(BRT)
+        leg = (f"▶️ O Resumo do Plantão em 40 segundos · {q:%d/%m}\n\n{r['abertura']}\n\n"
+               "🔗 Notícias de hora em hora, cotações e tabelas no site: link na bio.\n\n"
+               "Resumo feito com auxílio de inteligência artificial a partir de veículos confiáveis.\n\n" + TAGS[tipo])
+        return "reel " + r["gerado_utc"], leg
     if tipo == "mercado":
         m = cards.ler("mercado.json")
         q = utc(m["atualizado_utc"]).astimezone(BRT)
@@ -93,7 +103,11 @@ def gerar(tipo):
         print("Já publicado:", chave); sinal(False); return
     for antigo in os.listdir(PASTA) if os.path.isdir(PASTA) else []:
         if antigo.startswith(tipo + "-"): os.remove(os.path.join(PASTA, antigo))
-    arquivos = cards.GERADORES[tipo](PASTA)
+    if tipo == "reel":
+        import instagram_video
+        arquivos = instagram_video.reel_resumo(PASTA)
+    else:
+        arquivos = cards.GERADORES[tipo](PASTA)
     with open(os.path.join(PASTA, f"{tipo}.json"), "w", encoding="utf-8") as f:
         json.dump({"chave": chave, "legenda": legenda, "imagens": [os.path.basename(a) for a in arquivos]},
                   f, ensure_ascii=False, indent=1)
@@ -120,8 +134,8 @@ def conta():
     print("Conta:", eu.get("username"))
     return eu.get("user_id") or eu["id"]
 
-def esperar(container):
-    for _ in range(30):
+def esperar(container, tentativas=30):
+    for _ in range(tentativas):
         st = chamar("GET", container, fields="status_code").get("status_code")
         if st == "FINISHED": return
         if st in ("ERROR", "EXPIRED"): raise SystemExit(f"Instagram não processou a mídia {container}: {st}")
@@ -130,9 +144,13 @@ def esperar(container):
 
 def publicar(tipo):
     if not os.environ.get("IG_TOKEN"): raise SystemExit("Secret IG_TOKEN não configurado.")
-    base = os.environ["IMAGENS_BASE"].rstrip("/")
     with open(os.path.join(PASTA, f"{tipo}.json"), encoding="utf-8") as f: info = json.load(f)
     uid = conta()
+    if tipo == "reel":
+        c = enviar_video(uid, os.path.join(PASTA, info["imagens"][0]), info["legenda"])
+        esperar(c, tentativas=60)          # vídeo demora mais para processar (até ~5 min)
+        return registrar(tipo, info, chamar("POST", f"{uid}/media_publish", creation_id=c)["id"])
+    base = os.environ["IMAGENS_BASE"].rstrip("/")
     urls = [f"{base}/{n}" for n in info["imagens"]]
     if len(urls) == 1:
         c = chamar("POST", f"{uid}/media", image_url=urls[0], caption=info["legenda"])["id"]
@@ -143,7 +161,25 @@ def publicar(tipo):
         for fid in filhos: esperar(fid)
         c = chamar("POST", f"{uid}/media", media_type="CAROUSEL", children=",".join(filhos), caption=info["legenda"])["id"]
     esperar(c)
-    post = chamar("POST", f"{uid}/media_publish", creation_id=c)["id"]
+    registrar(tipo, info, chamar("POST", f"{uid}/media_publish", creation_id=c)["id"])
+
+def enviar_video(uid, caminho, legenda):
+    """Cria o contêiner do reel e envia o MP4 pelo upload retomável da Meta (sem precisar de URL pública)."""
+    c = chamar("POST", f"{uid}/media", media_type="REELS", upload_type="resumable",
+               caption=legenda, share_to_feed="true")["id"]
+    dados = open(caminho, "rb").read()
+    req = urllib.request.Request(f"https://rupload.facebook.com/ig-api-upload/v23.0/{c}", data=dados, method="POST",
+        headers={"Authorization": "OAuth " + os.environ["IG_TOKEN"].strip().strip("\"'"),
+                 "offset": "0", "file_size": str(len(dados))})
+    try:
+        with urllib.request.urlopen(req, timeout=300) as r: res = json.loads(r.read().decode())
+    except urllib.error.HTTPError as err:
+        raise SystemExit(f"Upload do vídeo recusado ({err.code}): " + err.read().decode("utf-8", "replace")[:600])
+    if not res.get("success", True): raise SystemExit(f"Upload do vídeo recusado: {res}")
+    print(f"Vídeo enviado ({len(dados) // 1024} KB)")
+    return c
+
+def registrar(tipo, info, post):
     reg = registro(); reg[tipo] = info["chave"]; reg[tipo + "_post"] = post
     reg[tipo + "_em"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     with open(REGISTRO, "w", encoding="utf-8") as f: json.dump(reg, f, ensure_ascii=False, indent=1)

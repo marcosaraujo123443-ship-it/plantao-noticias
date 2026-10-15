@@ -11,12 +11,15 @@ on:
     - cron: "12 22 * * *"     # 19h12: carrossel do Resumo do Plantão (feito às 18h)
     - cron: "33 22 * * *"     # 19h33: resumo (reserva)
     - cron: "4 23 * * *"      # 20h04: resumo (reserva)
+    - cron: "26 22 * * *"     # 19h26: reel do Resumo do Plantão (vídeo)
+    - cron: "56 22 * * *"     # 19h56: reel (reserva)
+    - cron: "24 23 * * *"     # 20h24: reel (reserva)
   workflow_dispatch:
     inputs:
       tipo:
         description: "O que postar"
         type: choice
-        options: [resumo, mercado, agro]
+        options: [resumo, reel, mercado, agro]
         default: resumo
       so_ver:
         description: "Só gerar as imagens para conferir (não posta)"
@@ -49,11 +52,12 @@ jobs:
             "43 10 * * 1-5"|"13 11 * * 1-5"|"41 11 * * 1-5") t=agro ;;
             "50 21 * * 1-5"|"17 22 * * 1-5"|"47 22 * * 1-5") t=mercado ;;
             "12 22 * * *"|"33 22 * * *"|"4 23 * * *")       t=resumo ;;
+            "26 22 * * *"|"56 22 * * *"|"24 23 * * *")      t=reel ;;
             *)               t="${{ inputs.tipo }}" ;;
           esac
           echo "tipo=$t" >> "$GITHUB_OUTPUT"; echo "Post: $t"
-      - name: Instalar Pillow
-        run: pip install --quiet pillow
+      - name: Instalar Pillow e ffmpeg
+        run: pip install --quiet pillow imageio-ffmpeg
       - name: Gerar os cards
         id: gerar
         run: python3 scripts/instagram.py gerar ${{ steps.tipo.outputs.tipo }}

@@ -107,14 +107,15 @@ def tela(rotulo, cor_rotulo, quando, pagina=None):
     return img, d
 
 # ---------------------------------------------------------------- resumo
-def cards_resumo(saida):
+def cards_resumo(saida, video=False):
+    """video=True tira a paginação do carrossel (1/7, arraste) para usar no reel."""
     r = ler("resumo.json")
     quando = datetime.strptime(r["gerado_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).astimezone(BRT)
     secoes = r["secoes"]
     total = len(secoes) + 2
     arquivos = []
 
-    img, d = tela("Resumo do Plantão", MARCA, f"{data_extenso(quando)} · {quando:%H}h", f"1/{total}  ·  arraste  →")
+    img, d = tela("Resumo do Plantão", MARCA, f"{data_extenso(quando)} · {quando:%H}h", "" if video else f"1/{total}  ·  arraste  →")
     usado = bloco(d, (M, 320), r["abertura"], "serif", 76, TINTA, W - 2 * M, 560, 1.18, 52)
     y = 320 + usado + 60
     d.text((M, y), "Neste resumo", font=fonte("semi", 28), fill=TINTA2)
@@ -131,7 +132,7 @@ def cards_resumo(saida):
 
     for i, s in enumerate(secoes, start=2):
         cor = COR_SECAO.get(s["secao"], TINTA)
-        img, d = tela(s["secao"], cor, f"{data_extenso(quando)} · {quando:%H}h", f"{i}/{total}")
+        img, d = tela(s["secao"], cor, f"{data_extenso(quando)} · {quando:%H}h", "" if video else f"{i}/{total}")
         # mede o texto num rascunho para o cartão abraçar o conteúdo
         rascunho = ImageDraw.Draw(Image.new("RGB", (W, H)))
         alt = bloco(rascunho, (0, 0), s["texto"], "reg", 44, TINTA, W - 2 * M - 80, H - 150 - 360 - 40, 1.45, 30)
@@ -139,7 +140,7 @@ def cards_resumo(saida):
         bloco(d, (M + 40, 360), s["texto"], "reg", 44, TINTA, W - 2 * M - 80, H - 150 - 360 - 40, 1.45, 30)
         arquivos.append(salvar(img, saida, f"resumo-{i}.png"))
 
-    img, d = tela("No site", MARCA, f"{data_extenso(quando)}", f"{total}/{total}")
+    img, d = tela("No site", MARCA, f"{data_extenso(quando)}", "" if video else f"{total}/{total}")
     usado = bloco(d, (M, 330), "Tudo isso e muito mais, atualizado de hora em hora", "serif", 72, TINTA, W - 2 * M, 300, 1.15, 50)
     itens = ["Manchetes de 11 veículos confiáveis", "Bolsa, dólar, ações e fundos imobiliários",
              "Cotações de soja, milho, boi e café", "Tabelas do Brasileirão e das maiores ligas",
