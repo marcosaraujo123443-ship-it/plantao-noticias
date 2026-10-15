@@ -157,7 +157,9 @@ def renovar():
     try:
         with urllib.request.urlopen(url, timeout=60) as r: res = json.loads(r.read().decode())
     except urllib.error.HTTPError as err:
-        raise SystemExit("Falha ao renovar o token: " + err.read().decode("utf-8", "replace")[:400])
+        msg = "Falha ao renovar o token: " + err.read().decode("utf-8", "replace")[:400]
+        with open(os.environ.get("IG_ERRO", os.devnull), "w") as f: f.write(msg)
+        raise SystemExit(msg)
     print(f"Token renovado; vale por mais {res.get('expires_in', 0) // 86400} dias.", file=sys.stderr)
     print(res["access_token"])
 

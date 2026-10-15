@@ -14,12 +14,13 @@ jobs:
         env:
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_PAT }}
+          IG_ERRO: ${{ runner.temp }}/ig_erro
         run: |
           if [ -z "$IG_TOKEN" ]; then echo "Sem IG_TOKEN; nada a renovar."; exit 0; fi
           if [ -z "$GH_TOKEN" ]; then
             echo "::error::Falta o secret GH_PAT para gravar o token renovado. Sem ele o IG_TOKEN expira em 60 dias."; exit 1
           fi
-          novo=$(python3 scripts/instagram.py renovar) || { echo "::error::Falha ao renovar no Instagram (veja acima)"; exit 1; }
+          novo=$(python3 scripts/instagram.py renovar) || { echo "::error::$(cat "$IG_ERRO" 2>/dev/null || echo Falha ao renovar no Instagram)"; exit 1; }
           echo "::add-mask::$novo"
           printf '%s' "$novo" | gh secret set IG_TOKEN --repo "${{ github.repository }}" \
             || { echo "::error::GH_PAT sem permissão para gravar secrets (precisa de Secrets: Read and write neste repositório)"; exit 1; }
