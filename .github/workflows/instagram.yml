@@ -1,0 +1,86 @@
+name: Instagram
+on:
+  schedule:
+    - cron: "43 10 * * 1-5"   # 7h43 de Brasília: cotações do agro (fechamento do dia anterior)
+    - cron: "50 21 * * 1-5"   # 18h50: como fechou o mercado
+    - cron: "12 22 * * *"     # 19h12: carrossel do Resumo do Plantão (feito às 18h)
+  workflow_dispatch:
+    inputs:
+      tipo:
+        description: "O que postar"
+        type: choice
+        options: [resumo, mercado, agro]
+        default: resumo
+      so_ver:
+        description: "Só gerar as imagens para conferir (não posta)"
+        type: boolean
+        default: true
+      forcar:
+        description: "Postar mesmo se este conteúdo já foi postado"
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: instagram
+  cancel-in-progress: false
+jobs:
+  postar:
+    runs-on: ubuntu-latest
+    env:
+      IG_TOKEN: ${{ secrets.IG_TOKEN }}
+      IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      IG_FORCAR: ${{ inputs.forcar && '1' || '' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Escolher o post
+        id: tipo
+        run: |
+          case "${{ github.event.schedule }}" in
+            "43 10 * * 1-5") t=agro ;;
+            "50 21 * * 1-5") t=mercado ;;
+            "12 22 * * *")   t=resumo ;;
+            *)               t="${{ inputs.tipo }}" ;;
+          esac
+          echo "tipo=$t" >> "$GITHUB_OUTPUT"; echo "Post: $t"
+      - name: Instalar Pillow
+        run: pip install --quiet pillow
+      - name: Gerar os cards
+        id: gerar
+        run: python3 scripts/instagram.py gerar ${{ steps.tipo.outputs.tipo }}
+      - name: Guardar os cards para conferência
+        if: steps.gerar.outputs.publicar == '1'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cards-${{ steps.tipo.outputs.tipo }}
+          path: instagram/${{ steps.tipo.outputs.tipo }}*
+      - name: Subir as imagens (o Instagram busca por URL pública)
+        id: subir
+        # Postagem automática só depois de ligada: variável IG_ATIVO = 1 (Settings → Secrets and variables → Actions → Variables)
+        if: steps.gerar.outputs.publicar == '1' && !inputs.so_ver && env.IG_TOKEN != '' && (github.event_name == 'workflow_dispatch' || vars.IG_ATIVO == '1')
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add instagram/
+          git commit -q -m "Instagram: cards de ${{ steps.tipo.outputs.tipo }}" || true
+          for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin main && break; sleep 5; done
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Postar no Instagram
+        if: steps.subir.outcome == 'success'
+        env:
+          IMAGENS_BASE: https://raw.githubusercontent.com/${{ github.repository }}/${{ steps.subir.outputs.sha }}/instagram
+        run: |
+          sleep 10
+          python3 scripts/instagram.py publicar ${{ steps.tipo.outputs.tipo }}
+      - name: Registrar o post
+        if: steps.subir.outcome == 'success'
+        run: |
+          git add instagram_publicados.json
+          git diff --cached --quiet && exit 0
+          git commit -q -m "Instagram: ${{ steps.tipo.outputs.tipo }} postado"
+          for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin main && break; sleep 5; done
+      - name: Aviso
+        if: steps.gerar.outputs.publicar == '1' && env.IG_TOKEN == ''
+        run: echo "::warning::Secret IG_TOKEN não configurado; os cards foram gerados (veja Artifacts) mas nada foi postado."

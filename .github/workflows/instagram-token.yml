@@ -1,0 +1,25 @@
+name: Renovar token do Instagram
+# O token do Instagram vale 60 dias; renovamos a cada ~15 dias e gravamos o novo no secret IG_TOKEN.
+# Precisa do secret GH_PAT: token do GitHub (fine-grained) só deste repositório, com permissão "Secrets: Read and write".
+on:
+  schedule:
+    - cron: "37 12 1,15 * *"
+  workflow_dispatch:
+jobs:
+  renovar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Renovar e gravar
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          if [ -z "$IG_TOKEN" ]; then echo "Sem IG_TOKEN; nada a renovar."; exit 0; fi
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::Falta o secret GH_PAT para gravar o token renovado. Sem ele o IG_TOKEN expira em 60 dias."; exit 1
+          fi
+          novo=$(python3 scripts/instagram.py renovar)
+          echo "::add-mask::$novo"
+          printf '%s' "$novo" | gh secret set IG_TOKEN --repo "${{ github.repository }}"
+          echo "IG_TOKEN atualizado."
