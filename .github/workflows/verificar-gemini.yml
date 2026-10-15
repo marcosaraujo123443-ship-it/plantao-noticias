@@ -1,0 +1,25 @@
+name: Verificar Gemini (diagnóstico)
+on: workflow_dispatch
+jobs:
+  testar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Chamar o Gemini com a chave do secret
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.error
+          k = os.environ.get("GEMINI_API_KEY", "").strip()
+          if not k: print("::error::Secret GEMINI_API_KEY vazio ou inexistente"); raise SystemExit(1)
+          print(f"::notice::Chave com {len(k)} caracteres, termina em ...{k[-4:]}")
+          for modelo in ("gemini-flash-latest", "gemini-2.5-flash"):
+              corpo = {"model": modelo, "messages": [{"role": "user", "content": "Diga OK"}], "max_tokens": 20}
+              req = urllib.request.Request("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+                  data=json.dumps(corpo).encode(), method="POST",
+                  headers={"Authorization": f"Bearer {k}", "Content-Type": "application/json"})
+              try:
+                  with urllib.request.urlopen(req, timeout=60) as r: print(f"::notice::{modelo}: funcionou")
+              except urllib.error.HTTPError as e:
+                  print(f"::error::{modelo}: erro {e.code} " + e.read().decode("utf-8", "replace")[:500].replace("\n", " "))
+          PY
