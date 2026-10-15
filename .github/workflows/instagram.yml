@@ -78,10 +78,18 @@ jobs:
           git commit -q -m "Instagram: cards de ${{ steps.tipo.outputs.tipo }}" || true
           for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin main && break; sleep 5; done
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          if [ -f instagram/reel-1.mp4 ]; then
+            # O vídeo vai num ramo à parte, sem histórico (sobrescrito a cada dia), para não pesar o repositório
+            blob=$(git hash-object -w instagram/reel-1.mp4)
+            tree=$(printf '100644 blob %s\treel-1.mp4\n' "$blob" | git mktree)
+            c=$(git commit-tree "$tree" -m "Reel do Instagram")
+            git push -q -f origin "$c:refs/heads/midia"
+            echo "sha=$c" >> "$GITHUB_OUTPUT"
+          fi
       - name: Postar no Instagram
         if: steps.subir.outcome == 'success'
         env:
-          IMAGENS_BASE: https://raw.githubusercontent.com/${{ github.repository }}/${{ steps.subir.outputs.sha }}/instagram
+          IMAGENS_BASE: https://raw.githubusercontent.com/${{ github.repository }}/${{ steps.subir.outputs.sha }}${{ steps.tipo.outputs.tipo != 'reel' && '/instagram' || '' }}
         run: |
           sleep 10
           python3 scripts/instagram.py publicar ${{ steps.tipo.outputs.tipo }}

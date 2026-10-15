@@ -3,7 +3,7 @@
 
     python3 scripts/instagram.py gerar    resumo|mercado|agro|reel   -> desenha os cards (ou o vídeo) em instagram/ e a legenda
     python3 scripts/instagram.py publicar resumo|mercado|agro|reel   -> envia à API do Instagram (imagens pela URL do GitHub;
-                                                                          o vídeo do reel vai direto, por upload)
+                                                                          o vídeo do reel pela URL do ramo "midia")
     python3 scripts/instagram.py renovar                        -> renova o token (imprime o novo em stdout)
 
 Secrets: IG_TOKEN (obrigatório) e IG_USER_ID (opcional; se faltar, é descoberto pelo token).
@@ -147,7 +147,8 @@ def publicar(tipo):
     with open(os.path.join(PASTA, f"{tipo}.json"), encoding="utf-8") as f: info = json.load(f)
     uid = conta()
     if tipo == "reel":
-        c = enviar_video(uid, os.path.join(PASTA, info["imagens"][0]), info["legenda"])
+        url = os.environ["IMAGENS_BASE"].rstrip("/") + "/" + info["imagens"][0]
+        c = chamar("POST", f"{uid}/media", media_type="REELS", video_url=url, caption=info["legenda"], share_to_feed="true")["id"]
         esperar(c, tentativas=60)          # vídeo demora mais para processar (até ~5 min)
         return registrar(tipo, info, chamar("POST", f"{uid}/media_publish", creation_id=c)["id"])
     base = os.environ["IMAGENS_BASE"].rstrip("/")
@@ -162,22 +163,6 @@ def publicar(tipo):
         c = chamar("POST", f"{uid}/media", media_type="CAROUSEL", children=",".join(filhos), caption=info["legenda"])["id"]
     esperar(c)
     registrar(tipo, info, chamar("POST", f"{uid}/media_publish", creation_id=c)["id"])
-
-def enviar_video(uid, caminho, legenda):
-    """Cria o contêiner do reel e envia o MP4 pelo upload retomável da Meta (sem precisar de URL pública)."""
-    c = chamar("POST", f"{uid}/media", media_type="REELS", upload_type="resumable",
-               caption=legenda, share_to_feed="true")["id"]
-    dados = open(caminho, "rb").read()
-    req = urllib.request.Request(f"https://rupload.facebook.com/ig-api-upload/v23.0/{c}", data=dados, method="POST",
-        headers={"Authorization": "OAuth " + os.environ["IG_TOKEN"].strip().strip("\"'"),
-                 "offset": "0", "file_size": str(len(dados))})
-    try:
-        with urllib.request.urlopen(req, timeout=300) as r: res = json.loads(r.read().decode())
-    except urllib.error.HTTPError as err:
-        raise SystemExit(f"Upload do vídeo recusado ({err.code}): " + err.read().decode("utf-8", "replace")[:600])
-    if not res.get("success", True): raise SystemExit(f"Upload do vídeo recusado: {res}")
-    print(f"Vídeo enviado ({len(dados) // 1024} KB)")
-    return c
 
 def registrar(tipo, info, post):
     reg = registro(); reg[tipo] = info["chave"]; reg[tipo + "_post"] = post
