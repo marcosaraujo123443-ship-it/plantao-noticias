@@ -163,7 +163,7 @@ def renovar():
 
 def _falha(msg):
     # Mostra o motivo como anotação no resumo da execução do GitHub (sem expor o token)
-    print("::error::" + str(msg).replace("\n", " ")[:900])
+    print("::error::" + str(msg).replace("\n", " ")[:900], file=sys.stderr, flush=True)
 
 if __name__ == "__main__":
   try:
