@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Instalar Pillow
+        run: pip install --quiet pillow
       - name: Renovar e gravar
         env:
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
