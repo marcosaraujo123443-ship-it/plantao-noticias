@@ -102,7 +102,7 @@ def gerar(tipo):
 
 # ---------------------------------------------------------------- API do Instagram
 def chamar(metodo, caminho, **params):
-    params["access_token"] = os.environ["IG_TOKEN"]
+    params["access_token"] = os.environ["IG_TOKEN"].strip().strip("\"'")
     dados = urllib.parse.urlencode(params).encode()
     url = f"{API}/{caminho}"
     if metodo == "GET": req = urllib.request.Request(url + "?" + dados.decode())
@@ -151,7 +151,7 @@ def publicar(tipo):
 
 def renovar():
     """Renova o token de longa duração (vale mais 60 dias). O novo token sai em stdout."""
-    tok = os.environ["IG_TOKEN"]
+    tok = os.environ["IG_TOKEN"].strip().strip("\"'")
     url = "https://graph.instagram.com/refresh_access_token?" + urllib.parse.urlencode(
         {"grant_type": "ig_refresh_token", "access_token": tok})
     try:
