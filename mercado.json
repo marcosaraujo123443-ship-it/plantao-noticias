@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-10-15T09:44:13Z",
+ "atualizado_utc": "2026-10-15T12:29:24Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -9,20 +9,20 @@
   },
   {
    "nome": "Dólar",
-   "valor": 5.0299,
-   "var": 0.0,
+   "valor": 5.0463,
+   "var": 0.32605021968628023,
    "tipo": "brl"
   },
   {
    "nome": "Euro",
-   "valor": 5.6489,
-   "var": 0.6288299843237866,
+   "valor": 5.6599,
+   "var": 0.8247826706569761,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 408451.872623,
-   "var": -0.45153365508973087,
+   "valor": 408658.558266,
+   "var": -0.7248467938572922,
    "tipo": "brl"
   },
   {
@@ -1761,6 +1761,7 @@
   }
  },
  "erros": [
-  "moedas (awesomeapi): HTTP Error 429: Too Many Requests"
+  "moedas (awesomeapi): HTTP Error 429: Too Many Requests",
+  "fiis: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.fundamentus.com.br'. (_ssl.c:1000)>"
  ]
 }
