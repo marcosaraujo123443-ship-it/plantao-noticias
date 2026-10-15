@@ -13,7 +13,7 @@ jobs:
           k = os.environ.get("GEMINI_API_KEY", "").strip()
           if not k: print("::error::Secret GEMINI_API_KEY vazio ou inexistente"); raise SystemExit(1)
           print(f"::notice::Chave com {len(k)} caracteres, termina em ...{k[-4:]}")
-          for modelo in ("gemini-flash-latest", "gemini-2.5-flash"):
+          for modelo in ("gemini-flash-latest", "gemini-3.8-flash", "gemini-flash-lite-latest", "gemini-pro-latest"):
               corpo = {"model": modelo, "messages": [{"role": "user", "content": "Diga OK"}], "max_tokens": 20}
               req = urllib.request.Request("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
                   data=json.dumps(corpo).encode(), method="POST",
