@@ -25,6 +25,11 @@ on:
         description: "Só gerar as imagens para conferir (não posta)"
         type: boolean
         default: true
+      rede:
+        description: "Onde postar"
+        type: choice
+        options: [ambas, instagram, facebook]
+        default: ambas
       forcar:
         description: "Postar mesmo se este conteúdo já foi postado"
         type: boolean
@@ -89,14 +94,14 @@ jobs:
             echo "sha=$c" >> "$GITHUB_OUTPUT"
           fi
       - name: Postar no Instagram
-        if: steps.subir.outcome == 'success'
+        if: steps.subir.outcome == 'success' && inputs.rede != 'facebook'
         env:
           IMAGENS_BASE: https://raw.githubusercontent.com/${{ github.repository }}/${{ steps.subir.outputs.sha }}${{ steps.tipo.outputs.tipo != 'reel' && '/instagram' || '' }}
         run: |
           sleep 10
           python3 scripts/instagram.py publicar ${{ steps.tipo.outputs.tipo }}
       - name: Postar na Página do Facebook
-        if: always() && steps.subir.outcome == 'success' && env.FB_PAGE_TOKEN != ''
+        if: always() && steps.subir.outcome == 'success' && env.FB_PAGE_TOKEN != '' && inputs.rede != 'instagram'
         continue-on-error: true
         env:
           IMAGENS_BASE: https://raw.githubusercontent.com/${{ github.repository }}/${{ steps.subir.outputs.sha }}${{ steps.tipo.outputs.tipo != 'reel' && '/instagram' || '' }}
