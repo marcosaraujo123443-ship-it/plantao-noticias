@@ -20,10 +20,27 @@ PASTA = os.path.join(RAIZ, "instagram")
 REGISTRO = os.path.join(RAIZ, "instagram_publicados.json")
 API = "https://graph.instagram.com/v23.0"
 BRT = timezone(timedelta(hours=-3))
-TAGS = {"resumo": "#noticias #resumododia #plantaoinforma #brasil #politica #economia #futebol #agro",
-        "mercado": "#ibovespa #dolar #bolsadevalores #acoes #mercadofinanceiro #investimentos #plantaoinforma",
-        "reel": "#noticias #resumododia #plantaoinforma #brasil #reels #politica #economia",
-        "agro": "#agro #agronegocio #soja #milho #boigordo #cafe #cotacoes #plantaoinforma"}
+# 3 a 5 hashtags específicas por post (recomendação atual do Instagram)
+TAGS = {"resumo": "#noticias #resumododia #brasil #plantaoinforma",
+        "reel": "#noticias #resumododia #brasil #plantaoinforma",
+        "mercado": "#ibovespa #dolar #bolsadevalores #plantaoinforma",
+        "agro": "#agronegocio #cotacoes #soja #boigordo #plantaoinforma"}
+# Pergunta no fim da legenda (comentários aumentam a distribuição); neutras, sem tomar lado
+PERGUNTAS = {
+    "resumo": ["Qual dessas notícias mais te chamou atenção hoje?", "Qual editoria você quer ver primeiro amanhã?",
+               "Faltou algum assunto importante? Conta nos comentários.", "De qual dessas notícias você ainda não tinha ouvido falar?"],
+    "reel": ["Qual notícia de hoje mais te impactou?", "Você prefere o resumo em vídeo ou em fotos?",
+             "Qual assunto merece um resumo só dele?"],
+    "mercado": ["Você acompanha o dólar todos os dias?", "Qual ação você está de olho?",
+                "O que mais pesou no mercado hoje, na sua opinião?"],
+    "agro": ["Qual cotação você acompanha todo dia?", "De qual região você é? Conta nos comentários.",
+             "Quer que a gente inclua alguma outra cotação?"],
+}
+
+def final(tipo):
+    """Pergunta do dia (varia conforme a data) + hashtags."""
+    lista = PERGUNTAS[tipo]
+    return "💬 " + lista[datetime.now(BRT).timetuple().tm_yday % len(lista)] + "\n\n" + TAGS[tipo]
 
 def utc(s): return datetime.strptime(s, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
 
@@ -41,7 +58,7 @@ def chave_e_legenda(tipo):
         leg = (f"📰 Resumo do Plantão · {q:%d/%m}, {q:%H}h\n\n{r['abertura']}\n\n"
                f"➡️ Arraste para ver: {secoes}.\n\n"
                "🔗 Manchetes atualizadas de hora em hora, cotações e tabelas no site: link na bio.\n\n"
-               "Resumo feito com auxílio de inteligência artificial a partir de veículos confiáveis.\n\n" + TAGS[tipo])
+               "Resumo feito com auxílio de inteligência artificial a partir de veículos confiáveis.\n\n" + final(tipo))
         return "resumo " + r["gerado_utc"], leg
     if tipo == "reel":
         r = cards.ler("resumo.json")
@@ -49,7 +66,7 @@ def chave_e_legenda(tipo):
         q = utc(r["gerado_utc"]).astimezone(BRT)
         leg = (f"▶️ O Resumo do Plantão em 40 segundos · {q:%d/%m}\n\n{r['abertura']}\n\n"
                "🔗 Notícias de hora em hora, cotações e tabelas no site: link na bio.\n\n"
-               "Resumo feito com auxílio de inteligência artificial a partir de veículos confiáveis.\n\n" + TAGS[tipo])
+               "Resumo feito com auxílio de inteligência artificial a partir de veículos confiáveis.\n\n" + final(tipo))
         return "reel " + r["gerado_utc"], leg
     if tipo == "mercado":
         m = cards.ler("mercado.json")
@@ -68,7 +85,7 @@ def chave_e_legenda(tipo):
             linhas.append(f"Maior alta: {ordem[0]['ticker']} ({cards.var_txt(ordem[0]['var'])}) · "
                           f"maior queda: {ordem[-1]['ticker']} ({cards.var_txt(ordem[-1]['var'])})")
         linhas += ["", "🔗 Ações, fundos imobiliários e moedas atualizados no site: link na bio.", "",
-                   "Cotações com atraso, apenas informativas. Não é recomendação de investimento.", "", TAGS[tipo]]
+                   "Cotações com atraso, apenas informativas. Não é recomendação de investimento.", "", final(tipo)]
         return f"mercado {q:%Y-%m-%d}", "\n".join(linhas)
     if tipo == "agro":
         a = cards.ler("agro.json")
@@ -82,9 +99,25 @@ def chave_e_legenda(tipo):
                 i = por[nome]
                 linhas.append(f"{rot}: R$ {num(i['preco'])}{i['un'].replace('R$', '').strip()} ({cards.var_txt(i['var'])})")
         linhas += ["", "🔗 Todas as cotações, com bolsas de Chicago e B3: link na bio.", "",
-                   "Fonte: Cepea/Esalq, via Notícias Agrícolas. Apenas informativo.", "", TAGS[tipo]]
+                   "Fonte: Cepea/Esalq, via Notícias Agrícolas. Apenas informativo.", "", final(tipo)]
         return f"agro {data}", "\n".join(linhas)
     raise SystemExit(f"tipo desconhecido: {tipo}")
+
+def textos_alt(tipo, n):
+    """Texto alternativo de cada imagem (acessibilidade; também ajuda o Instagram a entender o conteúdo)."""
+    if tipo == "resumo":
+        r = cards.ler("resumo.json")
+        alt = ["Capa do Resumo do Plantão, do Plantão Informa: " + r["abertura"]]
+        alt += [f"Resumo de {x['secao']}: {x['texto']}" for x in r["secoes"]]
+        alt.append("Chamada para o site plantaoinforma.com.br, com notícias de hora em hora, cotações e tabelas.")
+        return [a[:1000] for a in alt][:n]
+    if tipo == "mercado":
+        return ["Card do Plantão Informa com o fechamento do mercado: Ibovespa, dólar, euro, bitcoin, Selic, "
+                "IPCA e as cinco maiores altas e baixas da bolsa no dia."]
+    if tipo == "agro":
+        return ["Card do Plantão Informa com as cotações do agro: soja, milho, boi gordo, café, trigo, açúcar, "
+                "algodão, frango e suíno, com preço e variação do dia (fonte Cepea/Esalq)."]
+    return []
 
 def registro():
     try:
@@ -112,7 +145,8 @@ def gerar(tipo):
     else:
         arquivos = cards.GERADORES[tipo](PASTA)
     with open(os.path.join(PASTA, f"{tipo}.json"), "w", encoding="utf-8") as f:
-        json.dump({"chave": chave, "legenda": legenda, "imagens": [os.path.basename(a) for a in arquivos]},
+        json.dump({"chave": chave, "legenda": legenda, "imagens": [os.path.basename(a) for a in arquivos],
+                   "alt": textos_alt(tipo, len(arquivos))},
                   f, ensure_ascii=False, indent=1)
     print(f"{len(arquivos)} card(s) gerado(s) para {chave}\n\n{legenda}")
     sinal(True)
@@ -158,16 +192,27 @@ def publicar(tipo):
         return registrar(tipo, info, chamar("POST", f"{uid}/media_publish", creation_id=c)["id"])
     base = os.environ["IMAGENS_BASE"].rstrip("/")
     urls = [f"{base}/{n}" for n in info["imagens"]]
+    alts = info.get("alt", [])
+    def alt(i): return {"alt_text": alts[i]} if i < len(alts) else {}
     if len(urls) == 1:
-        c = chamar("POST", f"{uid}/media", image_url=urls[0], caption=info["legenda"])["id"]
+        c = criar_imagem(uid, alt(0), image_url=urls[0], caption=info["legenda"])
     else:
         filhos = []
-        for u in urls:
-            filhos.append(chamar("POST", f"{uid}/media", image_url=u, is_carousel_item="true")["id"])
+        for i, u in enumerate(urls):
+            filhos.append(criar_imagem(uid, alt(i), image_url=u, is_carousel_item="true"))
         for fid in filhos: esperar(fid)
         c = chamar("POST", f"{uid}/media", media_type="CAROUSEL", children=",".join(filhos), caption=info["legenda"])["id"]
     esperar(c)
     registrar(tipo, info, chamar("POST", f"{uid}/media_publish", creation_id=c)["id"])
+
+def criar_imagem(uid, extra, **params):
+    """Cria o contêiner da imagem com texto alternativo; se a API recusar o alt_text, tenta sem ele."""
+    if extra:
+        try: return chamar("POST", f"{uid}/media", **params, **extra)["id"]
+        except SystemExit as e:
+            if "alt_text" not in str(e) and "(#100)" not in str(e) and "code\":100" not in str(e).replace(" ", ""): raise
+            print("Aviso: texto alternativo recusado; publicando sem ele.")
+    return chamar("POST", f"{uid}/media", **params)["id"]
 
 def registrar(tipo, info, post, rede="Instagram"):
     reg = registro(); reg[tipo] = info["chave"]; reg[tipo + "_post"] = post
