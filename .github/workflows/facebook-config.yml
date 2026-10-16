@@ -1,0 +1,55 @@
+name: Configurar Página do Facebook
+# Transforma o token de usuário (FB_USER_TOKEN, gerado no Explorador da Graph API) num token
+# permanente da Página e grava os secrets FB_PAGE_TOKEN e FB_PAGE_ID. Rodar uma vez só.
+# Usa FB_APP_ID e FB_APP_SECRET (se existirem) para estender o token; precisa do GH_PAT.
+on: workflow_dispatch
+jobs:
+  configurar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obter o token da Página e gravar os secrets
+        env:
+          FB_USER_TOKEN: ${{ secrets.FB_USER_TOKEN }}
+          FB_APP_ID: ${{ secrets.FB_APP_ID }}
+          FB_APP_SECRET: ${{ secrets.FB_APP_SECRET }}
+          FB_PAGE_NAME: ${{ vars.FB_PAGE_NAME }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          REPO: ${{ github.repository }}
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess, sys, urllib.parse, urllib.request, urllib.error
+          from datetime import datetime, timezone
+          API = "https://graph.facebook.com/v23.0"
+          def get(caminho, **p):
+              try:
+                  with urllib.request.urlopen(f"{API}/{caminho}?" + urllib.parse.urlencode(p), timeout=60) as r:
+                      return json.loads(r.read().decode())
+              except urllib.error.HTTPError as e:
+                  print("::error::Facebook: " + e.read().decode("utf-8", "replace")[:500]); sys.exit(1)
+          tok = os.environ.get("FB_USER_TOKEN", "").strip().strip("\"'")
+          if not tok: print("::error::Falta o secret FB_USER_TOKEN"); sys.exit(1)
+          if not os.environ.get("GH_TOKEN"): print("::error::Falta o secret GH_PAT"); sys.exit(1)
+          if os.environ.get("FB_APP_ID") and os.environ.get("FB_APP_SECRET"):
+              tok = get("oauth/access_token", grant_type="fb_exchange_token", client_id=os.environ["FB_APP_ID"].strip(),
+                        client_secret=os.environ["FB_APP_SECRET"].strip(), fb_exchange_token=tok)["access_token"]
+              print("::notice::Token de usuário estendido (longa duração).")
+          paginas = get("me/accounts", fields="id,name,access_token,tasks", access_token=tok).get("data", [])
+          if not paginas: print("::error::Nenhuma Página encontrada. Marque a Página e a permissão pages_show_list ao gerar o token."); sys.exit(1)
+          print("::notice::Páginas encontradas: " + ", ".join(p["name"] for p in paginas))
+          nome = (os.environ.get("FB_PAGE_NAME") or "").strip().lower()
+          esc = [p for p in paginas if nome and nome in p["name"].lower()] or (paginas if len(paginas) == 1 else [])
+          if not esc: print("::error::Mais de uma Página; crie a variável FB_PAGE_NAME com o nome da desejada."); sys.exit(1)
+          p = esc[0]
+          if "CREATE_CONTENT" not in p.get("tasks", []) and "MANAGE" not in p.get("tasks", []):
+              print("::warning::Sua conta talvez não possa publicar nesta Página (tarefas: %s)" % p.get("tasks"))
+          info = get("debug_token", input_token=p["access_token"], access_token=p["access_token"]).get("data", {})
+          exp = info.get("expires_at", 0)
+          faltam = set(["pages_manage_posts", "pages_read_engagement"]) - set(info.get("scopes", []))
+          if faltam: print("::error::Faltou marcar a(s) permissão(ões): " + ", ".join(sorted(faltam))); sys.exit(1)
+          print(f"::add-mask::{p['access_token']}")
+          for nome_s, valor in (("FB_PAGE_TOKEN", p["access_token"]), ("FB_PAGE_ID", p["id"])):
+              subprocess.run(["gh", "secret", "set", nome_s, "--repo", os.environ["REPO"]], input=valor.encode(), check=True)
+          quando = "nunca expira" if not exp else "expira em " + datetime.fromtimestamp(exp, timezone.utc).strftime("%d/%m/%Y")
+          print(f"::notice::Página '{p['name']}' configurada; token {quando}.")
+          if exp: print("::warning::O token da Página vai expirar. Gere o token de novo e use 'Estender token' (ou cadastre FB_APP_ID e FB_APP_SECRET).")
+          PY

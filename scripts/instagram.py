@@ -9,7 +9,7 @@
 Secrets: IG_TOKEN (obrigatório) e IG_USER_ID (opcional; se faltar, é descoberto pelo token).
 As imagens são lidas pelo Instagram a partir de IMAGENS_BASE (URL pública da pasta instagram/ no commit atual).
 Não publica de novo o mesmo conteúdo (instagram_publicados.json), a não ser com IG_FORCAR=1."""
-import json, os, sys, time, urllib.error, urllib.parse, urllib.request
+import json, os, re, sys, time, urllib.error, urllib.parse, urllib.request
 from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -99,7 +99,10 @@ def gerar(tipo):
             with open(saida, "a") as f: f.write(f"publicar={'1' if ok else '0'}\n")
     if not chave:
         print("Nada a publicar:", legenda); sinal(False); return
-    if registro().get(tipo) == chave and not os.environ.get("IG_FORCAR"):
+    reg = registro()
+    ja_ig = reg.get(tipo) == chave
+    ja_fb = not os.environ.get("FB_PAGE_TOKEN") or reg.get("fb_" + tipo) == chave
+    if ja_ig and ja_fb and not os.environ.get("IG_FORCAR"):
         print("Já publicado:", chave); sinal(False); return
     for antigo in os.listdir(PASTA) if os.path.isdir(PASTA) else []:
         if antigo.startswith(tipo + "-"): os.remove(os.path.join(PASTA, antigo))
@@ -145,6 +148,8 @@ def esperar(container, tentativas=30):
 def publicar(tipo):
     if not os.environ.get("IG_TOKEN"): raise SystemExit("Secret IG_TOKEN não configurado.")
     with open(os.path.join(PASTA, f"{tipo}.json"), encoding="utf-8") as f: info = json.load(f)
+    if registro().get(tipo) == info["chave"] and not os.environ.get("IG_FORCAR"):
+        print("Instagram já tinha este post:", info["chave"]); return
     uid = conta()
     if tipo == "reel":
         url = os.environ["IMAGENS_BASE"].rstrip("/") + "/" + info["imagens"][0]
@@ -164,11 +169,49 @@ def publicar(tipo):
     esperar(c)
     registrar(tipo, info, chamar("POST", f"{uid}/media_publish", creation_id=c)["id"])
 
-def registrar(tipo, info, post):
+def registrar(tipo, info, post, rede="Instagram"):
     reg = registro(); reg[tipo] = info["chave"]; reg[tipo + "_post"] = post
     reg[tipo + "_em"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     with open(REGISTRO, "w", encoding="utf-8") as f: json.dump(reg, f, ensure_ascii=False, indent=1)
-    print(f"Publicado no Instagram: {info['chave']} (post {post})")
+    print(f"Publicado no {rede}: {info['chave']} (post {post})")
+
+# ---------------------------------------------------------------- Página do Facebook
+FB_API = "https://graph.facebook.com/v23.0"
+SITE_FB = "https://plantaoinforma.com.br/?utm_source=facebook&utm_medium=social"
+
+def chamar_fb(caminho, **params):
+    params["access_token"] = os.environ["FB_PAGE_TOKEN"].strip().strip("\"'")
+    req = urllib.request.Request(f"{FB_API}/{caminho}", data=urllib.parse.urlencode(params).encode(), method="POST")
+    try:
+        with urllib.request.urlopen(req, timeout=180) as r: return json.loads(r.read().decode())
+    except urllib.error.HTTPError as err:
+        raise SystemExit(f"Facebook respondeu erro {err.code} em {caminho}: " + err.read().decode("utf-8", "replace")[:600])
+
+def legenda_fb(leg):
+    """No Facebook o link funciona na própria legenda; troca o 'link na bio' pelo endereço do site."""
+    leg = re.sub(r"[Ll]ink na bio", SITE_FB, leg)
+    return leg.replace("➡️ Arraste para ver:", "➡️ Nas imagens:")
+
+def publicar_facebook(tipo):
+    if not os.environ.get("FB_PAGE_TOKEN") or not os.environ.get("FB_PAGE_ID"):
+        print("Página do Facebook não configurada (FB_PAGE_TOKEN / FB_PAGE_ID)."); return
+    with open(os.path.join(PASTA, f"{tipo}.json"), encoding="utf-8") as f: info = json.load(f)
+    if registro().get("fb_" + tipo) == info["chave"] and not os.environ.get("IG_FORCAR"):
+        print("Facebook já tinha este post:", info["chave"]); return
+    pagina = os.environ["FB_PAGE_ID"].strip()
+    base = os.environ["IMAGENS_BASE"].rstrip("/")
+    urls = [f"{base}/{n}" for n in info["imagens"]]
+    leg = legenda_fb(info["legenda"])
+    if tipo == "reel":
+        post = chamar_fb(f"{pagina}/videos", file_url=urls[0], description=leg,
+                         title="Resumo do Plantão")["id"]
+    elif len(urls) == 1:
+        post = chamar_fb(f"{pagina}/photos", url=urls[0], caption=leg)["post_id"]
+    else:
+        fotos = [chamar_fb(f"{pagina}/photos", url=u, published="false")["id"] for u in urls]
+        anexos = {f"attached_media[{i}]": json.dumps({"media_fbid": fid}) for i, fid in enumerate(fotos)}
+        post = chamar_fb(f"{pagina}/feed", message=leg, **anexos)["id"]
+    registrar("fb_" + tipo, info, post, rede="Facebook")
 
 def renovar():
     """Renova o token de longa duração (vale mais 60 dias). O novo token sai em stdout."""
@@ -193,6 +236,7 @@ if __name__ == "__main__":
     acao = sys.argv[1] if len(sys.argv) > 1 else ""
     if acao == "gerar": gerar(sys.argv[2])
     elif acao == "publicar": publicar(sys.argv[2])
+    elif acao == "facebook": publicar_facebook(sys.argv[2])
     elif acao == "renovar": renovar()
     else: raise SystemExit(__doc__)
   except SystemExit as e:

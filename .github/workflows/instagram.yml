@@ -40,6 +40,8 @@ jobs:
     env:
       IG_TOKEN: ${{ secrets.IG_TOKEN }}
       IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+      FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
       IG_FORCAR: ${{ inputs.forcar && '1' || '' }}
     steps:
       - uses: actions/checkout@v4
@@ -93,8 +95,14 @@ jobs:
         run: |
           sleep 10
           python3 scripts/instagram.py publicar ${{ steps.tipo.outputs.tipo }}
+      - name: Postar na Página do Facebook
+        if: always() && steps.subir.outcome == 'success' && env.FB_PAGE_TOKEN != ''
+        continue-on-error: true
+        env:
+          IMAGENS_BASE: https://raw.githubusercontent.com/${{ github.repository }}/${{ steps.subir.outputs.sha }}${{ steps.tipo.outputs.tipo != 'reel' && '/instagram' || '' }}
+        run: python3 scripts/instagram.py facebook ${{ steps.tipo.outputs.tipo }}
       - name: Registrar o post
-        if: steps.subir.outcome == 'success'
+        if: always() && steps.subir.outcome == 'success'
         run: |
           git add instagram_publicados.json
           git diff --cached --quiet && exit 0
