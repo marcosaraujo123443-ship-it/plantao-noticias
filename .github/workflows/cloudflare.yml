@@ -39,4 +39,9 @@ jobs:
         if: steps.cred.outputs.ok == '1'
         run: |
           npx --yes wrangler@3 pages project create plantaoinforma --production-branch main >/dev/null 2>&1 || true
-          npx --yes wrangler@3 pages deploy dist --project-name plantaoinforma --branch main --commit-dirty=true
+          # Até 3 tentativas: falhas momentâneas do Cloudflare não devem derrubar a publicação
+          for i in 1 2 3; do
+            npx --yes wrangler@3 pages deploy dist --project-name plantaoinforma --branch main --commit-dirty=true && exit 0
+            echo "::warning::Tentativa $i de publicar falhou; tentando de novo em 20 s"; sleep 20
+          done
+          exit 1
