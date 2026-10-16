@@ -189,7 +189,7 @@ def publicar(tipo):
         url = os.environ["IMAGENS_BASE"].rstrip("/") + "/" + info["imagens"][0]
         c = chamar("POST", f"{uid}/media", media_type="REELS", video_url=url, caption=info["legenda"], share_to_feed="true")["id"]
         esperar(c, tentativas=60)          # vídeo demora mais para processar (até ~5 min)
-        return registrar(tipo, info, chamar("POST", f"{uid}/media_publish", creation_id=c)["id"])
+        return registrar(tipo, info, publicar_container(uid, c))
     base = os.environ["IMAGENS_BASE"].rstrip("/")
     urls = [f"{base}/{n}" for n in info["imagens"]]
     alts = info.get("alt", [])
@@ -203,7 +203,7 @@ def publicar(tipo):
         for fid in filhos: esperar(fid)
         c = chamar("POST", f"{uid}/media", media_type="CAROUSEL", children=",".join(filhos), caption=info["legenda"])["id"]
     esperar(c)
-    registrar(tipo, info, chamar("POST", f"{uid}/media_publish", creation_id=c)["id"])
+    registrar(tipo, info, publicar_container(uid, c))
 
 def criar_imagem(uid, extra, **params):
     """Cria o contêiner da imagem com texto alternativo; se a API recusar o alt_text, tenta sem ele."""
@@ -213,6 +213,16 @@ def criar_imagem(uid, extra, **params):
             if "alt_text" not in str(e) and "(#100)" not in str(e) and "code\":100" not in str(e).replace(" ", ""): raise
             print("Aviso: texto alternativo recusado; publicando sem ele.")
     return chamar("POST", f"{uid}/media", **params)["id"]
+
+def publicar_container(uid, c):
+    """media_publish às vezes responde 'mídia ainda não está pronta' (2207027) mesmo após FINISHED; espera e repete."""
+    for tentativa in range(6):
+        try:
+            return chamar("POST", f"{uid}/media_publish", creation_id=c)["id"]
+        except SystemExit as e:
+            if "2207027" not in str(e) and "not ready" not in str(e) or tentativa == 5: raise
+            print(f"Instagram ainda processando a mídia; nova tentativa em 20 s ({tentativa + 1}/5)")
+            time.sleep(20)
 
 def registrar(tipo, info, post, rede="Instagram"):
     reg = registro(); reg[tipo] = info["chave"]; reg[tipo + "_post"] = post
