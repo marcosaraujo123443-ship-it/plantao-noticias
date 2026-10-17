@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Desenha os cards do Instagram (PNG 1080x1350) a partir dos JSON do site.
 Usado por scripts/instagram.py; pode rodar sozinho para ver os cards:
-    python3 scripts/instagram_cards.py resumo|mercado|agro [pasta_saida]"""
+    python3 scripts/instagram_cards.py resumo|mercado|agro|futebol [pasta_saida]"""
 import json, os, sys
 from datetime import datetime, timedelta, timezone
 from PIL import Image, ImageDraw, ImageFont
@@ -227,13 +227,55 @@ def cards_agro(saida):
     d.text((M, H - 150), "Fonte: Cepea/Esalq, via Notícias Agrícolas. Apenas informativo.", font=fonte("reg", 22), fill=TINTA2)
     return [salvar(img, saida, "agro-1.png")]
 
+# ---------------------------------------------------------------- futebol
+def tabela_brasileirao():
+    f = ler("futebol.json")
+    liga = next(l for l in f["ligas"] if l["id"] == "bra.1")
+    return f, liga, liga["grupos"][0]["linhas"]
+
+def rodada_atual(linhas):
+    """Rodada da maioria dos times (jogos adiados não puxam o número para cima)."""
+    js = [l["j"] for l in linhas]
+    return max(set(js), key=js.count)
+
+def cards_futebol(saida):
+    f, liga, linhas = tabela_brasileirao()
+    quando = datetime.strptime(f["atualizado_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).astimezone(BRT)
+    img, d = tela("Futebol", COR_SECAO["Futebol"], data_extenso(quando))
+    d.text((M, 286), "Classificação do Brasileirão", font=fonte("serif", 54), fill=TINTA)
+    rodada = rodada_atual(linhas)
+    d.text((M, 356), f"Série A · até a {rodada}ª rodada", font=fonte("semi", 26), fill=TINTA2)
+    y0, alt = 410, 36
+    cols = [("J", 640), ("V", 708), ("SG", 790), ("PTS", 900)]
+    d.rounded_rectangle([M - 8, y0 - 10, W - M + 8, y0 + alt * (len(linhas) + 1) + 6], radius=18, fill=CARTAO, outline=LINHA, width=2)
+    fh = fonte("bold", 21)
+    for rot, x in cols: d.text((x - d.textlength(rot, font=fh) / 2, y0 + 4), rot, font=fh, fill=TINTA2)
+    n = len(linhas)
+    for i, l in enumerate(linhas):
+        y = y0 + alt * (i + 1)
+        if i % 2 == 0: d.rectangle([M + 2, y, W - M - 2, y + alt], fill="#f2f5f9")
+        faixa = SOBE if l["pos"] <= 4 else DESCE if l["pos"] > n - 4 else None
+        if faixa: d.rectangle([M + 2, y + 4, M + 9, y + alt - 4], fill=faixa)
+        f1 = fonte("semi", 25)
+        d.text((M + 22, y + 5), f"{l['pos']}", font=f1, fill=TINTA2)
+        d.text((M + 70, y + 5), l["time"], font=fonte("semi", 25), fill=TINTA)
+        for chave, x in (("j", 640), ("v", 708), ("sg", 790)):
+            t = str(l[chave]); d.text((x - d.textlength(t, font=fonte("reg", 25)) / 2, y + 5), t, font=fonte("reg", 25), fill=TINTA)
+        t = str(l["pts"]); fb = fonte("bold", 26)
+        d.text((900 - d.textlength(t, font=fb) / 2, y + 4), t, font=fb, fill=TINTA)
+    yl = y0 + alt * (n + 1) + 22
+    d.rectangle([M, yl + 6, M + 18, yl + 24], fill=SOBE); d.text((M + 28, yl), "G4", font=fonte("semi", 22), fill=TINTA2)
+    d.rectangle([M + 110, yl + 6, M + 128, yl + 24], fill=DESCE); d.text((M + 138, yl), "Z4 (rebaixamento)", font=fonte("semi", 22), fill=TINTA2)
+    d.text((W - M - d.textlength("Fonte: ESPN", font=fonte("reg", 22)), yl), "Fonte: ESPN", font=fonte("reg", 22), fill=TINTA2)
+    return [salvar(img, saida, "futebol-1.png")]
+
 def salvar(img, saida, nome):
     os.makedirs(saida, exist_ok=True)
     caminho = os.path.join(saida, nome)
     img.save(caminho, "PNG", optimize=True)
     return caminho
 
-GERADORES = {"resumo": cards_resumo, "mercado": cards_mercado, "agro": cards_agro}
+GERADORES = {"resumo": cards_resumo, "mercado": cards_mercado, "agro": cards_agro, "futebol": cards_futebol}
 
 if __name__ == "__main__":
     tipo = sys.argv[1] if len(sys.argv) > 1 else "resumo"

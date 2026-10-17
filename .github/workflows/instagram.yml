@@ -14,12 +14,17 @@ on:
     - cron: "26 22 * * *"     # 19h26: reel do Resumo do Plantão (vídeo)
     - cron: "56 22 * * *"     # 19h56: reel (reserva)
     - cron: "24 23 * * *"     # 20h24: reel (reserva)
+    - cron: "52 15 * * 0,6"   # sábado e domingo, 12h52: carrossel do resumo do meio-dia
+    - cron: "22 16 * * 0,6"   # 13h22: resumo do meio-dia (reserva)
+    - cron: "43 15 * * *"     # 12h43: tabela do Brasileirão (só posta se a tabela mudou)
+    - cron: "43 1 * * *"      # 22h43: tabela do Brasileirão (depois dos jogos da noite)
+    - cron: "13 2 * * *"      # 23h13: tabela (reserva)
   workflow_dispatch:
     inputs:
       tipo:
         description: "O que postar"
         type: choice
-        options: [resumo, reel, mercado, agro]
+        options: [resumo, reel, mercado, agro, futebol]
         default: resumo
       so_ver:
         description: "Só gerar as imagens para conferir (não posta)"
@@ -60,6 +65,8 @@ jobs:
             "50 21 * * 1-5"|"17 22 * * 1-5"|"47 22 * * 1-5") t=mercado ;;
             "12 22 * * *"|"33 22 * * *"|"4 23 * * *")       t=resumo ;;
             "26 22 * * *"|"56 22 * * *"|"24 23 * * *")      t=reel ;;
+            "52 15 * * 0,6"|"22 16 * * 0,6")                t=resumo ;;
+            "43 15 * * *"|"43 1 * * *"|"13 2 * * *")        t=futebol ;;
             *)               t="${{ inputs.tipo }}" ;;
           esac
           echo "tipo=$t" >> "$GITHUB_OUTPUT"; echo "Post: $t"

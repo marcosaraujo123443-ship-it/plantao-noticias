@@ -24,7 +24,8 @@ BRT = timezone(timedelta(hours=-3))
 TAGS = {"resumo": "#noticias #resumododia #brasil #plantaoinforma",
         "reel": "#noticias #resumododia #brasil #plantaoinforma",
         "mercado": "#ibovespa #dolar #bolsadevalores #plantaoinforma",
-        "agro": "#agronegocio #cotacoes #soja #boigordo #plantaoinforma"}
+        "agro": "#agronegocio #cotacoes #soja #boigordo #plantaoinforma",
+        "futebol": "#brasileirao #futebol #tabela #plantaoinforma"}
 # Pergunta no fim da legenda (comentários aumentam a distribuição); neutras, sem tomar lado
 PERGUNTAS = {
     "resumo": ["Qual dessas notícias mais te chamou atenção hoje?", "Qual editoria você quer ver primeiro amanhã?",
@@ -33,6 +34,8 @@ PERGUNTAS = {
              "Qual assunto merece um resumo só dele?"],
     "mercado": ["Você acompanha o dólar todos os dias?", "Qual ação você está de olho?",
                 "O que mais pesou no mercado hoje, na sua opinião?"],
+    "futebol": ["Seu time está onde na tabela?", "Quem leva o título este ano?",
+                "Quem você acha que escapa do rebaixamento?"],
     "agro": ["Qual cotação você acompanha todo dia?", "De qual região você é? Conta nos comentários.",
              "Quer que a gente inclua alguma outra cotação?"],
 }
@@ -101,6 +104,19 @@ def chave_e_legenda(tipo):
         linhas += ["", "🔗 Todas as cotações, com bolsas de Chicago e B3: link na bio.", "",
                    "Fonte: Cepea/Esalq, via Notícias Agrícolas. Apenas informativo.", "", final(tipo)]
         return f"agro {data}", "\n".join(linhas)
+    if tipo == "futebol":
+        f, liga, linhas = cards.tabela_brasileirao()
+        if agora - utc(f["atualizado_utc"]) > timedelta(hours=6): return None, "tabela do futebol desatualizada"
+        jogos = sum(l["j"] for l in linhas)          # muda a cada jogo: só posta quando a tabela andou
+        rodada = cards.rodada_atual(linhas)
+        lider, vice = linhas[0], linhas[1]
+        z4 = ", ".join(l["time"] for l in linhas[-4:])
+        leg = (f"⚽ Classificação do Brasileirão · até a {rodada}ª rodada\n\n"
+               f"🥇 {lider['time']} lidera com {lider['pts']} pontos; em 2º, {vice['time']} tem {vice['pts']}.\n"
+               f"🔻 Na zona de rebaixamento: {z4}.\n\n"
+               "🔗 Tabelas completas do Brasileirão e das maiores ligas do mundo no site: link na bio.\n\n"
+               "Fonte: ESPN.\n\n" + final(tipo))
+        return f"futebol {jogos}", leg
     raise SystemExit(f"tipo desconhecido: {tipo}")
 
 def textos_alt(tipo, n):
@@ -117,6 +133,10 @@ def textos_alt(tipo, n):
     if tipo == "agro":
         return ["Card do Plantão Informa com as cotações do agro: soja, milho, boi gordo, café, trigo, açúcar, "
                 "algodão, frango e suíno, com preço e variação do dia (fonte Cepea/Esalq)."]
+    if tipo == "futebol":
+        _, _, linhas = cards.tabela_brasileirao()
+        return [("Tabela de classificação do Brasileirão Série A: " +
+                 "; ".join(f"{l['pos']}º {l['time']}, {l['pts']} pontos" for l in linhas))[:1000]]
     return []
 
 def registro():
