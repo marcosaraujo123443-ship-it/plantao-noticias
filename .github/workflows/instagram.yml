@@ -19,12 +19,15 @@ on:
     - cron: "43 15 * * *"     # 12h43: tabela do Brasileirão (só posta se a tabela mudou)
     - cron: "43 1 * * *"      # 22h43: tabela do Brasileirão (depois dos jogos da noite)
     - cron: "13 2 * * *"      # 23h13: tabela (reserva)
+    # Contas públicas: após cada bimestre publicado pelo Tesouro, uma região por dia e depois o consolidado
+    - cron: "17 14 * * *"     # 11h17: carrossel das contas (só quando há série pendente)
+    - cron: "47 14 * * *"     # 11h47: contas (reserva)
   workflow_dispatch:
     inputs:
       tipo:
         description: "O que postar"
         type: choice
-        options: [resumo, reel, mercado, agro, futebol]
+        options: [resumo, reel, mercado, agro, futebol, contas]
         default: resumo
       so_ver:
         description: "Só gerar as imagens para conferir (não posta)"
@@ -67,6 +70,7 @@ jobs:
             "26 22 * * *"|"56 22 * * *"|"24 23 * * *")      t=reel ;;
             "52 15 * * 0,6"|"22 16 * * 0,6")                t=resumo ;;
             "43 15 * * *"|"43 1 * * *"|"13 2 * * *")        t=futebol ;;
+            "17 14 * * *"|"47 14 * * *")                    t=contas ;;
             *)               t="${{ inputs.tipo }}" ;;
           esac
           echo "tipo=$t" >> "$GITHUB_OUTPUT"; echo "Post: $t"

@@ -25,7 +25,8 @@ TAGS = {"resumo": "#noticias #resumododia #brasil #plantaoinforma",
         "reel": "#noticias #resumododia #brasil #plantaoinforma",
         "mercado": "#ibovespa #dolar #bolsadevalores #plantaoinforma",
         "agro": "#agronegocio #cotacoes #soja #boigordo #plantaoinforma",
-        "futebol": "#brasileirao #futebol #tabela #plantaoinforma"}
+        "futebol": "#brasileirao #futebol #tabela #plantaoinforma",
+        "contas": "#contaspublicas #transparencia #plantaoinforma"}
 # Pergunta no fim da legenda (comentários aumentam a distribuição); neutras, sem tomar lado
 PERGUNTAS = {
     "resumo": ["Qual dessas notícias mais te chamou atenção hoje?", "Qual editoria você quer ver primeiro amanhã?",
@@ -34,6 +35,8 @@ PERGUNTAS = {
              "Qual assunto merece um resumo só dele?"],
     "mercado": ["Você acompanha o dólar todos os dias?", "Qual ação você está de olho?",
                 "O que mais pesou no mercado hoje, na sua opinião?"],
+    "contas": ["De qual estado você é?", "Você acompanha as contas do seu estado?",
+               "Qual área deveria receber mais recursos no seu estado?"],
     "futebol": ["Seu time está onde na tabela?", "Quem leva o título este ano?",
                 "Quem você acha que escapa do rebaixamento?"],
     "agro": ["Qual cotação você acompanha todo dia?", "De qual região você é? Conta nos comentários.",
@@ -144,12 +147,54 @@ def registro():
         with open(REGISTRO, encoding="utf-8") as f: return json.load(f)
     except Exception: return {}
 
+# ---------------------------------------------------------------- série das contas públicas
+MIN_ESTADOS = 23     # só começa a série de um bimestre novo quando ~85% dos estados já entregaram o relatório
+
+def proximo_contas():
+    """Próximo carrossel da série (uma região por dia, depois o consolidado) ou (None, motivo)."""
+    import instagram_contas as ct
+    est = cards.ler("estados.json")["estados"]
+    (ano, p), n = ct.periodo_modal(est)
+    serie = f"contas {ano}-{p}"
+    reg = registro()
+    hoje = datetime.now(BRT).strftime("%Y-%m-%d")
+    feitos = [k for k in ct.ORDEM if reg.get(k) == serie]
+    if n < MIN_ESTADOS and not feitos:
+        return None, f"{p}º bimestre de {ano}: só {n} de 27 estados publicaram; aguardando"
+    for k in ct.ORDEM:
+        fb_ok = not os.environ.get("FB_PAGE_TOKEN") or reg.get("fb_" + k) == serie
+        if reg.get(k) == serie and fb_ok: continue
+        ultimo = max((reg.get(x + "_em", "") for x in ct.ORDEM), default="")
+        if ultimo and utc(ultimo).astimezone(BRT).strftime("%Y-%m-%d") == hoje and reg.get(k) != serie \
+                and not os.environ.get("IG_FORCAR"):
+            return None, "já saiu um carrossel das contas hoje; o próximo vai amanhã"
+        return k, serie
+    return None, f"série do {p}º bimestre de {ano} completa"
+
 def gerar(tipo):
-    chave, legenda = chave_e_legenda(tipo)
     saida = os.environ.get("GITHUB_OUTPUT")
     def sinal(ok):
         if saida:
             with open(saida, "a") as f: f.write(f"publicar={'1' if ok else '0'}\n")
+    if tipo == "contas":
+        import instagram_contas as ct
+        sub, motivo = proximo_contas()
+        if not sub:
+            print("Nada a publicar:", motivo); sinal(False); return
+        chave, legenda, alt = ct.legenda_e_alt(sub)
+        legenda += "\n\n" + final("contas")
+        for antigo in os.listdir(PASTA) if os.path.isdir(PASTA) else []:
+            if antigo.startswith("contas-"): os.remove(os.path.join(PASTA, antigo))
+        arquivos = ct.gerar(sub, PASTA)
+        tags = {"norte": "#regiaonorte", "nordeste": "#nordeste", "centro_oeste": "#centrooeste",
+                "sudeste": "#sudeste", "sul": "#regiaosul", "brasil": "#brasil"}[sub.replace("contas_", "")]
+        legenda = legenda.replace(TAGS["contas"], TAGS["contas"].replace("#plantaoinforma", tags + " #plantaoinforma"))
+        with open(os.path.join(PASTA, "contas.json"), "w", encoding="utf-8") as f:
+            json.dump({"chave": chave, "registro": sub, "legenda": legenda,
+                       "imagens": [os.path.basename(a) for a in arquivos], "alt": alt}, f, ensure_ascii=False, indent=1)
+        print(f"{len(arquivos)} card(s) gerado(s) para {sub} ({chave})\n\n{legenda}")
+        sinal(True); return
+    chave, legenda = chave_e_legenda(tipo)
     if not chave:
         print("Nada a publicar:", legenda); sinal(False); return
     reg = registro()
@@ -202,6 +247,7 @@ def esperar(container, tentativas=30):
 def publicar(tipo):
     if not os.environ.get("IG_TOKEN"): raise SystemExit("Secret IG_TOKEN não configurado.")
     with open(os.path.join(PASTA, f"{tipo}.json"), encoding="utf-8") as f: info = json.load(f)
+    tipo = info.get("registro", tipo)
     if registro().get(tipo) == info["chave"] and not os.environ.get("IG_FORCAR"):
         print("Instagram já tinha este post:", info["chave"]); return
     uid = conta()
@@ -271,6 +317,7 @@ def publicar_facebook(tipo):
     if not os.environ.get("FB_PAGE_TOKEN") or not os.environ.get("FB_PAGE_ID"):
         print("Página do Facebook não configurada (FB_PAGE_TOKEN / FB_PAGE_ID)."); return
     with open(os.path.join(PASTA, f"{tipo}.json"), encoding="utf-8") as f: info = json.load(f)
+    tipo = info.get("registro", tipo)
     if registro().get("fb_" + tipo) == info["chave"] and not os.environ.get("IG_FORCAR"):
         print("Facebook já tinha este post:", info["chave"]); return
     pagina = os.environ["FB_PAGE_ID"].strip()
