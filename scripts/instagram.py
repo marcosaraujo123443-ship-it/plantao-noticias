@@ -35,6 +35,8 @@ PERGUNTAS = {
              "Qual assunto merece um resumo só dele?"],
     "mercado": ["Você acompanha o dólar todos os dias?", "Qual ação você está de olho?",
                 "O que mais pesou no mercado hoje, na sua opinião?"],
+    "economia": ["Isso pesa no seu bolso?", "Você sentiu essa diferença no dia a dia?",
+                 "Qual indicador você acompanha de perto?", "Como isso afeta o seu planejamento?"],
     "contas": ["De qual estado você é?", "Você acompanha as contas do seu estado?",
                "Qual área deveria receber mais recursos no seu estado?"],
     "futebol": ["Seu time está onde na tabela?", "Quem leva o título este ano?",
@@ -171,11 +173,42 @@ def proximo_contas():
         return k, serie
     return None, f"série do {p}º bimestre de {ano} completa"
 
+# ---------------------------------------------------------------- indicadores econômicos
+def proximo_economia():
+    """Divulgação nova (Copom, IPCA, IPCA-15, IGP-M, INPC, desemprego) ou o painel do mês; um por execução."""
+    import instagram_economia as ec
+    reg, fb = registro(), bool(os.environ.get("FB_PAGE_TOKEN"))
+    pend = lambda k, chave: reg.get("eco_" + k) != chave or (fb and reg.get("fb_eco_" + k) != chave)
+    for k in ec.ORDEM:
+        try: chave = ec.legenda_e_alt(k)[0]
+        except Exception: continue
+        if pend(k, chave): return k
+    if datetime.now(BRT).weekday() < 5 and pend("painel", ec.legenda_e_alt("painel")[0]):
+        return "painel"
+    return None
+
 def gerar(tipo):
     saida = os.environ.get("GITHUB_OUTPUT")
     def sinal(ok):
         if saida:
             with open(saida, "a") as f: f.write(f"publicar={'1' if ok else '0'}\n")
+    if tipo == "economia":
+        import instagram_economia as ec
+        sub = os.environ.get("ECO_TIPO") or proximo_economia()
+        if not sub:
+            print("Nada a publicar: nenhuma divulgação nova de indicadores"); sinal(False); return
+        chave, legenda, alt = ec.legenda_e_alt(sub)
+        lista = PERGUNTAS["economia"]
+        legenda += ("\n\n💬 " + lista[datetime.now(BRT).timetuple().tm_yday % len(lista)] + "\n\n"
+                    + ec.TAGS[sub] + " #plantaoinforma")
+        for antigo in os.listdir(PASTA) if os.path.isdir(PASTA) else []:
+            if antigo.startswith("economia-"): os.remove(os.path.join(PASTA, antigo))
+        arquivos = ec.gerar(sub, PASTA)
+        with open(os.path.join(PASTA, "economia.json"), "w", encoding="utf-8") as f:
+            json.dump({"chave": chave, "registro": "eco_" + sub, "legenda": legenda,
+                       "imagens": [os.path.basename(a) for a in arquivos], "alt": alt}, f, ensure_ascii=False, indent=1)
+        print(f"{len(arquivos)} card(s) gerado(s) para {sub} ({chave})\n\n{legenda}")
+        sinal(True); return
     if tipo == "contas":
         import instagram_contas as ct
         sub, motivo = proximo_contas()

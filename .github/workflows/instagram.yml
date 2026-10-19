@@ -22,12 +22,15 @@ on:
     # Contas públicas: após cada bimestre publicado pelo Tesouro, uma região por dia e depois o consolidado
     - cron: "17 14 * * *"     # 11h17: carrossel das contas (só quando há série pendente)
     - cron: "47 14 * * *"     # 11h47: contas (reserva)
+    # Indicadores econômicos: posta cada divulgação nova (Copom, IPCA, IGP-M...) e um painel por mês
+    - cron: "37 12 * * *"     # 9h37 (IBGE e FGV divulgam às 9h)
+    - cron: "7 0 * * *"       # 21h07 (decisão do Copom sai por volta das 18h30)
   workflow_dispatch:
     inputs:
       tipo:
         description: "O que postar"
         type: choice
-        options: [resumo, reel, mercado, agro, futebol, contas]
+        options: [resumo, reel, mercado, agro, futebol, contas, economia]
         default: resumo
       so_ver:
         description: "Só gerar as imagens para conferir (não posta)"
@@ -71,6 +74,7 @@ jobs:
             "52 15 * * 0,6"|"22 16 * * 0,6")                t=resumo ;;
             "43 15 * * *"|"43 1 * * *"|"13 2 * * *")        t=futebol ;;
             "17 14 * * *"|"47 14 * * *")                    t=contas ;;
+            "37 12 * * *"|"7 0 * * *")                      t=economia ;;
             *)               t="${{ inputs.tipo }}" ;;
           esac
           echo "tipo=$t" >> "$GITHUB_OUTPUT"; echo "Post: $t"
