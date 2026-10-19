@@ -1,0 +1,26 @@
+name: Diagnóstico BCB (temporário)
+on: workflow_dispatch
+jobs:
+  testar:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          python3 - <<'PY'
+          import json, urllib.request
+          def t(nome, url):
+              try:
+                  req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0", "Accept": "application/json"})
+                  with urllib.request.urlopen(req, timeout=30) as r: corpo = r.read().decode("utf-8", "replace")
+                  print(f"::notice::{nome} OK: " + corpo[:600].replace("\n", " "))
+              except Exception as e:
+                  print(f"::error::{nome}: {e}")
+          base = "https://api.bcb.gov.br/dados/serie/bcdata.sgs.{}/dados/ultimos/2?formato=json"
+          for cod, n in ((432, "selic"), (433, "ipca"), (7478, "ipca15"), (189, "igpm"), (188, "inpc"), (24369, "desemprego"), (4389, "cdi"), (190, "igpdi")):
+              t(f"sgs {cod} {n}", base.format(cod))
+          t("copom comunicados", "https://www.bcb.gov.br/api/servico/sitebcb/copom/comunicados?quantidade=2")
+          t("copom ultimas", "https://www.bcb.gov.br/api/servico/sitebcb/copomcomunicados/ultimas?quantidade=2")
+          t("copom atas", "https://www.bcb.gov.br/api/servico/sitebcb/copom/atas?quantidade=1")
+          t("copom calendario", "https://www.bcb.gov.br/api/servico/sitebcb/agendaCopom")
+          t("selic historico", "https://www.bcb.gov.br/api/servico/sitebcb/historicotaxasjuros")
+          t("focus ipca", "https://olinda.bcb.gov.br/olinda/servico/Expectativas/versao/v1/odata/ExpectativasMercadoAnuais?$top=3&$filter=Indicador%20eq%20'IPCA'&$orderby=Data%20desc&$format=json")
+          PY
