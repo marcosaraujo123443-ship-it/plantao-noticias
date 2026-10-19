@@ -28,8 +28,15 @@ def get(url):
 def mes(data):                       # "01/09/2026" -> "2026-09"
     d, m, a = data.split("/"); return f"{a}-{m}"
 
-def serie(cod, n=26):
-    return [{"data": i["data"], "valor": float(i["valor"])} for i in get(SGS.format(cod) + f"/ultimos/{n}?formato=json")]
+def serie(cod, diaria=False):
+    """Mensais: os últimos ~30 meses por intervalo de datas (a API limita 'ultimos' a 20). Diárias: só o último."""
+    if diaria:
+        url = SGS.format(cod) + "/ultimos/1?formato=json"
+    else:
+        hoje = datetime.now(timezone.utc)
+        ini = (hoje - timedelta(days=930)).strftime("%d/%m/%Y")
+        url = SGS.format(cod) + f"?formato=json&dataInicial={ini}&dataFinal={hoje:%d/%m/%Y}"
+    return [{"data": i["data"], "valor": float(i["valor"])} for i in get(url)]
 
 def acumulado(valores):
     p = 1.0
@@ -41,7 +48,7 @@ def main():
     out, erros = {"atualizado_utc": agora.strftime("%Y-%m-%dT%H:%M:%SZ"), "fonte": "Banco Central (SGS)", "series": {}}, []
     for chave, (cod, nome, fonte, tipo) in SERIES.items():
         try:
-            pts = serie(cod)
+            pts = serie(cod, diaria=(chave == "cdi"))
             if tipo == "mensal":
                 dados = [{"mes": mes(p["data"]), "valor": p["valor"]} for p in pts]
                 for i, d in enumerate(dados):
@@ -75,7 +82,9 @@ def main():
     except Exception as ex:
         erros.append(f"copom: {ex}")
     out["erros"] = erros
-    if not out["series"]: raise SystemExit("Nada coletado: " + "; ".join(erros))
+    for e in erros: print("::warning::" + e)
+    if not out["series"]:
+        print("::error::Nada coletado: " + "; ".join(erros)); raise SystemExit(1)
     with open("indicadores.json", "w", encoding="utf-8") as f: json.dump(out, f, ensure_ascii=False, indent=1)
     print("Indicadores:", ", ".join(f"{k} {v['dados'][-1]['mes'] if 'dados' in v else v.get('data')}" for k, v in out["series"].items()),
           "| Copom:", (out.get("copom") or [{}])[-1].get("titulo"), "| erros:", erros)
