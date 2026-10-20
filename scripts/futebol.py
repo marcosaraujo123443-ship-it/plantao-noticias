@@ -57,7 +57,7 @@ def jogo(ev):
     st = (ev.get("status") or comp.get("status") or {}).get("type", {})
     return {"data": ev.get("date"), "estado": st.get("state"), "detalhe": st.get("shortDetail") or st.get("detail"),
             "casa": time_jogo(casa), "fora": time_jogo(fora), "local": (comp.get("venue") or {}).get("fullName"),
-            "_temp": (ev.get("season") or {}).get("slug")}
+            "_temp": "{year}/{type}/{slug}".format(**{"year": "", "type": "", "slug": "", **(ev.get("season") or {})})}
 
 def ts(iso): return datetime.fromisoformat(iso.replace("Z", "+00:00")).timestamp()
 
