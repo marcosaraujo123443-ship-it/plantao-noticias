@@ -73,23 +73,33 @@ def numerar_rodadas(js, n_times):
     if atual: blocos.append(atual)
     meio = max(1, n_times // 2)
     grande = lambda b: len(b) >= max(3, round(meio * 0.5))
-    rod_time, n, soltos = {}, 0, []
+    rod_time, n, soltos, jogados = {}, 0, [], {}
     for bi, b in enumerate(blocos):
+        normais = b
         if not grande(b):
-            soltos += [(bi, g) for g in b]; continue
-        n += 1
-        # jogo cujos dois times jogam duas vezes no mesmo bloco = adiado encaixado no meio de outra rodada
-        cont = {}
-        for g in b:
-            for t in (g["casa"]["id"], g["fora"]["id"]): cont[t] = cont.get(t, 0) + 1
-        for g in b:
-            if cont[g["casa"]["id"]] > 1 and cont[g["fora"]["id"]] > 1:
-                soltos.append((bi, g)); cont[g["casa"]["id"]] -= 1; cont[g["fora"]["id"]] -= 1; continue
-            g["rodada"] = n
-            for t in (g["casa"]["id"], g["fora"]["id"]): rod_time.setdefault(t, set()).add(n)
-        b_n = n
-        for bb_i, g in soltos:
-            if bb_i == bi: g["_bloco_rod"] = b_n
+            soltos += [(bi, g) for g in b]
+        else:
+            # jogo cujos dois times jogam duas vezes no mesmo bloco = adiado encaixado no meio de outra rodada
+            cont = {}
+            for g in b:
+                for t in (g["casa"]["id"], g["fora"]["id"]): cont[t] = cont.get(t, 0) + 1
+            normais = []
+            for g in b:
+                if cont[g["casa"]["id"]] > 1 and cont[g["fora"]["id"]] > 1:
+                    soltos.append((bi, g)); cont[g["casa"]["id"]] -= 1; cont[g["fora"]["id"]] -= 1
+                    for t in (g["casa"]["id"], g["fora"]["id"]): jogados[t] = jogados.get(t, 0) + 1   # já conta o extra
+                else: normais.append(g)
+            # número da rodada = o que a maioria dos times do bloco está jogando (jogos anteriores + 1)
+            cand = [jogados.get(t, 0) + 1 for g in normais for t in (g["casa"]["id"], g["fora"]["id"])]
+            n = max(set(cand), key=cand.count)
+            for g in normais:
+                g["rodada"] = n
+                for t in (g["casa"]["id"], g["fora"]["id"]): rod_time.setdefault(t, set()).add(n)
+            for bb_i, g in soltos:
+                if bb_i == bi: g.setdefault("_bloco_rod", n)
+        for g in (normais if grande(b) else b):
+            for t in (g["casa"]["id"], g["fora"]["id"]): jogados[t] = jogados.get(t, 0) + 1
+    n = max((r for rs in rod_time.values() for r in rs), default=0)
     total = n
     for bi, g in soltos:
         # rodada "do momento" em que o jogo acontece, para marcar se ele está atrasado em relação a ela
