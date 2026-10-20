@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Classificação dos campeonatos (API pública da ESPN) e grava futebol.json (roda no GitHub Actions)."""
+"""Classificação, últimos resultados e próximos jogos dos campeonatos (API pública da ESPN); grava futebol.json."""
 import json, time, urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 UA = {"User-Agent": "Mozilla/5.0 (compatible; PlantaoNoticias/1.0)"}
 LIGAS = [("bra.1", "Brasileirão Série A"), ("bra.2", "Brasileirão Série B"), ("eng.1", "Premier League (Inglaterra)"),
@@ -44,6 +44,30 @@ def grupo(st, nome):
         if l["pos"] is None: l["pos"] = i
     return {"nome": nome, "linhas": linhas}
 
+def time_jogo(c):
+    t = c.get("team", {})
+    return {"nome": t.get("shortDisplayName") or t.get("displayName"), "sigla": t.get("abbreviation"),
+            "escudo": t.get("logo"), "gols": inteiro(c.get("score")), "venceu": c.get("winner")}
+
+def jogos(cod):
+    """Jogos de 10 dias atrás a 14 dias à frente: até 10 últimos resultados e 10 próximos (inclui os em andamento)."""
+    hoje = datetime.now(timezone.utc)
+    datas = f"{(hoje - timedelta(days=10)):%Y%m%d}-{(hoje + timedelta(days=14)):%Y%m%d}"
+    d = get(f"https://site.api.espn.com/apis/site/v2/sports/soccer/{cod}/scoreboard?dates={datas}&limit=300&region=br&lang=pt")
+    out = []
+    for ev in d.get("events", []):
+        comp = (ev.get("competitions") or [{}])[0]
+        cs = comp.get("competitors") or []
+        casa = next((c for c in cs if c.get("homeAway") == "home"), cs[0] if cs else {})
+        fora = next((c for c in cs if c.get("homeAway") == "away"), cs[1] if len(cs) > 1 else {})
+        st = (ev.get("status") or comp.get("status") or {}).get("type", {})
+        out.append({"data": ev.get("date"), "estado": st.get("state"), "detalhe": st.get("shortDetail") or st.get("detail"),
+                    "casa": time_jogo(casa), "fora": time_jogo(fora), "local": (comp.get("venue") or {}).get("fullName")})
+    out.sort(key=lambda j: j["data"] or "")
+    feitos = [j for j in out if j["estado"] == "post"][-10:]
+    proximos = [j for j in out if j["estado"] in ("pre", "in")][:10]
+    return {"ultimos": feitos[::-1], "proximos": proximos}
+
 def main():
     anterior = {}
     try: anterior = {l["id"]: l for l in json.load(open("futebol.json", encoding="utf-8")).get("ligas", [])}
@@ -57,8 +81,13 @@ def main():
             grupos = [g for g in grupos if g["linhas"]]
             if not grupos: raise ValueError("sem tabela")
             st = filhos[0].get("standings", {})
-            ligas.append({"id": cod, "nome": nome, "temporada": st.get("seasonDisplayName") or str(st.get("season") or ""),
-                          "grupos": grupos})
+            liga = {"id": cod, "nome": nome, "temporada": st.get("seasonDisplayName") or str(st.get("season") or ""),
+                    "grupos": grupos}
+            try: liga["jogos"] = jogos(cod)
+            except Exception as e:
+                erros.append(f"{cod} jogos: {e}")
+                if anterior.get(cod, {}).get("jogos"): liga["jogos"] = anterior[cod]["jogos"]
+            ligas.append(liga)
         except Exception as e:
             erros.append(f"{cod}: {e}")
             if cod in anterior: ligas.append(anterior[cod])
@@ -67,7 +96,9 @@ def main():
     with open("futebol.json", "w", encoding="utf-8") as f:
         json.dump({"atualizado_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "fonte": "ESPN",
                    "ligas": ligas, "erros": erros}, f, ensure_ascii=False, separators=(",", ":"))
-    print(", ".join(f"{l['id']} {sum(len(g['linhas']) for g in l['grupos'])} times/{len(l['grupos'])} grupos" for l in ligas), "erros:", erros)
+    print(", ".join(f"{l['id']} {sum(len(g['linhas']) for g in l['grupos'])} times, {len((l.get('jogos') or {}).get('ultimos', []))}/"
+                    f"{len((l.get('jogos') or {}).get('proximos', []))} jogos" for l in ligas), "erros:", erros)
+    for er in erros: print("::warning::" + er)
 
 if __name__ == "__main__":
     main()
