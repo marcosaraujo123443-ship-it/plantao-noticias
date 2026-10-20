@@ -118,9 +118,14 @@ for s in SECOES:
 </div>'''
     if s == "Futebol":
         painel = '''<div class="painel" data-fut>
+  <div class="filtros-uf fut-sel"><label>Campeonato <select data-liga aria-label="Escolher campeonato"></select></label></div>
+  <section class="quadro" data-jogos>
+    <header><h3>Jogos</h3>
+      <div class="seg" role="group" aria-label="Jogos"><button class="on" data-jg="proximos" aria-pressed="true">Próximos jogos</button><button data-jg="ultimos" aria-pressed="false">Últimos resultados</button></div></header>
+    <ul class="jg" data-jgl><li class="jg-vazio">Carregando os jogos…</li></ul>
+  </section>
   <section class="quadro">
     <header><h3>Classificação</h3>
-      <div class="filtros-uf"><label>Campeonato <select data-liga aria-label="Escolher campeonato"></select></label></div>
       <p class="per" data-ftemp>Carregando a tabela…</p></header>
     <div data-ftab></div>
     <a class="mais" data-flink href="tabelas/">Ver todas as tabelas →</a>
@@ -146,6 +151,11 @@ for s in SECOES:
         </div></header>
       <div class="tw"><table class="tab-m"><thead><tr><th>Fundo</th><th class="seg-col">Segmento</th><th class="n">Cotação</th><th class="n">Dia</th><th class="n">DY 12m</th><th class="n">P/VP</th><th class="n">Valor merc.</th></tr></thead><tbody data-fb></tbody></table></div>
       <a class="mais" href="fiis.html">Ver todos os fundos imobiliários →</a>
+    </section>
+    <section class="quadro" aria-label="Indicadores econômicos" data-eco>
+      <header><h3>Indicadores econômicos</h3><p class="per" data-ecot>Carregando os indicadores…</p></header>
+      <div class="tw"><table class="tab-m"><thead><tr><th>Indicador</th><th class="n">Último</th><th class="n">12 meses</th><th>Referência</th></tr></thead><tbody data-ecob></tbody></table></div>
+      <a class="mais" href="indicadores.html">Ver os indicadores em detalhe →</a>
     </section>
   </div>
   <p class="nota" data-nota></p>

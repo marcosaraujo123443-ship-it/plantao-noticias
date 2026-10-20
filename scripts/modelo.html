@@ -163,6 +163,16 @@ h2 a:hover,h3 a:hover,h4 a:hover{text-decoration:underline;text-decoration-thick
 .fut-t td.pt{font-weight:800}
 .fut-g{padding:4px 16px 8px}
 .fut-g h4{font:700 15px var(--f-head);margin:12px 0 4px}
+.fut-sel{padding:2px 0}
+.jg{list-style:none;margin:0;padding:2px 16px 8px}
+.jg li{display:grid;grid-template-columns:4.4em minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule);font-size:14px}
+.jg li:last-child{border-bottom:0}.jg li.jg-vazio{display:block;color:var(--ink-2);font-size:13.5px}
+.jg-d{font-size:12px;color:var(--ink-2);line-height:1.3}
+.jg-t{display:flex;align-items:center;gap:6px;min-width:0}.jg-t.c{justify-content:flex-end;text-align:right}
+.jg-t span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.jg-t img{width:20px;height:20px;object-fit:contain;flex:none}
+.jg-t.v span{font-weight:800}
+.jg-p{font-weight:800;font-variant-numeric:tabular-nums;min-width:3.4em;text-align:center}.jg-p.x{color:var(--ink-2);font-weight:600}
+.jg-vivo{display:inline-block;background:var(--down);color:#fff;font-size:10.5px;font-weight:700;border-radius:4px;padding:1px 5px;margin-top:2px}
 .fut-leg{display:flex;flex-wrap:wrap;gap:6px 14px;padding:4px 16px 0;font-size:12.5px;color:var(--ink-2)}
 .fut-leg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
 [data-fut] .nota{padding:8px 16px 16px}
@@ -246,7 +256,7 @@ footer a{font-weight:600}
   <div class="gut">
     <p><b>Plantão Informa</b> reúne {{TOTAL}} manchetes de {{NFONTES}} fontes: {{FONTES}}. Títulos pertencem aos veículos de origem; cada link leva à matéria original.</p>
     <p>Cotações com atraso, apenas informativas. Não são recomendação de investimento. <a href="https://t.me/plantaodenoticias" target="_blank" rel="noopener">Siga no Telegram</a>.</p>
-    <p class="links-rod"><a href="contas/">Contas públicas</a> · <a href="tabelas/">Tabelas do futebol</a> · <a href="agro.html">Cotações do agro</a> · <a href="acoes.html">Ações</a> · <a href="fiis.html">Fundos imobiliários</a></p>
+    <p class="links-rod"><a href="contas/">Contas públicas</a> · <a href="tabelas/">Tabelas do futebol</a> · <a href="agro.html">Cotações do agro</a> · <a href="acoes.html">Ações</a> · <a href="fiis.html">Fundos imobiliários</a> · <a href="indicadores.html">Indicadores econômicos</a></p>
     <p class="links-rod"><a href="sobre.html">Sobre</a> · <a href="privacidade.html">Política de privacidade</a> · <a href="sobre.html#contato">Contato e remoção de conteúdo</a></p>
   </div>
 </footer>
@@ -265,6 +275,7 @@ footer a{font-weight:600}
     if(rolar) window.scrollTo({top:0});
     if(id==='politica'&&window.carregarContas) window.carregarContas();
     if(id==='futebol'&&window.carregarFut) window.carregarFut();
+    if(id==='mercado'&&window.carregarEco) window.carregarEco();
     if(id==='agro'&&window.carregarAgro) window.carregarAgro();
   }
   document.addEventListener('click',function(ev){
@@ -337,6 +348,7 @@ footer a{font-weight:600}
         g.linhas.map(function(t){
           var cor=t.cor?('#'+String(t.cor).replace('#','')):''; if(t.nota&&cor) leg[t.nota]=cor;
           return '<tr><td class="ps"'+(cor?' style="border-left-color:'+esc(cor)+'"':'')+(t.nota?' title="'+esc(t.nota)+'"':'')+'>'+t.pos+'</td><td class="tm">'+(t.escudo?'<img src="'+esc(t.escudo)+'" alt="" loading="lazy" onerror="this.remove()">':'')+esc(t.time)+'</td><td class="pt">'+(t.pts==null?'–':t.pts)+'</td><td>'+(t.j==null?'–':t.j)+'</td><td>'+(t.v==null?'–':t.v)+'</td><td class="xs">'+(t.e==null?'–':t.e)+'</td><td class="xs">'+(t.d==null?'–':t.d)+'</td><td class="xs">'+(t.gp==null?'–':t.gp)+'</td><td class="xs">'+(t.gc==null?'–':t.gc)+'</td><td>'+(t.sg==null?'–':(t.sg>0?'+':'')+t.sg)+'</td></tr>'}).join('')+'</tbody></table></div>'}).join('');
+    jogosFut(lg);
     var lk=Object.keys(leg);
     box.querySelector('[data-ftab]').innerHTML=(lk.length?'<div class="fut-leg">'+lk.map(function(k){return '<span><i style="background:'+esc(leg[k])+'"></i>'+esc(k)+'</span>'}).join('')+'</div>':'')+'<div class="fut-g">'+html+'</div>';
     if(FUT.atualizado_utc){
@@ -344,6 +356,29 @@ footer a{font-weight:600}
       box.querySelector('[data-fnota]').textContent='Atualizada em '+h+' (horário de Brasília), de hora em hora. Fonte: ESPN. P = pontos, J = jogos, V = vitórias, E = empates, D = derrotas, GP = gols pró, GC = gols contra, SG = saldo.';
     }
   }
+  var JG='proximos';
+  function jogosFut(lg){
+    var ul=document.querySelector('[data-jgl]'); if(!ul) return;
+    var J=((lg&&lg.jogos)||{})[JG]||[];
+    if(!J.length){ ul.innerHTML='<li class="jg-vazio">'+(JG==='proximos'?'Nenhum jogo marcado para os próximos dias.':'Nenhum resultado nos últimos dias.')+'</li>'; return; }
+    function tm(t,lado,ven){ return '<span class="jg-t '+lado+(ven?' v':'')+'">'+(lado==='f'&&t.escudo?'<img src="'+esc(t.escudo)+'" alt="" loading="lazy" onerror="this.remove()">':'')
+      +'<span>'+esc(t.nome||'')+'</span>'+(lado==='c'&&t.escudo?'<img src="'+esc(t.escudo)+'" alt="" loading="lazy" onerror="this.remove()">':'')+'</span>'; }
+    ul.innerHTML=J.map(function(j){
+      var d=new Date(j.data), o={timeZone:'America/Sao_Paulo'};
+      var dia=d.toLocaleDateString('pt-BR',Object.assign({weekday:'short',day:'2-digit',month:'2-digit'},o)).replace('.','').replace(',','');
+      var hora=d.toLocaleTimeString('pt-BR',Object.assign({hour:'2-digit',minute:'2-digit'},o));
+      var vivo=j.estado==='in', fim=j.estado==='post';
+      var placar=(vivo||fim)?'<span class="jg-p">'+(j.casa.gols==null?'–':j.casa.gols)+' × '+(j.fora.gols==null?'–':j.fora.gols)+'</span>':'<span class="jg-p x">×</span>';
+      var info=vivo?esc(dia)+'<br><span class="jg-vivo">AO VIVO '+esc(j.detalhe||'')+'</span>':esc(dia)+'<br>'+esc(hora);
+      return '<li title="'+esc(j.local||'')+'"><span class="jg-d">'+info+'</span>'+tm(j.casa,'c',fim&&j.casa.venceu)+placar+tm(j.fora,'f',fim&&j.fora.venceu)+'</li>';
+    }).join('');
+  }
+  document.addEventListener('click',function(ev){
+    var b=ev.target.closest('[data-jg]'); if(!b) return;
+    JG=b.dataset.jg;
+    document.querySelectorAll('[data-jg]').forEach(function(x){var on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on)});
+    var lg=FUT&&FUT.ligas&&(FUT.ligas.filter(function(l){return l.id===LIGA})[0]||FUT.ligas[0]); jogosFut(lg);
+  });
   document.addEventListener('change',function(ev){
     if(ev.target.matches('[data-liga]')){ LIGA=ev.target.value; try{localStorage.setItem('plantao-liga',LIGA)}catch(e){} tabelaFut(); }
   });
@@ -354,6 +389,28 @@ footer a{font-weight:600}
       .catch(function(){var p=document.querySelector('[data-ftemp]'); if(p) p.textContent='Não foi possível carregar a tabela agora.'; FUT=null});
   };
   if((location.hash||'')==='#futebol') window.carregarFut();
+
+  /* Indicadores econômicos (Banco Central) */
+  var ECO=null;
+  window.carregarEco=function(){
+    if(ECO||!/^https?:/.test(location.protocol)) return;
+    ECO={};
+    fetch('indicadores.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){
+      ECO=d||{}; var tb=document.querySelector('[data-ecob]'); if(!tb||!ECO.series) return;
+      var nf=new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+      var M=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+      function mes(m){var p=m.split('-');return M[+p[1]-1]+'/'+p[0].slice(2)}
+      var L=[];
+      if(ECO.copom&&ECO.copom.length){var c=ECO.copom[ECO.copom.length-1];L.push(['Selic',nf.format(c.taxa)+'% a.a.','–','Copom '+c.data.slice(8,10)+'/'+c.data.slice(5,7)])}
+      if(ECO.series.cdi) L.push(['CDI',nf.format(ECO.series.cdi.atual)+'% a.a.','–',ECO.series.cdi.data.slice(0,5)]);
+      ['ipca','ipca15','igpm','igpdi','inpc'].forEach(function(k){var s=ECO.series[k];if(!s)return;var u=s.dados[s.dados.length-1];
+        L.push([s.nome,nf.format(u.valor)+'%',u.doze!=null?nf.format(u.doze)+'%':'–',mes(u.mes)])});
+      var de=ECO.series.desemprego; if(de){var u=de.dados[de.dados.length-1];L.push(['Desemprego',nf.format(u.valor).replace(/0$/,'')+'%','–',mes(u.mes)+' (trim.)'])}
+      tb.innerHTML=L.map(function(r){return '<tr><td><b>'+esc(r[0])+'</b></td><td class="n">'+esc(r[1])+'</td><td class="n">'+esc(r[2])+'</td><td>'+esc(r[3])+'</td></tr>'}).join('');
+      var t=document.querySelector('[data-ecot]'); if(t) t.textContent='Última divulgação de cada indicador. Fontes: IBGE, FGV e Banco Central.';
+    }).catch(function(){var t=document.querySelector('[data-ecot]'); if(t) t.textContent='Não foi possível carregar os indicadores agora.'; ECO=null});
+  };
+  if((location.hash||'')==='#mercado') window.carregarEco();
 
   /* Contas dos estados (Tesouro Nacional, SICONFI) */
   var EST=null, UF='SP', EP='atual', nf1=new Intl.NumberFormat('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1});

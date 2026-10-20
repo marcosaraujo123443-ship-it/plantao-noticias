@@ -60,11 +60,12 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .up{color:var(--up)}.down{color:var(--down)}.esc{width:18px;height:18px;vertical-align:-4px;margin-right:6px}
 .zona td:first-child{box-shadow:inset 4px 0 0 var(--z)}.leg{font-size:13px;color:var(--ink2);margin:8px 0 0}.leg i{display:inline-block;width:10px;height:10px;margin:0 5px 0 12px;vertical-align:0}
 .lista{columns:3 220px;padding:0;list-style:none}.lista li{padding:3px 0}
+.jogo td.pl{text-align:center;font-weight:800;white-space:nowrap}.jogo td.cs{text-align:right}.vivo{background:var(--down);color:#fff;font-size:11px;font-weight:700;padding:1px 5px;border-radius:3px}
 .nota{color:var(--ink2);font-size:13.5px;margin-top:28px;border-top:1px solid var(--rule);padding-top:12px}
 @media (max-width:600px){th,td{padding:7px 8px}table{font-size:13.5px}td:first-child{min-width:150px}}"""
 
 NAV = [("contas/", "Contas públicas"), ("tabelas/", "Tabelas do futebol"), ("agro.html", "Cotações do agro"),
-       ("acoes.html", "Ações"), ("fiis.html", "Fundos imobiliários")]
+       ("acoes.html", "Ações"), ("fiis.html", "Fundos imobiliários"), ("indicadores.html", "Indicadores econômicos")]
 PAGINAS = []
 
 def limpa_url(caminho):
@@ -179,6 +180,23 @@ ZONAS = {"bra.1": [(1, 6, "#2e7d32", "Zona da Libertadores"), (7, 12, "#1565c0",
                    (17, 20, "#c62828", "Zona de rebaixamento")],
          "bra.2": [(1, 4, "#2e7d32", "Zona de acesso"), (17, 20, "#c62828", "Zona de rebaixamento")]}
 
+DIAS_SEM = ["seg", "ter", "qua", "qui", "sex", "sáb", "dom"]
+
+def tabela_jogos(lista):
+    rows = []
+    for j in lista:
+        try: d = datetime.fromisoformat(j["data"].replace("Z", "+00:00")).astimezone(BRT)
+        except Exception: continue
+        c, f = j["casa"], j["fora"]
+        if j["estado"] == "pre": pl = "×"
+        else: pl = f'{"" if c.get("gols") is None else c["gols"]} × {"" if f.get("gols") is None else f["gols"]}'
+        quando_txt = f"{DIAS_SEM[d.weekday()]} {d:%d/%m} · {d:%H:%M}"
+        if j["estado"] == "in": quando_txt = f'<span class="vivo">AO VIVO {e(j.get("detalhe") or "")}</span>'
+        neg = lambda t, lado: f'<b>{e(t["nome"])}</b>' if j["estado"] == "post" and t.get("venceu") else e(t["nome"])
+        rows.append(f'<tr class="jogo"><td>{quando_txt}</td><td class="cs">{neg(c, "c")}</td><td class="pl">{pl}</td>'
+                    f'<td>{neg(f, "f")}</td><td>{e(j.get("local") or "")}</td></tr>')
+    return tabela([("Data", 0), ("Mandante", 0), ("", 0), ("Visitante", 0), ("Estádio", 0)], rows)
+
 def futebol(fut):
     itens = []
     for l in fut.get("ligas", []):
@@ -206,10 +224,14 @@ def futebol(fut):
                    + (f", {dif} {'ponto' if dif == 1 else 'pontos'} à frente do {e(b['time'])}" if dif else f", empatado em pontos com o {e(b['time'])}")
                    + f". {e(lin[-1]['time'])} é o último colocado, com {lin[-1]['pts']} pontos.</p>")
         outras = " · ".join(f'<a href="{SLUG_LIGA.get(o["id"], slug(o["nome"]))}.html">{e(o["nome"])}</a>' for o in fut["ligas"] if o["id"] != l["id"])
+        jg = l.get("jogos") or {}
+        jogos_html = ""
+        if jg.get("proximos"): jogos_html += "<h2>Próximos jogos</h2>" + tabela_jogos(jg["proximos"])
+        if jg.get("ultimos"): jogos_html += "<h2>Últimos resultados</h2>" + tabela_jogos(jg["ultimos"])
         ano = re.search(r"\d{4}(?:[-/]\d{2,4})?", l.get("temporada") or "")
         pagina(f"tabelas/{sl}.html", f"Tabela {l['nome']} {ano.group(0).replace("-", "/") if ano else ''}".strip(),
                f"Classificação atualizada de {l['nome']}: pontos, jogos, vitórias, saldo de gols e zonas de classificação e rebaixamento.",
-               txt + "".join(blocos) + f"<h2>Outros campeonatos</h2><p>{outras}</p>"
+               txt + "".join(blocos) + jogos_html + f"<h2>Outros campeonatos</h2><p>{outras}</p>"
                + '<p class="nota">P = pontos, J = jogos, V = vitórias, E = empates, D = derrotas, GP = gols pró, GC = gols contra, SG = saldo. Fonte: ESPN.</p>',
                [("tabelas/", "Tabelas do futebol")], fut.get("atualizado_utc"))
     lista = "".join(f'<li><a href="{sl}.html">{e(l["nome"])}</a> <small>· líder: {e(l["grupos"][0]["linhas"][0]["time"]) if len(l["grupos"]) == 1 else "fase de grupos"}</small></li>'
@@ -217,6 +239,61 @@ def futebol(fut):
     pagina("tabelas/index.html", "Tabelas do futebol",
            "Classificação atualizada do Brasileirão Série A e B, Premier League, La Liga, Serie A, Bundesliga, Ligue 1, Champions League e mais.",
            f'<p class=lead>Classificação dos principais campeonatos, atualizada de hora em hora.</p><ul class="lista">{lista}</ul>', None, fut.get("atualizado_utc"))
+
+# ---------------- Indicadores econômicos ----------------
+EXPLICA = {
+    "ipca": "Inflação oficial do país, medida pelo IBGE para famílias com renda de 1 a 40 salários mínimos. É a referência da meta de inflação.",
+    "ipca15": "Prévia da inflação oficial, com preços coletados de meados do mês anterior a meados do mês de referência.",
+    "igpm": "Índice da FGV que combina preços no atacado, ao consumidor e da construção. É usado para reajustar muitos aluguéis.",
+    "igpdi": "Índice Geral de Preços da FGV, com a mesma composição do IGP-M em outro período de coleta.",
+    "inpc": "Inflação para famílias com renda de 1 a 5 salários mínimos. É a base do reajuste do salário mínimo e de benefícios do INSS.",
+}
+MES_CURTO = ["", "jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
+
+def mes_txt(m, longo=False):
+    a, mm = m.split("-")
+    return f"{MESES[int(mm)]} de {a}" if longo else f"{MES_CURTO[int(mm)]}/{a[2:]}"
+
+def indicadores(ind):
+    S, cop = ind.get("series", {}), ind.get("copom") or []
+    cards, txt = [], ""
+    if cop:
+        u = cop[-1]
+        cards.append(("Selic", f"{br(u['taxa'])}% a.a.", f"Copom de {u['data'][8:10]}/{u['data'][5:7]}/{u['data'][:4]}"))
+    if S.get("cdi"): cards.append(("CDI", f"{br(S['cdi']['atual'])}% a.a.", f"em {S['cdi']['data']}"))
+    for k in ("ipca", "igpm", "inpc"):
+        if S.get(k):
+            u = S[k]["dados"][-1]
+            cards.append((S[k]["nome"] + " 12 meses", f"{br(u.get('doze'))}%", f"até {mes_txt(u['mes'], True)}"))
+    if S.get("desemprego"):
+        u = S["desemprego"]["dados"][-1]
+        cards.append(("Desemprego", f"{br(u['valor'], 1)}%", f"trimestre até {mes_txt(u['mes'], True)}"))
+    corpo = '<div class="cards">' + "".join(f'<div class="card"><span>{e(a)}</span><b>{e(b)}</b><i>{e(c)}</i></div>' for a, b, c in cards) + "</div>"
+    if cop and S.get("ipca"):
+        u, ip = cop[-1], S["ipca"]["dados"][-1]
+        txt = (f"<p class=lead>A Selic está em {br(u['taxa'])}% ao ano, segundo a última decisão do Copom. "
+               f"O IPCA, inflação oficial, ficou em {br(ip['valor'])}% em {mes_txt(ip['mes'], True)} e acumula {br(ip.get('doze'))}% em 12 meses.</p>")
+    if cop:
+        rows = [f'<tr><td>{c["reuniao"]}ª</td><td>{c["data"][8:10]}/{c["data"][5:7]}/{c["data"][:4]}</td><td>{e(c["acao"].capitalize())}</td>'
+                f'<td class="n">{br(c["taxa"])}%</td>{var(c.get("variacao"), " p.p.") if c.get("variacao") is not None else "<td class=n>–</td>"}</tr>'
+                for c in reversed(cop)]
+        corpo += ("<h2>Selic: decisões do Copom</h2><p>A Selic é a taxa básica de juros da economia. Ela influencia os juros de empréstimos e "
+                  "financiamentos e o rendimento da renda fixa.</p>"
+                  + tabela([("Reunião", 0), ("Data", 0), ("Decisão", 0), ("Selic", 1), ("Variação", 1)], rows))
+    for k in ("ipca", "ipca15", "igpm", "igpdi", "inpc"):
+        s = S.get(k)
+        if not s: continue
+        rows = [f'<tr><td>{mes_txt(d["mes"])}</td>{var(d["valor"])}<td class="n">{br(d.get("doze")) + "%" if d.get("doze") is not None else "–"}</td>'
+                f'<td class="n">{br(d.get("ano")) + "%" if d.get("ano") is not None else "–"}</td></tr>' for d in reversed(s["dados"][-13:])]
+        corpo += (f"<h2>{e(s['nome'])}</h2><p>{e(EXPLICA.get(k, ''))} Fonte: {e(s['fonte'])}.</p>"
+                  + tabela([("Mês", 0), ("No mês", 1), ("12 meses", 1), ("No ano", 1)], rows))
+    if S.get("desemprego"):
+        rows = [f'<tr><td>Trimestre até {mes_txt(d["mes"])}</td><td class="n">{br(d["valor"], 1)}%</td></tr>' for d in reversed(S["desemprego"]["dados"][-13:])]
+        corpo += ("<h2>Desemprego</h2><p>Taxa de desocupação da PNAD Contínua (IBGE): pessoas que procuraram trabalho e não encontraram, "
+                  "em trimestres móveis.</p>" + tabela([("Período", 0), ("Taxa", 1)], rows))
+    pagina("indicadores.html", "Indicadores econômicos: Selic, IPCA, IGP-M e desemprego",
+           "Selic e decisões do Copom, IPCA, IPCA-15, IGP-M, IGP-DI, INPC, CDI e desemprego, com histórico mensal e acumulado em 12 meses.",
+           txt + corpo + '<p class="nota">Fontes: IBGE, FGV e Banco Central (SGS e comunicados do Copom).</p>', None, ind.get("atualizado_utc"))
 
 # ---------------- Agro ----------------
 def agro(ag):
@@ -272,7 +349,8 @@ def mercado(m):
            None, m.get("atualizado_utc"))
 
 def main():
-    for nome, f in (("estados.json", contas), ("futebol.json", futebol), ("agro.json", agro), ("mercado.json", mercado)):
+    for nome, f in (("estados.json", contas), ("futebol.json", futebol), ("agro.json", agro), ("mercado.json", mercado),
+                    ("indicadores.json", indicadores)):
         d = ler(nome)
         if d:
             try: f(d)
