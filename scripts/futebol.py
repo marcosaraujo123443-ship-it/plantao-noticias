@@ -46,33 +46,88 @@ def grupo(st, nome):
 
 def time_jogo(c):
     t = c.get("team", {})
-    return {"nome": t.get("shortDisplayName") or t.get("displayName"), "sigla": t.get("abbreviation"),
+    return {"id": t.get("id"), "nome": t.get("shortDisplayName") or t.get("displayName"), "sigla": t.get("abbreviation"),
             "escudo": t.get("logo"), "gols": inteiro(c.get("score")), "venceu": c.get("winner")}
 
-def jogos(cod):
-    """Jogos de 10 dias atrás a 14 dias à frente: até 10 últimos resultados e 10 próximos (inclui os em andamento)."""
+def jogo(ev):
+    comp = (ev.get("competitions") or [{}])[0]
+    cs = comp.get("competitors") or []
+    casa = next((c for c in cs if c.get("homeAway") == "home"), cs[0] if cs else {})
+    fora = next((c for c in cs if c.get("homeAway") == "away"), cs[1] if len(cs) > 1 else {})
+    st = (ev.get("status") or comp.get("status") or {}).get("type", {})
+    return {"data": ev.get("date"), "estado": st.get("state"), "detalhe": st.get("shortDetail") or st.get("detail"),
+            "casa": time_jogo(casa), "fora": time_jogo(fora), "local": (comp.get("venue") or {}).get("fullName"),
+            "_temp": (ev.get("season") or {}).get("slug")}
+
+def ts(iso): return datetime.fromisoformat(iso.replace("Z", "+00:00")).timestamp()
+
+def numerar_rodadas(js, n_times):
+    """A ESPN não informa a rodada: os jogos de uma rodada acontecem num bloco de datas (folga de 30 h entre blocos).
+    Blocos grandes são rodadas, numeradas em ordem; jogos soltos (adiados/antecipados) vão para a rodada que falta
+    aos dois times."""
+    js.sort(key=lambda g: g["data"])
+    blocos, atual = [], []
+    for g in js:
+        if atual and ts(g["data"]) - ts(atual[-1]["data"]) > 30 * 3600: blocos.append(atual); atual = []
+        atual.append(g)
+    if atual: blocos.append(atual)
+    meio = max(1, n_times // 2)
+    grande = lambda b: len(b) >= max(3, round(meio * 0.5))
+    rod_time, n, soltos = {}, 0, []
+    for bi, b in enumerate(blocos):
+        if not grande(b):
+            soltos += [(bi, g) for g in b]; continue
+        n += 1
+        # jogo cujos dois times jogam duas vezes no mesmo bloco = adiado encaixado no meio de outra rodada
+        cont = {}
+        for g in b:
+            for t in (g["casa"]["id"], g["fora"]["id"]): cont[t] = cont.get(t, 0) + 1
+        for g in b:
+            if cont[g["casa"]["id"]] > 1 and cont[g["fora"]["id"]] > 1:
+                soltos.append((bi, g)); cont[g["casa"]["id"]] -= 1; cont[g["fora"]["id"]] -= 1; continue
+            g["rodada"] = n
+            for t in (g["casa"]["id"], g["fora"]["id"]): rod_time.setdefault(t, set()).add(n)
+        b_n = n
+        for bb_i, g in soltos:
+            if bb_i == bi: g["_bloco_rod"] = b_n
+    total = n
+    for bi, g in soltos:
+        # rodada "do momento" em que o jogo acontece, para marcar se ele está atrasado em relação a ela
+        anterior = g.pop("_bloco_rod", None) or max((x["rodada"] for bb in blocos[:bi] for x in bb if "rodada" in x), default=0)
+        usadas = rod_time.get(g["casa"]["id"], set()) | rod_time.get(g["fora"]["id"], set())
+        livre = next((r for r in range(1, total + 2) if r not in usadas), anterior or 1)
+        g["rodada"] = livre
+        if livre < anterior: g["adiado"] = True
+        for t in (g["casa"]["id"], g["fora"]["id"]): rod_time.setdefault(t, set()).add(livre)
+    return js
+
+def jogos(cod, n_times):
+    """Temporada inteira (para numerar as rodadas); guarda 2 rodadas antes e 2 depois da atual."""
     hoje = datetime.now(timezone.utc)
-    ini, fim = (hoje - timedelta(days=10)).strftime("%Y-%m-%d"), (hoje + timedelta(days=14)).strftime("%Y-%m-%d")
-    # a API não aceita intervalo de dias, mas aceita o mês inteiro: mês anterior, atual e seguinte
-    meses = sorted({(hoje + timedelta(days=dd)).strftime("%Y%m") for dd in (-10, 0, 14)})
     eventos = {}
-    for m in meses:
-        d = get(f"https://site.api.espn.com/apis/site/v2/sports/soccer/{cod}/scoreboard?dates={m}&limit=500&region=br&lang=pt")
+    for ano in sorted({hoje.year - 1, hoje.year, hoje.year + 1}):
+        try:
+            d = get(f"https://site.api.espn.com/apis/site/v2/sports/soccer/{cod}/scoreboard?dates={ano}&limit=1000&region=br&lang=pt")
+        except Exception:
+            continue
         for ev in d.get("events", []): eventos[ev.get("id")] = ev
-    out = []
-    for ev in eventos.values():
-        if not (ini <= (ev.get("date") or "")[:10] <= fim): continue
-        comp = (ev.get("competitions") or [{}])[0]
-        cs = comp.get("competitors") or []
-        casa = next((c for c in cs if c.get("homeAway") == "home"), cs[0] if cs else {})
-        fora = next((c for c in cs if c.get("homeAway") == "away"), cs[1] if len(cs) > 1 else {})
-        st = (ev.get("status") or comp.get("status") or {}).get("type", {})
-        out.append({"data": ev.get("date"), "estado": st.get("state"), "detalhe": st.get("shortDetail") or st.get("detail"),
-                    "casa": time_jogo(casa), "fora": time_jogo(fora), "local": (comp.get("venue") or {}).get("fullName")})
-    out.sort(key=lambda j: j["data"] or "")
-    feitos = [j for j in out if j["estado"] == "post"][-10:]
-    proximos = [j for j in out if j["estado"] in ("pre", "in")][:10]
-    return {"ultimos": feitos[::-1], "proximos": proximos}
+    todos = [jogo(ev) for ev in eventos.values() if ev.get("date")]
+    if not todos: raise ValueError("sem jogos")
+    # temporada vigente: a mais frequente entre os jogos de 10 dias atrás a 14 dias à frente
+    ini, fim = (hoje - timedelta(days=10)).isoformat()[:10], (hoje + timedelta(days=14)).isoformat()[:10]
+    perto = [g["_temp"] for g in todos if ini <= g["data"][:10] <= fim] or [max(todos, key=lambda g: g["data"])["_temp"]]
+    temp = max(set(perto), key=perto.count)
+    js = numerar_rodadas([g for g in todos if g["_temp"] == temp], n_times)
+    pend = [g["rodada"] for g in js if g["estado"] != "post" and not g.get("adiado")]
+    atual = min(pend) if pend else max(g["rodada"] for g in js)
+    rodadas = []
+    for r in range(max(1, atual - 2), atual + 3):
+        lista = [g for g in js if g["rodada"] == r]
+        if not lista: continue
+        for g in lista:
+            g.pop("_temp", None); g["casa"].pop("id", None); g["fora"].pop("id", None)
+        rodadas.append({"n": r, "jogos": lista})
+    return {"atual": atual, "rodadas": rodadas}
 
 def main():
     anterior = {}
@@ -89,7 +144,7 @@ def main():
             st = filhos[0].get("standings", {})
             liga = {"id": cod, "nome": nome, "temporada": st.get("seasonDisplayName") or str(st.get("season") or ""),
                     "grupos": grupos}
-            try: liga["jogos"] = jogos(cod)
+            try: liga["jogos"] = jogos(cod, sum(len(g["linhas"]) for g in grupos))
             except Exception as e:
                 erros.append(f"{cod} jogos: {e}")
                 if anterior.get(cod, {}).get("jogos"): liga["jogos"] = anterior[cod]["jogos"]
@@ -102,8 +157,8 @@ def main():
     with open("futebol.json", "w", encoding="utf-8") as f:
         json.dump({"atualizado_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "fonte": "ESPN",
                    "ligas": ligas, "erros": erros}, f, ensure_ascii=False, separators=(",", ":"))
-    print(", ".join(f"{l['id']} {sum(len(g['linhas']) for g in l['grupos'])} times, {len((l.get('jogos') or {}).get('ultimos', []))}/"
-                    f"{len((l.get('jogos') or {}).get('proximos', []))} jogos" for l in ligas), "erros:", erros)
+    print(", ".join(f"{l['id']} {sum(len(g['linhas']) for g in l['grupos'])} times, rodada {(l.get('jogos') or {}).get('atual')}: "
+                    + "/".join(str(len(r["jogos"])) for r in (l.get("jogos") or {}).get("rodadas", [])) for l in ligas), "erros:", erros)
     for er in erros: print("::warning::" + er)
 
 if __name__ == "__main__":
