@@ -52,10 +52,16 @@ def time_jogo(c):
 def jogos(cod):
     """Jogos de 10 dias atrás a 14 dias à frente: até 10 últimos resultados e 10 próximos (inclui os em andamento)."""
     hoje = datetime.now(timezone.utc)
-    datas = f"{(hoje - timedelta(days=10)):%Y%m%d}-{(hoje + timedelta(days=14)):%Y%m%d}"
-    d = get(f"https://site.api.espn.com/apis/site/v2/sports/soccer/{cod}/scoreboard?dates={datas}&limit=300&region=br&lang=pt")
+    ini, fim = (hoje - timedelta(days=10)).strftime("%Y-%m-%d"), (hoje + timedelta(days=14)).strftime("%Y-%m-%d")
+    # a API não aceita intervalo de dias, mas aceita o mês inteiro: mês anterior, atual e seguinte
+    meses = sorted({(hoje + timedelta(days=dd)).strftime("%Y%m") for dd in (-10, 0, 14)})
+    eventos = {}
+    for m in meses:
+        d = get(f"https://site.api.espn.com/apis/site/v2/sports/soccer/{cod}/scoreboard?dates={m}&limit=500&region=br&lang=pt")
+        for ev in d.get("events", []): eventos[ev.get("id")] = ev
     out = []
-    for ev in d.get("events", []):
+    for ev in eventos.values():
+        if not (ini <= (ev.get("date") or "")[:10] <= fim): continue
         comp = (ev.get("competitions") or [{}])[0]
         cs = comp.get("competitors") or []
         casa = next((c for c in cs if c.get("homeAway") == "home"), cs[0] if cs else {})
