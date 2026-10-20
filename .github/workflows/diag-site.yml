@@ -1,0 +1,11 @@
+name: Diagnóstico site (temporário)
+on: workflow_dispatch
+jobs:
+  ver:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for u in "tabelas/brasileirao-serie-a" "indicadores" ""; do
+            c=$(curl -sSL "https://plantaoinforma.com.br/$u?nc=$RANDOM")
+            echo "::notice::/$u -> $(echo "$c" | grep -o '[0-9]*ª rodada <small>([a-zé ]*)' | tr '\n' ';') | rd-nav: $(echo "$c" | grep -c 'data-rdt') | indicadores: $(echo "$c" | grep -c 'data-ecob')"
+          done
