@@ -1,0 +1,24 @@
+name: Diagnóstico ESPN (temporário)
+on: workflow_dispatch
+jobs:
+  testar:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          python3 - <<'PY'
+          import json, urllib.request
+          from datetime import datetime, timedelta, timezone
+          h = datetime.now(timezone.utc); a = (h - timedelta(days=10)).strftime("%Y%m%d"); b = (h + timedelta(days=14)).strftime("%Y%m%d")
+          base = "https://site.api.espn.com/apis/site/v2/sports/soccer/bra.1/scoreboard"
+          for nome, q in [("puro", ""), ("datas", f"?dates={a}-{b}"), ("datas+limit100", f"?dates={a}-{b}&limit=100"),
+                          ("datas+limit300", f"?dates={a}-{b}&limit=300"), ("datas+pt", f"?dates={a}-{b}&lang=pt&region=br"),
+                          ("dia", f"?dates={h:%Y%m%d}")]:
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(base + q, headers={"User-Agent": "Mozilla/5.0"}), timeout=30) as r:
+                      d = json.load(r)
+                  ev = d.get("events", [])
+                  det = ev[0]["status"]["type"].get("shortDetail") if ev else ""
+                  print(f"::notice::{nome}: OK {len(ev)} jogos; ex.: {ev[0]['name'] if ev else ''} {ev[0]['date'] if ev else ''} {det}")
+              except Exception as e:
+                  print(f"::error::{nome}: {e}")
+          PY
