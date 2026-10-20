@@ -121,7 +121,7 @@ for s in SECOES:
   <div class="filtros-uf fut-sel"><label>Campeonato <select data-liga aria-label="Escolher campeonato"></select></label></div>
   <section class="quadro" data-jogos>
     <header><h3>Jogos</h3>
-      <div class="seg" role="group" aria-label="Jogos"><button class="on" data-jg="proximos" aria-pressed="true">Próximos jogos</button><button data-jg="ultimos" aria-pressed="false">Últimos resultados</button></div></header>
+      <div class="rd-nav"><button data-rd="-1" aria-label="Rodada anterior">‹</button><b data-rdt>Rodada</b><button data-rd="1" aria-label="Próxima rodada">›</button></div></header>
     <ul class="jg" data-jgl><li class="jg-vazio">Carregando os jogos…</li></ul>
   </section>
   <section class="quadro">

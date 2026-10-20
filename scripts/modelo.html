@@ -164,6 +164,11 @@ h2 a:hover,h3 a:hover,h4 a:hover{text-decoration:underline;text-decoration-thick
 .fut-g{padding:4px 16px 8px}
 .fut-g h4{font:700 15px var(--f-head);margin:12px 0 4px}
 .fut-sel{padding:2px 0}
+.rd-nav{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.rd-nav button{font:700 20px/1 var(--f-body);width:40px;height:36px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);border-radius:8px;cursor:pointer}
+.rd-nav button:disabled{opacity:.3;cursor:default}.rd-nav b{font:700 16px var(--f-body)}
+.jg li.jg-dia{display:block;font-size:12px;font-weight:700;color:var(--ink-2);padding:14px 0 2px;border-bottom:0}
+.jg-tag{display:inline-block;font-size:10px;font-weight:700;color:var(--ink-2);border:1px solid var(--rule);border-radius:4px;padding:0 4px;margin-top:2px}
 .jg{list-style:none;margin:0;padding:2px 16px 8px}
 .jg li{display:grid;grid-template-columns:4.4em minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid var(--rule);font-size:14px}
 .jg li:last-child{border-bottom:0}.jg li.jg-vazio{display:block;color:var(--ink-2);font-size:13.5px}
@@ -356,28 +361,36 @@ footer a{font-weight:600}
       box.querySelector('[data-fnota]').textContent='Atualizada em '+h+' (horário de Brasília), de hora em hora. Fonte: ESPN. P = pontos, J = jogos, V = vitórias, E = empates, D = derrotas, GP = gols pró, GC = gols contra, SG = saldo.';
     }
   }
-  var JG='proximos';
+  var RD={};   /* rodada exibida por campeonato */
   function jogosFut(lg){
-    var ul=document.querySelector('[data-jgl]'); if(!ul) return;
-    var J=((lg&&lg.jogos)||{})[JG]||[];
-    if(!J.length){ ul.innerHTML='<li class="jg-vazio">'+(JG==='proximos'?'Nenhum jogo marcado para os próximos dias.':'Nenhum resultado nos últimos dias.')+'</li>'; return; }
-    function tm(t,lado,ven){ return '<span class="jg-t '+lado+(ven?' v':'')+'">'+(lado==='f'&&t.escudo?'<img src="'+esc(t.escudo)+'" alt="" loading="lazy" onerror="this.remove()">':'')
-      +'<span>'+esc(t.nome||'')+'</span>'+(lado==='c'&&t.escudo?'<img src="'+esc(t.escudo)+'" alt="" loading="lazy" onerror="this.remove()">':'')+'</span>'; }
-    ul.innerHTML=J.map(function(j){
-      var d=new Date(j.data), o={timeZone:'America/Sao_Paulo'};
-      var dia=d.toLocaleDateString('pt-BR',Object.assign({weekday:'short',day:'2-digit',month:'2-digit'},o)).replace('.','').replace(',','');
+    var ul=document.querySelector('[data-jgl]'), tt=document.querySelector('[data-rdt]'); if(!ul||!lg) return;
+    var J=lg.jogos||{}, R=J.rodadas||[];
+    var nav=document.querySelectorAll('[data-rd]');
+    if(!R.length){ ul.innerHTML='<li class="jg-vazio">Jogos indisponíveis para este campeonato.</li>'; if(tt) tt.textContent='Rodada'; nav.forEach(function(b){b.disabled=true}); return; }
+    var nums=R.map(function(r){return r.n}), n=RD[lg.id]; if(nums.indexOf(n)<0) n=nums.indexOf(J.atual)>=0?J.atual:nums[0]; RD[lg.id]=n;
+    var r=R[nums.indexOf(n)];
+    if(tt) tt.textContent=n+'ª rodada'+(n===J.atual?' · atual':'');
+    nav[0].disabled=nums.indexOf(n)===0; nav[1].disabled=nums.indexOf(n)===nums.length-1;
+    var o={timeZone:'America/Sao_Paulo'}, html='', dia0='';
+    function tm(t,lado,ven){ var img=t.escudo?'<img src="'+esc(t.escudo)+'" alt="" loading="lazy" onerror="this.remove()">':'';
+      return '<span class="jg-t '+lado+(ven?' v':'')+'">'+(lado==='f'?img:'')+'<span>'+esc(t.nome||'')+'</span>'+(lado==='c'?img:'')+'</span>'; }
+    r.jogos.forEach(function(j){
+      var d=new Date(j.data), dia=d.toLocaleDateString('pt-BR',Object.assign({weekday:'long',day:'2-digit',month:'2-digit'},o));
+      if(dia!==dia0){ html+='<li class="jg-dia">'+esc(dia.charAt(0).toUpperCase()+dia.slice(1))+'</li>'; dia0=dia; }
       var hora=d.toLocaleTimeString('pt-BR',Object.assign({hour:'2-digit',minute:'2-digit'},o));
       var vivo=j.estado==='in', fim=j.estado==='post';
       var placar=(vivo||fim)?'<span class="jg-p">'+(j.casa.gols==null?'–':j.casa.gols)+' × '+(j.fora.gols==null?'–':j.fora.gols)+'</span>':'<span class="jg-p x">×</span>';
-      var info=vivo?esc(dia)+'<br><span class="jg-vivo">AO VIVO '+esc(j.detalhe||'')+'</span>':esc(dia)+'<br>'+esc(hora);
-      return '<li title="'+esc(j.local||'')+'"><span class="jg-d">'+info+'</span>'+tm(j.casa,'c',fim&&j.casa.venceu)+placar+tm(j.fora,'f',fim&&j.fora.venceu)+'</li>';
-    }).join('');
+      var info=vivo?'<span class="jg-vivo">AO VIVO '+esc(j.detalhe||'')+'</span>':esc(hora)+(fim?'<br>encerrado':'');
+      if(j.adiado) info+='<br><span class="jg-tag">adiado</span>';
+      html+='<li title="'+esc(j.local||'')+'"><span class="jg-d">'+info+'</span>'+tm(j.casa,'c',fim&&j.casa.venceu)+placar+tm(j.fora,'f',fim&&j.fora.venceu)+'</li>';
+    });
+    ul.innerHTML=html;
   }
   document.addEventListener('click',function(ev){
-    var b=ev.target.closest('[data-jg]'); if(!b) return;
-    JG=b.dataset.jg;
-    document.querySelectorAll('[data-jg]').forEach(function(x){var on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on)});
-    var lg=FUT&&FUT.ligas&&(FUT.ligas.filter(function(l){return l.id===LIGA})[0]||FUT.ligas[0]); jogosFut(lg);
+    var b=ev.target.closest('[data-rd]'); if(!b||b.disabled) return;
+    var lg=FUT&&FUT.ligas&&(FUT.ligas.filter(function(l){return l.id===LIGA})[0]||FUT.ligas[0]); if(!lg||!lg.jogos) return;
+    var nums=lg.jogos.rodadas.map(function(r){return r.n}), i=nums.indexOf(RD[lg.id])+(+b.dataset.rd);
+    if(i>=0&&i<nums.length){ RD[lg.id]=nums[i]; jogosFut(lg); }
   });
   document.addEventListener('change',function(ev){
     if(ev.target.matches('[data-liga]')){ LIGA=ev.target.value; try{localStorage.setItem('plantao-liga',LIGA)}catch(e){} tabelaFut(); }

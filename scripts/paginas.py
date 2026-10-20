@@ -190,7 +190,7 @@ def tabela_jogos(lista):
         c, f = j["casa"], j["fora"]
         if j["estado"] == "pre": pl = "×"
         else: pl = f'{"" if c.get("gols") is None else c["gols"]} × {"" if f.get("gols") is None else f["gols"]}'
-        quando_txt = f"{DIAS_SEM[d.weekday()]} {d:%d/%m} · {d:%H:%M}"
+        quando_txt = f"{DIAS_SEM[d.weekday()]} {d:%d/%m} · {d:%H:%M}" + (" <small>(adiado)</small>" if j.get("adiado") else "")
         if j["estado"] == "in": quando_txt = f'<span class="vivo">AO VIVO {e(j.get("detalhe") or "")}</span>'
         neg = lambda t, lado: f'<b>{e(t["nome"])}</b>' if j["estado"] == "post" and t.get("venceu") else e(t["nome"])
         rows.append(f'<tr class="jogo"><td>{quando_txt}</td><td class="cs">{neg(c, "c")}</td><td class="pl">{pl}</td>'
@@ -225,9 +225,10 @@ def futebol(fut):
                    + f". {e(lin[-1]['time'])} é o último colocado, com {lin[-1]['pts']} pontos.</p>")
         outras = " · ".join(f'<a href="{SLUG_LIGA.get(o["id"], slug(o["nome"]))}.html">{e(o["nome"])}</a>' for o in fut["ligas"] if o["id"] != l["id"])
         jg = l.get("jogos") or {}
-        jogos_html = ""
-        if jg.get("proximos"): jogos_html += "<h2>Próximos jogos</h2>" + tabela_jogos(jg["proximos"])
-        if jg.get("ultimos"): jogos_html += "<h2>Últimos resultados</h2>" + tabela_jogos(jg["ultimos"])
+        jogos_html, R = "", {r["n"]: r["jogos"] for r in jg.get("rodadas", [])}
+        at = jg.get("atual")
+        for n, rot in ((at, "rodada atual"), ((at or 0) + 1, "próxima rodada"), ((at or 0) - 1, "rodada anterior")):
+            if n in R: jogos_html += f"<h2>{n}ª rodada <small>({rot})</small></h2>" + tabela_jogos(R[n])
         ano = re.search(r"\d{4}(?:[-/]\d{2,4})?", l.get("temporada") or "")
         pagina(f"tabelas/{sl}.html", f"Tabela {l['nome']} {ano.group(0).replace("-", "/") if ano else ''}".strip(),
                f"Classificação atualizada de {l['nome']}: pontos, jogos, vitórias, saldo de gols e zonas de classificação e rebaixamento.",
