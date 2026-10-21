@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-10-21T21:11:50Z",
+ "atualizado_utc": "2026-10-21T21:44:06Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -9,21 +9,27 @@
   },
   {
    "nome": "Dólar",
-   "valor": 5.0248,
-   "var": -0.03978674305721297,
+   "valor": 5.0238,
+   "var": -0.059680114585825006,
    "tipo": "brl"
   },
   {
    "nome": "Euro",
-   "valor": 5.6425,
-   "var": -0.08145773937064948,
+   "valor": 5.6418,
+   "var": -0.09385348231836232,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 425248.874248,
-   "var": 2.0374573758857872,
+   "valor": 425661.1985339999,
+   "var": 2.1567241145240335,
    "tipo": "brl"
+  },
+  {
+   "nome": "Selic",
+   "valor": 13.75,
+   "var": null,
+   "tipo": "pct"
   },
   {
    "nome": "IPCA 12m",
@@ -1755,7 +1761,6 @@
   }
  },
  "erros": [
-  "moedas (awesomeapi): HTTP Error 429: Too Many Requests",
-  "Selic: HTTP Error 502: Bad Gateway"
+  "moedas (awesomeapi): HTTP Error 429: Too Many Requests"
  ]
 }
