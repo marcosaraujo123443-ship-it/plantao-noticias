@@ -72,6 +72,16 @@ def limpa_url(caminho):
     """O Cloudflare Pages serve /contas/sp.html como /contas/sp (e index.html como a pasta)."""
     return caminho[:-10] if caminho.endswith("index.html") else caminho[:-5] if caminho.endswith(".html") else caminho
 
+def limpa_links(doc):
+    """Links internos sem .html: o Cloudflare redireciona /x.html -> /x, e o Google reportava cada um como redirecionamento."""
+    def troca(m):
+        url = m.group(2)
+        if re.match(r"[a-z]+:", url) or not re.search(r"\.html(#|$)", url): return m.group(0)
+        base, _, ancora = url.partition("#")
+        base = base[:-10] if base.endswith("index.html") else base[:-5]
+        return f'{m.group(1)}"{(base or "./")}{"#" + ancora if ancora else ""}"'
+    return re.sub(r'(href=)"([^"]+)"', troca, doc)
+
 def pagina(caminho, titulo, descricao, corpo, trilha=None, atualizado=None):
     PAGINAS.append(caminho)
     raiz = "../" * caminho.count("/")
@@ -90,8 +100,9 @@ def pagina(caminho, titulo, descricao, corpo, trilha=None, atualizado=None):
 <header><div class="hd"><a class="marca" href="{raiz}./"><img src="{raiz}apple-touch-icon.png" alt="">Plantão Informa</a><nav class="pg">{nav}</nav></div></header>
 <main>{tr}<h1>{e(titulo)}</h1>
 {corpo}
-{upd}Dados com atraso, apenas informativos. <a href="{raiz}./">Notícias</a> · <a href="{raiz}sobre.html">Sobre</a> · <a href="{raiz}privacidade.html">Privacidade</a></p>
+{upd}Dados com atraso, apenas informativos. <a href="{raiz}./">Notícias</a> · <a href="{raiz}sobre">Sobre</a> · <a href="{raiz}privacidade">Privacidade</a></p>
 </main></body></html>"""
+    doc = limpa_links(doc)
     destino = os.path.join(OUT, caminho)
     os.makedirs(os.path.dirname(destino) or ".", exist_ok=True)
     open(destino, "w", encoding="utf-8").write(doc)

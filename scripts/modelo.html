@@ -261,8 +261,8 @@ footer a{font-weight:600}
   <div class="gut">
     <p><b>Plantão Informa</b> reúne {{TOTAL}} manchetes de {{NFONTES}} fontes: {{FONTES}}. Títulos pertencem aos veículos de origem; cada link leva à matéria original.</p>
     <p>Cotações com atraso, apenas informativas. Não são recomendação de investimento. <a href="https://t.me/plantaodenoticias" target="_blank" rel="noopener">Siga no Telegram</a>.</p>
-    <p class="links-rod"><a href="contas/">Contas públicas</a> · <a href="tabelas/">Tabelas do futebol</a> · <a href="agro.html">Cotações do agro</a> · <a href="acoes.html">Ações</a> · <a href="fiis.html">Fundos imobiliários</a> · <a href="indicadores.html">Indicadores econômicos</a></p>
-    <p class="links-rod"><a href="sobre.html">Sobre</a> · <a href="privacidade.html">Política de privacidade</a> · <a href="sobre.html#contato">Contato e remoção de conteúdo</a></p>
+    <p class="links-rod"><a href="contas/">Contas públicas</a> · <a href="tabelas/">Tabelas do futebol</a> · <a href="agro">Cotações do agro</a> · <a href="acoes">Ações</a> · <a href="fiis">Fundos imobiliários</a> · <a href="indicadores">Indicadores econômicos</a></p>
+    <p class="links-rod"><a href="sobre">Sobre</a> · <a href="privacidade">Política de privacidade</a> · <a href="sobre#contato">Contato e remoção de conteúdo</a></p>
   </div>
 </footer>
 
@@ -342,7 +342,7 @@ footer a{font-weight:600}
     var lg=FUT.ligas.filter(function(l){return l.id===LIGA})[0]||FUT.ligas[0]; LIGA=lg.id; sel.value=LIGA;
     box.querySelector('[data-ftemp]').textContent=lg.temporada||'';
     var SLG={'bra.1':'brasileirao-serie-a','bra.2':'brasileirao-serie-b','eng.1':'premier-league','esp.1':'la-liga','ita.1':'serie-a-italia','ger.1':'bundesliga','fra.1':'ligue-1','por.1':'liga-portugal','uefa.champions':'champions-league','arg.1':'campeonato-argentino'};
-    var fl=box.querySelector('[data-flink]'); if(fl&&SLG[LIGA]){ fl.href='tabelas/'+SLG[LIGA]+'.html'; fl.textContent='Ver a página da tabela: '+lg.nome+' →'; }
+    var fl=box.querySelector('[data-flink]'); if(fl&&SLG[LIGA]){ fl.href='tabelas/'+SLG[LIGA]; fl.textContent='Ver a página da tabela: '+lg.nome+' →'; }
     var ZONAS={'bra.1':[[1,6,'Zona da Libertadores','#2e7d32'],[7,12,'Zona da Sul-Americana','#1565c0'],[17,20,'Zona de rebaixamento','#c62828']],
                'bra.2':[[1,4,'Zona de acesso','#2e7d32'],[17,20,'Zona de rebaixamento','#c62828']]};
     if(ZONAS[lg.id]) lg.grupos.forEach(function(g){g.linhas.forEach(function(t){
@@ -447,7 +447,7 @@ footer a{font-weight:600}
     box.querySelectorAll('[data-ep]').forEach(function(x){var on=x.dataset.ep===EP;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on)});
     if(e.atual) box.querySelector('[data-ep="atual"]').textContent=String(e.atual.ano);
     if(e.anterior) bAnt.textContent=String(e.anterior.ano);
-    var ul=box.querySelector('[data-ulink]'); if(ul){ ul.href='contas/'+(UF==='BR'?'brasil':UF==='UF'?'estados':UF.toLowerCase())+'.html'; ul.textContent='Ver a página completa: '+e.nome+' →'; }
+    var ul=box.querySelector('[data-ulink]'); if(ul){ ul.href='contas/'+(UF==='BR'?'brasil':UF==='UF'?'estados':UF.toLowerCase()); ul.textContent='Ver a página completa: '+e.nome+' →'; }
     if(!b){ box.querySelector('[data-per]').textContent='O estado ainda não enviou dados ao Tesouro.'; return; }
     box.querySelector('[data-per]').textContent=e.nome+', '+(b.periodo===6?'ano de '+b.ano+' completo':PER[b.periodo]+' de '+b.ano+(UF==='BR'?' (último bimestre publicado)':UF==='UF'?'':' (último bimestre enviado pelo estado)'))+(b.estados?', '+b.estados+' estados somados':'')+'.';
     var R=b.receitas, D=b.despesas, rt=linha(R,'Total arrecadado'), dt=linha(D,'Total'), inv=linha(D,'Investimentos');

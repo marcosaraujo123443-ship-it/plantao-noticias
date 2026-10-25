@@ -112,7 +112,7 @@ for s in SECOES:
       <label class="ag-pr" hidden>Produto <select data-agp aria-label="Escolher produto"></select></label>
       <p class="per" data-agt>Carregando cotações…</p></header>
     <div class="tw" data-agb></div>
-    <a class="mais" href="agro.html">Ver todas as cotações do agro →</a>
+    <a class="mais" href="agro">Ver todas as cotações do agro →</a>
     <p class="nota" data-agn></p>
   </section>
 </div>'''
@@ -142,7 +142,7 @@ for s in SECOES:
           <button class="on" data-af="altas" aria-pressed="true">Maiores altas</button><button data-af="quedas" aria-pressed="false">Maiores quedas</button><button data-af="maiores" aria-pressed="false">Maiores empresas</button>
         </div></header>
       <div class="tw"><table class="tab-m"><thead data-ah></thead><tbody data-ab></tbody></table></div>
-      <a class="mais" href="acoes.html">Ver todas as ações →</a>
+      <a class="mais" href="acoes">Ver todas as ações →</a>
     </section>
     <section class="quadro" aria-label="Fundos imobiliários">
       <header><h3>Fundos imobiliários</h3>
@@ -150,12 +150,12 @@ for s in SECOES:
           <button class="on" data-ff="vm" aria-pressed="true">Valor de mercado</button><button data-ff="dy" aria-pressed="false">Maior DY</button><button data-ff="pvp" aria-pressed="false">Menor P/VP</button><button data-ff="altas" aria-pressed="false">Maiores altas</button><button data-ff="baixas" aria-pressed="false">Maiores baixas</button>
         </div></header>
       <div class="tw"><table class="tab-m"><thead><tr><th>Fundo</th><th class="seg-col">Segmento</th><th class="n">Cotação</th><th class="n">Dia</th><th class="n">DY 12m</th><th class="n">P/VP</th><th class="n">Valor merc.</th></tr></thead><tbody data-fb></tbody></table></div>
-      <a class="mais" href="fiis.html">Ver todos os fundos imobiliários →</a>
+      <a class="mais" href="fiis">Ver todos os fundos imobiliários →</a>
     </section>
     <section class="quadro" aria-label="Indicadores econômicos" data-eco>
       <header><h3>Indicadores econômicos</h3><p class="per" data-ecot>Carregando os indicadores…</p></header>
       <div class="tw"><table class="tab-m"><thead><tr><th>Indicador</th><th class="n">Último</th><th class="n">12 meses</th><th>Referência</th></tr></thead><tbody data-ecob></tbody></table></div>
-      <a class="mais" href="indicadores.html">Ver os indicadores em detalhe →</a>
+      <a class="mais" href="indicadores">Ver os indicadores em detalhe →</a>
     </section>
   </div>
   <p class="nota" data-nota></p>
