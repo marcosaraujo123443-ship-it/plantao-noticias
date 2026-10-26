@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-10-26T14:40:04Z",
+ "atualizado_utc": "2026-10-26T15:09:44Z",
  "fonte": "Banco Central (SGS)",
  "series": {
   "ipca15": {
@@ -805,6 +805,8 @@
   }
  ],
  "erros": [
-  "ipca: Expecting value: line 1 column 1 (char 0)"
+  "ipca: Expecting value: line 1 column 1 (char 0)",
+  "ipca15: Expecting value: line 1 column 1 (char 0)",
+  "igpdi: HTTP Error 502: Bad Gateway"
  ]
 }
