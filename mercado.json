@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-10-26T21:42:44Z",
+ "atualizado_utc": "2026-10-26T22:02:27Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -15,14 +15,14 @@
   },
   {
    "nome": "Euro",
-   "valor": 6.0077,
-   "var": 8.001653902851192,
+   "valor": 6.008,
+   "var": 8.007047064322448,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 430041.262546,
-   "var": -0.07160197646942645,
+   "valor": 429616.55701299995,
+   "var": -0.17029051461844302,
    "tipo": "brl"
   },
   {
@@ -1756,6 +1756,6 @@
  },
  "erros": [
   "moedas (awesomeapi): HTTP Error 429: Too Many Requests",
-  "IPCA 12m: HTTP Error 502: Bad Gateway"
+  "IPCA 12m: The read operation timed out"
  ]
 }
