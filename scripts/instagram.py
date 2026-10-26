@@ -189,7 +189,10 @@ def proximo_economia():
 
 def gerar(tipo):
     saida = os.environ.get("GITHUB_OUTPUT")
-    def sinal(ok):
+    def sinal(ok, nome=None):
+        if ok and nome:
+            try: anexar_story(nome)
+            except Exception as e: print("Aviso: story não gerado:", repr(e))
         if saida:
             with open(saida, "a") as f: f.write(f"publicar={'1' if ok else '0'}\n")
     if tipo == "economia":
@@ -208,7 +211,7 @@ def gerar(tipo):
             json.dump({"chave": chave, "registro": "eco_" + sub, "legenda": legenda,
                        "imagens": [os.path.basename(a) for a in arquivos], "alt": alt}, f, ensure_ascii=False, indent=1)
         print(f"{len(arquivos)} card(s) gerado(s) para {sub} ({chave})\n\n{legenda}")
-        sinal(True); return
+        sinal(True, "economia"); return
     if tipo == "contas":
         import instagram_contas as ct
         sub, motivo = proximo_contas()
@@ -226,7 +229,7 @@ def gerar(tipo):
             json.dump({"chave": chave, "registro": sub, "legenda": legenda,
                        "imagens": [os.path.basename(a) for a in arquivos], "alt": alt}, f, ensure_ascii=False, indent=1)
         print(f"{len(arquivos)} card(s) gerado(s) para {sub} ({chave})\n\n{legenda}")
-        sinal(True); return
+        sinal(True, "contas"); return
     chave, legenda = chave_e_legenda(tipo)
     if not chave:
         print("Nada a publicar:", legenda); sinal(False); return
@@ -247,7 +250,7 @@ def gerar(tipo):
                    "alt": textos_alt(tipo, len(arquivos))},
                   f, ensure_ascii=False, indent=1)
     print(f"{len(arquivos)} card(s) gerado(s) para {chave}\n\n{legenda}")
-    sinal(True)
+    sinal(True, tipo)
 
 # ---------------------------------------------------------------- API do Instagram
 def chamar(metodo, caminho, **params):
@@ -281,9 +284,25 @@ def publicar(tipo):
     if not os.environ.get("IG_TOKEN"): raise SystemExit("Secret IG_TOKEN não configurado.")
     with open(os.path.join(PASTA, f"{tipo}.json"), encoding="utf-8") as f: info = json.load(f)
     tipo = info.get("registro", tipo)
+    uid = None
     if registro().get(tipo) == info["chave"] and not os.environ.get("IG_FORCAR"):
-        print("Instagram já tinha este post:", info["chave"]); return
-    uid = conta()
+        print("Instagram já tinha este post:", info["chave"])
+    else:
+        uid = conta()
+        publicar_feed(uid, tipo, info)
+    if info.get("story") and registro().get("story_" + tipo) != info["chave"]:
+        try: publicar_story(uid or conta(), tipo, info)
+        except SystemExit as e: print("::warning::Story não publicado: " + str(e)[:400])
+
+def publicar_story(uid, tipo, info):
+    """Story com a capa do post (ou o próprio vídeo, no reel). Falha aqui não derruba o post do feed."""
+    url = os.environ["IMAGENS_BASE"].rstrip("/") + "/" + info["story"]
+    campo = {"video_url": url} if info["story"].endswith(".mp4") else {"image_url": url}
+    c = chamar("POST", f"{uid}/media", media_type="STORIES", **campo)["id"]
+    esperar(c, tentativas=60 if "video_url" in campo else 30)
+    registrar("story_" + tipo, info, publicar_container(uid, c), rede="Instagram (story)")
+
+def publicar_feed(uid, tipo, info):
     if tipo == "reel":
         url = os.environ["IMAGENS_BASE"].rstrip("/") + "/" + info["imagens"][0]
         c = chamar("POST", f"{uid}/media", media_type="REELS", video_url=url, caption=info["legenda"], share_to_feed="true")["id"]
@@ -303,6 +322,23 @@ def publicar(tipo):
         c = chamar("POST", f"{uid}/media", media_type="CAROUSEL", children=",".join(filhos), caption=info["legenda"])["id"]
     esperar(c)
     registrar(tipo, info, publicar_container(uid, c))
+
+def anexar_story(nome):
+    """Gera a imagem 9:16 do story a partir da capa do post (o reel usa o próprio vídeo)."""
+    caminho = os.path.join(PASTA, f"{nome}.json")
+    with open(caminho, encoding="utf-8") as f: info = json.load(f)
+    primeira = info["imagens"][0]
+    if primeira.endswith(".mp4"):
+        info["story"] = primeira
+    else:
+        from PIL import Image
+        import instagram_video as iv
+        prefixo = primeira.rsplit("-", 1)[0]
+        img = iv.quadro(Image.open(os.path.join(PASTA, primeira)).convert("RGB"), "NOVO POST NO PERFIL", "Link na bio")
+        destino = f"{prefixo}-story.png"
+        img.save(os.path.join(PASTA, destino), "PNG", optimize=True)
+        info["story"] = destino
+    with open(caminho, "w", encoding="utf-8") as f: json.dump(info, f, ensure_ascii=False, indent=1)
 
 def criar_imagem(uid, extra, **params):
     """Cria o contêiner da imagem com texto alternativo; se a API recusar o alt_text, tenta sem ele."""
