@@ -387,9 +387,16 @@ def publicar_facebook(tipo):
         print("Página do Facebook não configurada (FB_PAGE_TOKEN / FB_PAGE_ID)."); return
     with open(os.path.join(PASTA, f"{tipo}.json"), encoding="utf-8") as f: info = json.load(f)
     tipo = info.get("registro", tipo)
-    if registro().get("fb_" + tipo) == info["chave"] and not os.environ.get("IG_FORCAR"):
-        print("Facebook já tinha este post:", info["chave"]); return
     pagina = os.environ["FB_PAGE_ID"].strip()
+    if registro().get("fb_" + tipo) == info["chave"] and not os.environ.get("IG_FORCAR"):
+        print("Facebook já tinha este post:", info["chave"])
+    else:
+        publicar_facebook_feed(pagina, tipo, info)
+    if info.get("story") and registro().get("fb_story_" + tipo) != info["chave"]:
+        try: publicar_facebook_story(pagina, tipo, info)
+        except SystemExit as e: print("::warning::Story da Página não publicado: " + str(e)[:400])
+
+def publicar_facebook_feed(pagina, tipo, info):
     base = os.environ["IMAGENS_BASE"].rstrip("/")
     urls = [f"{base}/{n}" for n in info["imagens"]]
     leg = legenda_fb(info["legenda"])
@@ -403,6 +410,34 @@ def publicar_facebook(tipo):
         anexos = {f"attached_media[{i}]": json.dumps({"media_fbid": fid}) for i, fid in enumerate(fotos)}
         post = chamar_fb(f"{pagina}/feed", message=leg, **anexos)["id"]
     registrar("fb_" + tipo, info, post, rede="Facebook")
+
+def publicar_facebook_story(pagina, tipo, info):
+    """Story da Página: foto (envio sem publicar + photo_stories) ou vídeo (envio do arquivo + video_stories)."""
+    nome = info["story"]
+    if nome.endswith(".mp4"):
+        ini = chamar_fb(f"{pagina}/video_stories", upload_phase="start")
+        dados = open(os.path.join(PASTA, nome), "rb").read()
+        req = urllib.request.Request(ini["upload_url"], data=dados, method="POST", headers={
+            "Authorization": "OAuth " + os.environ["FB_PAGE_TOKEN"].strip().strip("\"'"),
+            "offset": "0", "file_size": str(len(dados))})
+        try:
+            with urllib.request.urlopen(req, timeout=300) as r: json.loads(r.read().decode())
+        except urllib.error.HTTPError as err:
+            raise SystemExit(f"Envio do vídeo do story recusado ({err.code}): " + err.read().decode("utf-8", "replace")[:400])
+        for _ in range(30):     # espera o Facebook processar o vídeo
+            try:
+                req = urllib.request.Request(f"{FB_API}/{ini['video_id']}?fields=status&access_token="
+                                             + urllib.parse.quote(os.environ["FB_PAGE_TOKEN"].strip()))
+                with urllib.request.urlopen(req, timeout=60) as r: st = json.loads(r.read().decode()).get("status", {})
+                if (st.get("uploading_phase") or {}).get("status") == "complete": break
+            except Exception: pass
+            time.sleep(5)
+        res = chamar_fb(f"{pagina}/video_stories", video_id=ini["video_id"], upload_phase="finish")
+    else:
+        url = os.environ["IMAGENS_BASE"].rstrip("/") + "/" + nome
+        foto = chamar_fb(f"{pagina}/photos", url=url, published="false")["id"]
+        res = chamar_fb(f"{pagina}/photo_stories", photo_id=foto)
+    registrar("fb_story_" + tipo, info, res.get("post_id") or res.get("id") or "ok", rede="Facebook (story)")
 
 def renovar():
     """Renova o token de longa duração (vale mais 60 dias). O novo token sai em stdout."""

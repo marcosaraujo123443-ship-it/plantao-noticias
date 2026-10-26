@@ -67,7 +67,7 @@ def reel_resumo(saida):
     destino = os.path.join(saida, "reel-1.mp4")
     cmd += ["-filter_complex", ";".join(filtros), "-map", "[v]", "-map", "[a]",
             "-c:v", "libx264", "-preset", "medium", "-crf", "21", "-r", "30",
-            "-c:a", "aac", "-b:a", "128k", "-shortest", "-movflags", "+faststart", destino]
+            "-c:a", "aac", "-b:a", "128k", "-ar", "48000", "-shortest", "-movflags", "+faststart", destino]
     subprocess.run(cmd, check=True)
     for f in os.listdir(tmp): os.remove(os.path.join(tmp, f))
     os.rmdir(tmp)
