@@ -45,6 +45,8 @@ def acumulado(valores):
 
 def main():
     agora = datetime.now(timezone.utc)
+    try: anterior = json.load(open("indicadores.json", encoding="utf-8"))
+    except Exception: anterior = {}
     out, erros = {"atualizado_utc": agora.strftime("%Y-%m-%dT%H:%M:%SZ"), "fonte": "Banco Central (SGS)", "series": {}}, []
     for chave, (cod, nome, fonte, tipo) in SERIES.items():
         try:
@@ -64,6 +66,8 @@ def main():
                                         "atual": pts[-1]["valor"], "data": pts[-1]["data"]}
         except Exception as ex:
             erros.append(f"{chave}: {ex}")
+            # a API às vezes responde vazio; mantém o último dado bom em vez de sumir com a série
+            if chave in (anterior.get("series") or {}): out["series"][chave] = anterior["series"][chave]
     # Selic: decisões do Copom (comunicados) + histórico da meta para o gráfico
     try:
         com = get("https://www.bcb.gov.br/api/servico/sitebcb/copom/comunicados?quantidade=12")["conteudo"]
@@ -81,6 +85,7 @@ def main():
         out["copom"] = decisoes
     except Exception as ex:
         erros.append(f"copom: {ex}")
+        if anterior.get("copom"): out["copom"] = anterior["copom"]
     out["erros"] = erros
     for e in erros: print("::warning::" + e)
     if not out["series"]:

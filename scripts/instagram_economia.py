@@ -168,10 +168,14 @@ def legenda_e_alt(chave):
     fim = "🔗 Bolsa, dólar, cotações e notícias de economia de hora em hora no site: link na bio."
     if chave == "painel":
         hoje = datetime.now()
-        dec = ind["copom"][-1]
-        ip = ind["series"]["ipca"]["dados"][-1]; ig = ind["series"]["igpm"]["dados"][-1]
+        partes = []
+        if ind.get("copom"): partes.append(f"Selic em {pct(ind['copom'][-1]['taxa'])} ao ano")
+        for k in ("ipca", "igpm"):
+            u = (ind["series"].get(k) or {}).get("dados", [{}])[-1]
+            if "doze" in u: partes.append(f"{ind['series'][k]['nome']} de {pct(u['doze'])} em 12 meses")
+        resumo = (", ".join(partes[:-1]) + " e " + partes[-1] if len(partes) > 1 else "".join(partes)) + "."
         leg = (f"📊 Painel da economia · {MESES_EXT[hoje.month - 1]} de {hoje.year}\n\n"
-               f"Selic em {pct(dec['taxa'])} ao ano, IPCA de {pct(ip['doze'])} em 12 meses e IGP-M de {pct(ig['doze'])} em 12 meses.\n\n"
+               f"{resumo}\n\n"
                "➡️ Arraste para ver cada indicador, o que ele mede e por que importa para o seu bolso.\n\n"
                f"{fim}\n\nFontes: IBGE, FGV e Banco Central.")
         alt = ["Painel da economia com Selic, CDI, IPCA, IPCA-15, IGP-M, IGP-DI, INPC e desemprego na última divulgação."]
