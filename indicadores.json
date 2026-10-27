@@ -1,7 +1,154 @@
 {
- "atualizado_utc": "2026-10-26T15:09:44Z",
+ "atualizado_utc": "2026-10-27T00:03:05Z",
  "fonte": "Banco Central (SGS)",
  "series": {
+  "ipca": {
+   "nome": "IPCA",
+   "fonte": "IBGE",
+   "tipo": "mensal",
+   "dados": [
+    {
+     "mes": "2024-09",
+     "valor": 0.44
+    },
+    {
+     "mes": "2024-10",
+     "valor": 0.56
+    },
+    {
+     "mes": "2024-11",
+     "valor": 0.39
+    },
+    {
+     "mes": "2024-12",
+     "valor": 0.52
+    },
+    {
+     "mes": "2025-01",
+     "valor": 0.16,
+     "ano": 0.16
+    },
+    {
+     "mes": "2025-02",
+     "valor": 1.31,
+     "ano": 1.47
+    },
+    {
+     "mes": "2025-03",
+     "valor": 0.56,
+     "doze": 5.48,
+     "ano": 2.04
+    },
+    {
+     "mes": "2025-04",
+     "valor": 0.43,
+     "doze": 5.53,
+     "ano": 2.48
+    },
+    {
+     "mes": "2025-05",
+     "valor": 0.26,
+     "doze": 5.32,
+     "ano": 2.75
+    },
+    {
+     "mes": "2025-06",
+     "valor": 0.24,
+     "doze": 5.35,
+     "ano": 2.99
+    },
+    {
+     "mes": "2025-07",
+     "valor": 0.26,
+     "doze": 5.23,
+     "ano": 3.26
+    },
+    {
+     "mes": "2025-08",
+     "valor": -0.11,
+     "doze": 5.13,
+     "ano": 3.15
+    },
+    {
+     "mes": "2025-09",
+     "valor": 0.48,
+     "doze": 5.17,
+     "ano": 3.64
+    },
+    {
+     "mes": "2025-10",
+     "valor": 0.09,
+     "doze": 4.68,
+     "ano": 3.73
+    },
+    {
+     "mes": "2025-11",
+     "valor": 0.18,
+     "doze": 4.46,
+     "ano": 3.92
+    },
+    {
+     "mes": "2025-12",
+     "valor": 0.33,
+     "doze": 4.26,
+     "ano": 4.26
+    },
+    {
+     "mes": "2026-01",
+     "valor": 0.33,
+     "doze": 4.44,
+     "ano": 0.33
+    },
+    {
+     "mes": "2026-02",
+     "valor": 0.7,
+     "doze": 3.81,
+     "ano": 1.03
+    },
+    {
+     "mes": "2026-03",
+     "valor": 0.88,
+     "doze": 4.14,
+     "ano": 1.92
+    },
+    {
+     "mes": "2026-04",
+     "valor": 0.67,
+     "doze": 4.39,
+     "ano": 2.6
+    },
+    {
+     "mes": "2026-05",
+     "valor": 0.58,
+     "doze": 4.72,
+     "ano": 3.2
+    },
+    {
+     "mes": "2026-06",
+     "valor": 0.16,
+     "doze": 4.64,
+     "ano": 3.36
+    },
+    {
+     "mes": "2026-07",
+     "valor": 0.07,
+     "doze": 4.44,
+     "ano": 3.44
+    },
+    {
+     "mes": "2026-08",
+     "valor": -0.32,
+     "doze": 4.22,
+     "ano": 3.11
+    },
+    {
+     "mes": "2026-09",
+     "valor": 0.82,
+     "doze": 4.58,
+     "ano": 3.95
+    }
+   ]
+  },
   "ipca15": {
    "nome": "IPCA-15",
    "fonte": "IBGE",
@@ -804,9 +951,5 @@
    "variacao": -0.25
   }
  ],
- "erros": [
-  "ipca: Expecting value: line 1 column 1 (char 0)",
-  "ipca15: Expecting value: line 1 column 1 (char 0)",
-  "igpdi: HTTP Error 502: Bad Gateway"
- ]
+ "erros": []
 }
