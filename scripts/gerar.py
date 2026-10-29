@@ -108,7 +108,7 @@ for s in SECOES:
         painel = '''<div class="painel" data-agro>
   <section class="quadro">
     <header><h3>Cotações do agro</h3>
-      <div class="seg" role="group" aria-label="Tipo de cotação"><button class="on" data-ag="ind" aria-pressed="true">Indicadores</button><button data-ag="bol" aria-pressed="false">Bolsas</button><button data-ag="pra" aria-pressed="false">Por praça</button></div>
+      <div class="seg" role="group" aria-label="Tipo de cotação"><button class="on" data-ag="ind" aria-pressed="true">Indicadores</button><button data-ag="bol" aria-pressed="false">Bolsas</button><button data-ag="pra" aria-pressed="false">Por praça</button><button data-ag="ten" aria-pressed="false">Tendência</button></div>
       <label class="ag-pr" hidden>Produto <select data-agp aria-label="Escolher produto"></select></label>
       <p class="per" data-agt>Carregando cotações…</p></header>
     <div class="tw" data-agb></div>
@@ -152,6 +152,14 @@ for s in SECOES:
       <div class="tw"><table class="tab-m"><thead><tr><th>Fundo</th><th class="seg-col">Segmento</th><th class="n">Cotação</th><th class="n">Dia</th><th class="n">DY 12m</th><th class="n">P/VP</th><th class="n">Valor merc.</th></tr></thead><tbody data-fb></tbody></table></div>
       <a class="mais" href="fiis">Ver todos os fundos imobiliários →</a>
     </section>
+    <section class="quadro" aria-label="Calculadora de rendimento" data-calc>
+      <header><h3>Quanto rende seu dinheiro?</h3>
+        <div class="calc-in"><label>Valor <span class="calc-rs">R$<input type="number" inputmode="decimal" data-cv value="1000" min="1" step="100" aria-label="Valor aplicado em reais"></span></label>
+          <label>Prazo <select data-cp aria-label="Prazo da aplicação"><option value="6">6 meses</option><option value="12" selected>1 ano</option><option value="24">2 anos</option><option value="36">3 anos</option></select></label></div>
+        <p class="per" data-ct>Carregando as taxas de hoje…</p></header>
+      <div class="tw"><table class="tab-m"><thead><tr><th>Aplicação</th><th class="n">Rende (líquido)</th><th class="n">Você terá</th></tr></thead><tbody data-cb></tbody></table></div>
+      <p class="nota" data-cn></p>
+    </section>
     <section class="quadro" aria-label="Indicadores econômicos" data-eco>
       <header><h3>Indicadores econômicos</h3><p class="per" data-ecot>Carregando os indicadores…</p></header>
       <div class="tw"><table class="tab-m"><thead><tr><th>Indicador</th><th class="n">Último</th><th class="n">12 meses</th><th>Referência</th></tr></thead><tbody data-ecob></tbody></table></div>
@@ -179,7 +187,8 @@ out = tpl
 for k, v in {"DATA": f"{DIAS[upd.weekday()]}, {upd.day} de {MESES[upd.month-1]} de {upd.year}",
              "HORA": f"{upd:%H:%M}", "LEAD": lead_html, "RESUMO": resumo_html, "DESTAQUES": dest_html, "BLOCOS": blocos,
              "PAGINAS": paginas, "TABS": tabs, "HORARIOS": horarios, "FONTES": fontes_txt,
-             "TOTAL": str(len(itens)), "NFONTES": str(len(fontes)), "MERCADO": merc_json}.items():
+             "TOTAL": str(len(itens)), "NFONTES": str(len(fontes)), "MERCADO": merc_json,
+             "FONTES_OPT": "".join(f'<option value="{e(f)}">{e(f)}</option>' for f in sorted(fontes, key=str.lower))}.items():
     out = out.replace("{{" + k + "}}", v)
 saida_site = Path(sys.argv[3]) if len(sys.argv) > 3 else None
 if not saida_site:
@@ -202,9 +211,18 @@ saida_site.write_text(
     '<meta name="theme-color" content="#0b1f3a">\n'
     f'<link rel="canonical" href="{SITE}">\n' + redir +
     f'<meta name="atualizado" content="{e(data["atualizado_utc"])}">\n' +
-    f'<meta property="og:image" content="{SITE}logo.jpg">\n'
+    (f'<meta property="og:image" content="{SITE}og.png?v={upd:%Y%m%d%H}">\n<meta property="og:image:width" content="1200">\n'
+     '<meta property="og:image:height" content="630">\n<meta name="twitter:card" content="summary_large_image">\n'
+     if (d / "og.png").exists() else f'<meta property="og:image" content="{SITE}logo.jpg">\n<meta name="twitter:card" content="summary">\n') +
     f'<meta property="og:url" content="{SITE}">\n'
-    '<meta name="twitter:card" content="summary">\n'
+    '<meta property="og:type" content="website">\n<meta property="og:site_name" content="Plantão Informa">\n'
+    '<script type="application/ld+json">' + json.dumps([
+        {"@context": "https://schema.org", "@type": "WebSite", "name": "Plantão Informa", "url": SITE, "inLanguage": "pt-BR",
+         "potentialAction": {"@type": "SearchAction", "target": {"@type": "EntryPoint", "urlTemplate": SITE + "?q={search_term_string}"},
+                             "query-input": "required name=search_term_string"}},
+        {"@context": "https://schema.org", "@type": "Organization", "name": "Plantão Informa", "url": SITE, "logo": SITE + "logo.jpg",
+         "sameAs": ["https://www.instagram.com/plantao_informa_/", "https://t.me/plantaodenoticias"]}],
+        ensure_ascii=False) + '</script>\n' +
     '<meta property="og:title" content="Plantão Informa">\n'
     '<meta property="og:description" content="Manchetes de fontes confiáveis, atualizadas de hora em hora.">\n'
     '</head>\n<body>\n' + out + '\n</body>\n</html>\n', encoding="utf-8")

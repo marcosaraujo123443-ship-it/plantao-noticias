@@ -163,6 +163,29 @@ h2 a:hover,h3 a:hover,h4 a:hover{text-decoration:underline;text-decoration-thick
 .fut-t td.pt{font-weight:800}
 .fut-g{padding:4px 16px 8px}
 .fut-g h4{font:700 15px var(--f-head);margin:12px 0 4px}
+.ferr{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ferr input,.ferr select{font:500 15px var(--f-body);color:var(--ink);background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:9px 12px}
+.ferr input{flex:1 1 220px;min-width:0}.ferr select{flex:0 1 220px;max-width:100%}
+.ferr button{font:600 14px var(--f-body);border:1px solid var(--rule);background:var(--card);color:var(--ink);border-radius:999px;padding:9px 14px;cursor:pointer}
+.ferr button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--card)}
+main.buscando .pagina{display:none!important}
+.busca header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.busca header button{font:600 13px var(--f-body);background:none;border:0;color:var(--brand);cursor:pointer;padding:4px 0}
+.tl{list-style:none;margin:0;padding:0}
+.tl li{display:grid;grid-template-columns:4.2em 1fr;gap:4px 12px;padding:11px 0;border-bottom:1px solid var(--rule)}
+.tl time{font:600 13px var(--f-mono);color:var(--ink-2);padding-top:2px}
+.tl a{font:600 16.5px/1.35 var(--f-head);color:var(--ink);text-decoration:none}.tl a:hover{text-decoration:underline}
+.tl small{grid-column:2;font-size:12.5px;color:var(--ink-2)}.tl mark{background:color-mix(in srgb,var(--brand) 18%,transparent);color:inherit}
+.tl .vazio{display:block;color:var(--ink-2)}
+.lida{opacity:.55}.lida :is(h2,h3,h4)>a::after,.tl .lida>a::after{content:" ✓";font-size:.8em;color:var(--ink-2)}
+.calc-in{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.calc-in label{display:flex;gap:8px;align-items:center;font:600 13px var(--f-body);color:var(--ink-2)}
+.calc-in input,.calc-in select{font:600 15px var(--f-body);color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:7px 10px}
+.calc-rs{display:inline-flex;align-items:center;gap:6px;color:var(--ink)}.calc-in input{width:8.5em}
+.tab-m tr.melhor td{font-weight:700}.tab-m tr.melhor td:first-child::after{content:"maior rendimento";display:inline-block;margin-left:8px;font-size:10.5px;font-weight:700;color:#fff;background:var(--up);border-radius:4px;padding:1px 5px;vertical-align:1px}
+.spark{display:block;width:100%;max-width:150px;height:30px}
+[data-calc] .nota{padding:8px 16px 16px;margin:0}
+@media (max-width:520px){.spark{width:72px}[data-agb] .tab-m td,[data-agb] .tab-m th{padding-inline:6px}[data-agb] .tab-m td.wrap{min-width:6.5em}}
 .fut-sel{padding:2px 0}
 .rd-nav{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .rd-nav button{font:700 20px/1 var(--f-body);width:40px;height:36px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);border-radius:8px;cursor:pointer}
@@ -246,6 +269,15 @@ footer a{font-weight:600}
     <span>Manchetes atualizadas de hora em hora, das 7h às 23h · cotações a cada 15 minutos no pregão</span>
     <span>Horário de Brasília</span>
   </div>
+  <div class="ferr" role="search">
+    <input type="search" data-q placeholder="Buscar nas manchetes…" aria-label="Buscar nas manchetes" autocomplete="off">
+    <select data-fonte aria-label="Filtrar por veículo"><option value="">Todos os veículos</option>{{FONTES_OPT}}</select>
+    <button type="button" data-foco aria-pressed="false" title="Só títulos e horários, em ordem cronológica">Modo foco</button>
+  </div>
+  <section class="busca" data-busca hidden aria-live="polite">
+    <header><b data-bt></b><button type="button" data-limpar>Voltar à capa</button></header>
+    <ol class="tl" data-bl></ol>
+  </section>
   <div class="pagina" id="pg-inicio" data-pg="inicio">
     {{RESUMO}}
     <section class="capa" aria-label="Destaques">
@@ -272,6 +304,7 @@ footer a{font-weight:600}
   /* Abas */
   var tabs=[].slice.call(document.querySelectorAll('.tab'));
   var pgs=[].slice.call(document.querySelectorAll('[data-pg]'));
+  var Q0=(function(){try{return new URLSearchParams(location.search).get('q')||''}catch(e){return ''}})();
   function abrir(id,rolar){
     if(!pgs.some(function(p){return p.dataset.pg===id})) id='inicio';
     pgs.forEach(function(p){p.hidden=p.dataset.pg!==id});
@@ -290,7 +323,12 @@ footer a{font-weight:600}
   abrir((location.hash||'#inicio').slice(1),false);
 
   /* Cotações do agro (Notícias Agrícolas: Cepea/Esalq, B3, CME, ICE) */
-  var AGRO=null, AG='ind', AGP=0;
+  var AGRO=null, AG='ind', AGP=0, AGH=null;
+  function carregarAgh(){
+    if(AGH===false) return; AGH=false;
+    fetch('agro_historico.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){AGH=d||{indicadores:{}};quadroAgro()})
+      .catch(function(){AGH={indicadores:{}};quadroAgro()});
+  }
   function nfp(v){ return v==null?'–':new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:v<10?4:2}).format(v); }
   function vcel(v){ var x=vr(v); return '<td class="n '+x.c+'">'+(v==null?'–':x.t)+'</td>'; }
   function quadroAgro(){
@@ -309,6 +347,22 @@ footer a{font-weight:600}
       t='Contrato mais próximo de cada bolsa: B3 (São Paulo), CME (Chicago) e ICE (Nova York e Londres).';
       h='<table class="tab-m"><thead><tr><th>Contrato</th><th class="n">Preço</th><th class="n">Dia</th></tr></thead><tbody>'+
         (AGRO.bolsas||[]).map(function(b){return '<tr><td class="wrap">'+esc(b.nome)+' <span style="color:var(--ink-2)">· '+esc(b.bolsa)+'</span><span class="un">'+esc(b.venc)+' · '+esc(b.un)+'</span></td><td class="n">'+nfp(b.preco)+'</td>'+vcel(b.var)+'</tr>'}).join('')+'</tbody></table>';
+    } else if(AG==='ten'){
+      if(!AGH){ t='Carregando o histórico…'; carregarAgh(); }
+      else {
+        var I=AGH.indicadores||{}, nomes=Object.keys(I);
+        var ini=nomes.map(function(n){return Object.keys(I[n].pontos)[0]}).filter(Boolean).sort()[0];
+        t='Preço de cada dia (Cepea/Esalq) e variação acumulada'+(ini?'. Histórico registrado pelo Plantão desde '+ini.slice(8,10)+'/'+ini.slice(5,7)+'.':'.');
+        function varp(ps,dias){ var k=Object.keys(ps); if(k.length<2) return null; var fim=k[k.length-1], alvo=new Date(fim); alvo.setDate(alvo.getDate()-dias);
+          var a=alvo.toISOString().slice(0,10), base=k.filter(function(x){return x<=a}).pop()||(dias>=30?k[0]:null); return base&&base!==fim?(ps[fim]/ps[base]-1)*100:null; }
+        function spark(v){ if(v.length<2) return '<span class="un">acumulando histórico</span>'; var mn=Math.min.apply(0,v), mx=Math.max.apply(0,v), r=mx-mn||1;
+          var pts=v.map(function(x,i){return (i*150/(v.length-1)).toFixed(1)+','+(27-(x-mn)/r*24).toFixed(1)}).join(' ');
+          var c=v[v.length-1]>=v[0]?'var(--up)':'var(--down)';
+          return '<svg class="spark" viewBox="0 0 150 30" preserveAspectRatio="none" aria-hidden="true"><polyline fill="none" stroke="'+c+'" stroke-width="2" points="'+pts+'"/></svg>'; }
+        h='<table class="tab-m"><thead><tr><th>Produto</th><th>Últimos 30 dias</th><th class="n">7 dias</th><th class="n">30 dias</th></tr></thead><tbody>'+
+          nomes.map(function(n){ var ps=I[n].pontos, k=Object.keys(ps), v=k.slice(-30).map(function(x){return ps[x]});
+            return '<tr><td class="wrap">'+esc(n)+'<span class="un">'+nfp(ps[k[k.length-1]])+' '+esc(I[n].un)+'</span></td><td>'+spark(v)+'</td>'+vcel(varp(ps,7))+vcel(varp(ps,30))+'</tr>'; }).join('')+'</tbody></table>';
+      }
     } else {
       var p=P[AGP]||P[0]; sel.value=String(P.indexOf(p));
       t=p?('Preço pago ao produtor em cada praça, em '+p.un+'.'):'';
@@ -403,6 +457,85 @@ footer a{font-weight:600}
   };
   if((location.hash||'')==='#futebol') window.carregarFut();
 
+  /* Busca, filtro por veículo, Modo foco e notícias lidas */
+  var NOT=null, LIDAS={};
+  try{(JSON.parse(localStorage.getItem('plantao-lidas')||'[]')).forEach(function(l){LIDAS[l]=1})}catch(e){}
+  function marcarLidas(raiz){
+    (raiz||document).querySelectorAll('a[target=_blank][href]').forEach(function(a){
+      if(LIDAS[a.href]){var c=a.closest('li,article'); if(c&&!c.closest('.jg')) c.classList.add('lida');}
+    });
+  }
+  document.addEventListener('click',function(ev){
+    var a=ev.target.closest('a[target=_blank][href]'); if(!a||!a.closest('li,article')||a.closest('.jg,.tw')) return;
+    LIDAS[a.href]=1; var c=a.closest('li,article'); if(c) c.classList.add('lida');
+    try{var l=Object.keys(LIDAS).slice(-400); localStorage.setItem('plantao-lidas',JSON.stringify(l))}catch(e){}
+  });
+  marcarLidas();
+  var FOCO=false; try{FOCO=localStorage.getItem('plantao-foco')==='1'}catch(e){}
+  function semAcento(t){return String(t).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()}
+  function listar(){
+    var q=(document.querySelector('[data-q]').value||'').trim(), f=document.querySelector('[data-fonte]').value;
+    var box=document.querySelector('[data-busca]'), main=document.querySelector('main');
+    var fb=document.querySelector('[data-foco]'); fb.setAttribute('aria-pressed',FOCO);
+    if(!q&&!f&&!FOCO){ box.hidden=true; main.classList.remove('buscando'); return; }
+    box.hidden=false; main.classList.add('buscando');
+    if(!NOT){ box.querySelector('[data-bt]').textContent='Carregando as manchetes…'; carregarNot(); return; }
+    var termos=semAcento(q).split(/\s+/).filter(Boolean);
+    var L=NOT.itens.filter(function(i){
+      if(f&&i.fonte!==f&&!(i.tambem||[]).some(function(t){return t.fonte===f})) return false;
+      var txt=semAcento(i.titulo+' '+(i.resumo||''));
+      return termos.every(function(t){return txt.indexOf(t)>=0});
+    }).sort(function(a,b){return a.data<b.data?1:-1});
+    var tit=q||f?(L.length+' '+(L.length===1?'manchete':'manchetes')+(q?' com “'+q+'”':'')+(f?' de '+f:'')):'Linha do tempo · '+L.length+' manchetes';
+    box.querySelector('[data-bt]').textContent=tit;
+    var rx=termos.length?new RegExp('('+termos.map(function(t){return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}).join('|')+')','gi'):null;
+    function hl(t){ var h=esc(t); if(!rx) return h; var n=semAcento(t), out='', k=0, m; rx.lastIndex=0;
+      while((m=rx.exec(n))){ out+=esc(t.slice(k,m.index))+'<mark>'+esc(t.slice(m.index,m.index+m[0].length))+'</mark>'; k=m.index+m[0].length; }
+      return out+esc(t.slice(k)); }
+    var hoje=new Date().toLocaleDateString('pt-BR',{timeZone:'America/Sao_Paulo'});
+    box.querySelector('[data-bl]').innerHTML=L.length?L.slice(0,200).map(function(i){
+      var d=new Date(i.data), dia=d.toLocaleDateString('pt-BR',{timeZone:'America/Sao_Paulo'});
+      var h=d.toLocaleTimeString('pt-BR',{timeZone:'America/Sao_Paulo',hour:'2-digit',minute:'2-digit'});
+      return '<li><time datetime="'+esc(i.data)+'">'+(dia===hoje?h:dia.slice(0,5))+'</time><a href="'+esc(i.link)+'" target="_blank" rel="noopener">'+hl(i.titulo)+'</a><small>'+esc(i.fonte)+' · '+esc(i.secao)+'</small></li>';
+    }).join(''):'<li><span class="vazio">Nenhuma manchete encontrada nesta atualização.</span></li>';
+    marcarLidas(box);
+  }
+  function carregarNot(){
+    if(NOT===false) return; NOT=false;
+    fetch('noticias.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){NOT=d||{itens:[]};listar()})
+      .catch(function(){NOT=null; document.querySelector('[data-bt]').textContent='Não foi possível carregar as manchetes agora.'});
+  }
+  var tq; document.addEventListener('input',function(ev){ if(ev.target.matches('[data-q]')){ clearTimeout(tq); tq=setTimeout(listar,180); } });
+  document.addEventListener('change',function(ev){ if(ev.target.matches('[data-fonte]')) listar(); });
+  document.addEventListener('click',function(ev){
+    if(ev.target.closest('[data-foco]')){ FOCO=!FOCO; try{localStorage.setItem('plantao-foco',FOCO?'1':'0')}catch(e){} listar(); }
+    if(ev.target.closest('[data-limpar]')){ document.querySelector('[data-q]').value=''; document.querySelector('[data-fonte]').value=''; FOCO=false; try{localStorage.setItem('plantao-foco','0')}catch(e){} listar(); }
+    if(ev.target.closest('[data-tab]')&&document.querySelector('main').classList.contains('buscando')){ document.querySelector('[data-q]').value=''; document.querySelector('[data-fonte]').value=''; FOCO=false; listar(); }
+  });
+  if(Q0) document.querySelector('[data-q]').value=Q0;
+  if((FOCO||document.querySelector('[data-q]').value)&&/^https?:/.test(location.protocol)) listar();
+
+  /* Calculadora de rendimento (taxas do indicadores.json) */
+  function calcular(){
+    var box=document.querySelector('[data-calc]'); if(!box||!ECO||!ECO.series) return;
+    var V=Math.max(0,parseFloat(String(box.querySelector('[data-cv]').value).replace(',','.'))||0), m=+box.querySelector('[data-cp]').value;
+    var selic=ECO.copom&&ECO.copom.length?ECO.copom[ECO.copom.length-1].taxa:null, cdi=ECO.series.cdi?ECO.series.cdi.atual:null;
+    if(selic==null||cdi==null){ box.querySelector('[data-ct]').textContent='Taxas indisponíveis no momento.'; return; }
+    var dias=m*30.44, ir=dias<=180?.225:dias<=360?.20:dias<=720?.175:.15;
+    var poup=selic>8.5?Math.pow(1.005,m)-1:Math.pow(1+selic/100*0.7,m/12)-1;
+    var cdb=(Math.pow(1+cdi/100,m/12)-1)*(1-ir);
+    var custodia=Math.max(0,V-10000)*0.002*m/12;
+    var ts=(Math.pow(1+selic/100,m/12)-1)*(1-ir)-(V?custodia/V:0);
+    var L=[['Poupança',poup,'isenta de IR'],['Tesouro Selic',ts,'IR de '+(ir*100).toString().replace('.',',')+'%'+(V>10000?' e custódia B3':'')],['CDB 100% do CDI',cdb,'IR de '+(ir*100).toString().replace('.',',')+'%']];
+    var best=L.reduce(function(a,b){return b[1]>a[1]?b:a});
+    var rs=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}), pc=new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+    box.querySelector('[data-cb]').innerHTML=L.map(function(r){return '<tr'+(r===best&&V?' class="melhor"':'')+'><td class="wrap">'+esc(r[0])+'<span class="un">'+esc(r[2])+' · '+pc.format(r[1]*100)+'% no período</span></td><td class="n">'+rs.format(V*r[1])+'</td><td class="n">'+rs.format(V*(1+r[1]))+'</td></tr>'}).join('');
+    box.querySelector('[data-ct]').textContent='Com a Selic em '+pc.format(selic)+'% e o CDI em '+pc.format(cdi)+'% ao ano, mantidos durante todo o prazo.';
+    box.querySelector('[data-cn]').textContent='Estimativa simplificada, já descontado o IR. Poupança: 0,5% ao mês com Selic acima de 8,5%, sem a TR. Tesouro Selic: custódia da B3 de 0,20% ao ano sobre o que passar de R$ 10 mil. CDB: depende do banco e conta com garantia do FGC até R$ 250 mil. Não é recomendação de investimento.';
+  }
+  document.addEventListener('input',function(ev){ if(ev.target.matches('[data-cv]')) calcular(); });
+  document.addEventListener('change',function(ev){ if(ev.target.matches('[data-cp]')) calcular(); });
+
   /* Indicadores econômicos (Banco Central) */
   var ECO=null;
   window.carregarEco=function(){
@@ -421,6 +554,7 @@ footer a{font-weight:600}
       var de=ECO.series.desemprego; if(de){var u=de.dados[de.dados.length-1];L.push(['Desemprego',nf.format(u.valor).replace(/0$/,'')+'%','–',mes(u.mes)+' (trim.)'])}
       tb.innerHTML=L.map(function(r){return '<tr><td><b>'+esc(r[0])+'</b></td><td class="n">'+esc(r[1])+'</td><td class="n">'+esc(r[2])+'</td><td>'+esc(r[3])+'</td></tr>'}).join('');
       var t=document.querySelector('[data-ecot]'); if(t) t.textContent='Última divulgação de cada indicador. Fontes: IBGE, FGV e Banco Central.';
+      calcular();
     }).catch(function(){var t=document.querySelector('[data-ecot]'); if(t) t.textContent='Não foi possível carregar os indicadores agora.'; ECO=null});
   };
   if((location.hash||'')==='#mercado') window.carregarEco();

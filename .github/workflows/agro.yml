@@ -5,7 +5,7 @@ on:
     - cron: "45 1 * * *"
   workflow_dispatch:
   push:
-    paths: ["scripts/agro.py", ".github/workflows/agro.yml"]
+    paths: ["scripts/agro.py", "scripts/agro_hist.py", ".github/workflows/agro.yml"]
 permissions:
   contents: write
 concurrency:
@@ -17,12 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Coletar cotações do agro
-        run: python3 scripts/agro.py
+        run: |
+          python3 scripts/agro.py
+          python3 scripts/agro_hist.py
       - name: Publicar agro.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add agro.json
+          git add agro.json agro_historico.json
           git diff --cached --quiet && exit 0
           git commit -m "Agro $(date -u +%H:%M) UTC"
           for i in 1 2 3; do git pull --rebase -q origin main && git push -q origin main && break; sleep 5; done
