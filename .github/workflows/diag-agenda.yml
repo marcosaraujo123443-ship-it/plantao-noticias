@@ -4,32 +4,12 @@ jobs:
   testar:
     runs-on: ubuntu-latest
     steps:
-      - env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: |
-          python3 - <<'PY'
-          import json, os, urllib.request, base64
-          from datetime import date, timedelta
-          def get(u, h=None, t=90, data=None):
-              r = urllib.request.Request(u, data=data, headers={"User-Agent": "Mozilla/5.0", "Accept": "application/json", **(h or {})})
-              with urllib.request.urlopen(r, timeout=t) as x: return x.read().decode("utf-8", "replace")
-          hoje = date.today()
-          def t(n, f):
-              try: print(f"::notice::{n} OK: " + f()[:900].replace("\n", " "))
-              except Exception as e: print(f"::error::{n}: {e}")
-          t("ibge calendario", lambda: get(f"https://servicodados.ibge.gov.br/api/v3/calendario/?qtd=6", t=120))
-          t("camara plenario", lambda: get(f"https://dadosabertos.camara.leg.br/api/v2/eventos?idOrgao=180&dataInicio={hoje-timedelta(days=2)}&dataFim={hoje+timedelta(days=5)}&itens=10&ordem=ASC&ordenarPor=dataHoraInicio"))
-          t("senado 28/10", lambda: get("https://legis.senado.leg.br/dadosabertos/plenario/agenda/dia/20261028"))
-          t("sgs 432 ultimo", lambda: get("https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados/ultimos/1?formato=json"))
-          k = os.environ["GEMINI_API_KEY"].strip()
-          for modelo in ("gemini-3.8-flash-tts", "gemini-2.5-flash-preview-tts"):
-              corpo = {"contents": [{"parts": [{"text": "Diga em tom de locutor de rádio, em português do Brasil: Plantão Informa, o resumo das notícias de hoje."}]}],
-                       "generationConfig": {"responseModalities": ["AUDIO"], "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": "Charon"}}}}}
-              try:
-                  r = json.loads(get(f"https://generativelanguage.googleapis.com/v1beta/models/{modelo}:generateContent?key={k}",
-                                     {"Content-Type": "application/json"}, 120, json.dumps(corpo).encode()))
-                  p = r["candidates"][0]["content"]["parts"][0]["inlineData"]
-                  print(f"::notice::tts {modelo} OK: {p['mimeType']} {len(base64.b64decode(p['data']))} bytes")
-              except urllib.error.HTTPError as e: print(f"::error::tts {modelo}: {e.code} {e.read().decode()[:300]}")
-              except Exception as e: print(f"::error::tts {modelo}: {e!r}")
-          PY
+      - uses: actions/checkout@v4
+      - run: |
+          for d in 2026-10-28 2026-10-29; do
+            AGENDA_DATA=$d python3 scripts/agenda.py
+            python3 -c "
+          import json;a=json.load(open('agenda.json'))
+          for i in a['itens']: print('::notice::'+a['data']+' '+json.dumps(i,ensure_ascii=False)[:600])
+          print('::notice::erros',a['erros'])"
+          done
