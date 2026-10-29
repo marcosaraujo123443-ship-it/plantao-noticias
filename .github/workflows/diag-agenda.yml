@@ -1,0 +1,33 @@
+name: Diagnóstico agenda e voz (temporário)
+on: workflow_dispatch
+jobs:
+  testar:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          from datetime import date, timedelta
+          def get(u, h=None):
+              r = urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0", "Accept": "application/json", **(h or {})})
+              with urllib.request.urlopen(r, timeout=40) as x: return x.read().decode("utf-8", "replace")
+          hoje = date.today(); am = hoje + timedelta(days=1)
+          testes = [
+            ("ibge v3 calendario", f"https://servicodados.ibge.gov.br/api/v3/calendario/?de={hoje:%m-%d-%Y}&ate={(hoje+timedelta(days=3)):%m-%d-%Y}"),
+            ("ibge v3 calendario qtd", "https://servicodados.ibge.gov.br/api/v3/calendario/?qtd=5"),
+            ("camara eventos", f"https://dadosabertos.camara.leg.br/api/v2/eventos?dataInicio={hoje}&dataFim={am}&itens=20&ordem=ASC&ordenarPor=dataHoraInicio"),
+            ("senado agenda", f"https://legis.senado.leg.br/dadosabertos/plenario/agenda/dia/{hoje:%Y%m%d}"),
+          ]
+          for n, u in testes:
+              try: print(f"::notice::{n} OK: " + get(u)[:700].replace("\n", " "))
+              except Exception as e: print(f"::error::{n}: {e}")
+          try:
+              k = os.environ["GEMINI_API_KEY"].strip()
+              d = json.loads(get(f"https://generativelanguage.googleapis.com/v1beta/models?key={k}&pageSize=200"))
+              nomes = [m["name"] for m in d.get("models", [])]
+              print("::notice::modelos tts: " + ", ".join(x for x in nomes if "tts" in x.lower() or "audio" in x.lower()))
+              print("::notice::modelos flash: " + ", ".join(x for x in nomes if "flash" in x.lower())[:900])
+          except Exception as e: print(f"::error::gemini models: {e}")
+          PY
