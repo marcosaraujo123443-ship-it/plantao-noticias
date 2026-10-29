@@ -5,7 +5,7 @@ on:
     - cron: "5 0-2,4,7,10-23 * * *"
   workflow_dispatch:
   push:
-    paths: ["scripts/og.py", "scripts/resumo.py", "scripts/telegram.py", "scripts/noticias.py", "scripts/gerar.py", "scripts/modelo.html", ".github/workflows/noticias.yml"]
+    paths: ["scripts/og.py", "scripts/resumo.py", "scripts/telegram.py", "scripts/noticias.py", "scripts/gerar.py", "scripts/modelo.html", "scripts/agenda.py", "scripts/audio.py", ".github/workflows/noticias.yml"]
 permissions:
   contents: write
 concurrency:
@@ -26,6 +26,26 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           RESUMO_FORCAR: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}
         run: python3 scripts/resumo.py
+      - name: Ouça o Plantão (voz do resumo)
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pip install --quiet imageio-ffmpeg
+          python3 scripts/audio.py
+          [ -f plantao.mp3 ] || exit 0
+          # o MP3 vai para o ramo "audio" (só a versão atual), para não pesar o histórico do main
+          d=$(mktemp -d); mv plantao.mp3 "$d/"
+          if ! (cd "$d" && git init -q -b audio && git add plantao.mp3 \
+                && git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -qm "Ouça o Plantão" \
+                && git push -fq "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" audio); then
+            git checkout -- audio.json 2>/dev/null || rm -f audio.json   # sem MP3 publicado, sem player novo
+            echo "::warning::não foi possível publicar o áudio"
+          fi
+      - name: O que acompanhar hoje (agenda)
+        continue-on-error: true
+        run: python3 scripts/agenda.py
       - name: Imagem de compartilhamento
         continue-on-error: true
         run: pip install --quiet pillow && python3 scripts/og.py
@@ -41,7 +61,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add noticias.json index.html telegram_enviados.json resumo.json og.png 2>/dev/null || git add noticias.json index.html telegram_enviados.json
+          git add noticias.json index.html telegram_enviados.json resumo.json og.png agenda.json $( [ -f audio.json ] && echo audio.json ) 2>/dev/null || git add noticias.json index.html telegram_enviados.json
           git diff --cached --quiet && exit 0
           git commit -m "Notícias $(TZ=America/Sao_Paulo date +%d/%m\ %H:%M)"
           for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin main && break; sleep 5; done

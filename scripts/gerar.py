@@ -59,6 +59,43 @@ if res and (upd - parse(res["gerado_utc"])).total_seconds() < 14 * 3600:
                    f'<p class="abre">{e(res["abertura"])}</p>{pars}'
                    '<p class="ia">Resumo escrito automaticamente por inteligência artificial a partir das notícias desta página. '
                    'Confira os detalhes nas matérias originais.</p></section>')
+    # Ouça o Plantão: narração do mesmo resumo (audio.py); só aparece se o áudio for deste resumo
+    try: aud = json.loads((d / "audio.json").read_text(encoding="utf-8"))
+    except Exception: aud = {}
+    if aud.get("resumo") == res["gerado_utc"]:
+        dur = aud.get("duracao") or 0
+        dur_txt = f" · {dur // 60} min {dur % 60:02d} s" if dur else ""
+        player = (f'<div class="ouca"><span class="ouca-t">&#9654; Ouça o Plantão<small>{dur_txt}</small></span>'
+                  f'<audio controls preload="none" src="plantao.mp3?v={e(res["gerado_utc"].replace(":", ""))}" '
+                  f'aria-label="Ouça o Resumo do Plantão das {hr:%H}h"></audio>'
+                  '<small class="ouca-ia">Voz gerada por inteligência artificial</small></div>')
+        resumo_html = resumo_html.replace("</h2>", "</h2>" + player, 1)
+
+# O que acompanhar hoje (agenda.py): plenários, Copom e jogos do dia
+agenda_html = ""
+try: ag = json.loads((d / "agenda.json").read_text(encoding="utf-8"))
+except Exception: ag = {}
+if ag.get("data") == f"{upd:%Y-%m-%d}" and ag.get("itens"):
+    def _estado(t):
+        t = (t or "").lower()
+        if "vivo" in t or "andamento" in t: return '<span class="ag-st viv">ao vivo</span>'
+        if "encerr" in t or "realiz" in t: return '<span class="ag-st fim">encerrado</span>'
+        return ""
+    lis = []
+    for it in ag["itens"][:9]:
+        det = "".join(f"<li>{e(x)}</li>" for x in it.get("detalhe", [])[:3])
+        link = it.get("link") or ""
+        tit = e(it["titulo"])
+        if link.startswith("http"): tit = f'<a href="{e(link)}" target="_blank" rel="noopener">{tit}</a>'
+        elif link: tit = f'<a href="#futebol" data-tab="futebol">{tit}</a>'
+        lis.append(f'<li class="ag-{e(it["tipo"])}"><time>{e(it.get("hora") or "dia todo")}</time>'
+                   f'<div><span class="ag-rot">{e(it["rotulo"])}</span>{_estado(it.get("estado"))}<b>{tit}</b>'
+                   f'{f"<ul>{det}</ul>" if det else ""}</div></li>')
+    extra = (f'<p class="ag-mais">Mais {ag["outros_jogos"]} jogo{"s" if ag["outros_jogos"] > 1 else ""} de outras ligas hoje: '
+             '<a href="#futebol" data-tab="futebol">ver no Futebol</a>.</p>') if ag.get("outros_jogos") else ""
+    agenda_html = (f'<section class="agenda" aria-label="O que acompanhar hoje"><h2>O que acompanhar hoje '
+                   f'<small>{upd.day} de {MESES[upd.month-1]}</small></h2><ol>{"".join(lis)}</ol>{extra}'
+                   '<p class="ag-fonte">Fontes: Câmara dos Deputados, Senado Federal, Banco Central e ESPN. Horários de Brasília.</p></section>')
 
 lead_html = f'''<article class="lead">
   {meta(lead, True)}
@@ -185,7 +222,7 @@ merc_json = json.dumps(mercado, ensure_ascii=False).replace("</", "<\\/")
 tpl = (Path(__file__).parent / "modelo.html").read_text(encoding="utf-8")
 out = tpl
 for k, v in {"DATA": f"{DIAS[upd.weekday()]}, {upd.day} de {MESES[upd.month-1]} de {upd.year}",
-             "HORA": f"{upd:%H:%M}", "LEAD": lead_html, "RESUMO": resumo_html, "DESTAQUES": dest_html, "BLOCOS": blocos,
+             "HORA": f"{upd:%H:%M}", "LEAD": lead_html, "RESUMO": resumo_html, "AGENDA": agenda_html, "DESTAQUES": dest_html, "BLOCOS": blocos,
              "PAGINAS": paginas, "TABS": tabs, "HORARIOS": horarios, "FONTES": fontes_txt,
              "TOTAL": str(len(itens)), "NFONTES": str(len(fontes)), "MERCADO": merc_json,
              "FONTES_OPT": "".join(f'<option value="{e(f)}">{e(f)}</option>' for f in sorted(fontes, key=str.lower))}.items():

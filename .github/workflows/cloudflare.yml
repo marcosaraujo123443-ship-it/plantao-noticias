@@ -33,6 +33,7 @@ jobs:
           cp *.html *.json *.png *.jpg dist/ 2>/dev/null || true
           for f in ads.txt robots.txt sitemap.xml favicon.ico site.webmanifest; do [ -f $f ] && cp $f dist/ || true; done
           rm -f dist/telegram_enviados.json
+          git fetch -q --depth 1 origin audio 2>/dev/null && git show FETCH_HEAD:plantao.mp3 > dist/plantao.mp3 || rm -f dist/plantao.mp3   # Ouça o Plantão
           python3 scripts/paginas.py dist
           ls dist
       - name: Publicar

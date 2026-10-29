@@ -41,7 +41,7 @@ def camara(hoje):
         except Exception:
             pass
         out.append({"hora": hora, "tipo": "politica", "rotulo": "Câmara",
-                    "titulo": curto(ev.get("descricaoTipo") or "Sessão do Plenário", 60) + " no Plenário",
+                    "titulo": curto(ev.get("descricaoTipo") or "Sessão", 60) + " no Plenário",
                     "detalhe": itens[:3], "link": ev.get("urlRegistro") or "https://www.camara.leg.br/agenda",
                     "estado": ev.get("situacao")})
     return out
@@ -51,6 +51,7 @@ def senado(hoje):
     out = []
     for s in lista(((d.get("AgendaPlenario") or {}).get("Sessoes") or {}).get("Sessao")):
         tipo = (s.get("TipoSessao") or "Sessão").strip().capitalize()
+        if not tipo.lower().startswith("sess"): tipo = "Sessão " + tipo.lower()
         if "não deliberativa" in tipo.lower() and not s.get("Materias"): continue
         itens = []
         for m in lista((s.get("Materias") or {}).get("Materia"))[:4]:
@@ -59,7 +60,7 @@ def senado(hoje):
             if ident or ementa: itens.append(f"{ident}: {ementa}" if ident else ementa)
         casa = "Congresso" if (s.get("Casa") or "").upper() == "CN" else "Senado"
         out.append({"hora": (s.get("Hora") or "").strip()[:5], "tipo": "politica", "rotulo": casa,
-                    "titulo": curto(tipo, 60), "detalhe": itens[:3], "link": "https://www25.senado.leg.br/web/atividade/plenario",
+                    "titulo": curto(tipo, 60) + " no Plenário", "detalhe": itens[:3], "link": "https://www25.senado.leg.br/web/atividade/plenario",
                     "estado": s.get("SituacaoSessao")})
     return out
 
