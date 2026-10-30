@@ -44,7 +44,10 @@ def quando(iso):
     return f"{d.day} de {MESES[d.month]} de {d.year}, às {d:%H:%M}"
 
 CSS = """:root{--ink:#0a1d3d;--ink2:#4a5568;--paper:#f6f7fa;--card:#fff;--rule:#dde2ea;--brand:#8f0922;--band:#0b1f3a;--up:#0f7a3d;--down:#b3261e}
-@media (prefers-color-scheme:dark){:root{--ink:#e8ecf3;--ink2:#a7b0c0;--paper:#0d1420;--card:#141d2c;--rule:#26324a;--brand:#ef5a6f;--up:#4cc27e;--down:#ff6b6b}}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#e8ecf3;--ink2:#a7b0c0;--paper:#0d1420;--card:#141d2c;--rule:#26324a;--brand:#ef5a6f;--up:#4cc27e;--down:#ff6b6b;color-scheme:dark}}
+:root[data-theme=dark]{--ink:#e8ecf3;--ink2:#a7b0c0;--paper:#0d1420;--card:#141d2c;--rule:#26324a;--brand:#ef5a6f;--up:#4cc27e;--down:#ff6b6b;color-scheme:dark}
+.tema{display:inline-flex;align-items:center;gap:7px;font:600 13px system-ui;color:#eef2f8;background:none;border:1px solid color-mix(in srgb,#eef2f8 35%,transparent);padding:7px 12px;border-radius:999px;cursor:pointer}.tema:hover{border-color:#eef2f8}.tema svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}.tema .t-lua{fill:currentColor;stroke:none}.tema .t-sol{display:none}.tema[aria-pressed=true] .t-sol{display:block}.tema[aria-pressed=true] .t-lua{display:none}
+
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
 header{background:var(--band);padding:12px 16px}.hd{max-width:1000px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;justify-content:space-between}
 header a.marca{color:#fff;text-decoration:none;font:700 20px Georgia,serif;display:inline-flex;gap:10px;align-items:center}header img{width:34px;height:34px;border-radius:50%}
@@ -93,15 +96,17 @@ def pagina(caminho, titulo, descricao, corpo, trilha=None, atualizado=None):
     doc = f"""<!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(titulo)} · Plantão Informa</title><meta name="description" content="{e(descricao)}">
-<link rel="canonical" href="{e(url)}"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0b1f3a">
+<link rel="canonical" href="{e(url)}"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0b1f3a"><script>try{{var t=localStorage.getItem('plantao-tema');if(t)document.documentElement.setAttribute('data-theme',t==='escuro'?'dark':'light')}}catch(e){{}}</script>
 <meta property="og:type" content="website"><meta property="og:site_name" content="Plantão Informa"><meta property="og:title" content="{e(titulo)}">
 <meta property="og:description" content="{e(descricao)}"><meta property="og:url" content="{e(url)}"><meta property="og:image" content="{SITE}logo.jpg">
 <style>{CSS}</style></head><body>
-<header><div class="hd"><a class="marca" href="{raiz}./"><img src="{raiz}apple-touch-icon.png" alt="">Plantão Informa</a><nav class="pg">{nav}</nav></div></header>
+<header><div class="hd"><a class="marca" href="{raiz}./"><img src="{raiz}apple-touch-icon.png" alt="">Plantão Informa</a><nav class="pg">{nav}</nav><button type="button" class="tema" data-tema aria-label="Alternar entre tema claro e escuro" title="Tema claro ou escuro"><svg class="t-sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg><svg class="t-lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/></svg><span>Tema</span></button></div></header>
 <main>{tr}<h1>{e(titulo)}</h1>
 {corpo}
 {upd}Dados com atraso, apenas informativos. <a href="{raiz}./">Notícias</a> · <a href="{raiz}sobre">Sobre</a> · <a href="{raiz}privacidade">Privacidade</a></p>
-</main></body></html>"""
+</main><script>(function(){{var b=document.querySelectorAll('[data-tema]');function escuro(){{var t=document.documentElement.getAttribute('data-theme');return t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches}}
+function rot(){{var e=escuro();b.forEach(function(x){{x.setAttribute('aria-pressed',e);x.querySelector('span').textContent=e?'Claro':'Escuro';x.title=e?'Mudar para o tema claro':'Mudar para o tema escuro'}})}}
+b.forEach(function(x){{x.addEventListener('click',function(){{var n=escuro()?'claro':'escuro';document.documentElement.setAttribute('data-theme',n==='escuro'?'dark':'light');try{{localStorage.setItem('plantao-tema',n)}}catch(e){{}}rot()}})}});rot();}})();</script></body></html>"""
     doc = limpa_links(doc)
     destino = os.path.join(OUT, caminho)
     os.makedirs(os.path.dirname(destino) or ".", exist_ok=True)

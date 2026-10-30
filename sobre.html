@@ -3,13 +3,16 @@
 <title>Sobre · Plantão Informa</title><link rel="canonical" href="https://plantaoinforma.com.br/sobre"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0b1f3a">
 <style>
 :root{--ink:#0a1d3d;--ink2:#4a5568;--paper:#f6f7fa;--card:#fff;--rule:#dde2ea;--brand:#8f0922;--band:#0b1f3a}
-@media (prefers-color-scheme:dark){:root{--ink:#e8ecf3;--ink2:#a7b0c0;--paper:#0d1420;--card:#141d2c;--rule:#26324a;--brand:#e0526b}}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#e8ecf3;--ink2:#a7b0c0;--paper:#0d1420;--card:#141d2c;--rule:#26324a;--brand:#e0526b;color-scheme:dark}}
+:root[data-theme=dark]{--ink:#e8ecf3;--ink2:#a7b0c0;--paper:#0d1420;--card:#141d2c;--rule:#26324a;--brand:#e0526b;color-scheme:dark}
+header:has(.tema){display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.tema{display:inline-flex;align-items:center;gap:7px;font:600 13px system-ui;color:#eef2f8;background:none;border:1px solid color-mix(in srgb,#eef2f8 35%,transparent);padding:7px 12px;border-radius:999px;cursor:pointer}.tema:hover{border-color:#eef2f8}.tema svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}.tema .t-lua{fill:currentColor;stroke:none}.tema .t-sol{display:none}.tema[aria-pressed=true] .t-sol{display:block}.tema[aria-pressed=true] .t-lua{display:none}
+
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
 header{background:var(--band);padding:14px 16px}header a{color:#fff;text-decoration:none;font:700 20px Georgia,serif;display:inline-flex;gap:10px;align-items:center}
 header img{width:36px;height:36px;border-radius:50%}main{max-width:760px;margin:0 auto;padding:28px 16px 48px}
 h1{font:700 32px/1.2 Georgia,serif;margin:0 0 18px}h2{font:700 21px Georgia,serif;margin:30px 0 8px}a{color:var(--brand)}p,li{color:var(--ink)}
 .nota{color:var(--ink2);font-size:14px;margin-top:36px;border-top:1px solid var(--rule);padding-top:14px}
-</style></head><body><header><a href="./"><img src="apple-touch-icon.png" alt="">Plantão Informa</a></header><main>
+</style><script>try{var t=localStorage.getItem('plantao-tema');if(t)document.documentElement.setAttribute('data-theme',t==='escuro'?'dark':'light')}catch(e){}</script></head><body><header><a href="./"><img src="apple-touch-icon.png" alt="">Plantão Informa</a><button type="button" class="tema" data-tema aria-label="Alternar entre tema claro e escuro" title="Tema claro ou escuro"><svg class="t-sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg><svg class="t-lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/></svg><span>Tema</span></button></header><main>
 <h1>Sobre o Plantão Informa</h1>
 <p>O Plantão Informa reúne, de hora em hora, as principais manchetes de política, inteligência artificial, futebol, agro e mercado publicadas por veículos e órgãos de imprensa confiáveis. Também mostra cotações da bolsa e de commodities, as contas públicas da União e dos estados e as tabelas dos principais campeonatos.</p>
 <h2>Como funciona</h2>
@@ -19,4 +22,6 @@ h1{font:700 32px/1.2 Georgia,serif;margin:0 0 18px}h2{font:700 21px Georgia,seri
 <h2 id="contato">Contato e remoção de conteúdo</h2>
 <p>Se você representa um veículo ou é titular de algum conteúdo exibido aqui e deseja a correção ou a remoção, escreva para <a href="mailto:contato@plantaoinforma.com.br">contato@plantaoinforma.com.br</a>. Atendemos pedidos de remoção em até 48 horas.</p>
 <p>Sugestões, correções e parcerias também são bem-vindas pelo mesmo e-mail ou pelo nosso canal no Telegram, <a href="https://t.me/plantaodenoticias">@plantaodenoticias</a>.</p>
-<p class="nota"><a href="./">← Voltar para as notícias</a> · <a href="sobre">Sobre</a> · <a href="privacidade">Privacidade</a></p></main></body></html>
+<p class="nota"><a href="./">← Voltar para as notícias</a> · <a href="sobre">Sobre</a> · <a href="privacidade">Privacidade</a></p></main><script>(function(){var b=document.querySelectorAll('[data-tema]');function escuro(){var t=document.documentElement.getAttribute('data-theme');return t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches}
+function rot(){var e=escuro();b.forEach(function(x){x.setAttribute('aria-pressed',e);x.querySelector('span').textContent=e?'Claro':'Escuro';x.title=e?'Mudar para o tema claro':'Mudar para o tema escuro'})}
+b.forEach(function(x){x.addEventListener('click',function(){var n=escuro()?'claro':'escuro';document.documentElement.setAttribute('data-theme',n==='escuro'?'dark':'light');try{localStorage.setItem('plantao-tema',n)}catch(e){}rot()})});rot();})();</script></body></html>

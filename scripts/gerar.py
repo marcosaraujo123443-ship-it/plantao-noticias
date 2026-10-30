@@ -347,6 +347,7 @@ saida_site.write_text(
     '<link rel="apple-touch-icon" href="/apple-touch-icon.png">\n'
     '<link rel="manifest" href="/site.webmanifest">\n'
     '<meta name="theme-color" content="#0b1f3a">\n'
+    '<script>try{var t=localStorage.getItem(\'plantao-tema\');if(t)document.documentElement.setAttribute(\'data-theme\',t===\'escuro\'?\'dark\':\'light\')}catch(e){}</script>\n'
     f'<link rel="canonical" href="{SITE}">\n' + redir +
     f'<meta name="atualizado" content="{e(data["atualizado_utc"])}">\n' +
     (f'<meta property="og:image" content="{SITE}og.png?v={upd:%Y%m%d%H}">\n<meta property="og:image:width" content="1200">\n'
