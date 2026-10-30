@@ -1,10 +1,18 @@
 name: diag-feeds
 on: workflow_dispatch
+permissions:
+  contents: write
 jobs:
   v:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
       - run: |
-          python3 scripts/diag_probe.py || true
-          split -l 9 /tmp/out /tmp/parte; for f in /tmp/parte*; do echo "::notice::$(sed ':a;N;$!ba;s/\n/%0A/g' $f)"; done
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
+          mkdir d && cd d
+          curl -s -m 40 -A "$UA" -o pci_concursos.html https://www.pciconcursos.com.br/concursos/ || true
+          curl -s -m 40 -A "$UA" -o pci_home.html https://www.pciconcursos.com.br/ || true
+          curl -s -m 40 -A "$UA" -o inmet_prev.json https://apiprevmet3.inmet.gov.br/previsao/5300108 || true
+          curl -s -m 40 -A "$UA" -o inmet_avisos.json https://apiprevmet3.inmet.gov.br/avisos/ativos || true
+          curl -s -m 40 -A "$UA" -o ibge_uf.json "https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=application/vnd.geo+json&intrarregiao=UF&qualidade=minima" || true
+          ls -l
+          git init -q -b diag-dados && git add . && git -c user.name=bot -c user.email=b@b commit -qm d && git push -fq "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" diag-dados
