@@ -10,7 +10,8 @@ VOZ = os.environ.get("AUDIO_VOZ", "Charon")
 DIAS = ["segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado", "domingo"]
 MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"]
 SECOES = {"Política": "Na política", "IA": "Em inteligência artificial", "Futebol": "No futebol", "Agro": "No agro",
-          "Mercado": "No mercado"}
+          "Mercado": "No mercado",
+          "Concursos": "Em concursos e empregos", "Ciência e Saúde": "Em ciência e saúde"}
 
 def roteiro(r):
     q = datetime.strptime(r["gerado_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).astimezone(BRT)

@@ -7,7 +7,7 @@
   --paper:#f5f7fa; --card:#ffffff; --ink:#0a1d3d; --ink-2:#4a5873; --rule:#d9e0ea;
   --brand:#8f0922; --band:#0b1f3a; --band-ink:#eef2f8; --tick:#071428;
   --up:#137a3d; --down:#c0262d;
-  --pol:#1d4ed8; --ia:#7c3aed; --fut:#15803d; --agro:#a16207; --merc:#0f766e;
+  --pol:#1d4ed8; --ia:#7c3aed; --fut:#15803d; --agro:#a16207; --merc:#0f766e; --conc:#c2410c; --cien:#0369a1;
   --f-head:"Source Serif 4",Georgia,"Times New Roman",serif;
   --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
@@ -16,19 +16,19 @@
   --paper:#0a1222; --card:#111c30; --ink:#e8edf5; --ink-2:#a3aec0; --rule:#23324d;
   --brand:#ef5a6f; --band:#071428; --band-ink:#e8edf5; --tick:#040c1a;
   --up:#3ecf7a; --down:#ff6b6b;
-  --pol:#7aa2ff; --ia:#b794f6; --fut:#4cc38a; --agro:#e0b04a; --merc:#3fc4b5; color-scheme:dark}}
+  --pol:#7aa2ff; --ia:#b794f6; --fut:#4cc38a; --agro:#e0b04a; --merc:#3fc4b5; --conc:#fb8a4c; --cien:#4fb3e8; color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#0a1222; --card:#111c30; --ink:#e8edf5; --ink-2:#a3aec0; --rule:#23324d;
   --brand:#ef5a6f; --band:#071428; --band-ink:#e8edf5; --tick:#040c1a;
   --up:#3ecf7a; --down:#ff6b6b;
-  --pol:#7aa2ff; --ia:#b794f6; --fut:#4cc38a; --agro:#e0b04a; --merc:#3fc4b5; color-scheme:dark}
+  --pol:#7aa2ff; --ia:#b794f6; --fut:#4cc38a; --agro:#e0b04a; --merc:#3fc4b5; --conc:#fb8a4c; --cien:#4fb3e8; color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 body{background:var(--paper);color:var(--ink);font:16px/1.55 var(--f-body);margin:0}
 a{color:inherit}
 a:focus-visible,button:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:2px}
 .gut{max-width:1180px;margin:0 auto;padding-inline:16px}
-.s-politica{--c:var(--pol)} .s-ia{--c:var(--ia)} .s-futebol{--c:var(--fut)} .s-agro{--c:var(--agro)} .s-mercado{--c:var(--merc)}
+.s-politica{--c:var(--pol)} .s-ia{--c:var(--ia)} .s-futebol{--c:var(--fut)} .s-agro{--c:var(--agro)} .s-mercado{--c:var(--merc)} .s-concursos{--c:var(--conc)} .s-ciencia-e-saude{--c:var(--cien)}
 
 /* Cabeçalho */
 .topo{background:var(--band);color:var(--band-ink)}
@@ -91,6 +91,54 @@ h2 a:hover,h3 a:hover,h4 a:hover{text-decoration:underline;text-decoration-thick
 .resumo p a{font-weight:700;text-decoration:none;margin-right:4px;color:var(--c,var(--brand))}
 .resumo .ia{font-size:12.5px;color:var(--ink-2);margin:10px 0 0}
 @media (max-width:520px){.resumo{padding:14px 16px}}
+/* Concursos */
+.cc-f{justify-content:flex-start}.cc-f select{min-width:9em}
+.cc-l{list-style:none;margin:0;padding:0}
+.cc-l li{padding:12px 16px;border-top:1px solid var(--rule);display:grid;gap:3px}
+.cc-l li:first-child{border-top:0}
+.cc-l a{font-weight:700;color:var(--ink);text-decoration:none;line-height:1.3}.cc-l a:hover{text-decoration:underline}
+.cc-l .cc-v{font-weight:600;color:var(--conc)}.cc-l .cc-c{font-size:13.5px;color:var(--ink-2);line-height:1.4}
+.cc-l .cc-p{font:500 12.5px var(--f-mono);color:var(--ink-2)}.cc-l .cc-p b{color:#d6202f}
+.cc-uf{font:700 10.5px var(--f-mono);padding:1px 6px;border-radius:9px;background:var(--rule);color:var(--ink-2);margin-left:6px;vertical-align:2px}
+.cc-mais{margin:4px 16px 12px;justify-self:start;font:600 14px var(--f-body);border:1px solid var(--rule);background:var(--paper);color:var(--ink);border-radius:999px;padding:8px 16px;cursor:pointer}
+[data-conc] .nota{padding:6px 16px 16px}
+/* Tempo */
+.s-tempo{--c:#0e7490}
+.tempo{gap:16px}.tp-dias{margin-top:4px}
+.tp-grade{display:grid;gap:16px}
+@media (min-width:900px){.tp-grade{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:start}}
+.tp-mapa svg{display:block;width:100%;height:auto;max-height:620px;padding:6px 10px 0}
+.tp-uf{fill:var(--paper);stroke:var(--rule);stroke-width:1}
+.tp-alp{opacity:.42;stroke-width:1;stroke-opacity:.9;mix-blend-mode:multiply}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .tp-alp{mix-blend-mode:normal;opacity:.35}}
+:root[data-theme=dark] .tp-alp{mix-blend-mode:normal;opacity:.35}
+.tp-cap{cursor:pointer}.tp-cap circle{stroke:var(--card);stroke-width:1.5}
+.tp-cap text{font:700 11px var(--f-body);fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-width:3px}
+[data-conc] .per,.tempo .per{margin:0;font-size:13.5px;color:var(--ink-2)}
+@media (max-width:600px){.tp-cap text{font-size:18px;stroke-width:4px}.tp-cap.on text{font-size:20px}.tp-mapa svg{padding:4px 2px 0}}
+.tp-cap.on circle{stroke:var(--ink);stroke-width:2.5}.tp-cap.on text{font-size:12.5px}
+.tp-leg{list-style:none;display:flex;flex-wrap:wrap;gap:6px 14px;margin:0;padding:6px 16px 14px;font-size:12.5px;color:var(--ink-2)}
+.tp-leg i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px;opacity:.75}
+.tp-sel{display:flex;gap:8px;align-items:center;font:600 13px var(--f-body);color:var(--ink-2)}
+.tp-sel select{font:600 15px var(--f-body);color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:7px 10px}
+.tp-hoje{display:flex;gap:14px;align-items:center;padding:16px}
+.tp-ic{font-size:46px;line-height:1}.tp-hoje b{font:700 30px var(--f-head)}.tp-hoje b small{font:500 16px var(--f-body);color:var(--ink-2);margin-left:4px}
+.tp-hoje p{margin:2px 0 0;color:var(--ink-2);font-size:14px;line-height:1.4}
+.tp-info{display:flex;flex-wrap:wrap;gap:6px 16px;padding:0 16px 12px;font-size:13px;color:var(--ink-2)}
+.tp-per{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--rule)}
+.tp-per div{padding:10px 12px;text-align:center;font-size:12.5px;color:var(--ink-2);border-left:1px solid var(--rule)}.tp-per div:first-child{border-left:0}
+.tp-per span{display:block;font-size:24px;margin:2px 0}
+.tp-5{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--rule)}
+.tp-5 button{all:unset;cursor:pointer;padding:10px 4px;text-align:center;font-size:12.5px;color:var(--ink-2);border-left:1px solid var(--rule)}
+.tp-5 button:first-child{border-left:0}.tp-5 button.on{background:var(--paper);color:var(--ink);font-weight:700}
+.tp-5 span{display:block;font-size:22px;margin:3px 0}.tp-5 b{color:var(--ink)}
+.tp-al{list-style:none;margin:0;padding:0}
+.tp-al li{padding:12px 16px;border-top:1px solid var(--rule);border-left:5px solid var(--cor,#FFE600)}
+.tp-al li:first-child{border-top:0}.tp-al b{display:block}.tp-al small{display:block;color:var(--ink-2);font-size:13px;line-height:1.45;margin-top:2px}
+.tp-al .vazio{border-left-color:var(--rule);color:var(--ink-2)}
+.tp-tab td:nth-child(2){color:var(--ink-2);font-size:13px}.tp-tab td i{font-style:normal;margin-right:6px}
+.tp-tab tr.rg td{font:700 11.5px var(--f-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--ink-2);background:var(--paper)}
+.tp-tab tbody tr[data-c]{cursor:pointer}
 .partilha{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--rule)}
 .partilha a,.partilha button{display:inline-flex;align-items:center;gap:7px;font:600 14px var(--f-body);border:1px solid var(--rule);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer;text-decoration:none}
 .partilha .zap{background:#1f8f4e;border-color:#1f8f4e;color:#fff}.partilha svg{width:18px;height:18px}
@@ -110,7 +158,7 @@ h2 a:hover,h3 a:hover,h4 a:hover{text-decoration:underline;text-decoration-thick
 .agenda time{font:600 13px var(--f-mono);color:var(--ink-2);min-width:50px;padding-top:2px}
 .agenda b{display:block;font-weight:700;line-height:1.35;margin-top:2px}.agenda b a{color:inherit;text-decoration:none}.agenda b a:hover{text-decoration:underline}
 .ag-rot{font:700 11px var(--f-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--brand)}
-.ag-futebol .ag-rot{color:#1d7a3a}.ag-economia .ag-rot{color:#b26a00}
+.ag-futebol .ag-rot{color:#1d7a3a}.ag-tempo .ag-rot{color:#c2410c}.ag-economia .ag-rot{color:#b26a00}
 .ag-st{font:600 10.5px var(--f-mono);text-transform:uppercase;margin-left:8px;padding:1px 6px;border-radius:9px;background:var(--rule);color:var(--ink-2)}
 .ag-st.viv{background:#d6202f;color:#fff}
 .agenda ul{margin:4px 0 0;padding-left:16px;font-size:13.5px;color:var(--ink-2);line-height:1.4}
@@ -346,6 +394,8 @@ footer a{font-weight:600}
     if(id==='futebol'&&window.carregarFut) window.carregarFut();
     if(id==='mercado'&&window.carregarEco) window.carregarEco();
     if(id==='agro'&&window.carregarAgro) window.carregarAgro();
+    if(id==='concursos'&&window.carregarConc) window.carregarConc();
+    if(id==='tempo'&&window.carregarTempo) window.carregarTempo();
   }
   document.addEventListener('click',function(ev){
     var el=ev.target.closest('[data-tab]'); if(!el) return;
@@ -736,6 +786,135 @@ footer a{font-weight:600}
   }
   setInterval(checarNovas,30*60*1000);
   document.addEventListener('visibilitychange',function(){ if(!document.hidden&&Date.now()-checado>=30*60*1000) checarNovas(); });
+})();
+(function(){
+  function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function ler(k){try{return localStorage.getItem(k)}catch(x){return null}}
+  function gravar(k,v){try{localStorage.setItem(k,v)}catch(x){}}
+  function json(u){return fetch(u+'?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null})}
+  var NOMES_UF={BR:'Nacional',AC:'Acre',AL:'Alagoas',AP:'Amapá',AM:'Amazonas',BA:'Bahia',CE:'Ceará',DF:'Distrito Federal',ES:'Espírito Santo',GO:'Goiás',MA:'Maranhão',MT:'Mato Grosso',MS:'Mato Grosso do Sul',MG:'Minas Gerais',PA:'Pará',PB:'Paraíba',PR:'Paraná',PE:'Pernambuco',PI:'Piauí',RJ:'Rio de Janeiro',RN:'Rio Grande do Norte',RS:'Rio Grande do Sul',RO:'Rondônia',RR:'Roraima',SC:'Santa Catarina',SP:'São Paulo',SE:'Sergipe',TO:'Tocantins'};
+  function hojeISO(){var d=new Date(Date.now()-3*3600e3);return d.toISOString().slice(0,10)}
+  function dm(iso){return iso.slice(8,10)+'/'+iso.slice(5,7)}
+
+  /* Concursos com inscrições abertas (concursos.json, do PCI Concursos) */
+  var CONC=null, CO='prazo', CN=15;
+  function reais(v){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}
+  function listaConc(){
+    var ul=document.querySelector('[data-cl]'); if(!ul||!CONC||!CONC.concursos) return;
+    var uf=document.querySelector('[data-cuf]').value, nv=document.querySelector('[data-cnv]').value, hoje=hojeISO();
+    var l=CONC.concursos.filter(function(c){return (!uf||c.uf===uf)&&(!nv||c.nivel.indexOf(nv)>=0)&&(!c.prazo||c.prazo>=hoje)});
+    l.sort(CO==='salario'?function(a,b){return (b.salario||0)-(a.salario||0)}:CO==='vagas'?function(a,b){return (b.vagas||0)-(a.vagas||0)}:
+      function(a,b){return (a.prazo||'9999').localeCompare(b.prazo||'9999')});
+    document.querySelector('[data-ct2]').textContent=l.length+' concurso'+(l.length===1?'':'s')+' com inscrições abertas'+(uf?' em '+NOMES_UF[uf]:'')+'.';
+    ul.innerHTML=l.slice(0,CN).map(function(c){
+      var dias=c.prazo?Math.round((new Date(c.prazo)-new Date(hoje))/864e5):null;
+      var pz=c.prazo?'Inscrições até '+dm(c.prazo)+(dias===0?' · <b>termina hoje</b>':dias<=3?' · <b>faltam '+dias+' dia'+(dias>1?'s':'')+'</b>':' · faltam '+dias+' dias'):'Prazo no edital';
+      var onde=c.uf==='BR'?'Nacional':(c.local||c.uf);
+      return '<li><a href="'+esc(c.link)+'" target="_blank" rel="noopener" title="'+esc(c.titulo)+'">'+esc(c.orgao)+'<span class="cc-uf">'+esc(onde)+'</span></a>'+
+        '<span class="cc-v">'+esc(c.resumo)+'</span><span class="cc-c">'+esc(c.cargos)+(c.nivel?' · '+esc(c.nivel):'')+'</span><span class="cc-p">'+pz+'</span></li>';
+    }).join('')||'<li class="cc-c">Nenhum concurso aberto com esse filtro agora.</li>';
+    document.querySelector('[data-cmais]').hidden=l.length<=CN;
+  }
+  document.addEventListener('change',function(ev){ if(ev.target.matches('[data-cuf],[data-cnv]')){CN=15;listaConc(); if(ev.target.matches('[data-cuf]')) gravar('plantao-conc-uf',ev.target.value);} });
+  document.addEventListener('click',function(ev){
+    var b=ev.target.closest('[data-co]'); if(b){CO=b.dataset.co;document.querySelectorAll('[data-co]').forEach(function(x){x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',x===b)});CN=15;listaConc();return}
+    if(ev.target.closest('[data-cmais]')){CN+=20;listaConc()}
+  });
+  window.carregarConc=function(){
+    if(CONC||!/^https?:/.test(location.protocol)) return; CONC={};
+    json('concursos.json').then(function(d){
+      CONC=d||{concursos:[]}; var n={}; CONC.concursos.forEach(function(c){n[c.uf]=(n[c.uf]||0)+1});
+      var sel=document.querySelector('[data-cuf]'), ufs=Object.keys(n).filter(function(u){return u!=='BR'}).sort(function(a,b){return NOMES_UF[a].localeCompare(NOMES_UF[b])});
+      sel.innerHTML='<option value="">Todo o Brasil ('+CONC.concursos.length+')</option>'+(n.BR?'<option value="BR">Nacionais ('+n.BR+')</option>':'')+
+        ufs.map(function(u){return '<option value="'+u+'">'+NOMES_UF[u]+' ('+n[u]+')</option>'}).join('');
+      var g=ler('plantao-conc-uf'); if(g&&n[g]) sel.value=g;
+      listaConc();
+    }).catch(function(){document.querySelector('[data-ct2]').textContent='Não foi possível carregar os concursos agora.';CONC=null});
+  };
+  if((location.hash||'')==='#concursos') window.carregarConc();
+
+  /* Tempo (tempo.json, previsões e avisos do INMET) */
+  var TP=null, TD=0, TC=ler('plantao-tempo-cap')||'SP', TDC=0;
+  function icone(t,noite){
+    t=(t||'').toLowerCase();
+    if(/trovoad|tempestade/.test(t)) return '⛈️';
+    if(/chuva|chuvisco|pancada|garoa/.test(t)) return /possibilidade|isolad|fraca/.test(t)&&!/muitas nuvens|encoberto/.test(t)?'🌦️':'🌧️';
+    if(/nevoeiro|névoa|nevoa|bruma/.test(t)) return '🌫️';
+    if(/encoberto|nublado|muitas nuvens/.test(t)) return '☁️';
+    if(/poucas nuvens|parcialmente|variação de nebulosidade|algumas nuvens/.test(t)) return noite?'☁️':'⛅';
+    if(/claro|sol|sem nuvens/.test(t)) return noite?'🌙':'☀️';
+    return '⛅';
+  }
+  function corTemp(t){ if(t==null) return '#94a3b8'; if(t>=35) return '#b91c1c'; if(t>=31) return '#ea580c'; if(t>=27) return '#f59e0b'; if(t>=22) return '#16a34a'; if(t>=17) return '#0ea5e9'; return '#4f46e5'; }
+  var DESL={PB:[9,4],PE:[9,6],AL:[9,6],SE:[9,8],RN:[9,0],GO:[-8,10,'end'],DF:[9,-4],RJ:[8,10],ES:[9,4],SP:[-8,12,'end'],SC:[9,6],PR:[-8,8,'end'],BA:[9,4],AP:[9,4]};
+  function datasTempo(){var c=TP.capitais.filter(function(c){return c.dias&&c.dias.length})[0]; return c?c.dias.map(function(d){return d.data}):[]}
+  function ativo(a,dia){return a.inicio.slice(0,10)<=dia&&a.fim.slice(0,10)>=dia}
+  function desenharTempo(){
+    if(!TP||!TP.capitais) return;
+    var datas=datasTempo(), dia=datas[TD]||datas[0], hoje=hojeISO();
+    var NS=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+    document.querySelector('[data-tpd]').innerHTML=datas.map(function(d,i){
+      var nm=d===hoje?'Hoje':(i>0&&datas[i-1]===hoje?'Amanhã':NS[new Date(d+'T12:00').getDay()]+' '+dm(d));
+      return '<button data-tdi="'+i+'" class="'+(i===TD?'on':'')+'" aria-pressed="'+(i===TD)+'">'+nm+'</button>'}).join('');
+    var al=(TP.avisos||[]).filter(function(a){return ativo(a,dia)}).sort(function(a,b){return a.nivel-b.nivel});
+    document.querySelector('[data-tpal]').innerHTML=al.map(function(a){return '<path class="tp-alp" d="'+a.d+'" fill="'+esc(a.cor)+'" stroke="'+esc(a.cor)+'"><title>'+esc(a.evento+' · '+a.severidade)+'</title></path>'}).join('');
+    document.querySelector('[data-tpcap]').innerHTML=TP.capitais.map(function(c){
+      var d=(c.dias||[]).filter(function(x){return x.data===dia})[0]||{}, o=DESL[c.uf]||[8,4];
+      return '<g class="tp-cap'+(c.uf===TC?' on':'')+'" data-c="'+c.uf+'" tabindex="0" role="button" aria-label="'+esc(c.nome+': máxima '+(d.max!=null?d.max+' graus':'sem dado'))+'">'+
+        '<circle cx="'+c.x+'" cy="'+c.y+'" r="'+(c.uf===TC?6.5:5)+'" fill="'+corTemp(d.max)+'"/>'+
+        '<text x="'+(c.x+o[0])+'" y="'+(c.y+o[1])+'" text-anchor="'+(o[2]||'start')+'">'+(d.max!=null?d.max+'°':'')+'</text><title>'+esc(c.nome+' ('+c.uf+'): '+(d.resumo||''))+'</title></g>'}).join('');
+    var at=new Date(TP.atualizado_utc);
+    document.querySelector('[data-tpm]').textContent='Temperatura máxima prevista nas capitais e áreas de alerta · atualizado às '+at.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+    // alertas
+    var NIV=['','Perigo potencial','Perigo','Grande perigo'];
+    document.querySelector('[data-tpat]').textContent=al.length?al.length+' alerta'+(al.length>1?'s':'')+' do INMET para '+(dia===hoje?'hoje':dm(dia))+'.':'';
+    document.querySelector('[data-tpl]').innerHTML=al.slice().reverse().map(function(a){
+      var per=a.inicio.slice(0,10)===a.fim.slice(0,10)?dm(a.inicio)+', das '+a.inicio.slice(11,16)+' às '+a.fim.slice(11,16):'de '+dm(a.inicio)+' '+a.inicio.slice(11,16)+' até '+dm(a.fim)+' '+a.fim.slice(11,16);
+      return '<li style="--cor:'+esc(a.cor)+'"><b>'+esc(a.evento)+' · '+NIV[a.nivel]+'</b><small>'+esc(a.ufs.join(', '))+' · '+a.municipios+' municípios · '+per+'</small>'+
+        (a.riscos[0]?'<small>'+esc(a.riscos[0])+'</small>':'')+'</li>'}).join('')||'<li class="vazio">Nenhum alerta meteorológico do INMET para este dia.</li>';
+    // tabela das capitais por região
+    var reg=['Norte','Nordeste','Centro-Oeste','Sudeste','Sul'], h='';
+    reg.forEach(function(r){
+      h+='<tr class="rg"><td colspan="4">'+r+'</td></tr>';
+      TP.capitais.filter(function(c){return c.regiao===r}).sort(function(a,b){return a.nome.localeCompare(b.nome)}).forEach(function(c){
+        var d=(c.dias||[]).filter(function(x){return x.data===dia})[0]||{};
+        h+='<tr data-c="'+c.uf+'"><td><b>'+esc(c.nome)+'</b> <span class="cc-uf">'+c.uf+'</span></td><td><i>'+icone(d.resumo)+'</i>'+esc(d.resumo||'—')+'</td><td class="n">'+(d.min!=null?d.min+'°':'—')+'</td><td class="n">'+(d.max!=null?d.max+'°':'—')+'</td></tr>';
+      });
+    });
+    document.querySelector('[data-tpt]').innerHTML=h;
+    TDC=TD; cidade();
+  }
+  function cidade(){
+    var c=TP.capitais.filter(function(x){return x.uf===TC})[0]||TP.capitais[0], b=document.querySelector('[data-tpcb]'); if(!c||!b) return;
+    document.querySelector('[data-tps]').value=c.uf;
+    var dias=c.dias||[]; if(!dias.length){b.innerHTML='<p class="tp-info">Previsão indisponível agora.</p>';return}
+    var d=dias[Math.min(TDC,dias.length-1)];
+    var NS={manha:'Manhã',tarde:'Tarde',noite:'Noite'};
+    b.innerHTML='<div class="tp-hoje"><span class="tp-ic">'+icone(d.resumo)+'</span><div><b>'+(d.max!=null?d.max+'°':'—')+'<small>mín. '+(d.min!=null?d.min+'°':'—')+'</small></b><p>'+esc(d.resumo)+'</p></div></div>'+
+      '<div class="tp-info">'+(d.umid_min!=null?'<span>Umidade '+d.umid_min+'% a '+d.umid_max+'%</span>':'')+(d.vento?'<span>Vento '+esc(d.vento.toLowerCase())+'</span>':'')+(d.nascer?'<span>Sol '+esc(d.nascer)+' – '+esc(d.ocaso)+'</span>':'')+'</div>'+
+      (d.periodos?'<div class="tp-per">'+['manha','tarde','noite'].filter(function(k){return d.periodos[k]}).map(function(k){var p=d.periodos[k];return '<div>'+NS[k]+'<span>'+icone(p.resumo,k==='noite')+'</span>'+esc(p.resumo)+'</div>'}).join('')+'</div>':'')+
+      '<div class="tp-5">'+dias.map(function(x,i){var nm=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'][new Date(x.data+'T12:00').getDay()];
+        return '<button data-tdc="'+i+'" class="'+(i===TDC?'on':'')+'" title="'+esc(x.resumo)+'">'+nm+'<span>'+icone(x.resumo)+'</span><b>'+(x.max!=null?x.max+'°':'')+'</b> '+(x.min!=null?x.min+'°':'')+'</button>'}).join('')+'</div>';
+    document.querySelectorAll('.tp-cap').forEach(function(g){g.classList.toggle('on',g.dataset.c===c.uf); g.querySelector('circle').setAttribute('r',g.dataset.c===c.uf?6.5:5)});
+  }
+  function escolher(uf){TC=uf;gravar('plantao-tempo-cap',uf);cidade()}
+  document.addEventListener('click',function(ev){
+    if(!TP) return;
+    var b=ev.target.closest('[data-tdi]'); if(b){TD=+b.dataset.tdi;desenharTempo();return}
+    b=ev.target.closest('[data-tdc]'); if(b){TDC=+b.dataset.tdc;cidade();return}
+    var g=ev.target.closest('.tp-cap,[data-tpt] tr[data-c]'); if(g){escolher(g.dataset.c); if(g.tagName==='TR'){var q=document.querySelector('[data-tpc]'); if(q&&q.scrollIntoView) q.scrollIntoView({behavior:'smooth',block:'start'})}}
+  });
+  document.addEventListener('keydown',function(ev){var g=ev.target.closest&&ev.target.closest('.tp-cap'); if(g&&(ev.key==='Enter'||ev.key===' ')){ev.preventDefault();escolher(g.dataset.c)}});
+  document.addEventListener('change',function(ev){ if(ev.target.matches('[data-tps]')) escolher(ev.target.value) });
+  window.carregarTempo=function(){
+    if(TP||!/^https?:/.test(location.protocol)) return; TP={};
+    json('tempo.json').then(function(d){
+      TP=d||{capitais:[]};
+      document.querySelector('[data-tps]').innerHTML=TP.capitais.slice().sort(function(a,b){return a.nome.localeCompare(b.nome)}).map(function(c){return '<option value="'+c.uf+'">'+esc(c.nome)+' ('+c.uf+')</option>'}).join('');
+      var datas=datasTempo(), i=datas.indexOf(hojeISO()); TD=i>=0?i:0; desenharTempo();
+    }).catch(function(){document.querySelector('[data-tpm]').textContent='Não foi possível carregar a previsão agora.';TP=null});
+  };
+  if((location.hash||'')==='#tempo') window.carregarTempo();
 })();
 (function(){
   /* Compartilhar o resumo */

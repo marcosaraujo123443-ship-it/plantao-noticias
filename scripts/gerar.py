@@ -99,7 +99,9 @@ if ag.get("data") == f"{upd:%Y-%m-%d}" and ag.get("itens"):
         link = it.get("link") or ""
         tit = e(it["titulo"])
         if link.startswith("http"): tit = f'<a href="{e(link)}" target="_blank" rel="noopener">{tit}</a>'
-        elif link: tit = f'<a href="#futebol" data-tab="futebol">{tit}</a>'
+        elif link:
+            aba = link[1:] if link.startswith("#") else "futebol"
+            tit = f'<a href="#{aba}" data-tab="{aba}">{tit}</a>'
         lis.append(f'<li class="ag-{e(it["tipo"])}"><time>{e(it.get("hora") or "dia todo")}</time>'
                    f'<div><span class="ag-rot">{e(it["rotulo"])}</span>{_estado(it.get("estado"))}<b>{tit}</b>'
                    f'{f"<ul>{det}</ul>" if det else ""}</div></li>')
@@ -107,7 +109,7 @@ if ag.get("data") == f"{upd:%Y-%m-%d}" and ag.get("itens"):
              '<a href="#futebol" data-tab="futebol">ver no Futebol</a>.</p>') if ag.get("outros_jogos") else ""
     agenda_html = (f'<section class="agenda" aria-label="O que acompanhar hoje"><h2>O que acompanhar hoje '
                    f'<small>{upd.day} de {MESES[upd.month-1]}</small></h2><ol>{"".join(lis)}</ol>{extra}'
-                   '<p class="ag-fonte">Fontes: Câmara dos Deputados, Senado Federal, Banco Central e ESPN. Horários de Brasília.</p></section>')
+                   '<p class="ag-fonte">Fontes: Câmara dos Deputados, Senado Federal, Banco Central, INMET e ESPN. Horários de Brasília.</p></section>')
 
 lead_html = f'''<article class="lead">
   {meta(lead, True)}
@@ -217,15 +219,55 @@ for s in SECOES:
   </div>
   <p class="nota" data-nota></p>
 </div>'''
+    if s == "Concursos":
+        painel = '''<div class="painel" data-conc>
+  <section class="quadro">
+    <header><h3>Inscrições abertas</h3>
+      <div class="filtros-uf cc-f">
+        <label>Onde <select data-cuf aria-label="Escolher a abrangência ou o estado"><option value="">Todo o Brasil</option></select></label>
+        <label>Nível <select data-cnv aria-label="Escolher o nível de escolaridade"><option value="">Todos</option><option>Fundamental</option><option>Médio</option><option>Técnico</option><option>Superior</option></select></label>
+      </div>
+      <div class="seg" role="group" aria-label="Ordenar concursos"><button class="on" data-co="prazo" aria-pressed="true">Encerram antes</button><button data-co="salario" aria-pressed="false">Maior salário</button><button data-co="vagas" aria-pressed="false">Mais vagas</button></div>
+      <p class="per" data-ct2>Carregando os concursos…</p></header>
+    <ul class="cc-l" data-cl></ul>
+    <button type="button" class="cc-mais" data-cmais hidden>Mostrar mais</button>
+    <p class="nota">Fonte: PCI Concursos. Confira sempre o edital oficial antes de se inscrever; prazos podem ser prorrogados ou alterados.</p>
+  </section>
+</div>'''
     lista = f'<ol class="lista">{li or "<li><p>Sem notícias nesta atualização.</p></li>"}</ol>'
-    corpo = f'<div class="dupla">{painel}{lista}</div>' if s in ("Futebol", "Política", "Agro", "Mercado") else painel + lista
+    corpo = f'<div class="dupla">{painel}{lista}</div>' if s in ("Futebol", "Política", "Agro", "Mercado", "Concursos") else painel + lista
     paginas += f'''<section class="pagina" id="pg-{slug(s)}" data-pg="{slug(s)}" hidden>
   <div class="sec-t s-{slug(s)}"><h2>{e(s)}</h2><span>{len(por_sec[s])} notícias</span></div>
   {corpo}
 </section>'''
 
+# Tempo: previsão nas capitais e alertas do INMET (tempo.py); o mapa é SVG com os contornos de scripts/brasil_mapa.json
+_mapa = json.loads((Path(__file__).parent / "brasil_mapa.json").read_text(encoding="utf-8"))
+_ufs = "".join(f'<path class="tp-uf" data-uf="{u}" d="{dd}"/>' for u, dd in sorted(_mapa["ufs"].items()))
+paginas += f'''<section class="pagina" id="pg-tempo" data-pg="tempo" hidden>
+  <div class="sec-t s-tempo"><h2>Tempo</h2><span data-tpa>Previsão do INMET</span></div>
+  <div class="painel tempo" data-tempo>
+    <div class="seg tp-dias" role="group" aria-label="Escolher o dia" data-tpd></div>
+    <div class="tp-grade">
+      <section class="quadro tp-mapa"><header><h3>Mapa do Brasil</h3><p class="per" data-tpm>Carregando a previsão…</p></header>
+        <svg viewBox="0 0 {_mapa["w"]} {_mapa["h"]}" role="img" aria-label="Mapa do Brasil com a temperatura máxima nas capitais e as áreas de alerta do INMET">
+          <g class="tp-ufs">{_ufs}</g><g data-tpal></g><g data-tpcap></g></svg>
+        <ul class="tp-leg"><li><i style="background:#FFE600"></i>Perigo potencial</li><li><i style="background:#F96602"></i>Perigo</li><li><i style="background:#D00000"></i>Grande perigo</li></ul>
+      </section>
+      <section class="quadro tp-cid" data-tpc>
+        <header><h3>Previsão por capital</h3><label class="tp-sel">Capital <select data-tps aria-label="Escolher a capital"></select></label></header>
+        <div data-tpcb></div>
+      </section>
+    </div>
+    <section class="quadro"><header><h3>Alertas meteorológicos</h3><p class="per" data-tpat></p></header><ul class="tp-al" data-tpl></ul></section>
+    <section class="quadro"><header><h3>Capitais</h3></header><div class="tw"><table class="tab-m tp-tab"><thead><tr><th>Capital</th><th>Previsão</th><th class="n">Mín.</th><th class="n">Máx.</th></tr></thead><tbody data-tpt></tbody></table></div></section>
+    <p class="nota">Fonte: Instituto Nacional de Meteorologia (INMET), previsões e avisos oficiais. Atualizado a cada 2 horas.</p>
+  </div>
+</section>'''
+
 tabs = '<button class="tab on" data-tab="inicio" aria-pressed="true">Início</button>' + "".join(
-    f'<button class="tab" data-tab="{slug(s)}" aria-pressed="false">{e(s)}</button>' for s in SECOES)
+    f'<button class="tab" data-tab="{slug(s)}" aria-pressed="false">{e(s)}</button>' for s in SECOES) + \
+    '<button class="tab" data-tab="tempo" aria-pressed="false">Tempo</button>'
 fontes_txt = ", ".join(e(f) for f in fontes)
 _hs = [f"{h}h" for h in (1, 5, 9, 13, 17, 21)]
 horarios = ", ".join(_hs[:-1]) + " e " + _hs[-1]

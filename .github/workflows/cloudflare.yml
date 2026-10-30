@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
   workflow_run:
-    workflows: ["Notícias", "Cotações da bolsa", "Contas dos estados", "Tabelas do futebol", "Cotações do agro", "Indicadores econômicos"]
+    workflows: ["Notícias", "Cotações da bolsa", "Contas dos estados", "Tabelas do futebol", "Cotações do agro", "Indicadores econômicos", "Tempo e concursos"]
     types: [completed]
   workflow_dispatch:
 concurrency:

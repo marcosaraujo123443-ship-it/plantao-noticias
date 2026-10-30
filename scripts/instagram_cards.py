@@ -18,7 +18,7 @@ MESES = "jan fev mar abr mai jun jul ago set out nov dez".split()
 PAPEL, CARTAO, TINTA, TINTA2, LINHA = "#f5f7fa", "#ffffff", "#0a1d3d", "#4a5873", "#d9e0ea"
 MARCA, FAIXA, FAIXA_TINTA = "#8f0922", "#0b1f3a", "#eef2f8"
 SOBE, DESCE = "#137a3d", "#c0262d"
-COR_SECAO = {"Política": "#1d4ed8", "IA": "#7c3aed", "Futebol": "#15803d", "Agro": "#a16207", "Mercado": "#0f766e"}
+COR_SECAO = {"Política": "#1d4ed8", "IA": "#7c3aed", "Futebol": "#15803d", "Agro": "#a16207", "Mercado": "#0f766e", "Concursos": "#c2410c", "Ciência e Saúde": "#0369a1"}
 
 _cache = {}
 def fonte(nome, tam):
@@ -142,7 +142,7 @@ def cards_resumo(saida, video=False):
 
     img, d = tela("No site", MARCA, f"{data_extenso(quando)}", "" if video else f"{total}/{total}")
     usado = bloco(d, (M, 330), "Tudo isso e muito mais, atualizado de hora em hora", "serif", 72, TINTA, W - 2 * M, 300, 1.15, 50)
-    itens = ["Manchetes de 11 veículos confiáveis", "Bolsa, dólar, ações e fundos imobiliários",
+    itens = ["Manchetes de mais de 15 veículos confiáveis", "Bolsa, dólar, ações e fundos imobiliários",
              "Cotações de soja, milho, boi e café", "Tabelas do Brasileirão e das maiores ligas",
              "Contas da União e de cada estado"]
     y = 330 + usado + 70

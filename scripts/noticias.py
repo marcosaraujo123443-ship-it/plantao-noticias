@@ -8,7 +8,7 @@ from email.utils import parsedate_to_datetime
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
       "Accept": "application/rss+xml, application/xml, text/xml, */*"}
-SECOES = ["Política", "IA", "Futebol", "Agro", "Mercado"]
+SECOES = ["Política", "IA", "Futebol", "Agro", "Mercado", "Concursos", "Ciência e Saúde"]
 POR_SECAO, POR_FONTE, MAX_DIAS = 15, 4, 7
 FUT = re.compile(r"futebol|sele[çc][ãa]o|brasileir[ãa]o|libertadores|copa do brasil|sul-americana|t[ée]cnico|gol|"
                  r"flamengo|palmeiras|corinthians|s[ãa]o paulo|santos|vasco|gr[êe]mio|internacional|botafogo|"
@@ -16,6 +16,12 @@ FUT = re.compile(r"futebol|sele[çc][ãa]o|brasileir[ãa]o|libertadores|copa do 
 
 IA = re.compile(r"\bIA\b|\bAI\b|intelig[êe]ncia artificial|ChatGPT|OpenAI|Anthropic|\bClaude\b|Gemini|Copilot|chatbot|"
                 r"\bLLM|Nvidia|deepfake|algoritmo")
+
+CONC = re.compile(r"\bconcursos?\b|\bedita(l|is)\b|inscriç|processo seletivo|\bCNU\b|concursad|vagas? (de emprego|tempor)", re.I)
+LOTERIA = re.compile(r"mega-sena|lotof[áa]cil|quina|loteria|timemania|dupla sena|\+milion[áa]ria|dia de sorte|super sete|lotomania", re.I)
+def concurso(it):
+    t = it["titulo"] + " " + it["resumo"]
+    return bool(CONC.search(t)) and not LOTERIA.search(t + " " + it["link"])
 
 def link_tem(*partes):
     return lambda it: any(p in it["link"] for p in partes)
@@ -42,6 +48,22 @@ FEEDS = [
     ("Agro", "g1", "https://g1.globo.com/rss/g1/economia/agronegocios/", None),
     ("Agro", "CNN Brasil", "https://www.cnnbrasil.com.br/feed/", link_tem("/agro/")),
     ("Agro", "Canal Rural", "https://www.canalrural.com.br/feed/", lambda it: "/opiniao" not in it["link"]),
+    # Concursos e Ciência e Saúde vêm antes do Mercado: a primeira seção que pega a notícia fica com ela
+    ("Concursos", "Estratégia Concursos", "https://www.estrategiaconcursos.com.br/blog/feed/", None),
+    ("Concursos", "Gran Cursos", "https://blog.grancursosonline.com.br/feed/", None),
+    ("Concursos", "Concursos no Brasil", "https://concursosnobrasil.com/feed/",
+     lambda it: "/concursos/" in it["link"] or concurso(it)),
+    ("Concursos", "Agência Brasil", "https://agenciabrasil.ebc.com.br/rss/economia/feed.xml", concurso),
+    ("Concursos", "Agência Brasil", "https://agenciabrasil.ebc.com.br/rss/educacao/feed.xml", concurso),
+    ("Concursos", "Agência Brasil", "https://agenciabrasil.ebc.com.br/rss/geral/feed.xml", concurso),
+    ("Concursos", "CNN Brasil", "https://www.cnnbrasil.com.br/feed/", lambda it: link_tem("/economia/", "/nacional/", "/educacao/")(it) and concurso(it)),
+    ("Concursos", "g1", "https://g1.globo.com/rss/g1/economia/", concurso),
+    ("Ciência e Saúde", "g1", "https://g1.globo.com/rss/g1/ciencia/", None),
+    ("Ciência e Saúde", "g1", "https://g1.globo.com/rss/g1/saude/", lambda it: "/podcast/" not in it["link"]),
+    ("Ciência e Saúde", "Olhar Digital", "https://olhardigital.com.br/editorias/ciencia-e-espaco/feed/", None),
+    ("Ciência e Saúde", "Agência Brasil", "https://agenciabrasil.ebc.com.br/rss/saude/feed.xml", None),
+    ("Ciência e Saúde", "Fiocruz", "https://agencia.fiocruz.br/rss.xml", None),
+    ("Ciência e Saúde", "CNN Brasil", "https://www.cnnbrasil.com.br/feed/", link_tem("/saude/", "/ciencia/")),
     ("Mercado", "Agência Brasil", "https://agenciabrasil.ebc.com.br/rss/economia/feed.xml", None),
     ("Mercado", "InfoMoney", "https://www.infomoney.com.br/feed/",
      link_tem("/mercados/", "/economia/", "/consumo/", "/business/", "/onde-investir/")),

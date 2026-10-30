@@ -95,6 +95,20 @@ def jogos(hoje):
                             "estado": {"in": "ao vivo", "post": "encerrado"}.get(j["estado"], ""), "link": "tabelas/"})
     return out, outros
 
+def alertas(hoje):
+    """Alertas do INMET de perigo (laranja) ou grande perigo (vermelho) válidos hoje (tempo.json)."""
+    try: t = json.load(open("tempo.json", encoding="utf-8"))
+    except Exception: return []
+    out, d = [], str(hoje)
+    for a in t.get("avisos", []):
+        if a.get("nivel", 1) < 2 or not (a["inicio"][:10] <= d <= a["fim"][:10]): continue
+        nivel = "grande perigo" if a["nivel"] >= 3 else "perigo"
+        hora = a["inicio"][11:16] if a["inicio"][:10] == d else ""
+        out.append({"hora": hora, "tipo": "tempo", "rotulo": "Alerta INMET",
+                    "titulo": f"{a['evento']} ({nivel}) em {', '.join(a['ufs'][:6])}{'…' if len(a['ufs']) > 6 else ''}",
+                    "detalhe": [curto(a["riscos"][0], 140)] if a.get("riscos") else [], "link": "#tempo", "estado": ""})
+    return out
+
 def main():
     import os
     agora = datetime.now(BRT); hoje = agora.date()
@@ -109,7 +123,7 @@ def main():
             erros.append(f"{nome}: {ex!r}"); fontes[nome] = ant_por_fonte.get(nome, [])   # mantém o que já tinha hoje
         itens += fontes[nome]
     js, outros = jogos(hoje)
-    itens += js
+    itens += js + alertas(hoje)
     itens.sort(key=lambda i: (i["hora"] or "99:99", i["tipo"]))
     json.dump({"data": str(hoje), "atualizado": agora.strftime("%Y-%m-%dT%H:%M:%S%z"), "itens": itens,
                "outros_jogos": outros, "fontes": fontes, "erros": erros},
