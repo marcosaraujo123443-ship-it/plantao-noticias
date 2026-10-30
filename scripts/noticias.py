@@ -17,7 +17,7 @@ FUT = re.compile(r"futebol|sele[çc][ãa]o|brasileir[ãa]o|libertadores|copa do 
 IA = re.compile(r"\bIA\b|\bAI\b|intelig[êe]ncia artificial|ChatGPT|OpenAI|Anthropic|\bClaude\b|Gemini|Copilot|chatbot|"
                 r"\bLLM|Nvidia|deepfake|algoritmo")
 
-CONC = re.compile(r"\bconcursos?\b|\bedita(l|is)\b|inscriç|processo seletivo|\bCNU\b|concursad|vagas? (de emprego|tempor)", re.I)
+CONC = re.compile(r"\bconcursos?\b|\bedita(l|is)\b|processo seletivo|\bCNU\b|concursad|vagas? (de emprego|tempor)", re.I)
 LOTERIA = re.compile(r"mega-sena|lotof[áa]cil|quina|loteria|timemania|dupla sena|\+milion[áa]ria|dia de sorte|super sete|lotomania", re.I)
 def concurso(it):
     t = it["titulo"] + " " + it["resumo"]
