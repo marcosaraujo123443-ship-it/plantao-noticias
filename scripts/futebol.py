@@ -33,7 +33,7 @@ def grupo(st, nome):
     for e in st.get("entries", []):
         t, nota = e.get("team", {}), e.get("note") or {}
         logo = next((l.get("href") for l in t.get("logos") or [] if l.get("href")), None)
-        linhas.append({"pos": inteiro(stat(e, "rank")), "time": t.get("shortDisplayName") or t.get("displayName"),
+        linhas.append({"pos": inteiro(stat(e, "rank")), "tid": t.get("id"), "time": t.get("shortDisplayName") or t.get("displayName"),
                        "sigla": t.get("abbreviation"), "escudo": logo,
                        "j": inteiro(stat(e, "gamesPlayed")), "v": inteiro(stat(e, "wins")), "e": inteiro(stat(e, "ties")),
                        "d": inteiro(stat(e, "losses")), "gp": inteiro(stat(e, "pointsFor")), "gc": inteiro(stat(e, "pointsAgainst")),
@@ -55,7 +55,7 @@ def jogo(ev):
     casa = next((c for c in cs if c.get("homeAway") == "home"), cs[0] if cs else {})
     fora = next((c for c in cs if c.get("homeAway") == "away"), cs[1] if len(cs) > 1 else {})
     st = (ev.get("status") or comp.get("status") or {}).get("type", {})
-    return {"data": ev.get("date"), "estado": st.get("state"), "detalhe": st.get("shortDetail") or st.get("detail"),
+    return {"id": ev.get("id"), "data": ev.get("date"), "estado": st.get("state"), "detalhe": st.get("shortDetail") or st.get("detail"),
             "casa": time_jogo(casa), "fora": time_jogo(fora), "local": (comp.get("venue") or {}).get("fullName"),
             "_temp": "{year}/{type}/{slug}".format(**{"year": "", "type": "", "slug": "", **(ev.get("season") or {})})}
 
@@ -130,14 +130,41 @@ def jogos(cod, n_times):
     js = numerar_rodadas([g for g in todos if g["_temp"] == temp], n_times)
     pend = [g["rodada"] for g in js if g["estado"] != "post" and not g.get("adiado")]
     atual = min(pend) if pend else max(g["rodada"] for g in js)
+    # forma recente: últimos 5 resultados de cada time (V, E, D), do mais antigo para o mais recente
+    forma = {}
+    for g in sorted((g for g in js if g["estado"] == "post" and g["casa"]["gols"] is not None), key=lambda g: g["data"]):
+        for a, b in (("casa", "fora"), ("fora", "casa")):
+            tid = g[a].get("id")
+            if not tid: continue
+            r = "V" if g[a]["gols"] > g[b]["gols"] else "D" if g[a]["gols"] < g[b]["gols"] else "E"
+            forma.setdefault(tid, []).append(r)
     rodadas = []
-    for r in range(max(1, atual - 2), atual + 3):
+    for r in range(max(1, atual - 6), atual + 5):
         lista = [g for g in js if g["rodada"] == r]
         if not lista: continue
         for g in lista:
             g.pop("_temp", None); g["casa"].pop("id", None); g["fora"].pop("id", None)
         rodadas.append({"n": r, "jogos": lista})
-    return {"atual": atual, "rodadas": rodadas}
+    return {"atual": atual, "rodadas": rodadas}, {k: "".join(v[-5:]) for k, v in forma.items()}
+
+def lideres(cod, n=10):
+    """Artilharia e assistências da temporada (top 10)."""
+    d = get(f"https://site.web.api.espn.com/apis/site/v2/sports/soccer/{cod}/statistics?region=br&lang=pt")
+    out = {}
+    for st in d.get("stats", []):
+        chave = {"goalsLeaders": "gols", "assistsLeaders": "assistencias"}.get(st.get("name"))
+        if not chave: continue
+        lst = []
+        for l in st.get("leaders", [])[:n]:
+            a = l.get("athlete") or {}
+            t = a.get("team") if isinstance(a.get("team"), dict) else {}
+            jogos_ = next((inteiro(x.split(":")[1]) for x in (l.get("displayValue") or "").split(",") if x.strip().lower().startswith(("partidas", "jogos"))), None)
+            logo = next((x.get("href") for x in t.get("logos") or [] if x.get("href")), None)
+            lst.append({"nome": a.get("displayName"), "time": t.get("shortDisplayName") or t.get("displayName"), "escudo": logo,
+                        "valor": inteiro(l.get("value")), "jogos": jogos_})
+        if lst: out[chave] = lst
+    if not out: raise ValueError("sem dados")
+    return out
 
 def main():
     anterior = {}
@@ -154,10 +181,17 @@ def main():
             st = filhos[0].get("standings", {})
             liga = {"id": cod, "nome": nome, "temporada": st.get("seasonDisplayName") or str(st.get("season") or ""),
                     "grupos": grupos}
-            try: liga["jogos"] = jogos(cod, sum(len(g["linhas"]) for g in grupos))
+            try:
+                liga["jogos"], forma = jogos(cod, sum(len(g["linhas"]) for g in grupos))
+                for g in grupos:
+                    for l in g["linhas"]: l["forma"] = forma.get(l.get("tid"), "")
             except Exception as e:
                 erros.append(f"{cod} jogos: {e}")
                 if anterior.get(cod, {}).get("jogos"): liga["jogos"] = anterior[cod]["jogos"]
+            try: liga["lideres"] = lideres(cod)
+            except Exception as e:
+                erros.append(f"{cod} artilharia: {e}")
+                if anterior.get(cod, {}).get("lideres"): liga["lideres"] = anterior[cod]["lideres"]
             ligas.append(liga)
         except Exception as e:
             erros.append(f"{cod}: {e}")
