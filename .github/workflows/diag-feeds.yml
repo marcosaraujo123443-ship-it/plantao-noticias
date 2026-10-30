@@ -7,15 +7,6 @@ jobs:
       - run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
           for u in \
-            https://www.pciconcursos.com.br/rss/concursos.xml \
-            https://www.pciconcursos.com.br/rss/feed.xml \
-            https://www.pciconcursos.com.br/noticias/feed \
-            https://folha.qconcursos.com/n/feed \
-            https://www.cnnbrasil.com.br/feed/ \
-            https://www.jcconcursos.com.br/rss \
-            https://g1.globo.com/rss/g1/ciencia-e-saude/ \
-            https://g1.globo.com/rss/g1/ciencia/ \
-            https://g1.globo.com/rss/g1/saude/ \
             https://canaltech.com.br/rss/ \
             https://canaltech.com.br/rss/ciencia/ \
             https://canaltech.com.br/rss/saude/ \
@@ -36,5 +27,6 @@ jobs:
             "https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=application/vnd.geo+json&intrarregiao=UF&qualidade=minima" \
             ; do
             r=$(curl -s -L -m 25 -A "$UA" -o /tmp/b -w "%{http_code} %{content_type}" "$u" || true); n=$(grep -o "<item" /tmp/b | wc -l)
-            echo "::notice::$r items=$n size=$(wc -c </tmp/b) $u :: $(head -c 300 /tmp/b | tr -d '\n\r' | tr -c '[:print:]' ' ' | cut -c1-200)"
+            echo "$r items=$n size=$(wc -c </tmp/b) $u :: $(head -c 300 /tmp/b | tr -d '\n\r' | tr -c '[:print:]' ' ' | cut -c1-120)" >> /tmp/out
           done
+          split -l 4 /tmp/out /tmp/parte; for f in /tmp/parte*; do echo "::notice::$(sed ':a;N;$!ba;s/\n/%0A/g' $f)"; done
