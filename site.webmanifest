@@ -16,5 +16,46 @@
    "sizes": "512x512",
    "type": "image/png"
   }
+ ],
+ "id": "/",
+ "scope": "/",
+ "lang": "pt-BR",
+ "dir": "ltr",
+ "orientation": "portrait",
+ "description": "Política, IA, futebol, agro e mercado: manchetes atualizadas de hora em hora, com cotações e tabelas.",
+ "categories": [
+  "news"
+ ],
+ "shortcuts": [
+  {
+   "name": "Futebol",
+   "url": "/#futebol",
+   "icons": [
+    {
+     "src": "/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Mercado",
+   "url": "/#mercado",
+   "icons": [
+    {
+     "src": "/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Tabelas",
+   "url": "/tabelas/",
+   "icons": [
+    {
+     "src": "/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  }
  ]
 }
