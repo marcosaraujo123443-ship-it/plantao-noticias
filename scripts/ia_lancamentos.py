@@ -52,4 +52,7 @@ def main():
     print("Lançamentos:", [x["nome"] for x in todos[:3]])
 
 if __name__ == "__main__":
-    main()
+    try: main()
+    except SystemExit: raise
+    except Exception as ex:
+        import traceback; print("::error::lançamentos de IA: " + repr(ex)[:300] + " | " + traceback.format_exc().replace("\n", " ")[-600:]); sys.exit(1)

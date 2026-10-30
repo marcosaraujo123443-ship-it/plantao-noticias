@@ -147,6 +147,7 @@ def estados(paginas):
                 if len(l) < 2: continue
                 v = num(l[1])
                 if v is None or v <= 0: continue
+                if prod == "boi" and v < 150: continue      # algumas praças cotam em R$/kg, não por arroba
                 nome = l[0]
                 if modo == "barra":
                     m = re.search(r"/([A-Z]{2})\b", nome); uf = m.group(1) if m else None
