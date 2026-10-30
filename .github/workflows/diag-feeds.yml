@@ -1,0 +1,12 @@
+name: diag-feeds
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  v:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir d; python3 scripts/diag_probe.py || true
+          cd d && git init -q -b diag-dados && git add . && git -c user.name=bot -c user.email=b@b commit -qm d && git push -fq "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" diag-dados
