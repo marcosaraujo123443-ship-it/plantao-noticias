@@ -182,6 +182,11 @@ for s in SECOES:
     <a class="mais" data-flink href="tabelas/">Ver todas as tabelas →</a>
     <p class="nota" data-fnota></p>
   </section>
+  <section class="quadro" data-lid>
+    <header><h3>Artilharia e assistências</h3>
+      <div class="seg" role="group" aria-label="Ranking"><button class="on" data-lk="gols" aria-pressed="true">Gols</button><button data-lk="assistencias" aria-pressed="false">Assistências</button></div></header>
+    <ol class="lid" data-lidl></ol>
+  </section>
 </div>'''
     if s == "Mercado":
         painel = '''<div class="painel">

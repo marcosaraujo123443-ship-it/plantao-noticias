@@ -6,18 +6,5 @@ jobs:
   v:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          mkdir d && cd d
-          B=https://site.api.espn.com/apis/site/v2/sports/soccer
-          curl -s "$B/bra.1/scoreboard?dates=20261029&region=br&lang=pt" -o sb.json
-          for id in $(python3 -c "import json;print(' '.join(e['id'] for e in json.load(open('sb.json'))['events']))"); do curl -s "$B/bra.1/summary?event=$id&region=br&lang=pt" -o sum_$id.json; done
-          curl -s "$B/uefa.champions/scoreboard?region=br&lang=pt" -o sb_ucl.json
-          curl -s -D cors.txt -o /dev/null -H "Origin: https://plantaoinforma.com.br" "$B/bra.1/scoreboard?region=br&lang=pt"
-          curl -s -D cors2.txt -o /dev/null -H "Origin: https://plantaoinforma.com.br" "$B/bra.1/summary?event=$id&region=br&lang=pt"
-          curl -s "https://site.web.api.espn.com/apis/site/v2/sports/soccer/bra.1/statistics?region=br&lang=pt" -o est1.json
-          curl -s "https://site.api.espn.com/apis/site/v2/sports/soccer/bra.1/statistics" -o est2.json
-          curl -s "https://sports.core.api.espn.com/v2/sports/soccer/leagues/bra.1/seasons/2026/types/1/leaders?limit=10" -o est3.json
-          curl -s "https://site.web.api.espn.com/apis/common/v3/sports/soccer/bra.1/statistics/byathlete?region=br&lang=pt&limit=20" -o est4.json
-          curl -s "https://site.api.espn.com/apis/site/v2/sports/soccer/bra.1/teams/819/schedule?region=br&lang=pt" -o fla_sched.json
-          ls -l
-          git init -q -b diag-dados && git add . && git -c user.name=bot -c user.email=b@b commit -qm d && git push -fq "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" diag-dados
+      - uses: actions/checkout@v4
+      - run: git push -q origin --delete diag-dados || true
