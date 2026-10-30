@@ -7,16 +7,11 @@ jobs:
       - run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
           for u in \
-            https://www.pciconcursos.com.br/rss/ \
-            https://www.pciconcursos.com.br/noticias/rss \
-            https://www.pciconcursos.com.br/rss/noticias.xml \
-            https://folha.qconcursos.com/feed \
-            https://folha.qconcursos.com/rss \
-            https://g1.globo.com/rss/g1/concursos-e-emprego/ \
-            https://agenciagov.ebc.com.br/noticias/RSS \
-            https://agenciagov.ebc.com.br/rss \
-            https://www.gov.br/pt-br/noticias/RSS \
-            https://www.estrategiaconcursos.com.br/blog/feed/ \
+            https://www.pciconcursos.com.br/rss/concursos.xml \
+            https://www.pciconcursos.com.br/rss/feed.xml \
+            https://www.pciconcursos.com.br/noticias/feed \
+            https://folha.qconcursos.com/n/feed \
+            https://www.cnnbrasil.com.br/feed/ \
             https://www.jcconcursos.com.br/rss \
             https://g1.globo.com/rss/g1/ciencia-e-saude/ \
             https://g1.globo.com/rss/g1/ciencia/ \
@@ -40,6 +35,6 @@ jobs:
             "https://alertas2.inmet.gov.br/" \
             "https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=application/vnd.geo+json&intrarregiao=UF&qualidade=minima" \
             ; do
-            r=$(curl -s -L -m 25 -A "$UA" -o /tmp/b -w "%{http_code} %{content_type}" "$u"); n=$(grep -o "<item" /tmp/b | wc -l)
+            r=$(curl -s -L -m 25 -A "$UA" -o /tmp/b -w "%{http_code} %{content_type}" "$u" || true); n=$(grep -o "<item" /tmp/b | wc -l)
             echo "::notice::$r items=$n size=$(wc -c </tmp/b) $u :: $(head -c 300 /tmp/b | tr -d '\n\r' | tr -c '[:print:]' ' ' | cut -c1-200)"
           done
