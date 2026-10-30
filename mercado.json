@@ -1,28 +1,28 @@
 {
- "atualizado_utc": "2026-10-30T18:06:50Z",
+ "atualizado_utc": "2026-10-30T18:54:38Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
-   "valor": 168015.1,
-   "var": -0.6923250695889172,
+   "valor": 167596.12,
+   "var": -0.9399690589824039,
    "tipo": "pts"
   },
   {
    "nome": "Dólar",
-   "valor": 5.4437,
-   "var": 1.0919422830507397,
+   "valor": 5.4544,
+   "var": 1.290646065850809,
    "tipo": "brl"
   },
   {
    "nome": "Euro",
-   "valor": 6.0726,
-   "var": 0.9190168347930294,
+   "valor": 6.0958,
+   "var": 1.3045718179249821,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 419056.02599999995,
-   "var": -1.0430140873586513,
+   "valor": 416788.539888,
+   "var": -1.7715395826336744,
    "tipo": "brl"
   },
   {
@@ -42,92 +42,92 @@
   {
    "ticker": "PETR4",
    "nome": "Petrobras",
-   "preco": 52.77,
-   "var": 1.0919540229885172
+   "preco": 52.7,
+   "var": 0.9578544061302763
   },
   {
    "ticker": "VALE3",
    "nome": "Vale",
-   "preco": 61.94,
-   "var": 3.1473771856786126
+   "preco": 61.81,
+   "var": 2.930890924229823
   },
   {
    "ticker": "ITUB4",
    "nome": "Itaú",
-   "preco": 39.03,
-   "var": -1.2898330804248848
+   "preco": 38.83,
+   "var": -1.795649974709157
   },
   {
    "ticker": "BBDC4",
    "nome": "Bradesco",
-   "preco": 14.0,
-   "var": -1.1299435028248594
+   "preco": 13.93,
+   "var": -1.6242937853107375
   },
   {
    "ticker": "BBAS3",
    "nome": "Banco do Brasil",
-   "preco": 16.53,
-   "var": 0.4252733900364625
+   "preco": 16.65,
+   "var": 1.154313487241776
   },
   {
    "ticker": "B3SA3",
    "nome": "B3",
-   "preco": 13.55,
-   "var": -4.577464788732389
+   "preco": 13.38,
+   "var": -5.774647887323936
   },
   {
    "ticker": "ABEV3",
    "nome": "Ambev",
-   "preco": 14.64,
-   "var": 0.6185567010309256
+   "preco": 14.59,
+   "var": 0.27491408934707806
   },
   {
    "ticker": "WEGE3",
    "nome": "WEG",
-   "preco": 48.92,
-   "var": -0.7305194805194759
+   "preco": 48.6,
+   "var": -1.379870129870131
   },
   {
    "ticker": "ITSA4",
    "nome": "Itaúsa",
-   "preco": 12.49,
-   "var": -2.801556420233464
+   "preco": 12.44,
+   "var": -3.1906614785992216
   },
   {
    "ticker": "BPAC11",
    "nome": "BTG Pactual",
-   "preco": 51.55,
-   "var": -4.6076980014803866
+   "preco": 51.44,
+   "var": -4.811250925240563
   },
   {
    "ticker": "SUZB3",
    "nome": "Suzano",
-   "preco": 49.9,
-   "var": 0.3620273531777851
+   "preco": 49.87,
+   "var": 0.3016894609815024
   },
   {
    "ticker": "PRIO3",
    "nome": "PRIO",
-   "preco": 70.76,
-   "var": 0.4115226337448652
+   "preco": 70.6,
+   "var": 0.18447566340284993
   },
   {
    "ticker": "RENT3",
    "nome": "Localiza",
-   "preco": 28.0,
-   "var": -3.548053737512924
+   "preco": 27.79,
+   "var": -4.271443334481573
   },
   {
    "ticker": "EMBJ3",
    "nome": "Embraer",
-   "preco": 99.45,
-   "var": -2.880859375
+   "preco": 99.24,
+   "var": -3.0859375000000133
   },
   {
    "ticker": "GGBR4",
    "nome": "Gerdau",
-   "preco": 25.16,
-   "var": -1.1783189316575071
+   "preco": 24.99,
+   "var": -1.8460329929300912
   },
   {
    "ticker": "RADL3",
@@ -144,148 +144,148 @@
   {
    "ticker": "MGLU3",
    "nome": "Magazine Luiza",
-   "preco": 5.24,
-   "var": 2.144249512670582
+   "preco": 5.29,
+   "var": 3.1189083820662766
   },
   {
    "ticker": "AXIA3",
    "nome": "Axia (Eletrobras)",
-   "preco": 47.24,
-   "var": -0.9228187919463005
+   "preco": 47.27,
+   "var": -0.8598993288590484
   },
   {
    "ticker": "CMIG4",
    "nome": "Cemig",
-   "preco": 10.04,
-   "var": -0.2979145978153075
+   "preco": 10.05,
+   "var": -0.19860973187685316
   }
  ],
  "ibov": [
   {
    "ticker": "ALOS3",
    "nome": "Allos",
-   "preco": 23.61,
-   "var": 0.2547770700636942
+   "preco": 23.57,
+   "var": 0.0849256900212314
   },
   {
    "ticker": "ABEV3",
    "nome": "Ambev",
-   "preco": 14.63,
-   "var": 0.5498281786941561
+   "preco": 14.58,
+   "var": 0.20618556701030855
   },
   {
    "ticker": "ASAI3",
    "nome": "Assaí",
-   "preco": 7.92,
-   "var": 1.4084507042253502
+   "preco": 7.93,
+   "var": 1.5364916773367598
   },
   {
    "ticker": "AURE3",
    "nome": "Auren",
-   "preco": 10.77,
-   "var": -1.823154056517784
+   "preco": 10.81,
+   "var": -1.4585232452142272
   },
   {
    "ticker": "AZZA3",
    "nome": "Azzas 2154",
-   "preco": 14.04,
-   "var": -0.8474576271186529
+   "preco": 14.03,
+   "var": -0.918079096045199
   },
   {
    "ticker": "B3SA3",
    "nome": "B3",
-   "preco": 13.54,
-   "var": -4.647887323943667
+   "preco": 13.38,
+   "var": -5.774647887323936
   },
   {
    "ticker": "BBSE3",
    "nome": "BB Seguridade",
-   "preco": 41.16,
-   "var": -2.116527942925095
+   "preco": 41.28,
+   "var": -1.831153388822826
   },
   {
    "ticker": "BBDC3",
    "nome": "Bradesco",
-   "preco": 12.79,
-   "var": -1.235521235521242
+   "preco": 12.75,
+   "var": -1.5444015444015413
   },
   {
    "ticker": "BBDC4",
    "nome": "Bradesco",
-   "preco": 13.99,
-   "var": -1.2005649717514166
+   "preco": 13.93,
+   "var": -1.6242937853107375
   },
   {
    "ticker": "BRAP4",
    "nome": "Bradespar",
-   "preco": 18.07,
-   "var": 1.63104611923508
+   "preco": 18.12,
+   "var": 1.912260967379087
   },
   {
    "ticker": "BBAS3",
    "nome": "Banco do Brasil",
-   "preco": 16.52,
-   "var": 0.36452004860265674
+   "preco": 16.65,
+   "var": 1.154313487241776
   },
   {
    "ticker": "BRKM5",
    "nome": "Braskem",
-   "preco": 2.98,
-   "var": -1.3245033112582738
+   "preco": 2.96,
+   "var": -1.9867549668874163
   },
   {
    "ticker": "BRAV3",
    "nome": "Brava",
-   "preco": 18.35,
-   "var": 2.7435610302351643
+   "preco": 18.31,
+   "var": 2.519596864501672
   },
   {
    "ticker": "BPAC11",
    "nome": "BTG Pactual",
-   "preco": 51.53,
-   "var": -4.644707623982236
+   "preco": 51.43,
+   "var": -4.829755736491492
   },
   {
    "ticker": "CXSE3",
    "nome": "Caixa Seguridade",
-   "preco": 21.21,
-   "var": -1.3488372093023226
+   "preco": 21.2,
+   "var": -1.3953488372093092
   },
   {
    "ticker": "CEAB3",
    "nome": "C&A",
-   "preco": 6.46,
-   "var": -2.7108433734939763
+   "preco": 6.5,
+   "var": -2.108433734939752
   },
   {
    "ticker": "CMIG4",
    "nome": "Cemig",
-   "preco": 10.04,
-   "var": -0.2979145978153075
+   "preco": 10.05,
+   "var": -0.19860973187685316
   },
   {
    "ticker": "COGN3",
    "nome": "Cogna",
-   "preco": 1.56,
-   "var": -3.105590062111807
+   "preco": 1.55,
+   "var": -3.7267080745341685
   },
   {
    "ticker": "CPLE3",
    "nome": "Copel",
-   "preco": 14.37,
-   "var": -0.8965517241379395
+   "preco": 14.35,
+   "var": -1.0344827586206917
   },
   {
    "ticker": "CSAN3",
    "nome": "Cosan",
-   "preco": 2.31,
-   "var": 2.6666666666666616
+   "preco": 2.29,
+   "var": 1.7777777777777892
   },
   {
    "ticker": "CPFE3",
    "nome": "CPFL",
-   "preco": 41.95,
-   "var": -1.3173370971536036
+   "preco": 41.91,
+   "var": -1.4114326040931546
   },
   {
    "ticker": "CMIN3",
@@ -296,38 +296,38 @@
   {
    "ticker": "CURY3",
    "nome": "Cury",
-   "preco": 25.78,
-   "var": -1.4525993883792054
+   "preco": 25.84,
+   "var": -1.2232415902140636
   },
   {
    "ticker": "CVCB3",
    "nome": "CVC",
-   "preco": 0.79,
-   "var": -1.2499999999999956
+   "preco": 0.8,
+   "var": 0.0
   },
   {
    "ticker": "CYRE3",
    "nome": "Cyrela",
-   "preco": 17.0,
-   "var": -2.1301093839954044
+   "preco": 16.95,
+   "var": -2.4179620034542437
   },
   {
    "ticker": "DIRR3",
    "nome": "Direcional",
-   "preco": 8.11,
-   "var": -1.4580801944107047
+   "preco": 8.09,
+   "var": -1.7010935601458166
   },
   {
    "ticker": "AXIA3",
    "nome": "Axia (Eletrobras)",
-   "preco": 47.23,
-   "var": -0.9437919463087363
+   "preco": 47.27,
+   "var": -0.8598993288590484
   },
   {
    "ticker": "EMBJ3",
    "nome": "Embraer",
-   "preco": 99.42,
-   "var": -2.9101562500000067
+   "preco": 99.24,
+   "var": -3.0859375000000133
   },
   {
    "ticker": "ENGI11",
@@ -338,8 +338,8 @@
   {
    "ticker": "ENEV3",
    "nome": "Eneva",
-   "preco": 25.44,
-   "var": -1.5098722415795462
+   "preco": 25.39,
+   "var": -1.7034456058846237
   },
   {
    "ticker": "EGIE3",
@@ -350,80 +350,80 @@
   {
    "ticker": "EQTL3",
    "nome": "Equatorial",
-   "preco": 32.47,
-   "var": -1.3069908814589692
+   "preco": 32.38,
+   "var": -1.580547112461994
   },
   {
    "ticker": "FLRY3",
    "nome": "Fleury",
-   "preco": 20.53,
-   "var": -1.0125361620057727
+   "preco": 20.48,
+   "var": -1.2536162005785778
   },
   {
    "ticker": "GGBR4",
    "nome": "Gerdau",
-   "preco": 25.16,
-   "var": -1.1783189316575071
+   "preco": 24.99,
+   "var": -1.8460329929300912
   },
   {
    "ticker": "GOAU4",
    "nome": "Gerdau Met.",
-   "preco": 11.1,
-   "var": -0.8928571428571397
+   "preco": 11.02,
+   "var": -1.6071428571428514
   },
   {
    "ticker": "HAPV3",
    "nome": "Hapvida",
-   "preco": 4.2,
-   "var": -0.7092198581560294
+   "preco": 4.16,
+   "var": -1.654846335697402
   },
   {
    "ticker": "HYPE3",
    "nome": "Hypera",
-   "preco": 21.19,
-   "var": -1.5334572490706244
+   "preco": 21.16,
+   "var": -1.6728624535315983
   },
   {
    "ticker": "IGTI11",
    "nome": "Iguatemi",
-   "preco": 21.84,
-   "var": -1.6216216216216162
+   "preco": 21.95,
+   "var": -1.1261261261261257
   },
   {
    "ticker": "IRBR3",
    "nome": "IRB",
-   "preco": 55.33,
-   "var": -0.3063063063063143
+   "preco": 55.3,
+   "var": -0.3603603603603678
   },
   {
    "ticker": "ISAE4",
    "nome": "ISA Energia",
-   "preco": 24.53,
-   "var": -1.4859437751003957
+   "preco": 24.51,
+   "var": -1.5662650602409567
   },
   {
    "ticker": "ITSA4",
    "nome": "Itaúsa",
-   "preco": 12.48,
-   "var": -2.8793774319066046
+   "preco": 12.43,
+   "var": -3.268482490272373
   },
   {
    "ticker": "ITUB4",
    "nome": "Itaú",
-   "preco": 39.02,
-   "var": -1.3151239251390945
+   "preco": 38.82,
+   "var": -1.8209408194233667
   },
   {
    "ticker": "KLBN11",
    "nome": "Klabin",
-   "preco": 17.06,
-   "var": -1.784686240644806
+   "preco": 17.02,
+   "var": -2.014968336211864
   },
   {
    "ticker": "RENT3",
    "nome": "Localiza",
-   "preco": 28.0,
-   "var": -3.548053737512924
+   "preco": 27.79,
+   "var": -4.271443334481573
   },
   {
    "ticker": "LREN3",
@@ -434,68 +434,68 @@
   {
    "ticker": "MGLU3",
    "nome": "Magazine Luiza",
-   "preco": 5.24,
-   "var": 2.144249512670582
+   "preco": 5.29,
+   "var": 3.1189083820662766
   },
   {
    "ticker": "POMO4",
    "nome": "Marcopolo",
-   "preco": 3.79,
-   "var": -0.2631578947368318
+   "preco": 3.73,
+   "var": -1.8421052631578894
   },
   {
    "ticker": "MRVE3",
    "nome": "MRV",
-   "preco": 4.03,
-   "var": -0.24752475247524774
+   "preco": 4.04,
+   "var": 0.0
   },
   {
    "ticker": "MULT3",
    "nome": "Multiplan",
-   "preco": 25.2,
-   "var": -0.27700831024930483
+   "preco": 25.09,
+   "var": -0.7123070834982204
   },
   {
    "ticker": "NATU3",
    "nome": "Natura",
-   "preco": 4.61,
-   "var": -3.1512605042016695
+   "preco": 4.67,
+   "var": -1.8907563025210017
   },
   {
    "ticker": "PCAR3",
    "nome": "GPA",
-   "preco": 2.02,
-   "var": -0.49261083743841194
+   "preco": 2.01,
+   "var": -0.9852216748768461
   },
   {
    "ticker": "PETR3",
    "nome": "Petrobras",
-   "preco": 59.93,
-   "var": 1.473078225533353
+   "preco": 59.8,
+   "var": 1.2529630883846954
   },
   {
    "ticker": "PETR4",
    "nome": "Petrobras",
-   "preco": 52.78,
-   "var": 1.1111111111111072
+   "preco": 52.7,
+   "var": 0.9578544061302763
   },
   {
    "ticker": "RECV3",
    "nome": "PetroReconcavo",
-   "preco": 11.08,
-   "var": 3.0697674418604715
+   "preco": 11.09,
+   "var": 3.1627906976744224
   },
   {
    "ticker": "PRIO3",
    "nome": "PRIO",
-   "preco": 70.75,
-   "var": 0.39733219809847675
+   "preco": 70.6,
+   "var": 0.18447566340284993
   },
   {
    "ticker": "PSSA3",
    "nome": "Porto Seguro",
-   "preco": 45.03,
-   "var": -1.8098560837330968
+   "preco": 44.99,
+   "var": -1.897078063672042
   },
   {
    "ticker": "RADL3",
@@ -512,530 +512,530 @@
   {
    "ticker": "RDOR3",
    "nome": "Rede D'Or",
-   "preco": 31.54,
-   "var": -2.5038639876352464
+   "preco": 31.41,
+   "var": -2.905718701700155
   },
   {
    "ticker": "RAIL3",
    "nome": "Rumo",
-   "preco": 13.72,
-   "var": -3.6516853932584192
+   "preco": 13.74,
+   "var": -3.51123595505618
   },
   {
    "ticker": "SBSP3",
    "nome": "Sabesp",
-   "preco": 24.56,
-   "var": -2.3070803500397807
+   "preco": 24.51,
+   "var": -2.505966587112163
   },
   {
    "ticker": "SANB11",
    "nome": "Santander",
-   "preco": 23.86,
-   "var": -3.1655844155844215
+   "preco": 23.83,
+   "var": -3.287337662337675
   },
   {
    "ticker": "SMTO3",
    "nome": "São Martinho",
-   "preco": 20.94,
-   "var": 7.109974424552434
+   "preco": 20.91,
+   "var": 6.956521739130439
   },
   {
    "ticker": "CSNA3",
    "nome": "CSN",
-   "preco": 3.96,
-   "var": -6.60377358490567
+   "preco": 3.92,
+   "var": -7.547169811320764
   },
   {
    "ticker": "SLCE3",
    "nome": "SLC Agrícola",
-   "preco": 16.98,
-   "var": -0.17636684303351524
+   "preco": 16.99,
+   "var": -0.11757789535569163
   },
   {
    "ticker": "SMFT3",
    "nome": "Smart Fit",
-   "preco": 15.15,
-   "var": -2.5723472668810365
+   "preco": 15.18,
+   "var": -2.3794212218649635
   },
   {
    "ticker": "SUZB3",
    "nome": "Suzano",
-   "preco": 49.9,
-   "var": 0.3620273531777851
+   "preco": 49.87,
+   "var": 0.3016894609815024
   },
   {
    "ticker": "TAEE11",
    "nome": "Taesa",
-   "preco": 39.45,
-   "var": 0.6377551020408267
+   "preco": 39.37,
+   "var": 0.4336734693877409
   },
   {
    "ticker": "VIVT3",
    "nome": "Telefônica Vivo",
-   "preco": 30.75,
-   "var": 0.0
+   "preco": 30.73,
+   "var": -0.06504065040650042
   },
   {
    "ticker": "TIMS3",
    "nome": "TIM",
-   "preco": 19.32,
-   "var": -0.5661348430262447
+   "preco": 19.33,
+   "var": -0.514668039114774
   },
   {
    "ticker": "TOTS3",
    "nome": "Totvs",
-   "preco": 31.99,
-   "var": -3.7315678603671354
+   "preco": 32.1,
+   "var": -3.4005416792055265
   },
   {
    "ticker": "UGPA3",
    "nome": "Ultrapar",
-   "preco": 31.54,
-   "var": -1.4682911590128023
+   "preco": 31.5,
+   "var": -1.5932521087160256
   },
   {
    "ticker": "USIM5",
    "nome": "Usiminas",
-   "preco": 5.23,
-   "var": -4.387568555758669
+   "preco": 5.06,
+   "var": -7.4954296160877565
   },
   {
    "ticker": "VALE3",
    "nome": "Vale",
-   "preco": 61.8,
-   "var": 2.9142381348876034
+   "preco": 61.79,
+   "var": 2.8975853455453837
   },
   {
    "ticker": "VAMO3",
    "nome": "Vamos",
-   "preco": 2.46,
-   "var": 0.0
+   "preco": 2.42,
+   "var": -1.6260162601625994
   },
   {
    "ticker": "VBBR3",
    "nome": "Vibra",
-   "preco": 29.57,
-   "var": -2.921864740643465
+   "preco": 29.46,
+   "var": -3.282994090610636
   },
   {
    "ticker": "VIVA3",
    "nome": "Vivara",
-   "preco": 17.51,
-   "var": 0.9221902017291006
+   "preco": 17.45,
+   "var": 0.5763688760806795
   },
   {
    "ticker": "WEGE3",
    "nome": "WEG",
-   "preco": 48.91,
-   "var": -0.7508116883116922
+   "preco": 48.6,
+   "var": -1.379870129870131
   },
   {
    "ticker": "YDUQ3",
    "nome": "Yduqs",
-   "preco": 8.84,
-   "var": -1.3392857142857206
+   "preco": 8.93,
+   "var": -0.33482142857144126
   },
   {
    "ticker": "MOTV3",
    "nome": "Motiva",
-   "preco": 14.15,
-   "var": -0.4922644163150469
+   "preco": 14.07,
+   "var": -1.0548523206751037
   },
   {
    "ticker": "MBRF3",
    "nome": "MBRF (BRF+Marfrig)",
-   "preco": 15.79,
-   "var": -3.953771289537722
+   "preco": 15.84,
+   "var": -3.649635036496357
   },
   {
    "ticker": "EZTC3",
    "nome": "EZTec",
-   "preco": 9.02,
-   "var": -1.2048192771084487
+   "preco": 8.96,
+   "var": -1.8619934282584905
   }
  ],
  "maiores": [
   {
    "ticker": "PETR4",
    "nome": "Petrobras",
-   "preco": 52.78,
-   "var": 1.1111111111111072,
-   "vm": 680267466666.6666
+   "preco": 52.7,
+   "var": 0.9578544061302763,
+   "vm": 679236367816.092
   },
   {
    "ticker": "ITUB4",
    "nome": "Itaú",
-   "preco": 39.02,
-   "var": -1.3151239251390945,
-   "vm": 430268033383.91504
+   "preco": 38.82,
+   "var": -1.8209408194233667,
+   "vm": 428062661608.49774
   },
   {
    "ticker": "VALE3",
    "nome": "Vale",
-   "preco": 61.8,
-   "var": 2.9142381348876034,
-   "vm": 274340542880.9326
+   "preco": 61.79,
+   "var": 2.8975853455453837,
+   "vm": 274296151207.32724
   },
   {
    "ticker": "ABEV3",
    "nome": "Ambev",
-   "preco": 14.63,
-   "var": 0.5498281786941561,
-   "vm": 226540773883.1615
+   "preco": 14.58,
+   "var": 0.20618556701030855,
+   "vm": 225766540206.18558
   },
   {
    "ticker": "WEGE3",
    "nome": "WEG",
-   "preco": 48.91,
-   "var": -0.7508116883116922,
-   "vm": 205290991071.42856
+   "preco": 48.6,
+   "var": -1.379870129870131,
+   "vm": 203989821428.5714
   },
   {
    "ticker": "BPAC11",
    "nome": "BTG Pactual",
-   "preco": 51.53,
-   "var": -4.644707623982236,
-   "vm": 200453034974.09326
+   "preco": 51.43,
+   "var": -4.829755736491492,
+   "vm": 200064032383.41968
   },
   {
    "ticker": "BBDC4",
    "nome": "Bradesco",
-   "preco": 13.99,
-   "var": -1.2005649717514166,
-   "vm": 156644528248.58755
+   "preco": 13.93,
+   "var": -1.6242937853107375,
+   "vm": 155972714689.26553
   },
   {
    "ticker": "ITSA4",
    "nome": "Itaúsa",
-   "preco": 12.48,
-   "var": -2.8793774319066046,
-   "vm": 139946932295.71985
+   "preco": 12.43,
+   "var": -3.268482490272373,
+   "vm": 139386247470.8171
   },
   {
    "ticker": "AXIA3",
    "nome": "Axia (Eletrobras)",
-   "preco": 47.23,
-   "var": -0.9437919463087363,
-   "vm": 132080557256.7114
+   "preco": 47.27,
+   "var": -0.8598993288590484,
+   "vm": 132192418833.89264
   },
   {
    "ticker": "VIVT3",
    "nome": "Telefônica Vivo",
-   "preco": 30.75,
-   "var": 0.0,
-   "vm": 99216300000.0
+   "preco": 30.73,
+   "var": -0.06504065040650042,
+   "vm": 99151769073.17073
   },
   {
    "ticker": "BBAS3",
    "nome": "Banco do Brasil",
-   "preco": 16.52,
-   "var": 0.36452004860265674,
-   "vm": 94673349939.24664
+   "preco": 16.65,
+   "var": 1.154313487241776,
+   "vm": 95418358140.94774
   },
   {
    "ticker": "SANB11",
    "nome": "Santander",
-   "preco": 23.86,
-   "var": -3.1655844155844215,
-   "vm": 89457472970.77922
+   "preco": 23.83,
+   "var": -3.287337662337675,
+   "vm": 89344995008.11687
   },
   {
    "ticker": "SBSP3",
    "nome": "Sabesp",
-   "preco": 24.56,
-   "var": -2.3070803500397807,
-   "vm": 86805043754.97215
+   "preco": 24.51,
+   "var": -2.505966587112163,
+   "vm": 86628323389.02148
   },
   {
    "ticker": "BBSE3",
    "nome": "BB Seguridade",
-   "preco": 41.16,
-   "var": -2.116527942925095,
-   "vm": 79908053365.04161
+   "preco": 41.28,
+   "var": -1.831153388822826,
+   "vm": 80141021450.65399
   },
   {
    "ticker": "EMBJ3",
    "nome": "Embraer",
-   "preco": 99.42,
-   "var": -2.9101562500000067,
-   "vm": 73617014765.625
+   "preco": 99.24,
+   "var": -3.0859375000000133,
+   "vm": 73483731093.74998
   },
   {
    "ticker": "RDOR3",
    "nome": "Rede D'Or",
-   "preco": 31.54,
-   "var": -2.5038639876352464,
-   "vm": 70658862132.92117
+   "preco": 31.41,
+   "var": -2.905718701700155,
+   "vm": 70367623956.72334
   },
   {
    "ticker": "B3SA3",
    "nome": "B3",
-   "preco": 13.54,
-   "var": -4.647887323943667,
-   "vm": 68329610000.0
+   "preco": 13.38,
+   "var": -5.774647887323936,
+   "vm": 67522170000.00001
   },
   {
    "ticker": "CXSE3",
    "nome": "Caixa Seguridade",
-   "preco": 21.21,
-   "var": -1.3488372093023226,
-   "vm": 63630000000.0
+   "preco": 21.2,
+   "var": -1.3953488372093092,
+   "vm": 63599999999.99999
   },
   {
    "ticker": "SUZB3",
    "nome": "Suzano",
-   "preco": 49.9,
-   "var": 0.3620273531777851,
-   "vm": 63079441069.99195
+   "preco": 49.87,
+   "var": 0.3016894609815024,
+   "vm": 63041517558.32663
   },
   {
    "ticker": "PRIO3",
    "nome": "PRIO",
-   "preco": 70.75,
-   "var": 0.39733219809847675,
-   "vm": 61728998510.00426
+   "preco": 70.6,
+   "var": 0.18447566340284993,
+   "vm": 61598124308.216255
   }
  ],
  "fiis": [
   {
    "papel": "KNCR11",
    "segmento": "Multicategoria",
-   "cotacao": 104.75,
+   "cotacao": 104.89,
    "dy": 13.18,
    "pvp": 1.02,
    "vm": 11169400000.0,
    "liq": 29494800.0,
-   "var": 0.431447746883995
+   "var": 0.5656759348034557
   },
   {
    "papel": "BTLG11",
    "segmento": "Multicategoria",
-   "cotacao": 97.79,
+   "cotacao": 97.86,
    "dy": 9.84,
    "pvp": 0.91,
    "vm": 6884750000.0,
    "liq": 25169200.0,
-   "var": 0.7624935600206273
+   "var": 0.8346213292117488
   },
   {
    "papel": "KNIP11",
    "segmento": "Multicategoria",
-   "cotacao": 85.44,
+   "cotacao": 85.39,
    "dy": 11.71,
    "pvp": 0.9,
    "vm": 6841080000.0,
    "liq": 11587800.0,
-   "var": 0.011705489874747066
+   "var": -0.04682195949901047
   },
   {
    "papel": "HGLG11",
    "segmento": "Multicategoria",
-   "cotacao": 148.63,
+   "cotacao": 148.46,
    "dy": 9.05,
    "pvp": 0.89,
    "vm": 6703450000.0,
    "liq": 22659700.0,
-   "var": 1.1088435374149608
+   "var": 0.9931972789115617
   },
   {
    "papel": "XPML11",
    "segmento": "Shoppings",
-   "cotacao": 96.47,
+   "cotacao": 96.27,
    "dy": 11.26,
    "pvp": 0.91,
    "vm": 6250740000.0,
    "liq": 23593300.0,
-   "var": -0.751028806584364
+   "var": -0.9567901234567966
   },
   {
    "papel": "MXRF11",
    "segmento": "Logística",
-   "cotacao": 8.92,
+   "cotacao": 8.91,
    "dy": 14.32,
    "pvp": 0.96,
    "vm": 5070820000.0,
    "liq": 26444900.0,
-   "var": -0.22371364653243075
+   "var": -0.3355704697986517
   },
   {
    "papel": "XPLG11",
    "segmento": "Logística",
-   "cotacao": 89.86,
+   "cotacao": 89.83,
    "dy": 10.86,
    "pvp": 0.86,
    "vm": 4614830000.0,
    "liq": 9505940.0,
-   "var": 0.06681514476614137
+   "var": 0.033407572383081785
   },
   {
    "papel": "KNRI11",
    "segmento": "Multicategoria",
-   "cotacao": 149.94,
+   "cotacao": 150.0,
    "dy": 8.76,
    "pvp": 0.91,
    "vm": 4219330000.0,
    "liq": 8375930.0,
-   "var": 0.2272727272727204
+   "var": 0.2673796791443861
   },
   {
    "papel": "TRXF11",
    "segmento": "Multicategoria",
-   "cotacao": 66.97,
+   "cotacao": 66.85,
    "dy": 17.3,
    "pvp": 0.7,
    "vm": 4206580000.0,
    "liq": 38602100.0,
-   "var": -0.6084891659245972
+   "var": -0.7865835559513257
   },
   {
    "papel": "GGRC11",
    "segmento": "Multicategoria",
-   "cotacao": 8.48,
+   "cotacao": 8.47,
    "dy": 14.03,
    "pvp": 0.77,
    "vm": 2924700000.0,
    "liq": 15377500.0,
-   "var": 0.23640661938533203
+   "var": 0.11820330969267712
   },
   {
    "papel": "KNHY11",
    "segmento": "Multicategoria",
-   "cotacao": 92.57,
+   "cotacao": 92.38,
    "dy": 13.18,
    "pvp": 0.93,
    "vm": 2895980000.0,
    "liq": 5186800.0,
-   "var": -0.3552206673842928
+   "var": -0.5597416576964553
   },
   {
    "papel": "VISC11",
    "segmento": "Shoppings",
-   "cotacao": 99.59,
+   "cotacao": 99.42,
    "dy": 10.07,
    "pvp": 0.85,
    "vm": 2835870000.0,
    "liq": 9565780.0,
-   "var": 1.2402155128596215
+   "var": 1.0673985971332733
   },
   {
    "papel": "HGRU11",
    "segmento": "Outros",
-   "cotacao": 113.0,
+   "cotacao": 112.98,
    "dy": 10.46,
    "pvp": 0.88,
    "vm": 2801300000.0,
    "liq": 9492320.0,
-   "var": 0.17730496453900457
+   "var": 0.15957446808512188
   },
   {
    "papel": "HGBS11",
    "segmento": "Shoppings",
-   "cotacao": 18.14,
+   "cotacao": 18.13,
    "dy": 10.8,
    "pvp": 0.86,
    "vm": 2611400000.0,
    "liq": 8352910.0,
-   "var": 0.27639579878386833
+   "var": 0.22111663902708578
   },
   {
    "papel": "KNUQ11",
    "segmento": "Multicategoria",
-   "cotacao": 98.92,
+   "cotacao": 98.72,
    "dy": 14.32,
    "pvp": 0.99,
    "vm": 2511190000.0,
    "liq": 6167010.0,
-   "var": -0.7823470411233657
+   "var": -0.9829488465396219
   },
   {
    "papel": "CPTS11",
    "segmento": "Outros",
-   "cotacao": 6.93,
+   "cotacao": 6.94,
    "dy": 15.52,
    "pvp": 0.82,
    "vm": 2497270000.0,
    "liq": 7307580.0,
-   "var": 0.8733624454148492
+   "var": 1.0189228529839944
   },
   {
    "papel": "GARE11",
    "segmento": "Multicategoria",
-   "cotacao": 8.19,
+   "cotacao": 8.2,
    "dy": 12.05,
    "pvp": 0.91,
    "vm": 2365540000.0,
    "liq": 7143540.0,
-   "var": 0.12224938875304847
+   "var": 0.24449877750609694
   },
   {
    "papel": "IRIM11",
    "segmento": "Multicategoria",
-   "cotacao": 58.07,
+   "cotacao": 58.02,
    "dy": 16.99,
    "pvp": 0.7,
    "vm": 2050850000.0,
    "liq": 3892780.0,
-   "var": -0.2576434215046386
+   "var": -0.3435245620061811
   },
   {
    "papel": "KNSC11",
    "segmento": "Multicategoria",
-   "cotacao": 8.79,
+   "cotacao": 8.73,
    "dy": 12.82,
    "pvp": 0.98,
    "vm": 2050810000.0,
    "liq": 5873490.0,
-   "var": 1.0344827586206806
+   "var": 0.34482758620690834
   },
   {
    "papel": "PMLL11",
    "segmento": "Shoppings",
-   "cotacao": 99.99,
+   "cotacao": 99.82,
    "dy": 11.5,
    "pvp": 0.84,
    "vm": 2004850000.0,
    "liq": 4130340.0,
-   "var": 0.2607039005314338
+   "var": 0.09024365787626554
   },
   {
    "papel": "BRCO11",
    "segmento": "Logística",
-   "cotacao": 103.97,
+   "cotacao": 104.15,
    "dy": 10.53,
    "pvp": 0.9,
    "vm": 1867190000.0,
    "liq": 9827060.0,
-   "var": 0.3474568091883068
+   "var": 0.5211852137824602
   },
   {
    "papel": "RECR11",
    "segmento": "Multicategoria",
-   "cotacao": 70.48,
+   "cotacao": 70.34,
    "dy": 15.13,
    "pvp": 0.79,
    "vm": 1850920000.0,
    "liq": 3841610.0,
-   "var": 0.6857142857142895
+   "var": 0.4857142857142893
   },
   {
    "papel": "KNCA11",
    "segmento": "Títulos e Val. Mob.",
-   "cotacao": 85.7,
+   "cotacao": 85.66,
    "dy": 0.0,
    "pvp": 0.83,
    "vm": 1839230000.0,
    "liq": 3700580.0,
-   "var": 0.6459189665296572
+   "var": 0.5989430416911246
   },
   {
    "papel": "KNHF11",
    "segmento": "Multicategoria",
-   "cotacao": 89.83,
+   "cotacao": 90.08,
    "dy": 13.16,
    "pvp": 0.91,
    "vm": 1772840000.0,
    "liq": 5521260.0,
-   "var": -0.3660159716060374
+   "var": -0.08873114463175957
   },
   {
    "papel": "SNEL11",
@@ -1050,72 +1050,72 @@
   {
    "papel": "BTHF11",
    "segmento": "Outros",
-   "cotacao": 8.24,
+   "cotacao": 8.27,
    "dy": 14.41,
    "pvp": 0.87,
    "vm": 1692060000.0,
    "liq": 4277680.0,
-   "var": 0.24330900243307862
+   "var": 0.6082725060827077
   },
   {
    "papel": "HSML11",
    "segmento": "Shoppings",
-   "cotacao": 79.5,
+   "cotacao": 79.49,
    "dy": 11.11,
    "pvp": 0.78,
    "vm": 1648590000.0,
    "liq": 6225980.0,
-   "var": 2.8593608487514466
+   "var": 2.8464225643679564
   },
   {
    "papel": "PVBI11",
    "segmento": "Escritórios",
-   "cotacao": 61.09,
+   "cotacao": 60.48,
    "dy": 8.27,
    "pvp": 0.57,
    "vm": 1627800000.0,
    "liq": 5314830.0,
-   "var": 1.8166666666666664
+   "var": 0.8000000000000007
   },
   {
    "papel": "ALZR11",
    "segmento": "Multicategoria",
-   "cotacao": 9.61,
+   "cotacao": 9.6,
    "dy": 10.45,
    "pvp": 0.89,
    "vm": 1568080000.0,
    "liq": 5975640.0,
-   "var": 0.7337526205450695
+   "var": 0.6289308176100628
   },
   {
    "papel": "LVBI11",
    "segmento": "Logística",
-   "cotacao": 95.6,
+   "cotacao": 95.36,
    "dy": 9.43,
    "pvp": 0.79,
    "vm": 1544000000.0,
    "liq": 4805110.0,
-   "var": -0.1983505585134271
+   "var": -0.44889863242509875
   },
   {
    "papel": "MCCI11",
    "segmento": "Multicategoria",
-   "cotacao": 90.08,
+   "cotacao": 90.02,
    "dy": 13.22,
    "pvp": 0.95,
    "vm": 1522670000.0,
    "liq": 6488530.0,
-   "var": 0.3341501447983841
+   "var": 0.2673201158387206
   },
   {
    "papel": "HGCR11",
    "segmento": "Outros",
-   "cotacao": 91.96,
+   "cotacao": 91.98,
    "dy": 12.48,
    "pvp": 0.94,
    "vm": 1430340000.0,
    "liq": 3259320.0,
-   "var": -0.8731270884984377
+   "var": -0.8515683949552599
   },
   {
    "papel": "MALL11",
@@ -1129,82 +1129,82 @@
   {
    "papel": "RZTR11",
    "segmento": "Outros",
-   "cotacao": 72.91,
+   "cotacao": 72.86,
    "dy": 15.64,
    "pvp": 0.37,
    "vm": 1370520000.0,
    "liq": 4311490.0,
-   "var": 0.2888583218706886
+   "var": 0.22008253094909502
   },
   {
    "papel": "RBVA11",
    "segmento": "Varejo",
-   "cotacao": 8.17,
+   "cotacao": 8.16,
    "dy": 13.13,
    "pvp": 0.76,
    "vm": 1345280000.0,
    "liq": 2032130.0,
-   "var": 0.3685503685503688
+   "var": 0.24570024570023108
   },
   {
    "papel": "HGRE11",
    "segmento": "Escritórios",
-   "cotacao": 114.45,
+   "cotacao": 114.3,
    "dy": 10.09,
    "pvp": 0.75,
    "vm": 1335410000.0,
    "liq": 2605480.0,
-   "var": 1.2831858407079677
+   "var": 1.1504424778761013
   },
   {
    "papel": "HFOF11",
    "segmento": "Multicategoria",
-   "cotacao": 6.0,
+   "cotacao": 6.01,
    "dy": 11.57,
    "pvp": 0.81,
    "vm": 1319750000.0,
    "liq": 1765340.0,
-   "var": -0.9900990099009799
+   "var": -0.8250825082508184
   },
   {
    "papel": "TVRI11",
    "segmento": "Escritórios",
-   "cotacao": 83.72,
+   "cotacao": 83.7,
    "dy": 15.05,
    "pvp": 0.82,
    "vm": 1317350000.0,
    "liq": 1287460.0,
-   "var": 1.1722054380664648
+   "var": 1.148036253776441
   },
   {
    "papel": "VILG11",
    "segmento": "Logística",
-   "cotacao": 88.47,
+   "cotacao": 89.04,
    "dy": 10.88,
    "pvp": 0.8,
    "vm": 1304020000.0,
    "liq": 4145430.0,
-   "var": 1.7481311098332286
+   "var": 2.4036802760207143
   },
   {
    "papel": "VGIR11",
    "segmento": "Multicategoria",
-   "cotacao": 9.01,
+   "cotacao": 8.97,
    "dy": 16.94,
    "pvp": 0.91,
    "vm": 1284230000.0,
    "liq": 5061250.0,
-   "var": 2.5028441410694047
+   "var": 2.0477815699658786
   },
   {
    "papel": "RURA11",
    "segmento": "Títulos e Val. Mob.",
-   "cotacao": 7.91,
+   "cotacao": 7.93,
    "dy": 0.0,
    "pvp": 0.77,
    "vm": 1263190000.0,
    "liq": 2665300.0,
-   "var": 0.25348542458809575
+   "var": 0.5069708491761693
   },
   {
    "papel": "MCLO11",
@@ -1219,32 +1219,32 @@
   {
    "papel": "JSRE11",
    "segmento": "Multicategoria",
-   "cotacao": 57.88,
+   "cotacao": 58.18,
    "dy": 9.85,
    "pvp": 0.58,
    "vm": 1217170000.0,
    "liq": 4463100.0,
-   "var": -1.245521242108849
+   "var": -0.7336631974065866
   },
   {
    "papel": "PCIP11",
    "segmento": "Outros",
-   "cotacao": 68.9,
+   "cotacao": 68.76,
    "dy": 14.64,
    "pvp": 0.75,
    "vm": 1193370000.0,
    "liq": 3584250.0,
-   "var": -1.781895937277267
+   "var": -1.9814682822523189
   },
   {
    "papel": "CPSH11",
    "segmento": "Shoppings",
-   "cotacao": 9.06,
+   "cotacao": 9.07,
    "dy": 14.67,
    "pvp": 0.81,
    "vm": 1136800000.0,
    "liq": 3414120.0,
-   "var": -1.8418201516793076
+   "var": -1.7334777898158182
   },
   {
    "papel": "GSFI11",
@@ -1259,92 +1259,92 @@
   {
    "papel": "RBRR11",
    "segmento": "Multicategoria",
-   "cotacao": 64.51,
+   "cotacao": 64.4,
    "dy": 14.81,
    "pvp": 0.71,
    "vm": 1072880000.0,
    "liq": 4833960.0,
-   "var": -1.9902765116985521
+   "var": -2.1573989668793536
   },
   {
    "papel": "VRTA11",
    "segmento": "Outros",
-   "cotacao": 68.41,
+   "cotacao": 68.55,
    "dy": 14.71,
    "pvp": 0.81,
    "vm": 1068080000.0,
    "liq": 1776870.0,
-   "var": -0.13138686131387578
+   "var": 0.07299270072991249
   },
   {
    "papel": "BRCR11",
    "segmento": "Multicategoria",
-   "cotacao": 39.15,
+   "cotacao": 39.12,
    "dy": 12.38,
    "pvp": 0.48,
    "vm": 1048750000.0,
    "liq": 2945640.0,
-   "var": -0.5588011176022367
+   "var": -0.6350012700025442
   },
   {
    "papel": "RBRY11",
    "segmento": "Multicategoria",
-   "cotacao": 80.2,
+   "cotacao": 80.18,
    "dy": 15.91,
    "pvp": 0.81,
    "vm": 1033950000.0,
    "liq": 4755460.0,
-   "var": -0.9509694948746428
+   "var": -0.9756700012350183
   },
   {
    "papel": "VCJR11",
    "segmento": "Outros",
-   "cotacao": 65.21,
+   "cotacao": 64.83,
    "dy": 16.88,
    "pvp": 0.71,
    "vm": 977524000.0,
    "liq": 3646880.0,
-   "var": -1.777376110860085
+   "var": -2.349751468594674
   },
   {
    "papel": "RBRX11",
    "segmento": "Multicategoria",
-   "cotacao": 6.61,
+   "cotacao": 6.59,
    "dy": 16.27,
    "pvp": 0.7,
    "vm": 960084000.0,
    "liq": 2626830.0,
-   "var": 0.7621951219512368
+   "var": 0.45731707317073766
   },
   {
    "papel": "TGAR11",
    "segmento": "Multicategoria",
-   "cotacao": 40.1,
+   "cotacao": 40.22,
    "dy": 23.14,
    "pvp": 0.37,
    "vm": 947904000.0,
    "liq": 4396690.0,
-   "var": -0.2983590253605062
+   "var": 0.0
   },
   {
    "papel": "HSLG11",
    "segmento": "Logística",
-   "cotacao": 72.12,
+   "cotacao": 71.95,
    "dy": 11.74,
    "pvp": 0.67,
    "vm": 936212000.0,
    "liq": 1500470.0,
-   "var": -2.4746450304259593
+   "var": -2.704530087897228
   },
   {
    "papel": "GTWR11",
    "segmento": "Escritórios",
-   "cotacao": 75.95,
+   "cotacao": 75.94,
    "dy": 14.04,
    "pvp": 0.75,
    "vm": 913320000.0,
    "liq": 1196880.0,
-   "var": -0.2102220470371785
+   "var": -0.22336092497701188
   },
   {
    "papel": "CVBI11",
@@ -1358,12 +1358,12 @@
   {
    "papel": "PSEC11",
    "segmento": "Outros",
-   "cotacao": 45.48,
+   "cotacao": 45.63,
    "dy": 15.9,
    "pvp": 0.65,
    "vm": 846739000.0,
    "liq": 2462790.0,
-   "var": -1.1734028683181408
+   "var": -0.8474576271186418
   },
   {
    "papel": "BTCI11",
@@ -1378,12 +1378,12 @@
   {
    "papel": "VGIP11",
    "segmento": "Multicategoria",
-   "cotacao": 68.36,
+   "cotacao": 68.3,
    "dy": 14.52,
    "pvp": 0.76,
    "vm": 825107000.0,
    "liq": 2079520.0,
-   "var": -2.3428571428571465
+   "var": -2.4285714285714355
   },
   {
    "papel": "MCRE11",
@@ -1458,12 +1458,12 @@
   {
    "papel": "XPCI11",
    "segmento": "Outros",
-   "cotacao": 75.97,
+   "cotacao": 75.92,
    "dy": 13.91,
    "pvp": 0.85,
    "vm": 661231000.0,
    "liq": 1664400.0,
-   "var": -0.026319252533224535
+   "var": -0.09211738386628587
   },
   {
    "papel": "CPOF11",
@@ -1478,12 +1478,12 @@
   {
    "papel": "RZAK11",
    "segmento": "Multicategoria",
-   "cotacao": 73.98,
+   "cotacao": 73.69,
    "dy": 17.37,
    "pvp": 0.83,
    "vm": 644825000.0,
    "liq": 1130970.0,
-   "var": 1.0517688840322448
+   "var": 0.6556481355006305
   },
   {
    "papel": "PQDP11",
@@ -1498,22 +1498,22 @@
   {
    "papel": "BROF11",
    "segmento": "Multicategoria",
-   "cotacao": 53.78,
+   "cotacao": 54.13,
    "dy": 12.3,
    "pvp": 0.5,
    "vm": 625939000.0,
    "liq": 1755360.0,
-   "var": -0.24114264514931705
+   "var": 0.4080875533296391
   },
   {
    "papel": "BPML11",
    "segmento": "Multicategoria",
-   "cotacao": 83.21,
+   "cotacao": 83.37,
    "dy": 13.08,
    "pvp": 0.7,
    "vm": 621088000.0,
    "liq": 1049720.0,
-   "var": -0.29954469206805445
+   "var": -0.10783608914448628
   },
   {
    "papel": "RVBI11",
@@ -1527,32 +1527,32 @@
   {
    "papel": "CPLG11",
    "segmento": "Logística",
-   "cotacao": 10.96,
+   "cotacao": 10.98,
    "dy": 15.52,
    "pvp": 1.02,
    "vm": 613151000.0,
    "liq": 2470160.0,
-   "var": 0.7352941176470562
+   "var": 0.9191176470588092
   },
   {
    "papel": "KORE11",
    "segmento": "Outros",
-   "cotacao": 62.94,
+   "cotacao": 62.58,
    "dy": 14.22,
    "pvp": 0.59,
    "vm": 611188000.0,
    "liq": 2302950.0,
-   "var": -0.8818897637795309
+   "var": -1.4488188976377936
   },
   {
    "papel": "IBBP11",
    "segmento": "Logística",
-   "cotacao": 7.89,
+   "cotacao": 7.94,
    "dy": 11.68,
    "pvp": 0.86,
    "vm": 604473000.0,
    "liq": 876735.0,
-   "var": -1.6209476309226867
+   "var": -0.9975062344139585
   },
   {
    "papel": "SNAG11",
@@ -1567,22 +1567,22 @@
   {
    "papel": "FATN11",
    "segmento": "Multicategoria",
-   "cotacao": 78.06,
+   "cotacao": 78.39,
    "dy": 11.98,
    "pvp": 0.82,
    "vm": 566777000.0,
    "liq": 1772520.0,
-   "var": -1.6504976691445128
+   "var": -1.2347234471462798
   },
   {
    "papel": "RZAG11",
    "segmento": "Títulos e Val. Mob.",
-   "cotacao": 8.36,
+   "cotacao": 8.26,
    "dy": 0.0,
    "pvp": 0.86,
    "vm": 561334000.0,
    "liq": 1134860.0,
-   "var": 1.3333333333333197
+   "var": 0.12121212121212199
   },
   {
    "papel": "TJKB11",
