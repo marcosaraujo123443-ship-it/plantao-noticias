@@ -1,0 +1,11 @@
+name: diag-site
+on: workflow_dispatch
+jobs:
+  v:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          h=$(curl -s https://plantaoinforma.com.br/)
+          echo "::notice::partilha=$(echo "$h" | grep -c 'data-copiar') instalar=$(echo "$h" | grep -c 'data-instalar') sw=$(echo "$h" | grep -c "register('/sw.js')")"
+          echo "::notice::sw $(curl -sI https://plantaoinforma.com.br/sw.js | grep -iE '^(HTTP|content-type)' | tr '\r\n' '  ')"
+          echo "::notice::manifest $(curl -s https://plantaoinforma.com.br/site.webmanifest | tr -d '\n ' | cut -c1-160)"
