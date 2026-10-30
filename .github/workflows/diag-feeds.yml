@@ -7,4 +7,4 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           python3 scripts/diag_probe.py || true
-          split -l 6 /tmp/out /tmp/parte; for f in /tmp/parte*; do echo "::notice::$(sed ':a;N;$!ba;s/\n/%0A/g' $f)"; done
+          split -l 9 /tmp/out /tmp/parte; for f in /tmp/parte*; do echo "::notice::$(sed ':a;N;$!ba;s/\n/%0A/g' $f)"; done
