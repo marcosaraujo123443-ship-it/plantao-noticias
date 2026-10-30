@@ -5,7 +5,7 @@ on:
     - cron: "35 9-23/2,1 * * *"
   workflow_dispatch:
   push:
-    paths: ["scripts/tempo.py", "scripts/concursos.py", ".github/workflows/tempo.yml"]
+    paths: ["scripts/tempo.py", "scripts/concursos.py", "scripts/congresso.py", ".github/workflows/tempo.yml"]
 permissions:
   contents: write
 concurrency:
@@ -24,11 +24,14 @@ jobs:
       - name: Concursos com inscrições abertas
         continue-on-error: true
         run: python3 scripts/concursos.py
+      - name: Votações no Congresso
+        continue-on-error: true
+        run: python3 scripts/congresso.py
       - name: Publicar
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tempo.json concursos.json 2>/dev/null || true
+          git add tempo.json concursos.json congresso.json 2>/dev/null || true
           git diff --cached --quiet && exit 0
           git commit -m "Tempo e concursos $(TZ=America/Sao_Paulo date +%d/%m\ %H:%M)"
           for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin main && break; sleep 5; done

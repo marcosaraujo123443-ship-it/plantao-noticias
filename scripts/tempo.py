@@ -26,6 +26,16 @@ CAPITAIS = [  # uf, cidade, código IBGE, latitude, longitude, região
     ("PR", "Curitiba", 4106902, -25.43, -49.27, "Sul"), ("RS", "Porto Alegre", 4314902, -30.03, -51.23, "Sul"),
     ("SC", "Florianópolis", 4205407, -27.60, -48.55, "Sul"),
 ]
+POLOS = [  # principais regiões produtoras (cidade-polo, UF, código IBGE, culturas)
+    ("Sorriso", "MT", 5107925, "soja e milho"), ("Primavera do Leste", "MT", 5107040, "soja e algodão"),
+    ("Rio Verde", "GO", 5218805, "soja e milho"), ("Dourados", "MS", 5003702, "soja e milho"),
+    ("Cascavel", "PR", 4104808, "soja e milho"), ("Londrina", "PR", 4113700, "soja, milho e trigo"),
+    ("Passo Fundo", "RS", 4314100, "soja e trigo"), ("Cruz Alta", "RS", 4306106, "soja e trigo"),
+    ("Chapecó", "SC", 4204202, "milho, suínos e aves"), ("Uberaba", "MG", 3170107, "soja, cana e gado"),
+    ("Patos de Minas", "MG", 3148004, "milho, café e leite"), ("Ribeirão Preto", "SP", 3543402, "cana e café"),
+    ("Luís Eduardo Magalhães", "BA", 2919553, "soja e algodão"), ("Balsas", "MA", 2101400, "soja"),
+    ("Uruçuí", "PI", 2211209, "soja"), ("Araguaína", "TO", 1702109, "gado e soja"),
+]
 UF_COD = {"11": "RO", "12": "AC", "13": "AM", "14": "RR", "15": "PA", "16": "AP", "17": "TO", "21": "MA", "22": "PI", "23": "CE",
           "24": "RN", "25": "PB", "26": "PE", "27": "AL", "28": "SE", "29": "BA", "31": "MG", "32": "ES", "33": "RJ", "35": "SP",
           "41": "PR", "42": "SC", "43": "RS", "50": "MS", "51": "MT", "52": "GO", "53": "DF"}
@@ -53,8 +63,7 @@ def previsao(cod):
     dias = []
     for data, v in bruto.items():
         d = datetime.strptime(data, "%d/%m/%Y").date()
-        base = v.get("tarde") or v.get("manha") or v if isinstance(v, dict) and "manha" in v else v
-        p = {k: base.get(k) for k in ("resumo",)}
+        base = (v.get("tarde") or v.get("manha")) if "manha" in v else v
         maxs = [num(x.get("temp_max")) for x in ([v[k] for k in ("manha", "tarde", "noite") if k in v] or [v])]
         mins = [num(x.get("temp_min")) for x in ([v[k] for k in ("manha", "tarde", "noite") if k in v] or [v])]
         dia = {"data": str(d), "semana": (base.get("dia_semana") or "").split("-")[0], "resumo": (base.get("resumo") or "").strip(),
@@ -102,12 +111,19 @@ def main():
         except Exception as ex:
             erros.append(f"{nome}: {ex!r}"[:160]); c["dias"] = antes.get(uf, {}).get("dias", [])
         capitais.append(c)
+    polos, antes_p = [], {p["cod"]: p for p in velho.get("polos", [])}
+    for nome, uf, cod, cult in POLOS:
+        p = {"nome": nome, "uf": uf, "cod": cod, "culturas": cult}
+        try: p["dias"] = previsao(cod)
+        except Exception as ex:
+            erros.append(f"{nome}: {ex!r}"[:160]); p["dias"] = antes_p.get(cod, {}).get("dias", [])
+        polos.append(p)
     try: al = avisos()
     except Exception as ex:
         erros.append(f"avisos: {ex!r}"[:160]); al = velho.get("avisos", [])
     if all(not c["dias"] for c in capitais): raise SystemExit("INMET indisponível: " + "; ".join(erros))
     json.dump({"atualizado_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "fonte": "INMET",
-               "capitais": capitais, "avisos": al, "erros": erros},
+               "capitais": capitais, "polos": polos, "avisos": al, "erros": erros},
               open("tempo.json", "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     for e in erros: print("::warning::tempo " + e)
     print(f"{sum(1 for c in capitais if c['dias'])} capitais, {len(al)} alertas, {os.path.getsize('tempo.json') // 1024} KB")

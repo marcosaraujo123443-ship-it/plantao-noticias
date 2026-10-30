@@ -91,6 +91,41 @@ h2 a:hover,h3 a:hover,h4 a:hover{text-decoration:underline;text-decoration-thick
 .resumo p a{font-weight:700;text-decoration:none;margin-right:4px;color:var(--c,var(--brand))}
 .resumo .ia{font-size:12.5px;color:var(--ink-2);margin:10px 0 0}
 @media (max-width:520px){.resumo{padding:14px 16px}}
+/* Pregão da B3 */
+.b3{display:inline-flex;align-items:center;gap:6px;font:600 12px var(--f-mono);padding:2px 9px;border-radius:999px;border:1px solid var(--rule);color:var(--ink-2);white-space:nowrap}
+.b3 i{width:8px;height:8px;border-radius:50%;background:#94a3b8}.b3.ab{color:#15803d;border-color:#86efac}.b3.ab i{background:#16a34a;box-shadow:0 0 0 3px rgba(22,163,74,.18)}
+.b3.pre{color:#b45309;border-color:#fcd34d}.b3.pre i{background:#f59e0b}
+/* Votações do Congresso */
+.cg-l{list-style:none;margin:0;padding:0}
+.cg-l li{padding:12px 16px;border-top:1px solid var(--rule);display:grid;gap:4px}.cg-l li:first-child{border-top:0}
+.cg-l .cg-t{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:600 11.5px var(--f-mono);color:var(--ink-2)}
+.cg-casa{padding:1px 7px;border-radius:9px;background:var(--rule);color:var(--ink)}
+.cg-r{padding:1px 7px;border-radius:9px;color:#fff;background:#16a34a}.cg-r.rej{background:#dc2626}
+.cg-l a{font-weight:700;color:var(--ink);text-decoration:none}.cg-l a:hover{text-decoration:underline}
+.cg-l p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.45}.cg-pl{font:600 12.5px var(--f-mono);color:var(--ink-2)}
+.cg-pl b{color:#15803d}.cg-pl b.n{color:#dc2626}
+[data-cg] .nota{padding:6px 16px 16px}
+[data-cg] .per,[data-ial] .per{margin:0;font-size:13.5px;color:var(--ink-2)}
+.ag-uf th .un{display:block;text-transform:none;letter-spacing:0;font-weight:500}.ag-uf td .un{display:block}
+@media (max-width:520px){.ag-uf td:first-child .un{display:none}.ag-uf th,.ag-uf td{padding-inline:6px}}
+/* Lançamentos de IA */
+.ial{list-style:none;margin:0;padding:0;counter-reset:ial}
+.ial li{padding:12px 16px 12px 52px;border-top:1px solid var(--rule);position:relative}.ial li:first-child{border-top:0}
+.ial li::before{counter-increment:ial;content:counter(ial);position:absolute;left:16px;top:12px;width:26px;height:26px;border-radius:50%;background:var(--ia);color:#fff;font:700 13px/26px var(--f-body);text-align:center}
+.ial b{font-size:15.5px}.ial .ial-e{font:600 11.5px var(--f-mono);color:var(--ink-2);margin-left:6px}
+.ial p{margin:3px 0 2px;font-size:14px;line-height:1.45}.ial a{font-size:12.5px;color:var(--ia);font-weight:600;text-decoration:none}.ial a:hover{text-decoration:underline}
+[data-ial] .nota{padding:6px 16px 16px}
+/* Clima nas regiões produtoras */
+.agc{list-style:none;margin:0;padding:0}
+.agc li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 16px;border-top:1px solid var(--rule);align-items:center}.agc li:first-child{border-top:0}
+.agc b{font-size:14px}.agc small{display:block;color:var(--ink-2);font-size:12px}
+.agc .agc-d{display:flex;gap:6px;font-size:12px;color:var(--ink-2);text-align:center}.agc .agc-d span{display:grid;min-width:2.6em}.agc .agc-d i{font-style:normal;font-size:17px}
+.agc .agc-a{grid-column:1/-1;font-size:12.5px;font-weight:600}
+.agc-tag{display:inline-block;font:700 10.5px var(--f-mono);padding:1px 6px;border-radius:9px;margin:2px 4px 0 0;color:#fff}
+.agc-tag.chuva{background:#0369a1}.agc-tag.geada{background:#6d28d9}.agc-tag.seca{background:#b45309}.agc-tag.temp{background:#dc2626}
+.agc-res{padding:10px 16px 4px;margin:0;font-size:14px;line-height:1.5}
+[data-agclima] .nota{padding:6px 16px 16px}
+@media (max-width:520px){.agc li{grid-template-columns:1fr}}
 /* Concursos */
 .cc-f{justify-content:flex-start}.cc-f select{min-width:9em}
 .cc-l{list-style:none;margin:0;padding:0}
@@ -369,6 +404,7 @@ footer a{font-weight:600}
 <main class="gut">
   <div class="faixa">
     <span class="vivo"><i></i>Notícias atualizadas às&nbsp;<b style="color:inherit">{{HORA}}</b></span>
+    <span class="b3" data-b3 hidden><i></i><span></span></span>
     <span>Manchetes atualizadas de hora em hora, das 7h às 23h · cotações a cada 15 minutos no pregão</span>
     <span>Horário de Brasília</span>
   </div>
@@ -424,6 +460,7 @@ footer a{font-weight:600}
     if(id==='futebol'&&window.carregarFut) window.carregarFut();
     if(id==='mercado'&&window.carregarEco) window.carregarEco();
     if(id==='agro'&&window.carregarAgro) window.carregarAgro();
+    if(id==='agro'&&window.carregarClimaAgro) window.carregarClimaAgro();
     if(id==='concursos'&&window.carregarConc) window.carregarConc();
     if(id==='tempo'&&window.carregarTempo) window.carregarTempo();
   }
@@ -474,6 +511,12 @@ footer a{font-weight:600}
           nomes.map(function(n){ var ps=I[n].pontos, k=Object.keys(ps), v=k.slice(-30).map(function(x){return ps[x]});
             return '<tr><td class="wrap">'+esc(n)+'<span class="un">'+nfp(ps[k[k.length-1]])+' '+esc(I[n].un)+'</span></td><td>'+spark(v)+'</td>'+vcel(varp(ps,7))+vcel(varp(ps,30))+'</tr>'; }).join('')+'</tbody></table>';
       }
+    } else if(AG==='uf'){
+      var E=AGRO.estados||{produtos:[],linhas:[]}, NUF={AC:'Acre',AL:'Alagoas',AP:'Amapá',AM:'Amazonas',BA:'Bahia',CE:'Ceará',DF:'Distrito Federal',ES:'Espírito Santo',GO:'Goiás',MA:'Maranhão',MT:'Mato Grosso',MS:'Mato Grosso do Sul',MG:'Minas Gerais',PA:'Pará',PB:'Paraíba',PR:'Paraná',PE:'Pernambuco',PI:'Piauí',RJ:'Rio de Janeiro',RN:'Rio Grande do Norte',RS:'Rio Grande do Sul',RO:'Rondônia',RR:'Roraima',SC:'Santa Catarina',SP:'São Paulo',SE:'Sergipe',TO:'Tocantins'};
+      t='Média simples das praças de cada estado (preço pago ao produtor). Entre parênteses, o número de praças.';
+      h=E.linhas.length?'<table class="tab-m ag-uf"><thead><tr><th>Estado</th>'+E.produtos.map(function(p){return '<th class="n">'+esc(p.nome)+'<span class="un">'+esc(p.un)+'</span></th>'}).join('')+'</tr></thead><tbody>'+
+        E.linhas.map(function(l){return '<tr><td><b>'+esc(l.uf)+'</b><span class="un">'+esc(NUF[l.uf]||'')+'</span></td>'+E.produtos.map(function(p){var x=l[p.id];
+          return '<td class="n">'+(x?nfp(x.media)+'<span class="un">('+x.pracas+')</span>':'<span class="un">–</span>')+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table>':'<p class="per" style="padding:12px 16px">Médias por estado indisponíveis agora.</p>';
     } else {
       var p=P[AGP]||P[0]; sel.value=String(P.indexOf(p));
       t=p?('Preço pago ao produtor em cada praça, em '+p.un+'.'):'';
@@ -1079,6 +1122,66 @@ footer a{font-weight:600}
     }).catch(function(){document.querySelector('[data-tpm]').textContent='Não foi possível carregar a previsão agora.';TP=null});
   };
   if((location.hash||'')==='#tempo') window.carregarTempo();
+})();
+(function(){
+  function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  /* Pregão da B3: 10h às 17h quando os EUA estão no horário de verão; 10h às 18h no resto do ano (horário de Brasília) */
+  function pascoa(a){var b=a%19,c=Math.floor(a/100),d=a%100,e=Math.floor(c/4),f=c%4,g=Math.floor((c+8)/25),h=Math.floor((c-g+1)/3),i=(19*b+c-e-h+15)%30,k=Math.floor(d/4),l=d%4,m=(32+2*f+2*k-i-l)%7,n=Math.floor((b+11*i+22*m)/451),mes=Math.floor((i+m-7*n+114)/31),dia=(i+m-7*n+114)%31+1;return Date.UTC(a,mes-1,dia)}
+  function iso(t){return new Date(t).toISOString().slice(0,10)}
+  function feriados(a){var p=pascoa(a),D=864e5,f=['01-01','04-21','05-01','09-07','10-12','11-02','11-15','11-20','12-24','12-25','12-31'].map(function(x){return a+'-'+x});
+    return f.concat([iso(p-48*D),iso(p-47*D),iso(p-2*D),iso(p+60*D)])}
+  function domingo(a,mes,n){var d=new Date(Date.UTC(a,mes,1)),k=0;while(true){if(d.getUTCDay()===0&&++k===n)return d.getTime();d.setUTCDate(d.getUTCDate()+1)}}
+  function fechaAs(dia){var a=+dia.slice(0,4),t=Date.UTC(a,+dia.slice(5,7)-1,+dia.slice(8,10)),D=864e5;
+    return (t>domingo(a,2,2)&&t<=domingo(a,10,1))?17:18}   // muda no 1º pregão depois da troca de horário nos EUA
+  function util(dia){var w=new Date(dia+'T12:00Z').getUTCDay();return w>0&&w<6&&feriados(+dia.slice(0,4)).indexOf(dia)<0}
+  function proximo(dia){var t=Date.parse(dia+'T12:00Z');do{t+=864e5}while(!util(iso(t)));return iso(t)}
+  function pregao(){
+    var el=document.querySelector('[data-b3]'); if(!el) return;
+    var b=new Date(Date.now()-3*3600e3), dia=b.toISOString().slice(0,10), min=b.getUTCHours()*60+b.getUTCMinutes(), f=fechaAs(dia), txt, cls='';
+    var DS=['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
+    if(util(dia)&&min>=600&&min<f*60){ txt='Bolsa aberta · fecha às '+f+'h'; cls='ab'; }
+    else if(util(dia)&&min>=585&&min<600){ txt='Pré-abertura · abre às 10h'; cls='pre'; }
+    else if(util(dia)&&min<585){ txt='Bolsa fechada · abre hoje às 10h'; }
+    else { var px=proximo(dia), w=new Date(px+'T12:00Z').getUTCDay(), amanha=iso(Date.parse(dia+'T12:00Z')+864e5)===px;
+      txt='Bolsa fechada · abre '+(amanha?'amanhã':DS[w]+(w===1?'':'-feira').replace('segunda-feira','segunda'))+' às 10h'; if(!util(dia)&&feriados(+dia.slice(0,4)).indexOf(dia)>=0) txt='Feriado na B3 · '+txt.replace('Bolsa fechada · ',''); }
+    el.className='b3 '+cls; el.querySelector('span').textContent=txt; el.hidden=false; el.title='Pregão regular de ações da B3 (horário de Brasília)';
+  }
+  pregao(); setInterval(pregao,60000);
+
+  /* Clima nas regiões produtoras (tempo.json: previsão do INMET nas cidades-polo e alertas) */
+  var TPA=null;
+  function climaAgro(){
+    var q=document.querySelector('[data-agclima]'); if(!q||!TPA) return;
+    var P=TPA.polos||[], hoje=new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
+    if(!P.length){ q.hidden=true; return; }
+    function ic(t){t=(t||'').toLowerCase(); return /geada/.test(t)?'❄️':/trovoad|tempestade/.test(t)?'⛈️':/chuva|pancada|chuvisco/.test(t)?'🌧️':/encoberto|nublado|muitas nuvens/.test(t)?'☁️':/poucas nuvens|parcial|variação/.test(t)?'⛅':'☀️'}
+    var NS=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'], chuva=[], geada=[], seco=[];
+    var AV=(TPA.avisos||[]).filter(function(a){return a.fim.slice(0,10)>=hoje});
+    var html=P.map(function(p){
+      var d=(p.dias||[]).filter(function(x){return x.data>=hoje}).slice(0,5), tags=[];
+      var dc=d.filter(function(x){return /chuva|pancada|trovoad/i.test(x.resumo)}), dg=d.filter(function(x){return /geada/i.test(x.resumo)||(x.min!=null&&x.min<=3)});
+      var um=d.filter(function(x){return x.umid_min!=null&&x.umid_min<=20}), qt=d.filter(function(x){return x.max!=null&&x.max>=38});
+      if(dc.length){tags.push('<span class="agc-tag chuva">chuva em '+dc.length+' de '+d.length+' dias</span>'); chuva.push(p.nome+' ('+p.uf+')')}
+      if(dg.length){tags.push('<span class="agc-tag geada">risco de geada</span>'); geada.push(p.nome+' ('+p.uf+')')}
+      if(um.length){tags.push('<span class="agc-tag seca">umidade até '+Math.min.apply(0,um.map(function(x){return x.umid_min}))+'%</span>'); seco.push(p.nome+' ('+p.uf+')')}
+      if(qt.length) tags.push('<span class="agc-tag temp">calor até '+Math.max.apply(0,qt.map(function(x){return x.max}))+'°</span>');
+      var av=AV.filter(function(a){return a.ufs.indexOf(p.uf)>=0&&a.nivel>=2}).map(function(a){return a.evento+' ('+(a.nivel>=3?'grande perigo':'perigo')+')'});
+      av=av.filter(function(x,i){return av.indexOf(x)===i});
+      return '<li><div><b>'+esc(p.nome)+' ('+esc(p.uf)+')</b><small>'+esc(p.culturas)+'</small>'+tags.join('')+'</div><div class="agc-d">'+
+        d.map(function(x){return '<span title="'+esc(x.resumo)+'">'+NS[new Date(x.data+'T12:00').getDay()]+'<i>'+ic(x.resumo)+'</i>'+(x.min!=null?x.min:'')+'°/'+(x.max!=null?x.max:'')+'°</span>'}).join('')+'</div>'+
+        (av.length?'<span class="agc-a" style="color:#c2410c">⚠️ Alerta do INMET no estado: '+esc(av.join(', '))+'</span>':'')+'</li>'}).join('');
+    var res=[];
+    if(chuva.length) res.push('Chuva prevista nos próximos dias em '+chuva.length+' das '+P.length+' regiões');
+    if(geada.length) res.push('<b>risco de geada</b> em '+geada.join(', '));
+    if(seco.length) res.push('tempo seco (umidade baixa) em '+seco.join(', '));
+    q.querySelector('[data-agcr]').innerHTML=res.length?res.join('; ')+'.':'Sem chuva relevante prevista nas principais regiões produtoras para os próximos dias.';
+    q.querySelector('[data-agcl]').innerHTML=html;
+  }
+  window.carregarClimaAgro=function(){
+    if(TPA||!/^https?:/.test(location.protocol)) return; TPA={};
+    fetch('tempo.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){TPA=d||{};climaAgro()}).catch(function(){TPA=null});
+  };
+  if((location.hash||'')==='#agro') window.carregarClimaAgro();
 })();
 (function(){
   /* Compartilhar o resumo */

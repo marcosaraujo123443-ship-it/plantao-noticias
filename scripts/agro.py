@@ -35,7 +35,7 @@ def tabelas(pg):
             if cel and any(cel): linhas.append(cel)
         if linhas:
             out.append({"titulo": limpo(tits[-1]) if tits else "", "fonte": fonte[-1].strip() if fonte else "",
-                        "cab": cab, "linhas": linhas[:12]})
+                        "cab": cab, "linhas": linhas[:60]})
     return out
 
 def num(s):
@@ -115,8 +115,56 @@ def montar(paginas):
         linhas = [[l[0], num(l[1]), num(l[-1]) if len(l) > 2 else None] for l in t["linhas"] if len(l) >= 2 and num(l[1]) is not None]
         if t["titulo"].startswith("Mercado Físico - Scot"):
             linhas = [[l[0], num(l[1]), None] for l in t["linhas"] if len(l) >= 2 and num(l[1]) is not None]
-        if linhas: pr.append({"nome": nome, "un": un, "fonte": t["fonte"], "linhas": linhas})
+        if linhas: pr.append({"nome": nome, "un": un, "fonte": t["fonte"], "linhas": linhas[:12]})
     return ind, bol, pr
+
+UF_NOME = {"acre": "AC", "alagoas": "AL", "amapá": "AP", "amazonas": "AM", "bahia": "BA", "ceará": "CE", "distrito federal": "DF",
+           "espírito santo": "ES", "goiás": "GO", "maranhão": "MA", "mato grosso": "MT", "mato grosso do sul": "MS",
+           "minas gerais": "MG", "pará": "PA", "paraíba": "PB", "paraná": "PR", "pernambuco": "PE", "piauí": "PI",
+           "rio de janeiro": "RJ", "rio grande do norte": "RN", "rio grande do sul": "RS", "rondônia": "RO", "roraima": "RR",
+           "santa catarina": "SC", "são paulo": "SP", "sergipe": "SE", "tocantins": "TO"}
+UFS = set(UF_NOME.values())
+# (produto, página, regex do título, como achar a UF: "barra" = "Cidade/UF", "inicio" = "UF Cidade", "nome" = nome do estado, ou a sigla fixa)
+ESTADOS = [
+    ("soja", "soja", r"^Soja - Mercado Físico$", "barra"), ("soja", "soja", r"^Soja - Mercado Físico - MS$", "MS"),
+    ("soja", "soja", r"^Soja Disponível - IMEA", "MT"),
+    ("milho", "milho", r"^Milho - Mercado Físico$", "barra"), ("milho", "milho", r"^Milho - Mercado Físico - MS$", "MS"),
+    ("milho", "milho", r"^Milho Disponível - IMEA", "MT"),
+    ("cafe", "cafe", r"^Café Arábica-Mercado Físico \(Tipo 6 Bebida", "barra"),
+    ("boi", "boi-gordo", r"^Mercado Físico - Scot", "inicio"), ("boi", "boi-gordo", r"^Boi à Vista - IMEA", "MT"),
+    ("boi", "boi-gordo", r"^Indicador do Boi$", "nome"),
+]
+PRODUTOS = [("soja", "Soja", "R$/sc 60 kg"), ("milho", "Milho", "R$/sc 60 kg"), ("cafe", "Café arábica", "R$/sc 60 kg"),
+            ("boi", "Boi gordo", "R$/@")]
+
+def estados(paginas):
+    """Preço médio por estado das praças de cada produto (soja, milho, café arábica, boi gordo)."""
+    soma = {}
+    for prod, pag, rx, modo in ESTADOS:
+        for t in paginas.get(pag, []):
+            if not re.search(rx, t["titulo"]): continue
+            for l in t["linhas"]:
+                if len(l) < 2: continue
+                v = num(l[1])
+                if v is None or v <= 0: continue
+                nome = l[0]
+                if modo == "barra":
+                    m = re.search(r"/([A-Z]{2})\b", nome); uf = m.group(1) if m else None
+                elif modo == "inicio":
+                    uf = nome.split(" ")[0] if nome.split(" ")[0] in UFS else None
+                elif modo == "nome":
+                    uf = UF_NOME.get(nome.strip().lower())
+                else: uf = modo
+                if uf not in UFS: continue
+                if prod == "boi" and modo == "nome" and (uf, prod) in soma and soma[(uf, prod)][2] != "nome": continue
+                s = soma.setdefault((uf, prod), [0.0, 0, modo])
+                s[0] += v; s[1] += 1
+            break
+    linhas = {}
+    for (uf, prod), (tot, n, _) in soma.items():
+        linhas.setdefault(uf, {"uf": uf})[prod] = {"media": round(tot / n, 2), "pracas": n}
+    ordem = sorted(linhas.values(), key=lambda l: (-sum(1 for p, _, _ in PRODUTOS if p in l), l["uf"]))
+    return {"produtos": [{"id": p, "nome": n, "un": u} for p, n, u in PRODUTOS], "linhas": ordem}
 
 def main():
     paginas, erros = {}, []
@@ -131,7 +179,7 @@ def main():
     with open("agro.json", "w", encoding="utf-8") as f:
         ind, bol, pr = montar(paginas)
         json.dump({"atualizado_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "fonte": "Notícias Agrícolas",
-                   "indicadores": ind, "bolsas": bol, "pracas": pr, "erros": erros}, f, ensure_ascii=False, separators=(",", ":"))
+                   "indicadores": ind, "bolsas": bol, "pracas": pr, "estados": estados(paginas), "erros": erros}, f, ensure_ascii=False, separators=(",", ":"))
     print(f"{len(ind)} indicadores, {len(bol)} bolsas, {len(pr)} tabelas por praça", erros)
 
 if __name__ == "__main__":

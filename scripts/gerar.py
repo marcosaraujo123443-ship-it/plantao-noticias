@@ -132,12 +132,46 @@ for s in SECOES:
   {extra}<ol>{li}</ol>
 </section>'''
 
+def _data_br(iso):
+    try: return f"{iso[8:10]}/{iso[5:7]}"
+    except Exception: return ""
+# Votações recentes no Congresso (congresso.py)
+congresso_html = ""
+try: cg = json.loads((d / "congresso.json").read_text(encoding="utf-8"))
+except Exception: cg = {}
+if cg.get("votacoes"):
+    lis = []
+    for v in cg["votacoes"][:8]:
+        resv = v.get("resultado") or ""
+        pl = (f'<span class="cg-pl"><b>Sim {v["sim"]}</b> × <b class="n">Não {v["nao"] or 0}</b></span>' if v.get("sim")
+              else '<span class="cg-pl">Votação simbólica</span>' if v["casa"] == "Câmara" else "")
+        res_html = ('<span class="cg-r' + (" rej" if resv == "Rejeitado" else "") + '">' + e(resv) + '</span>') if resv else ""
+        lis.append(f'<li><span class="cg-t">{_data_br(v.get("data") or "")}<span class="cg-casa">{e(v["casa"])}</span>'
+                   f'{res_html}</span>'
+                   f'<a href="{e(v["link"])}" target="_blank" rel="noopener">{e(v["materia"])}{(" · " + e(v["tipo"])) if v.get("tipo") else ""}</a>'
+                   f'<p>{e(v.get("ementa") or v.get("descricao") or "")}</p>{pl}</li>')
+    congresso_html = ('<section class="quadro" data-cg><header><h3>Votações no Congresso</h3>'
+                      '<p class="per">Últimos projetos votados no Plenário da Câmara e do Senado.</p></header>'
+                      f'<ul class="cg-l">{"".join(lis)}</ul><p class="nota">Fontes: dados abertos da Câmara dos Deputados e do Senado Federal. '
+                      'No Senado entram as votações nominais; o placar mostra os votos Sim e Não.</p></section>')
+# Lançamentos de IA da semana (ia_lancamentos.py)
+ia_html = ""
+try: il = json.loads((d / "ia_lancamentos.json").read_text(encoding="utf-8"))
+except Exception: il = {}
+if il.get("itens"):
+    lis = "".join(f'<li><b>{e(x["nome"])}</b>' + ('<span class="ial-e">' + e(x["empresa"]) + '</span>' if x.get("empresa") else "") +
+                  f'<p>{e(x["resumo"])}</p><a href="{e(x["link"])}" target="_blank" rel="noopener">Ler no {e(x["fonte"])} →</a></li>'
+                  for x in il["itens"])
+    ia_html = ('<section class="quadro" data-ial><header><h3>Lançamentos da semana</h3>'
+               '<p class="per">Novas ferramentas e modelos de IA que apareceram nas manchetes dos últimos 7 dias.</p></header>'
+               f'<ol class="ial">{lis}</ol><p class="nota">Seleção feita automaticamente por inteligência artificial a partir das notícias desta aba.</p></section>')
+
 paginas = ""
 for s in SECOES:
     li = "".join(f'<li>{meta(i)}<h4>{a(i)}</h4>{resumo(i)}</li>' for i in por_sec[s])
     painel = ""
     if s == "Política":
-        painel = '''<div class="painel contas" data-contas>
+        painel = '''<div class="painel contas" data-contas>''' + congresso_html + '''
   <section class="quadro">
     <header><h3>Contas públicas</h3>
       <div class="filtros-uf">
@@ -159,12 +193,18 @@ for s in SECOES:
         painel = '''<div class="painel" data-agro>
   <section class="quadro">
     <header><h3>Cotações do agro</h3>
-      <div class="seg" role="group" aria-label="Tipo de cotação"><button class="on" data-ag="ind" aria-pressed="true">Indicadores</button><button data-ag="bol" aria-pressed="false">Bolsas</button><button data-ag="pra" aria-pressed="false">Por praça</button><button data-ag="ten" aria-pressed="false">Tendência</button></div>
+      <div class="seg" role="group" aria-label="Tipo de cotação"><button class="on" data-ag="ind" aria-pressed="true">Indicadores</button><button data-ag="bol" aria-pressed="false">Bolsas</button><button data-ag="pra" aria-pressed="false">Por praça</button><button data-ag="ten" aria-pressed="false">Tendência</button><button data-ag="uf" aria-pressed="false">Por estado</button></div>
       <label class="ag-pr" hidden>Produto <select data-agp aria-label="Escolher produto"></select></label>
       <p class="per" data-agt>Carregando cotações…</p></header>
     <div class="tw" data-agb></div>
     <a class="mais" href="agro">Ver todas as cotações do agro →</a>
     <p class="nota" data-agn></p>
+  </section>
+  <section class="quadro" data-agclima>
+    <header><h3>Clima nas regiões produtoras</h3></header>
+    <p class="agc-res" data-agcr>Carregando a previsão…</p>
+    <ul class="agc" data-agcl></ul>
+    <p class="nota">Previsão do INMET para os próximos dias nas cidades-polo. Risco de geada: mínima de 3 °C ou menos ou geada na previsão. <a href="#tempo" data-tab="tempo">Ver o mapa do tempo →</a></p>
   </section>
 </div>'''
     if s == "Futebol":
@@ -224,6 +264,8 @@ for s in SECOES:
   </div>
   <p class="nota" data-nota></p>
 </div>'''
+    if s == "IA" and ia_html:
+        painel = f'<div class="painel">{ia_html}</div>'
     if s == "Concursos":
         painel = '''<div class="painel" data-conc>
   <section class="quadro">
@@ -240,7 +282,7 @@ for s in SECOES:
   </section>
 </div>'''
     lista = f'<ol class="lista">{li or "<li><p>Sem notícias nesta atualização.</p></li>"}</ol>'
-    corpo = f'<div class="dupla">{painel}{lista}</div>' if s in ("Futebol", "Política", "Agro", "Mercado", "Concursos") else painel + lista
+    corpo = f'<div class="dupla">{painel}{lista}</div>' if s in ("Futebol", "Política", "Agro", "Mercado", "Concursos") or (s == "IA" and painel) else painel + lista
     paginas += f'''<section class="pagina" id="pg-{slug(s)}" data-pg="{slug(s)}" hidden>
   <div class="sec-t s-{slug(s)}"><h2>{e(s)}</h2><span>{len(por_sec[s])} notícias</span></div>
   {corpo}
