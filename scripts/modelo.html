@@ -69,10 +69,17 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--brand);outline-offs
 .tab.on{color:var(--ink);border-bottom-color:var(--brand)}
 .faixa{font:500 12.5px var(--f-mono);color:var(--ink-2);display:flex;flex-wrap:wrap;gap:4px 20px;padding-block:12px 0;font-variant-numeric:tabular-nums}
 .faixa b{color:var(--ink);font-weight:500}
-.vivo{display:inline-flex;align-items:center;gap:7px;color:var(--brand)}
-.vivo i{width:7px;height:7px;border-radius:50%;background:var(--brand);animation:pulso 2s ease-in-out infinite}
-@keyframes pulso{50%{opacity:.35}}
-@media (prefers-reduced-motion:reduce){.vivo i{animation:none}}
+.vivo{display:inline-flex;align-items:center;gap:8px;color:var(--brand)}
+.vivo i{position:relative;width:8px;height:8px;border-radius:50%;background:#16a34a;box-shadow:0 0 6px rgba(22,163,74,.7)}
+.vivo i::after{content:"";position:absolute;inset:0;border-radius:50%;background:#16a34a;animation:pulso 1.8s ease-out infinite}
+@keyframes pulso{0%{transform:scale(1);opacity:.75}100%{transform:scale(3.2);opacity:0}}
+.vivo.velho i,.vivo.velho i::after{background:#f59e0b;box-shadow:none}
+/* carregamento (skeleton) */
+.sk{display:block;height:12px;margin:6px 0;border-radius:6px;background:linear-gradient(90deg,var(--rule) 25%,color-mix(in srgb,var(--rule) 35%,var(--card)) 50%,var(--rule) 75%);background-size:200% 100%;animation:sk 1.3s ease-in-out infinite}
+.sk.g{height:18px}.sk.c{height:64px;border-radius:10px;margin:0}
+@keyframes sk{0%{background-position:100% 0}100%{background-position:-100% 0}}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){.vivo i::after{animation:none;opacity:0}.sk{animation:none}}
 
 main.gut{display:grid;gap:34px;padding-block:20px 56px}
 .meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;font-size:12.5px;color:var(--ink-2)}
@@ -106,7 +113,9 @@ h2 a:hover,h3 a:hover,h4 a:hover{text-decoration:underline;text-decoration-thick
 .cg-l p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.45}.cg-pl{font:600 12.5px var(--f-mono);color:var(--ink-2)}
 .cg-pl b{color:#15803d}.cg-pl b.n{color:#dc2626}
 [data-cg] .nota{padding:6px 16px 16px}
-[data-cg] .per,[data-ial] .per{margin:0;font-size:13.5px;color:var(--ink-2)}
+[data-aguf] .nota{padding:6px 16px 16px}
+[data-cg] .per,[data-ial] .per,[data-aguf] .per{margin:0;font-size:13.5px;color:var(--ink-2)}
+.agm td.n{white-space:nowrap}@media (max-width:520px){.agm td,.agm th{padding:8px 6px;font-size:13px}.agm th .un{font-size:10px}}.agm td .un{display:block}.agm th .un{display:block;text-transform:none;letter-spacing:0;font-weight:500}
 .ag-uf th .un{display:block;text-transform:none;letter-spacing:0;font-weight:500}.ag-uf td .un{display:block}
 @media (max-width:520px){.ag-uf td:first-child .un{display:none}.ag-uf th,.ag-uf td{padding-inline:6px}}
 /* Lançamentos de IA */
@@ -130,7 +139,7 @@ h2 a:hover,h3 a:hover,h4 a:hover{text-decoration:underline;text-decoration-thick
 /* Concursos */
 .cc-f{justify-content:flex-start}.cc-f select{min-width:9em}
 .cc-l{list-style:none;margin:0;padding:0}
-.cc-l li{padding:12px 16px;border-top:1px solid var(--rule);display:grid;gap:3px}
+.cc-l li,.lid li[aria-hidden],.jg li[aria-hidden],.agc li[aria-hidden]{padding:12px 16px;border-top:1px solid var(--rule);display:grid;gap:3px}
 .cc-l li:first-child{border-top:0}
 .cc-l a{font-weight:700;color:var(--ink);text-decoration:none;line-height:1.3}.cc-l a:hover{text-decoration:underline}
 .cc-l .cc-v{font-weight:600;color:var(--conc)}.cc-l .cc-c{font-size:13.5px;color:var(--ink-2);line-height:1.4}
@@ -400,12 +409,12 @@ footer a{font-weight:600}
     </div>
   </div>
 </header>
-<div class="ticker" aria-label="Cotações da bolsa"><div class="ticker-in" id="ticker"><span class="tk-vazio">Carregando cotações…</span></div></div>
+<div class="ticker" aria-label="Cotações da bolsa"><div class="ticker-in" id="ticker"><span class="tk-vazio"><span class="sk" style="width:60vw;max-width:520px;display:inline-block;vertical-align:middle"></span><span class="sr">Carregando cotações…</span></span></div></div>
 <nav class="nav" aria-label="Seções"><div class="gut tabs">{{TABS}}</div></nav>
 
 <main class="gut">
   <div class="faixa">
-    <span class="vivo"><i></i>Notícias atualizadas às&nbsp;<b style="color:inherit">{{HORA}}</b></span>
+    <span class="vivo" data-vivo data-upd="{{UPD_ISO}}"><i></i>Notícias atualizadas às&nbsp;<b style="color:inherit">{{HORA}}</b></span>
     <span class="b3" data-b3 hidden><i></i><span></span></span>
     <span>Manchetes atualizadas de hora em hora, das 7h às 23h · cotações a cada 15 minutos no pregão</span>
     <span>Horário de Brasília</span>
@@ -594,7 +603,7 @@ footer a{font-weight:600}
       if(j.adiado) info+='<br><span class="jg-tag">adiado</span>';
       var ab=JA===j.id;
       html+='<li class="jg-j'+(ab?' ab':'')+'" data-ev="'+esc(j.id||'')+'" tabindex="0" role="button" aria-expanded="'+ab+'" title="'+esc((j.local?j.local+' · ':'')+'toque para ver os detalhes')+'"><span class="jg-d">'+info+'</span>'+tm(j.casa,'c',fim&&j.casa.venceu)+placar+tm(j.fora,'f',fim&&j.fora.venceu)+'</li>'+
-        (ab?'<li class="jg-det" data-det>'+(DET[j.id]?detalhe(DET[j.id],j):'<p class="jg-car">Carregando os detalhes do jogo…</p>')+'</li>':'');
+        (ab?'<li class="jg-det" data-det>'+(DET[j.id]?detalhe(DET[j.id],j):'<span class="sk g" style="width:60%"></span><span class="sk"></span><span class="sk" style="width:80%"></span><span class="sr">Carregando os detalhes do jogo…</span>')+'</li>':'');
     });
     ul.innerHTML=html;
     vigiar(lg,r);
@@ -1127,6 +1136,7 @@ footer a{font-weight:600}
 })();
 (function(){
   function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  (function(){var v=document.querySelector('[data-vivo]'); if(!v) return; function ver(){var t=Date.parse(v.dataset.upd); var velho=t&&Date.now()-t>2.5*3600e3; v.classList.toggle('velho',!!velho); v.title=velho?'A última atualização tem mais de 2 horas':'Sistema no ar: manchetes atualizadas de hora em hora'} ver(); setInterval(ver,60000)})();
   /* Pregão da B3: 10h às 17h quando os EUA estão no horário de verão; 10h às 18h no resto do ano (horário de Brasília) */
   function pascoa(a){var b=a%19,c=Math.floor(a/100),d=a%100,e=Math.floor(c/4),f=c%4,g=Math.floor((c+8)/25),h=Math.floor((c-g+1)/3),i=(19*b+c-e-h+15)%30,k=Math.floor(d/4),l=d%4,m=(32+2*f+2*k-i-l)%7,n=Math.floor((b+11*i+22*m)/451),mes=Math.floor((i+m-7*n+114)/31),dia=(i+m-7*n+114)%31+1;return Date.UTC(a,mes-1,dia)}
   function iso(t){return new Date(t).toISOString().slice(0,10)}

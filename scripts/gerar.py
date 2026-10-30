@@ -166,6 +166,31 @@ if il.get("itens"):
                '<p class="per">Novas ferramentas e modelos de IA que apareceram nas manchetes dos últimos 7 dias.</p></header>'
                f'<ol class="ial">{lis}</ol><p class="nota">Seleção feita automaticamente por inteligência artificial a partir das notícias desta aba.</p></section>')
 
+def sk_txt(rotulo, larg="70%"):
+    return f'<span class="sk" style="width:{larg}" aria-hidden="true"></span><span class="sr">{rotulo}</span>'
+def sk_linhas(n, cols):
+    return "".join("<tr>" + "".join(f'<td><span class="sk" style="width:{90 - (i * 13 + k * 7) % 40}%"></span></td>' for k in range(cols)) + "</tr>" for i in range(n))
+SK_CARTOES = "".join('<span class="sk c" aria-hidden="true"></span>' for _ in range(4))
+SK_LISTA = lambda n: "".join(f'<li aria-hidden="true" style="display:block"><span class="sk g" style="width:{75 - i * 9 % 30}%"></span><span class="sk" style="width:{50 + i * 13 % 40}%"></span></li>' for i in range(n))
+
+# Agro: preço médio por estado (quadro fixo, montado a partir do agro.json)
+agro_uf_html = ""
+try: _ag = json.loads((d / "agro.json").read_text(encoding="utf-8")).get("estados") or {}
+except Exception: _ag = {}
+if _ag.get("linhas"):
+    _ps = sorted([p for p in _ag["produtos"] if p["id"] in ("soja", "milho", "boi", "cafe")], key=lambda p: ["soja", "milho", "boi", "cafe"].index(p["id"]))
+    _br = lambda v: f"{v:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    _linhas = "".join("<tr><td><b>" + e(l["uf"]) + "</b></td>" + "".join(
+        (f'<td class="n">{_br(l[p["id"]]["media"])}<span class="un" title="média de {l[p["id"]]["pracas"]} praça(s)">({l[p["id"]]["pracas"]})</span></td>'
+         if p["id"] in l else '<td class="n"><span class="un">–</span></td>') for p in _ps) + "</tr>"
+        for l in sorted(_ag["linhas"], key=lambda l: l["uf"]) if sum(1 for p in _ps if p["id"] in l) >= 1)
+    agro_uf_html = ('<section class="quadro" data-aguf><header><h3>Preço médio por estado</h3>'
+                    '<p class="per">Média das praças de cada estado, preço pago ao produtor. Entre parênteses, o número de praças.</p></header>'
+                    '<div class="tw"><table class="tab-m agm"><thead><tr><th>UF</th>' +
+                    "".join(f'<th class="n">{e(p["nome"])}<span class="un">{e(p["un"])}</span></th>' for p in _ps) +
+                    f'</tr></thead><tbody>{_linhas}</tbody></table></div>'
+                    '<p class="nota">Fontes: Cepea/Esalq, IMEA, Scot Consultoria e cooperativas, reunidos pelo Notícias Agrícolas. Valores com atraso; apenas informativo.</p></section>')
+
 paginas = ""
 for s in SECOES:
     li = "".join(f'<li>{meta(i)}<h4>{a(i)}</h4>{resumo(i)}</li>' for i in por_sec[s])
@@ -178,12 +203,12 @@ for s in SECOES:
         <label>Governo <select data-uf aria-label="Escolher o Brasil ou um estado"></select></label>
         <div class="seg" role="group" aria-label="Período"><button class="on" data-ep="atual" aria-pressed="true">Ano atual</button><button data-ep="anterior" aria-pressed="false">Ano passado</button></div>
       </div>
-      <p class="per" data-per>Carregando dados do Tesouro Nacional…</p></header>
-    <div class="ind-grid" data-uc></div>
+      <p class="per" data-per>''' + sk_txt("Carregando dados do Tesouro Nacional…", "55%") + '''</p></header>
+    <div class="ind-grid" data-uc>''' + SK_CARTOES + '''</div>
     <div class="quadros">
-      <div class="tw"><table class="tab-m"><thead><tr><th>Receitas</th><th class="n">Arrecadado</th><th class="n">% do previsto</th></tr></thead><tbody data-ur></tbody></table></div>
-      <div class="tw"><table class="tab-m"><thead><tr><th>Despesas por tipo</th><th class="n">Empenhado</th><th class="n">Pago</th></tr></thead><tbody data-ud></tbody></table></div>
-      <div class="tw"><table class="tab-m"><thead><tr><th>Para onde vai o dinheiro</th><th class="n">Liquidado</th><th class="n">% do total</th></tr></thead><tbody data-uf2></tbody></table></div>
+      <div class="tw"><table class="tab-m"><thead><tr><th>Receitas</th><th class="n">Arrecadado</th><th class="n">% do previsto</th></tr></thead><tbody data-ur>''' + sk_linhas(4, 3) + '''</tbody></table></div>
+      <div class="tw"><table class="tab-m"><thead><tr><th>Despesas por tipo</th><th class="n">Empenhado</th><th class="n">Pago</th></tr></thead><tbody data-ud>''' + sk_linhas(4, 3) + '''</tbody></table></div>
+      <div class="tw"><table class="tab-m"><thead><tr><th>Para onde vai o dinheiro</th><th class="n">Liquidado</th><th class="n">% do total</th></tr></thead><tbody data-uf2>''' + sk_linhas(4, 3) + '''</tbody></table></div>
     </div>
     <a class="mais" data-ulink href="contas/">Ver todas as contas públicas →</a>
     <p class="nota">Fonte: Tesouro Nacional, SICONFI (Relatório Resumido da Execução Orçamentária, enviado pelos próprios estados a cada bimestre). Valores acumulados no ano, sem as operações intraorçamentárias.</p>
@@ -193,17 +218,18 @@ for s in SECOES:
         painel = '''<div class="painel" data-agro>
   <section class="quadro">
     <header><h3>Cotações do agro</h3>
-      <div class="seg" role="group" aria-label="Tipo de cotação"><button class="on" data-ag="ind" aria-pressed="true">Indicadores</button><button data-ag="bol" aria-pressed="false">Bolsas</button><button data-ag="pra" aria-pressed="false">Por praça</button><button data-ag="ten" aria-pressed="false">Tendência</button><button data-ag="uf" aria-pressed="false">Por estado</button></div>
+      <div class="seg" role="group" aria-label="Tipo de cotação"><button class="on" data-ag="ind" aria-pressed="true">Indicadores</button><button data-ag="bol" aria-pressed="false">Bolsas</button><button data-ag="pra" aria-pressed="false">Por praça</button><button data-ag="ten" aria-pressed="false">Tendência</button></div>
       <label class="ag-pr" hidden>Produto <select data-agp aria-label="Escolher produto"></select></label>
-      <p class="per" data-agt>Carregando cotações…</p></header>
-    <div class="tw" data-agb></div>
+      <p class="per" data-agt>''' + sk_txt("Carregando cotações…", "60%") + '''</p></header>
+    <div class="tw" data-agb><table class="tab-m"><tbody>''' + sk_linhas(6, 3) + '''</tbody></table></div>
     <a class="mais" href="agro">Ver todas as cotações do agro →</a>
     <p class="nota" data-agn></p>
   </section>
+''' + agro_uf_html + '''
   <section class="quadro" data-agclima>
     <header><h3>Clima nas regiões produtoras</h3></header>
-    <p class="agc-res" data-agcr>Carregando a previsão…</p>
-    <ul class="agc" data-agcl></ul>
+    <p class="agc-res" data-agcr>''' + sk_txt("Carregando a previsão…", "80%") + '''</p>
+    <ul class="agc" data-agcl>''' + SK_LISTA(4) + '''</ul>
     <p class="nota">Previsão do INMET para os próximos dias nas cidades-polo. Risco de geada: mínima de 3 °C ou menos ou geada na previsão. <a href="#tempo" data-tab="tempo">Ver o mapa do tempo →</a></p>
   </section>
 </div>'''
@@ -213,19 +239,19 @@ for s in SECOES:
   <section class="quadro" data-jogos>
     <header><h3>Jogos</h3>
       <div class="rd-nav"><button data-rd="-1" aria-label="Rodada anterior">‹</button><b data-rdt>Rodada</b><button data-rd="1" aria-label="Próxima rodada">›</button></div></header>
-    <ul class="jg" data-jgl><li class="jg-vazio">Carregando os jogos…</li></ul>
+    <ul class="jg" data-jgl>''' + SK_LISTA(5) + '''</ul>
   </section>
   <section class="quadro">
     <header><h3>Classificação</h3>
-      <p class="per" data-ftemp>Carregando a tabela…</p></header>
-    <div data-ftab></div>
+      <p class="per" data-ftemp>''' + sk_txt("Carregando a tabela…", "40%") + '''</p></header>
+    <div data-ftab><table class="tab-m"><tbody>''' + sk_linhas(8, 4) + '''</tbody></table></div>
     <a class="mais" data-flink href="tabelas/">Ver todas as tabelas →</a>
     <p class="nota" data-fnota></p>
   </section>
   <section class="quadro" data-lid>
     <header><h3>Artilharia e assistências</h3>
       <div class="seg" role="group" aria-label="Ranking"><button class="on" data-lk="gols" aria-pressed="true">Gols</button><button data-lk="assistencias" aria-pressed="false">Assistências</button></div></header>
-    <ol class="lid" data-lidl></ol>
+    <ol class="lid" data-lidl>''' + SK_LISTA(4) + '''</ol>
   </section>
 </div>'''
     if s == "Mercado":
@@ -252,13 +278,13 @@ for s in SECOES:
       <header><h3>Quanto rende seu dinheiro?</h3>
         <div class="calc-in"><label>Valor <span class="calc-rs">R$<input type="number" inputmode="decimal" data-cv value="1000" min="1" step="100" aria-label="Valor aplicado em reais"></span></label>
           <label>Prazo <select data-cp aria-label="Prazo da aplicação"><option value="6">6 meses</option><option value="12" selected>1 ano</option><option value="24">2 anos</option><option value="36">3 anos</option></select></label></div>
-        <p class="per" data-ct>Carregando as taxas de hoje…</p></header>
-      <div class="tw"><table class="tab-m"><thead><tr><th>Aplicação</th><th class="n">Rende (líquido)</th><th class="n">Você terá</th></tr></thead><tbody data-cb></tbody></table></div>
+        <p class="per" data-ct>''' + sk_txt("Carregando as taxas de hoje…", "55%") + '''</p></header>
+      <div class="tw"><table class="tab-m"><thead><tr><th>Aplicação</th><th class="n">Rende (líquido)</th><th class="n">Você terá</th></tr></thead><tbody data-cb>''' + sk_linhas(4, 3) + '''</tbody></table></div>
       <p class="nota" data-cn></p>
     </section>
     <section class="quadro" aria-label="Indicadores econômicos" data-eco>
-      <header><h3>Indicadores econômicos</h3><p class="per" data-ecot>Carregando os indicadores…</p></header>
-      <div class="tw"><table class="tab-m"><thead><tr><th>Indicador</th><th class="n">Último</th><th class="n">12 meses</th><th>Referência</th></tr></thead><tbody data-ecob></tbody></table></div>
+      <header><h3>Indicadores econômicos</h3><p class="per" data-ecot>''' + sk_txt("Carregando os indicadores…", "55%") + '''</p></header>
+      <div class="tw"><table class="tab-m"><thead><tr><th>Indicador</th><th class="n">Último</th><th class="n">12 meses</th><th>Referência</th></tr></thead><tbody data-ecob>''' + sk_linhas(5, 4) + '''</tbody></table></div>
       <a class="mais" href="indicadores">Ver os indicadores em detalhe →</a>
     </section>
   </div>
@@ -275,8 +301,8 @@ for s in SECOES:
         <label>Nível <select data-cnv aria-label="Escolher o nível de escolaridade"><option value="">Todos</option><option>Fundamental</option><option>Médio</option><option>Técnico</option><option>Superior</option></select></label>
       </div>
       <div class="seg" role="group" aria-label="Ordenar concursos"><button class="on" data-co="prazo" aria-pressed="true">Encerram antes</button><button data-co="salario" aria-pressed="false">Maior salário</button><button data-co="vagas" aria-pressed="false">Mais vagas</button></div>
-      <p class="per" data-ct2>Carregando os concursos…</p></header>
-    <ul class="cc-l" data-cl></ul>
+      <p class="per" data-ct2>''' + sk_txt("Carregando os concursos…", "55%") + '''</p></header>
+    <ul class="cc-l" data-cl>''' + SK_LISTA(5) + '''</ul>
     <button type="button" class="cc-mais" data-cmais hidden>Mostrar mais</button>
     <p class="nota">Fonte: PCI Concursos. Confira sempre o edital oficial antes de se inscrever; prazos podem ser prorrogados ou alterados.</p>
   </section>
@@ -296,14 +322,14 @@ paginas += f'''<section class="pagina" id="pg-tempo" data-pg="tempo" hidden>
   <div class="painel tempo" data-tempo>
     <div class="seg tp-dias" role="group" aria-label="Escolher o dia" data-tpd></div>
     <div class="tp-grade">
-      <section class="quadro tp-mapa"><header><h3>Mapa do Brasil</h3><p class="per" data-tpm>Carregando a previsão…</p></header>
+      <section class="quadro tp-mapa"><header><h3>Mapa do Brasil</h3><p class="per" data-tpm>{sk_txt("Carregando a previsão…", "70%")}</p></header>
         <svg viewBox="0 0 {_mapa["w"]} {_mapa["h"]}" role="img" aria-label="Mapa do Brasil com a temperatura máxima nas capitais e as áreas de alerta do INMET">
           <g class="tp-ufs">{_ufs}</g><g data-tpal></g><g data-tpcap></g></svg>
         <ul class="tp-leg"><li><i style="background:#FFE600"></i>Perigo potencial</li><li><i style="background:#F96602"></i>Perigo</li><li><i style="background:#D00000"></i>Grande perigo</li></ul>
       </section>
       <section class="quadro tp-cid" data-tpc>
         <header><h3>Previsão por capital</h3><label class="tp-sel">Capital <select data-tps aria-label="Escolher a capital"></select></label></header>
-        <div data-tpcb></div>
+        <div data-tpcb><div style="padding:16px">{SK_LISTA(3).replace("<li","<div").replace("</li>","</div>")}</div></div>
       </section>
     </div>
     <section class="quadro"><header><h3>Alertas meteorológicos</h3><p class="per" data-tpat></p></header><ul class="tp-al" data-tpl></ul></section>
@@ -323,7 +349,7 @@ merc_json = json.dumps(mercado, ensure_ascii=False).replace("</", "<\\/")
 tpl = (Path(__file__).parent / "modelo.html").read_text(encoding="utf-8")
 out = tpl
 for k, v in {"DATA": f"{DIAS[upd.weekday()]}, {upd.day} de {MESES[upd.month-1]} de {upd.year}",
-             "HORA": f"{upd:%H:%M}", "LEAD": lead_html, "RESUMO": resumo_html, "AGENDA": agenda_html, "DESTAQUES": dest_html, "BLOCOS": blocos,
+             "HORA": f"{upd:%H:%M}", "UPD_ISO": data["atualizado_utc"], "LEAD": lead_html, "RESUMO": resumo_html, "AGENDA": agenda_html, "DESTAQUES": dest_html, "BLOCOS": blocos,
              "PAGINAS": paginas, "TABS": tabs, "HORARIOS": horarios, "FONTES": fontes_txt,
              "TOTAL": str(len(itens)), "NFONTES": str(len(fontes)), "MERCADO": merc_json,
              "FONTES_OPT": "".join(f'<option value="{e(f)}">{e(f)}</option>' for f in sorted(fontes, key=str.lower))}.items():
