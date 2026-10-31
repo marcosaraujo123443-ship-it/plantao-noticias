@@ -1073,9 +1073,9 @@ footer a{font-weight:600}
     if(/trovoad|tempestade/.test(t)) return /isolad|possibilidade/.test(t)&&!/pancada/.test(t)?2:3;
     if(/possibilidade|chuvisco|garoa|fraca/.test(t)&&!/pancada/.test(t)) return 1; return 2}
   function chuvaDia(d){var n=nivelChuva(d.resumo); if(d.periodos) Object.keys(d.periodos).forEach(function(k){n=Math.max(n,nivelChuva(d.periodos[k].resumo))}); return n}
-  var CH=[['Sem chuva','#fde68a'],['Possibilidade de chuva','#bae6fd'],['Chuva ou pancadas','#60a5fa'],['Chuva com trovoadas','#818cf8']];
+  var CH=[['Sem chuva','#fbf3d5'],['Possibilidade de chuva','#b7e4a8'],['Chuva ou pancadas','#4caf50'],['Chuva forte / com trovoadas','#1b6e2a']];
   var CHI=['☀️','🌦️','🌧️','⛈️'];
-  function fundoTemp(t){ if(t==null) return ''; if(t>=35) return '#fca5a5'; if(t>=31) return '#fdba74'; if(t>=27) return '#fde68a'; if(t>=22) return '#bbf7d0'; if(t>=17) return '#bae6fd'; return '#c7d2fe'; }
+  function fundoTemp(t){ if(t==null) return ''; if(t>=35) return '#9b1c1c'; if(t>=31) return '#d93a3a'; if(t>=27) return '#f07a6e'; if(t>=22) return '#f7aea4'; if(t>=17) return '#fbd5cf'; return '#fdf0ee'; }
   function datasTempo(){var c=TP.capitais.filter(function(c){return c.dias&&c.dias.length})[0]; return c?c.dias.map(function(d){return d.data}):[]}
   function ativo(a,dia){return a.inicio.slice(0,10)<=dia&&a.fim.slice(0,10)>=dia}
   function desenharTempo(){
@@ -1099,12 +1099,12 @@ footer a{font-weight:600}
       var d=(c.dias||[]).filter(function(x){return x.data===dia})[0]||{}, o=DESL[c.uf]||[8,4], n=d.resumo?chuvaDia(d):null;
       var rot=chuva?(n==null?'':CHI[n]):(d.max!=null?d.max+'°':'');
       return '<g class="tp-cap'+(c.uf===TC?' on':'')+'" data-c="'+c.uf+'" tabindex="0" role="button" aria-label="'+esc(c.nome+': '+(chuva?(n==null?'sem dado':CH[n][0]):'máxima '+(d.max!=null?d.max+' graus':'sem dado')))+'">'+
-        '<circle cx="'+c.x+'" cy="'+c.y+'" r="'+(c.uf===TC?6.5:5)+'" fill="'+(chuva?(n==null?'#94a3b8':['#f59e0b','#38bdf8','#1d4ed8','#312e81'][n]):corTemp(d.max))+'"/>'+
+        '<circle cx="'+c.x+'" cy="'+c.y+'" r="'+(c.uf===TC?6.5:5)+'" fill="'+(chuva?(n==null?'#94a3b8':['#d97706','#3f8f3a','#1b5e20','#0b3d12'][n]):'#1f2937')+'"/>'+
         '<text x="'+(c.x+o[0])+'" y="'+(c.y+o[1])+'" text-anchor="'+(o[2]||'start')+'">'+rot+'</text><title>'+esc(c.nome+' ('+c.uf+'): '+(d.resumo||''))+'</title></g>'}).join('');
     var at=new Date(TP.atualizado_utc), hr=' · atualizado às '+at.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
     document.querySelector('[data-tpm]').textContent=(chuva?'Previsão de chuva em cada estado, pela capital':'Temperatura máxima prevista em cada estado, pela capital, e áreas de alerta')+hr;
-    document.querySelector('[data-tpleg]').innerHTML=chuva?CH.map(function(x){return '<li><i style="background:'+x[1]+'"></i>'+x[0]+'</li>'}).join(''):
-      [['Até 16°','#c7d2fe'],['17° a 21°','#bae6fd'],['22° a 26°','#bbf7d0'],['27° a 30°','#fde68a'],['31° a 34°','#fdba74'],['35° ou mais','#fca5a5']].map(function(x){return '<li><i style="background:'+x[1]+'"></i>'+x[0]+'</li>'}).join('')+
+    document.querySelector('[data-tpleg]').innerHTML=chuva?CH.slice().reverse().map(function(x){return '<li><i style="background:'+x[1]+'"></i>'+x[0]+'</li>'}).join(''):
+      [['35° ou mais','#9b1c1c'],['31° a 34°','#d93a3a'],['27° a 30°','#f07a6e'],['22° a 26°','#f7aea4'],['17° a 21°','#fbd5cf'],['Até 16°','#fdf0ee']].map(function(x){return '<li><i style="background:'+x[1]+'"></i>'+x[0]+'</li>'}).join('')+
       (al.length?'<li class="tp-leg-al"><i style="background:#FFE600"></i>Alerta: perigo potencial</li><li><i style="background:#F96602"></i>Perigo</li><li><i style="background:#D00000"></i>Grande perigo</li>':'');
     // alertas
     var NIV=['','Perigo potencial','Perigo','Grande perigo'];
