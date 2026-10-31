@@ -322,10 +322,10 @@ paginas += f'''<section class="pagina" id="pg-tempo" data-pg="tempo" hidden>
   <div class="painel tempo" data-tempo>
     <div class="seg tp-dias" role="group" aria-label="Escolher o dia" data-tpd></div>
     <div class="tp-grade">
-      <section class="quadro tp-mapa"><header><h3>Mapa do Brasil</h3><p class="per" data-tpm>{sk_txt("Carregando a previsão…", "70%")}</p></header>
+      <section class="quadro tp-mapa"><header><h3>Mapa do Brasil</h3><div class="seg" role="group" aria-label="Tipo de mapa"><button class="on" data-tmo="calor" aria-pressed="true">🌡️ Calor</button><button data-tmo="chuva" aria-pressed="false">🌧️ Chuva</button></div><p class="per" data-tpm>{sk_txt("Carregando a previsão…", "70%")}</p></header>
         <svg viewBox="0 0 {_mapa["w"]} {_mapa["h"]}" role="img" aria-label="Mapa do Brasil com a temperatura máxima nas capitais e as áreas de alerta do INMET">
           <g class="tp-ufs">{_ufs}</g><g data-tpal></g><g data-tpcap></g></svg>
-        <ul class="tp-leg"><li><i style="background:#FFE600"></i>Perigo potencial</li><li><i style="background:#F96602"></i>Perigo</li><li><i style="background:#D00000"></i>Grande perigo</li></ul>
+        <ul class="tp-leg" data-tpleg></ul>
       </section>
       <section class="quadro tp-cid" data-tpc>
         <header><h3>Previsão por capital</h3><label class="tp-sel">Capital <select data-tps aria-label="Escolher a capital"></select></label></header>

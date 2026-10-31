@@ -153,7 +153,9 @@ h2 a:hover,h3 a:hover,h4 a:hover{text-decoration:underline;text-decoration-thick
 .tp-grade{display:grid;gap:16px}
 @media (min-width:900px){.tp-grade{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:start}}
 .tp-mapa svg{display:block;width:100%;height:auto;max-height:620px;padding:6px 10px 0}
-.tp-uf{fill:var(--paper);stroke:var(--rule);stroke-width:1}
+.tp-uf{fill:var(--paper);stroke:var(--card);stroke-width:1.2;transition:fill .25s}
+.tp-mapa header .seg{margin-top:-2px}.tp-leg .tp-leg-al{margin-left:8px}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .tp-uf{opacity:.8}}:root[data-theme=dark] .tp-uf{opacity:.8}
 .tp-alp{opacity:.42;stroke-width:1;stroke-opacity:.9;mix-blend-mode:multiply}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]) .tp-alp{mix-blend-mode:normal;opacity:.35}}
 :root[data-theme=dark] .tp-alp{mix-blend-mode:normal;opacity:.35}
@@ -1065,6 +1067,15 @@ footer a{font-weight:600}
   }
   function corTemp(t){ if(t==null) return '#94a3b8'; if(t>=35) return '#b91c1c'; if(t>=31) return '#ea580c'; if(t>=27) return '#f59e0b'; if(t>=22) return '#16a34a'; if(t>=17) return '#0ea5e9'; return '#4f46e5'; }
   var DESL={PB:[9,4],PE:[9,6],AL:[9,6],SE:[9,8],RN:[9,0],GO:[-8,10,'end'],DF:[9,-4],RJ:[8,10],ES:[9,4],SP:[-8,12,'end'],SC:[9,6],PR:[-8,8,'end'],BA:[9,4],AP:[9,4]};
+  var TMO=ler('plantao-tempo-mapa')||'calor';
+  // chuva: 0 sem chuva, 1 possibilidade, 2 chuva/pancadas, 3 com trovoadas (pelo texto da previsão do INMET)
+  function nivelChuva(t){t=(t||'').toLowerCase(); if(!/chuv|pancada|garoa|trovoad|tempestade/.test(t)) return 0;
+    if(/trovoad|tempestade/.test(t)) return /isolad|possibilidade/.test(t)&&!/pancada/.test(t)?2:3;
+    if(/possibilidade|chuvisco|garoa|fraca/.test(t)&&!/pancada/.test(t)) return 1; return 2}
+  function chuvaDia(d){var n=nivelChuva(d.resumo); if(d.periodos) Object.keys(d.periodos).forEach(function(k){n=Math.max(n,nivelChuva(d.periodos[k].resumo))}); return n}
+  var CH=[['Sem chuva','#fde68a'],['Possibilidade de chuva','#bae6fd'],['Chuva ou pancadas','#60a5fa'],['Chuva com trovoadas','#818cf8']];
+  var CHI=['☀️','🌦️','🌧️','⛈️'];
+  function fundoTemp(t){ if(t==null) return ''; if(t>=35) return '#fca5a5'; if(t>=31) return '#fdba74'; if(t>=27) return '#fde68a'; if(t>=22) return '#bbf7d0'; if(t>=17) return '#bae6fd'; return '#c7d2fe'; }
   function datasTempo(){var c=TP.capitais.filter(function(c){return c.dias&&c.dias.length})[0]; return c?c.dias.map(function(d){return d.data}):[]}
   function ativo(a,dia){return a.inicio.slice(0,10)<=dia&&a.fim.slice(0,10)>=dia}
   function desenharTempo(){
@@ -1076,13 +1087,25 @@ footer a{font-weight:600}
       return '<button data-tdi="'+i+'" class="'+(i===TD?'on':'')+'" aria-pressed="'+(i===TD)+'">'+nm+'</button>'}).join('');
     var al=(TP.avisos||[]).filter(function(a){return ativo(a,dia)}).sort(function(a,b){return a.nivel-b.nivel});
     document.querySelector('[data-tpal]').innerHTML=al.map(function(a){return '<path class="tp-alp" d="'+a.d+'" fill="'+esc(a.cor)+'" stroke="'+esc(a.cor)+'"><title>'+esc(a.evento+' · '+a.severidade)+'</title></path>'}).join('');
+    var chuva=TMO==='chuva';
+    document.querySelectorAll('[data-tmo]').forEach(function(x){var on=x.dataset.tmo===TMO;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on)});
+    // cada estado ganha a cor da previsão da sua capital
+    TP.capitais.forEach(function(c){
+      var d=(c.dias||[]).filter(function(x){return x.data===dia})[0]||{}, uf=document.querySelector('.tp-uf[data-uf="'+c.uf+'"]'); if(!uf) return;
+      uf.style.fill=chuva?(d.resumo?CH[chuvaDia(d)][1]:''):fundoTemp(d.max);
+    });
+    document.querySelector('[data-tpal]').style.display=chuva?'none':'';
     document.querySelector('[data-tpcap]').innerHTML=TP.capitais.map(function(c){
-      var d=(c.dias||[]).filter(function(x){return x.data===dia})[0]||{}, o=DESL[c.uf]||[8,4];
-      return '<g class="tp-cap'+(c.uf===TC?' on':'')+'" data-c="'+c.uf+'" tabindex="0" role="button" aria-label="'+esc(c.nome+': máxima '+(d.max!=null?d.max+' graus':'sem dado'))+'">'+
-        '<circle cx="'+c.x+'" cy="'+c.y+'" r="'+(c.uf===TC?6.5:5)+'" fill="'+corTemp(d.max)+'"/>'+
-        '<text x="'+(c.x+o[0])+'" y="'+(c.y+o[1])+'" text-anchor="'+(o[2]||'start')+'">'+(d.max!=null?d.max+'°':'')+'</text><title>'+esc(c.nome+' ('+c.uf+'): '+(d.resumo||''))+'</title></g>'}).join('');
-    var at=new Date(TP.atualizado_utc);
-    document.querySelector('[data-tpm]').textContent='Temperatura máxima prevista nas capitais e áreas de alerta · atualizado às '+at.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+      var d=(c.dias||[]).filter(function(x){return x.data===dia})[0]||{}, o=DESL[c.uf]||[8,4], n=d.resumo?chuvaDia(d):null;
+      var rot=chuva?(n==null?'':CHI[n]):(d.max!=null?d.max+'°':'');
+      return '<g class="tp-cap'+(c.uf===TC?' on':'')+'" data-c="'+c.uf+'" tabindex="0" role="button" aria-label="'+esc(c.nome+': '+(chuva?(n==null?'sem dado':CH[n][0]):'máxima '+(d.max!=null?d.max+' graus':'sem dado')))+'">'+
+        '<circle cx="'+c.x+'" cy="'+c.y+'" r="'+(c.uf===TC?6.5:5)+'" fill="'+(chuva?(n==null?'#94a3b8':['#f59e0b','#38bdf8','#1d4ed8','#312e81'][n]):corTemp(d.max))+'"/>'+
+        '<text x="'+(c.x+o[0])+'" y="'+(c.y+o[1])+'" text-anchor="'+(o[2]||'start')+'">'+rot+'</text><title>'+esc(c.nome+' ('+c.uf+'): '+(d.resumo||''))+'</title></g>'}).join('');
+    var at=new Date(TP.atualizado_utc), hr=' · atualizado às '+at.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+    document.querySelector('[data-tpm]').textContent=(chuva?'Previsão de chuva em cada estado, pela capital':'Temperatura máxima prevista em cada estado, pela capital, e áreas de alerta')+hr;
+    document.querySelector('[data-tpleg]').innerHTML=chuva?CH.map(function(x){return '<li><i style="background:'+x[1]+'"></i>'+x[0]+'</li>'}).join(''):
+      [['Até 16°','#c7d2fe'],['17° a 21°','#bae6fd'],['22° a 26°','#bbf7d0'],['27° a 30°','#fde68a'],['31° a 34°','#fdba74'],['35° ou mais','#fca5a5']].map(function(x){return '<li><i style="background:'+x[1]+'"></i>'+x[0]+'</li>'}).join('')+
+      (al.length?'<li class="tp-leg-al"><i style="background:#FFE600"></i>Alerta: perigo potencial</li><li><i style="background:#F96602"></i>Perigo</li><li><i style="background:#D00000"></i>Grande perigo</li>':'');
     // alertas
     var NIV=['','Perigo potencial','Perigo','Grande perigo'];
     document.querySelector('[data-tpat]').textContent=al.length?al.length+' alerta'+(al.length>1?'s':'')+' do INMET para '+(dia===hoje?'hoje':dm(dia))+'.':'';
@@ -1119,6 +1142,7 @@ footer a{font-weight:600}
   document.addEventListener('click',function(ev){
     if(!TP) return;
     var b=ev.target.closest('[data-tdi]'); if(b){TD=+b.dataset.tdi;desenharTempo();return}
+    b=ev.target.closest('[data-tmo]'); if(b){TMO=b.dataset.tmo;gravar('plantao-tempo-mapa',TMO);desenharTempo();return}
     b=ev.target.closest('[data-tdc]'); if(b){TDC=+b.dataset.tdc;cidade();return}
     var g=ev.target.closest('.tp-cap,[data-tpt] tr[data-c]'); if(g){escolher(g.dataset.c); if(g.tagName==='TR'){var q=document.querySelector('[data-tpc]'); if(q&&q.scrollIntoView) q.scrollIntoView({behavior:'smooth',block:'start'})}}
   });
