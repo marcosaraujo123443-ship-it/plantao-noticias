@@ -77,6 +77,23 @@ def previsao(cod):
         dias.append(dia)
     return sorted(dias, key=lambda d: d["data"])
 
+def nivel_chuva(t):
+    """0 sem chuva, 1 possibilidade, 2 chuva ou pancadas, 3 chuva forte ou com trovoadas (pelo texto do INMET)."""
+    t = (t or "").lower()
+    if not re.search(r"chuv|pancada|garoa|trovoad|tempestade", t): return 0
+    if re.search(r"trovoad|tempestade|chuva forte|chuvas fortes|muita chuva", t):
+        return 2 if re.search(r"isolad|possibilidade", t) and "pancada" not in t and "forte" not in t else 3
+    if re.search(r"possibilidade|chuvisco|garoa|fraca", t) and "pancada" not in t: return 1
+    return 2
+
+def resumo_meso(dias):
+    """Por dia: [data, máxima, mínima, nível de chuva (pior período do dia), texto]."""
+    out = []
+    for d in dias:
+        n = max([nivel_chuva(d.get("resumo"))] + [nivel_chuva(p.get("resumo")) for p in (d.get("periodos") or {}).values()])
+        out.append([d["data"], d.get("max"), d.get("min"), n, d.get("resumo") or ""])
+    return out
+
 def avisos():
     a = get(f"{API}/avisos/ativos", timeout=60)
     out, vistos = [], set()
@@ -118,12 +135,28 @@ def main():
         except Exception as ex:
             erros.append(f"{nome}: {ex!r}"[:160]); p["dias"] = antes_p.get(cod, {}).get("dias", [])
         polos.append(p)
+    # mesorregiões: o INMET faz a previsão por mesorregião; uma cidade de referência por região (scripts/brasil_meso.json)
+    from concurrent.futures import ThreadPoolExecutor
+    MESO = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "brasil_meso.json"), encoding="utf-8"))
+    ja = {c["cod"]: c["dias"] for c in capitais if c["dias"]}
+    ja.update({p["cod"]: p["dias"] for p in polos if p["dias"]})
+    antes_m = velho.get("meso", {})
+    def uma(m):
+        if m["cod"] in ja: return m["id"], resumo_meso(ja[m["cod"]]), None
+        try: return m["id"], resumo_meso(previsao(m["cod"])), None
+        except Exception as ex: return m["id"], antes_m.get(m["id"], []), f"{m['cidade']}: {ex!r}"[:120]
+    meso, falhas = {}, 0
+    with ThreadPoolExecutor(6) as ex:
+        for mid, dias, erro in ex.map(uma, MESO):
+            meso[mid] = dias
+            if erro: falhas += 1
+    if falhas: erros.append(f"{falhas} mesorregiões sem previsão nova")
     try: al = avisos()
     except Exception as ex:
         erros.append(f"avisos: {ex!r}"[:160]); al = velho.get("avisos", [])
     if all(not c["dias"] for c in capitais): raise SystemExit("INMET indisponível: " + "; ".join(erros))
     json.dump({"atualizado_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "fonte": "INMET",
-               "capitais": capitais, "polos": polos, "avisos": al, "erros": erros},
+               "capitais": capitais, "polos": polos, "meso": meso, "avisos": al, "erros": erros},
               open("tempo.json", "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     for e in erros: print("::warning::tempo " + e)
     print(f"{sum(1 for c in capitais if c['dias'])} capitais, {len(al)} alertas, {os.path.getsize('tempo.json') // 1024} KB")

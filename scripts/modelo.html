@@ -153,9 +153,9 @@ h2 a:hover,h3 a:hover,h4 a:hover{text-decoration:underline;text-decoration-thick
 .tp-grade{display:grid;gap:16px}
 @media (min-width:900px){.tp-grade{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:start}}
 .tp-mapa svg{display:block;width:100%;height:auto;max-height:620px;padding:6px 10px 0}
-.tp-uf{fill:var(--paper);stroke:var(--card);stroke-width:1.2;transition:fill .25s}
+.tp-uf{fill:var(--paper);stroke:none;transition:fill .25s}.tp-ms{stroke:rgba(255,255,255,.45);stroke-width:.5}.tp-bd{fill:none;stroke:var(--card);stroke-width:1.3;pointer-events:none}
 .tp-mapa header .seg{margin-top:-2px}.tp-leg .tp-leg-al{margin-left:8px}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .tp-uf{opacity:.8}}:root[data-theme=dark] .tp-uf{opacity:.8}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .tp-uf,:root:not([data-theme=light]) .tp-ms{opacity:.8}}:root[data-theme=dark] .tp-uf,:root[data-theme=dark] .tp-ms{opacity:.8}
 .tp-alp{opacity:.42;stroke-width:1;stroke-opacity:.9;mix-blend-mode:multiply}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]) .tp-alp{mix-blend-mode:normal;opacity:.35}}
 :root[data-theme=dark] .tp-alp{mix-blend-mode:normal;opacity:.35}
@@ -1067,7 +1067,7 @@ footer a{font-weight:600}
   }
   function corTemp(t){ if(t==null) return '#94a3b8'; if(t>=35) return '#b91c1c'; if(t>=31) return '#ea580c'; if(t>=27) return '#f59e0b'; if(t>=22) return '#16a34a'; if(t>=17) return '#0ea5e9'; return '#4f46e5'; }
   var DESL={PB:[9,4],PE:[9,6],AL:[9,6],SE:[9,8],RN:[9,0],GO:[-8,10,'end'],DF:[9,-4],RJ:[8,10],ES:[9,4],SP:[-8,12,'end'],SC:[9,6],PR:[-8,8,'end'],BA:[9,4],AP:[9,4]};
-  var TMO=ler('plantao-tempo-mapa')||'calor';
+  var TMO=ler('plantao-tempo-mapa')||'calor', MESO=null;
   // chuva: 0 sem chuva, 1 possibilidade, 2 chuva/pancadas, 3 com trovoadas (pelo texto da previsão do INMET)
   function nivelChuva(t){t=(t||'').toLowerCase(); if(!/chuv|pancada|garoa|trovoad|tempestade/.test(t)) return 0;
     if(/trovoad|tempestade/.test(t)) return /isolad|possibilidade/.test(t)&&!/pancada/.test(t)?2:3;
@@ -1089,11 +1089,17 @@ footer a{font-weight:600}
     document.querySelector('[data-tpal]').innerHTML=al.map(function(a){return '<path class="tp-alp" d="'+a.d+'" fill="'+esc(a.cor)+'" stroke="'+esc(a.cor)+'"><title>'+esc(a.evento+' · '+a.severidade)+'</title></path>'}).join('');
     var chuva=TMO==='chuva';
     document.querySelectorAll('[data-tmo]').forEach(function(x){var on=x.dataset.tmo===TMO;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on)});
-    // cada estado ganha a cor da previsão da sua capital
+    // cada estado ganha a cor da previsão da sua capital; por cima, cada mesorregião com a previsão do INMET para ela
     TP.capitais.forEach(function(c){
       var d=(c.dias||[]).filter(function(x){return x.data===dia})[0]||{}, uf=document.querySelector('.tp-uf[data-uf="'+c.uf+'"]'); if(!uf) return;
       uf.style.fill=chuva?(d.resumo?CH[chuvaDia(d)][1]:''):fundoTemp(d.max);
     });
+    var gm=document.querySelector('[data-tpmeso]');
+    if(MESO&&TP.meso){
+      gm.innerHTML=MESO.map(function(m){var x=(TP.meso[m.id]||[]).filter(function(r){return r[0]===dia})[0]; if(!x) return '';
+        var cor=chuva?CH[x[3]][1]:fundoTemp(x[1]);
+        return '<path class="tp-ms" d="'+m.d+'" style="fill:'+cor+'"><title>'+esc(m.nome+' ('+m.uf+'): '+(chuva?CH[x[3]][0]:'máxima '+(x[1]==null?'–':x[1]+'°'))+' · '+x[4])+'</title></path>'}).join('');
+    } else gm.innerHTML='';
     document.querySelector('[data-tpal]').style.display=chuva?'none':'';
     document.querySelector('[data-tpcap]').innerHTML=TP.capitais.map(function(c){
       var d=(c.dias||[]).filter(function(x){return x.data===dia})[0]||{}, o=DESL[c.uf]||[8,4], n=d.resumo?chuvaDia(d):null;
@@ -1102,7 +1108,7 @@ footer a{font-weight:600}
         '<circle cx="'+c.x+'" cy="'+c.y+'" r="'+(c.uf===TC?6.5:5)+'" fill="'+(chuva?(n==null?'#94a3b8':['#d97706','#3f8f3a','#1b5e20','#0b3d12'][n]):'#1f2937')+'"/>'+
         '<text x="'+(c.x+o[0])+'" y="'+(c.y+o[1])+'" text-anchor="'+(o[2]||'start')+'">'+rot+'</text><title>'+esc(c.nome+' ('+c.uf+'): '+(d.resumo||''))+'</title></g>'}).join('');
     var at=new Date(TP.atualizado_utc), hr=' · atualizado às '+at.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-    document.querySelector('[data-tpm]').textContent=(chuva?'Previsão de chuva em cada estado, pela capital':'Temperatura máxima prevista em cada estado, pela capital, e áreas de alerta')+hr;
+    document.querySelector('[data-tpm]').textContent=(chuva?'Previsão de chuva por região':'Temperatura máxima prevista por região, e áreas de alerta')+(MESO&&TP.meso?' (mesorregiões do IBGE, previsão do INMET)':'')+hr;
     document.querySelector('[data-tpleg]').innerHTML=chuva?CH.slice().reverse().map(function(x){return '<li><i style="background:'+x[1]+'"></i>'+x[0]+'</li>'}).join(''):
       [['35° ou mais','#9b1c1c'],['31° a 34°','#d93a3a'],['27° a 30°','#f07a6e'],['22° a 26°','#f7aea4'],['17° a 21°','#fbd5cf'],['Até 16°','#fdf0ee']].map(function(x){return '<li><i style="background:'+x[1]+'"></i>'+x[0]+'</li>'}).join('')+
       (al.length?'<li class="tp-leg-al"><i style="background:#FFE600"></i>Alerta: perigo potencial</li><li><i style="background:#F96602"></i>Perigo</li><li><i style="background:#D00000"></i>Grande perigo</li>':'');
@@ -1154,6 +1160,7 @@ footer a{font-weight:600}
       TP=d||{capitais:[]};
       document.querySelector('[data-tps]').innerHTML=TP.capitais.slice().sort(function(a,b){return a.nome.localeCompare(b.nome)}).map(function(c){return '<option value="'+c.uf+'">'+esc(c.nome)+' ('+c.uf+')</option>'}).join('');
       var datas=datasTempo(), i=datas.indexOf(hojeISO()); TD=i>=0?i:0; desenharTempo();
+      if(TP.meso) fetch('mapa_meso.json',{cache:'force-cache'}).then(function(r){return r.ok?r.json():null}).then(function(m){if(m){MESO=m;desenharTempo()}}).catch(function(){});
     }).catch(function(){document.querySelector('[data-tpm]').textContent='Não foi possível carregar a previsão agora.';TP=null});
   };
   if((location.hash||'')==='#tempo') window.carregarTempo();

@@ -324,7 +324,7 @@ paginas += f'''<section class="pagina" id="pg-tempo" data-pg="tempo" hidden>
     <div class="tp-grade">
       <section class="quadro tp-mapa"><header><h3>Mapa do Brasil</h3><div class="seg" role="group" aria-label="Tipo de mapa"><button class="on" data-tmo="calor" aria-pressed="true">🌡️ Calor</button><button data-tmo="chuva" aria-pressed="false">🌧️ Chuva</button></div><p class="per" data-tpm>{sk_txt("Carregando a previsão…", "70%")}</p></header>
         <svg viewBox="0 0 {_mapa["w"]} {_mapa["h"]}" role="img" aria-label="Mapa do Brasil com a temperatura máxima nas capitais e as áreas de alerta do INMET">
-          <g class="tp-ufs">{_ufs}</g><g data-tpal></g><g data-tpcap></g></svg>
+          <g class="tp-ufs">{_ufs}</g><g class="tp-mesos" data-tpmeso></g><g class="tp-bordas">{_ufs.replace('class="tp-uf"', 'class="tp-bd"')}</g><g data-tpal></g><g data-tpcap></g></svg>
         <ul class="tp-leg" data-tpleg></ul>
       </section>
       <section class="quadro tp-cid" data-tpc>
