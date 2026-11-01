@@ -18,7 +18,7 @@ MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto",
 SECOES = data.get("secoes", ["Política", "IA", "Futebol", "Agro", "Mercado"])
 e = html.escape
 # podcast "Resumo do Plantão" no Spotify (feed podcast.xml, gerado pelo podcast.py)
-SPOTIFY = "https://open.spotify.com/episode/1tJLTP4Ok584YVAU1HQuSm"
+SPOTIFY = "https://open.spotify.com/show/5td62B4h3rU8rFQnyomgti"
 def slug(s):
     import unicodedata
     s = unicodedata.normalize("NFD", s.lower()); s = "".join(c for c in s if unicodedata.category(c) != "Mn")
