@@ -23,9 +23,7 @@ def roteiro(r):
     return "\n\n".join(partes), q
 
 def falar(texto, chave):
-    # a instrução de estilo vai separada do texto para a voz não lê-la em voz alta
-    pedido = ("Narre o texto abaixo em português do Brasil, como locutor de rádio jornalístico, tom neutro e ritmo natural. "
-              "Leia somente o texto, sem nenhuma introdução:\n\n" + texto)
+    pedido = texto   # só o texto: qualquer instrução junto acabava sendo lida em voz alta
     corpo = {"contents": [{"parts": [{"text": pedido}]}],
              "generationConfig": {"responseModalities": ["AUDIO"],
                                   "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": VOZ}}}}}
