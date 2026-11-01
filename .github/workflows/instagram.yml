@@ -30,7 +30,7 @@ on:
       tipo:
         description: "O que postar"
         type: choice
-        options: [resumo, reel, mercado, agro, futebol, contas, economia]
+        options: [resumo, reel, mercado, agro, futebol, contas, economia, avulso]
         default: resumo
       so_ver:
         description: "Só gerar as imagens para conferir (não posta)"

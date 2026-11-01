@@ -212,6 +212,22 @@ def gerar(tipo):
                        "imagens": [os.path.basename(a) for a in arquivos], "alt": alt}, f, ensure_ascii=False, indent=1)
         print(f"{len(arquivos)} card(s) gerado(s) para {sub} ({chave})\n\n{legenda}")
         sinal(True, "economia"); return
+    if tipo == "avulso":   # post pronto (imagens e legenda em posts/avulso.json), ex.: divulgação de uma análise
+        import shutil
+        raiz = os.path.dirname(PASTA)
+        info = json.load(open(os.path.join(raiz, "posts", "avulso.json"), encoding="utf-8"))
+        reg = registro()
+        if reg.get(info["registro"]) == info["chave"] and (not os.environ.get("FB_PAGE_TOKEN") or reg.get("fb_" + info["registro"]) == info["chave"]) \
+                and not os.environ.get("IG_FORCAR"):
+            print("Já publicado:", info["chave"]); sinal(False); return
+        os.makedirs(PASTA, exist_ok=True)
+        for antigo in os.listdir(PASTA):
+            if antigo.startswith("avulso-"): os.remove(os.path.join(PASTA, antigo))
+        for n in info["imagens"] + ([info["story"]] if info.get("story") else []):
+            shutil.copy(os.path.join(raiz, "posts", n), os.path.join(PASTA, n))
+        with open(os.path.join(PASTA, "avulso.json"), "w", encoding="utf-8") as f: json.dump(info, f, ensure_ascii=False, indent=1)
+        print(f"Post avulso pronto: {info['chave']}\n\n{info['legenda']}")
+        sinal(True); return
     if tipo == "contas":
         import instagram_contas as ct
         sub, motivo = proximo_contas()
