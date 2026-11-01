@@ -47,6 +47,8 @@ jobs:
         continue-on-error: true
         run: pip install --quiet pillow && python3 scripts/og.py
       - name: Gerar a página
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
         run: python3 scripts/gerar.py . mercado.json index.html
       - name: Enviar ao Telegram
         continue-on-error: true

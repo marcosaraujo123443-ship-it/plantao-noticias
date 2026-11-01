@@ -19,6 +19,16 @@ SECOES = data.get("secoes", ["Política", "IA", "Futebol", "Agro", "Mercado"])
 e = html.escape
 # podcast "Resumo do Plantão" no Spotify (feed podcast.xml, gerado pelo podcast.py)
 SPOTIFY = "https://open.spotify.com/show/5td62B4h3rU8rFQnyomgti"
+INSTAGRAM = "https://www.instagram.com/plantao_informa_/"
+_fb = (os.environ.get("FB_PAGE_ID") or "").strip()
+FACEBOOK = f"https://www.facebook.com/{_fb}" if _fb else ""
+TELEGRAM = "https://t.me/plantaodenoticias"
+_IC = {"instagram": '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4ZM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4ZM12 2c-2.7 0-3 0-4.1.1-1 0-1.8.2-2.4.5-.7.3-1.3.6-1.8 1.2-.6.5-.9 1.1-1.2 1.8-.3.6-.4 1.4-.5 2.4C2 9 2 9.3 2 12s0 3 .1 4.1c0 1 .2 1.8.5 2.4.3.7.6 1.3 1.2 1.8.5.6 1.1.9 1.8 1.2.6.3 1.4.4 2.4.5 1.1.1 1.4.1 4.1.1s3 0 4.1-.1c1 0 1.8-.2 2.4-.5.7-.3 1.3-.6 1.8-1.2.6-.5.9-1.1 1.2-1.8.3-.6.4-1.4.5-2.4.1-1.1.1-1.4.1-4.1s0-3-.1-4.1c0-1-.2-1.8-.5-2.4-.3-.7-.6-1.3-1.2-1.8-.5-.6-1.1-.9-1.8-1.2-.6-.3-1.4-.4-2.4-.5C15 2 14.7 2 12 2Zm0 1.8c2.7 0 3 0 4 .1.9 0 1.5.2 1.8.3.5.2.8.4 1.1.7.4.4.6.7.8 1.2.1.3.3.9.3 1.8.1 1.1.1 1.4.1 4.1s0 3-.1 4c0 .9-.2 1.5-.3 1.8-.2.5-.4.8-.8 1.2-.3.3-.6.5-1.1.7-.3.1-.9.3-1.8.3-1.1.1-1.4.1-4 .1s-3 0-4.1-.1c-.9 0-1.5-.2-1.8-.3-.5-.2-.8-.4-1.2-.7-.3-.4-.5-.7-.7-1.2-.1-.3-.3-.9-.3-1.8-.1-1-.1-1.4-.1-4s0-3 .1-4.1c0-.9.2-1.5.3-1.8.2-.5.4-.8.7-1.2.4-.3.7-.5 1.2-.7.3-.1.9-.3 1.8-.3 1-.1 1.4-.1 4.1-.1Z"/></svg>',
+       "facebook": '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.5 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg>',
+       "spotify": '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.4a.6.6 0 0 1-.9.2c-2.4-1.5-5.4-1.8-9-1a.6.6 0 1 1-.3-1.2c3.9-.9 7.2-.5 9.9 1.1.3.2.4.6.3.9Zm1.2-2.7a.8.8 0 0 1-1 .3c-2.7-1.7-6.9-2.2-10.2-1.2a.8.8 0 0 1-.5-1.5c3.7-1.1 8.3-.6 11.4 1.4.4.2.5.7.3 1Zm.1-2.8C14.6 9 9.2 8.8 6.1 9.8a.9.9 0 1 1-.6-1.8c3.6-1.1 9.5-.9 13.3 1.4a.9.9 0 0 1-.9 1.5Z"/></svg>'}
+REDES = [(n, u, r) for n, u, r in (("Instagram", INSTAGRAM, "instagram"), ("Facebook", FACEBOOK, "facebook"), ("Spotify", SPOTIFY, "spotify")) if u]
+REDES_TOPO = "".join(f'<a class="rede" href="{u}" target="_blank" rel="noopener" aria-label="Plantão Informa no {n}" title="{n}">{_IC[r]}</a>' for n, u, r in REDES)
+REDES_ROD = " · ".join(f'<a href="{u}" target="_blank" rel="noopener">{n}</a>' for n, u, _ in REDES + [("Telegram", TELEGRAM, "")])
 def slug(s):
     import unicodedata
     s = unicodedata.normalize("NFD", s.lower()); s = "".join(c for c in s if unicodedata.category(c) != "Mn")
@@ -352,7 +362,7 @@ merc_json = json.dumps(mercado, ensure_ascii=False).replace("</", "<\\/")
 tpl = (Path(__file__).parent / "modelo.html").read_text(encoding="utf-8")
 out = tpl
 for k, v in {"DATA": f"{DIAS[upd.weekday()]}, {upd.day} de {MESES[upd.month-1]} de {upd.year}",
-             "HORA": f"{upd:%H:%M}", "UPD_ISO": data["atualizado_utc"], "LEAD": lead_html, "RESUMO": resumo_html, "AGENDA": agenda_html, "DESTAQUES": dest_html, "BLOCOS": blocos,
+             "HORA": f"{upd:%H:%M}", "REDES_TOPO": REDES_TOPO, "REDES_ROD": REDES_ROD, "UPD_ISO": data["atualizado_utc"], "LEAD": lead_html, "RESUMO": resumo_html, "AGENDA": agenda_html, "DESTAQUES": dest_html, "BLOCOS": blocos,
              "PAGINAS": paginas, "TABS": tabs, "HORARIOS": horarios, "FONTES": fontes_txt,
              "TOTAL": str(len(itens)), "NFONTES": str(len(fontes)), "MERCADO": merc_json,
              "FONTES_OPT": "".join(f'<option value="{e(f)}">{e(f)}</option>' for f in sorted(fontes, key=str.lower))}.items():
@@ -389,7 +399,7 @@ saida_site.write_text(
          "potentialAction": {"@type": "SearchAction", "target": {"@type": "EntryPoint", "urlTemplate": SITE + "?q={search_term_string}"},
                              "query-input": "required name=search_term_string"}},
         {"@context": "https://schema.org", "@type": "Organization", "name": "Plantão Informa", "url": SITE, "logo": SITE + "logo.jpg",
-         "sameAs": ["https://www.instagram.com/plantao_informa_/", "https://t.me/plantaodenoticias"]}],
+         "sameAs": [u for _, u, _ in REDES] + [TELEGRAM]}],
         ensure_ascii=False) + '</script>\n' +
     '<meta property="og:title" content="Plantão Informa">\n'
     '<meta property="og:description" content="Manchetes de fontes confiáveis, atualizadas de hora em hora.">\n'
