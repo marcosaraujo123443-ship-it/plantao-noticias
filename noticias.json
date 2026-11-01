@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-01T14:34:19Z",
+ "atualizado_utc": "2026-11-01T15:16:37Z",
  "secoes": [
   "Política",
   "IA",
@@ -10,6 +10,24 @@
   "Ciência e Saúde"
  ],
  "itens": [
+  {
+   "secao": "Política",
+   "fonte": "InfoMoney",
+   "editoria": "Política",
+   "titulo": "Ministros vão a Mato Grosso do Sul verificar denúncias de violência depois da eleição",
+   "link": "https://www.infomoney.com.br/politica/ministros-vao-a-mato-grosso-do-sul-verificar-denuncias-de-violencia-depois-da-eleicao/",
+   "data": "2026-11-01T14:42:12Z",
+   "resumo": "O ministro da Justiça e Segurança Pública, Wellington César Lima e Silva, também esteve no Estado"
+  },
+  {
+   "secao": "Política",
+   "fonte": "InfoMoney",
+   "editoria": "Política",
+   "titulo": "Na Fazenda do Piauí, Fonteles reduziu dívida, mas teve déficit em metade dos anos",
+   "link": "https://www.infomoney.com.br/politica/na-fazenda-do-piaui-fonteles-reduziu-divida-mas-teve-deficit-em-metade-dos-anos/",
+   "data": "2026-11-01T14:35:17Z",
+   "resumo": "Até 2018, o Piauí tinha a nota \"C\" no critério de Capacidade de Pagamento (Capag) do Tesouro Nacional"
+  },
   {
    "secao": "Política",
    "fonte": "CNN Brasil",
@@ -132,24 +150,6 @@
    "link": "https://www.infomoney.com.br/politica/rubio-eua-flavio-bolsonaro-trump-ira/",
    "data": "2026-10-31T19:26:52Z",
    "resumo": "Secretário de Estado também afirmou que Trump ainda não decidiu se retomará ataques contra o Irã, enquanto negociações mediadas pelo Catar avançam em Doha"
-  },
-  {
-   "secao": "Política",
-   "fonte": "Agência Brasil",
-   "editoria": "Política",
-   "titulo": "Aluno é ameaçado de morte no DF por opção política",
-   "link": "https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/aluno-e-ameacado-de-morte-no-df-por-opcao-politica",
-   "data": "2026-10-31T19:15:00Z",
-   "resumo": "“Eu juro que amanhã se você for para a escola você não volta vivo”."
-  },
-  {
-   "secao": "Política",
-   "fonte": "InfoMoney",
-   "editoria": "Política",
-   "titulo": "Boulos cita R$ 600 bi em desonerações e fala em ‘chantagem’ do mercado",
-   "link": "https://www.infomoney.com.br/politica/boulos-cita-r-600-bi-em-desoneracoes-e-fala-em-chantagem-do-mercado/",
-   "data": "2026-10-31T18:25:34Z",
-   "resumo": "Ministro defende rever benefícios fiscais, supersalários e emendas; dívida bruta está em 82,9% do PIB"
   },
   {
    "secao": "IA",
@@ -296,37 +296,70 @@
    "secao": "Futebol",
    "fonte": "Gazeta Esportiva",
    "editoria": "Futebol",
-   "titulo": "Lozano amplia a vantagem do LA Galaxy com uma cabeçada livre de marcação pela MLS",
-   "link": "https://www.gazetaesportiva.com/todas-as-noticias/lozano-amplia-a-vantagem-do-la-galaxy-com-uma-cabecada-livre-de-marcacao-pela-mls-2/",
-   "data": "2026-11-01T14:24:29Z",
-   "resumo": "Lozano amplia a vantagem do LA Galaxy com uma cabeçada livre de marcação pela MLS"
+   "titulo": "Suspeita de vazamento da Bola de Ouro gera investigação sobre apostas milionárias",
+   "link": "https://www.gazetaesportiva.com/bola-de-ouro/possivel-vazamento-do-resultado-da-bola-de-ouro-vira-alvo-de-investigacao-na-franca/",
+   "data": "2026-11-01T15:05:50Z",
+   "resumo": "A organização da Bola de Ouro 2026 investiga uma possível quebra de sigilo após apostas acertarem não apenas o vencedor, Harry Kane, mas também a ordem exata dos cinco primeiros colocados da premiação."
+  },
+  {
+   "secao": "Futebol",
+   "fonte": "Agência Brasil",
+   "editoria": "Futebol",
+   "titulo": "Com reação incrível, Cruzeiro bate Corinthians e leva Libertadores",
+   "link": "https://agenciabrasil.ebc.com.br/esportes/noticia/2026-11/com-reacao-incrivel-cruzeiro-bate-corinthians-e-leva-libertadores",
+   "data": "2026-11-01T15:02:00Z",
+   "resumo": "Em uma final emocionante, o Cruzeiro derrotou o Corinthians na noite deste sábado (31) e se sagrou campeão da Libertadores da América feminina pela primeira vez, logo em sua estreia na competição.",
+   "tambem": [
+    {
+     "fonte": "ge",
+     "link": "https://ge.globo.com/sp/campinas-e-regiao/futebol/futebol-feminino/libertadores-feminina/noticia/2026/10/31/cruzeiro-conquista-a-libertadores-feminina-pela-primeira-vez-veja-lista-de-campeas.ghtml"
+    }
+   ]
+  },
+  {
+   "secao": "Futebol",
+   "fonte": "ge",
+   "editoria": "Futebol",
+   "titulo": "Flamengo ou Palmeiras, quem vive a melhor fase no Cartola? Veja o ranking de outubro",
+   "link": "https://ge.globo.com/gato-mestre/dicas/noticia/2026/11/01/flamengo-ou-palmeiras-quem-vive-a-melhor-fase-no-cartola-veja-o-ranking-de-outubro.ghtml",
+   "data": "2026-11-01T15:00:00Z",
+   "resumo": "Samuel Lino fez a alegria da galera na R33 com 21,60 pontos A disputa pela liderança do Brasileirão tem apenas dois times, mas no Cartola essa corrida ganhou um personagem a mais no mês de outubro."
+  },
+  {
+   "secao": "Futebol",
+   "fonte": "ge",
+   "editoria": "Futebol",
+   "titulo": "Racing Santander x Real Madrid - Campeonato Espanhol 2026/27 - Ao vivo - globoesporte.com",
+   "link": "https://ge.globo.com/futebol/futebol-internacional/futebol-espanhol/jogo/01-11-2026/Racingsantander-realmadrid.ghtml",
+   "data": "2026-11-01T14:54:23Z",
+   "resumo": "Campeonato Espanhol 2026/27 no globoesporte.com - acompanhe tudo sobre Racing Santander x Real Madrid: escalação, informações sobre o jogo, fotos e muito mais"
   },
   {
    "secao": "Futebol",
    "fonte": "Gazeta Esportiva",
    "editoria": "Futebol",
-   "titulo": "Melhores momentos: San Jose Earthquakes 2 x 1 Real Salt Lake pela MLS",
-   "link": "https://www.gazetaesportiva.com/todas-as-noticias/melhores-momentos-san-jose-earthquakes-2-x-1-real-salt-lake-pela-mls/",
-   "data": "2026-11-01T14:22:50Z",
-   "resumo": "Melhores momentos: San Jose Earthquakes 2 x 1 Real Salt Lake pela MLS"
+   "titulo": "Timber e Merino parecem prontos para o confronto com o Liverpool em Anfield",
+   "link": "https://www.gazetaesportiva.com/todas-as-noticias/timber-e-merino-parecem-prontos-para-o-confronto-com-o-liverpool-em-anfield/",
+   "data": "2026-11-01T14:38:13Z",
+   "resumo": "Confira o último treino do Arsenal antes do duelo fora de casa contra o Liverpool pela Premier League."
   },
   {
    "secao": "Futebol",
    "fonte": "Gazeta Esportiva",
    "editoria": "Futebol",
-   "titulo": "Melhores momentos: LA Galaxy 4 x 1 Austin FC pela MLS",
-   "link": "https://www.gazetaesportiva.com/todas-as-noticias/melhores-momentos-la-galaxy-4-x-1-austin-fc-pela-mls/",
-   "data": "2026-11-01T14:09:32Z",
-   "resumo": "Melhores momentos: LA Galaxy 4 x 1 Austin FC pela MLS"
+   "titulo": "Fábio Silva fala após empate dramático no Der Klassiker",
+   "link": "https://www.gazetaesportiva.com/todas-as-noticias/fabio-silva-fala-apos-empate-dramatico-no-der-klassiker/",
+   "data": "2026-11-01T14:36:14Z",
+   "resumo": "O atacante português demonstrou orgulho pela mentalidade do Borussia Dortmund e falou sobre suas emoções após marcar o gol de empate aos 44 minutos do segundo tempo contra o Bayern de Munique."
   },
   {
    "secao": "Futebol",
    "fonte": "Gazeta Esportiva",
    "editoria": "Futebol",
-   "titulo": "Sergi Roberto marca seu primeiro gol na MLS após assistência de Reus; assista ao gol",
-   "link": "https://www.gazetaesportiva.com/futebol/futebol-internacional/sergi-roberto-marca-seu-primeiro-gol-na-mls-apos-assistencia-de-reus-assista-ao-gol/",
-   "data": "2026-11-01T14:07:46Z",
-   "resumo": "Sergi Roberto marca seu primeiro gol na MLS após assistência de Reus; assista ao gol"
+   "titulo": "Lewandowski completa uma bela jogada coletiva com uma finalização de categoria; assista ao gol",
+   "link": "https://www.gazetaesportiva.com/todas-as-noticias/lewandowski-completa-uma-bela-jogada-coletiva-com-uma-finalizacao-de-categoria-assista-ao-gol/",
+   "data": "2026-11-01T14:31:57Z",
+   "resumo": "Lewandowski completa uma bela jogada coletiva com uma finalização de categoria; assista ao gol"
   },
   {
    "secao": "Futebol",
@@ -354,24 +387,6 @@
    "link": "https://www.cnnbrasil.com.br/esportes/futebol/futebol-internacional/como-paulo-fonseca-tem-escalado-o-lyon-desde-a-saida-de-endrick/",
    "data": "2026-11-01T13:00:01Z",
    "resumo": "CNN Esportes e Itatiaia Esporte transmitem Lyon x Angers com exclusividade no YouTube, no próximo domingo (1), às 13h15 (de Brasília)"
-  },
-  {
-   "secao": "Futebol",
-   "fonte": "ge",
-   "editoria": "Futebol",
-   "titulo": "Dupla do Fluminense no Mundial sub-17 se inspira em Marcelo e Martinelli e sonha com estreia no profissional",
-   "link": "https://ge.globo.com/futebol/times/fluminense/noticia/2026/11/01/dupla-do-fluminense-no-mundial-sub-17-se-inspira-em-marcelo-e-martinelli-e-sonha-com-estreia-no-profissional.ghtml",
-   "data": "2026-11-01T13:00:00Z",
-   "resumo": "Richard Wendel e Andrey se apresentam para torcedores do Fluminense A torcida do Fluminense precisará se acostumar a ouvir cada vez mais sobre Richard Wendel e Andrey, joias das categorias de base convocadas para represe"
-  },
-  {
-   "secao": "Futebol",
-   "fonte": "ge",
-   "editoria": "Futebol",
-   "titulo": "Herói contra o Flamengo, Muslera comete falha bizarra em empate do Estudiantes; veja",
-   "link": "https://ge.globo.com/futebol/futebol-internacional/noticia/2026/11/01/heroi-contra-o-flamengo-muslera-comete-falha-bizarra-em-empate-do-estudiantes-veja.ghtml",
-   "data": "2026-11-01T12:08:27Z",
-   "resumo": "Veja a disputa de pênaltis que eliminou o Flamengo contra o Estudiantes Herói da classificação do Estudiantes para a final da Libertadores, ao defender três pênaltis cobrados pelo Flamengo na semifinal no Maracanã, o gol"
   },
   {
    "secao": "Futebol",
@@ -423,15 +438,6 @@
    "link": "https://agenciabrasil.ebc.com.br/esportes/noticia/2026-10/corinthians-encerra-jejum-com-vitoria-sobre-o-mirassol-2-0",
    "data": "2026-10-31T19:01:00Z",
    "resumo": "Demorou, mas o Corinthians enfim retomou o caminho das vitórias no Campeonato Brasileiro."
-  },
-  {
-   "secao": "Futebol",
-   "fonte": "Agência Brasil",
-   "editoria": "Futebol",
-   "titulo": "SP e Ferroviária empatam no 1º jogo da semifinal do Paulista F Sub-20",
-   "link": "https://agenciabrasil.ebc.com.br/esportes/noticia/2026-10/sp-e-ferroviaria-empatam-no-1o-jogo-da-semifinal-do-paulista-f-sub-20",
-   "data": "2026-10-31T17:48:00Z",
-   "resumo": "Em partida que teve transmissão ao vivo da TV Brasil , São Paulo e Ferroviária empataram por 1 a 1 na noite desta sexta (30), no confronto de ida da semifinal do Paulista F Sub-20 Petrobras."
   },
   {
    "secao": "Agro",
@@ -551,6 +557,15 @@
    "secao": "Mercado",
    "fonte": "InfoMoney",
    "editoria": "Mercado",
+   "titulo": "Lotofácil hoje, concurso 3819: Confira o resultado sorteado neste domingo (1)",
+   "link": "https://www.infomoney.com.br/consumo/lotofacil-hoje-concurso-3819-confira-o-resultado-sorteado-neste-domingo-1/",
+   "data": "2026-11-01T14:56:30Z",
+   "resumo": "Próximo sorteio está programado para ocorrer na terça-feira, com prêmio estimado em R$ 9,5 milhões"
+  },
+  {
+   "secao": "Mercado",
+   "fonte": "InfoMoney",
+   "editoria": "Mercado",
    "titulo": "Tombo no Brasil acende alerta de gestores internacionais sobre apostas em emergentes",
    "link": "https://www.infomoney.com.br/mercados/tombo-no-brasil-acende-alerta-de-gestores-internacionais-sobre-apostas-em-emergentes/",
    "data": "2026-11-01T14:22:05Z",
@@ -584,7 +599,7 @@
    "secao": "Mercado",
    "fonte": "g1",
    "editoria": "Mercado",
-   "titulo": "Mega-Sena, concurso 3080: confira os números sorteados",
+   "titulo": "Mega-Sena 3080 acumula e prêmio vai a R$ 46 milhões; confira os números sorteados",
    "link": "https://g1.globo.com/loterias/mega-sena/noticia/2026/11/01/mega-sena-concurso-3080-confira-os-numeros-sorteados.ghtml",
    "data": "2026-11-01T14:03:40Z",
    "resumo": "Como funciona a Mega-Sena? O sorteio do concurso 3.080 da Mega-Sena foi realizado na manhã deste domingo (1º), em São Paulo."
@@ -636,15 +651,6 @@
      "link": "https://g1.globo.com/tecnologia/ciberseguranca/noticia/2026/10/30/apos-ataque-hacker-bilionario-binance-diz-que-investimentos-de-brasileiros-estao-seguros.ghtml"
     }
    ]
-  },
-  {
-   "secao": "Mercado",
-   "fonte": "InfoMoney",
-   "editoria": "Mercado",
-   "titulo": "Gustavo Loyola vê juros em dois dígitos até 2028 e alerta para risco fiscal",
-   "link": "https://www.infomoney.com.br/onde-investir/ex-presidente-do-bc-preve-juros-em-dois-digitos-ate-2028-diante-de-crise-fiscal/",
-   "data": "2026-11-01T11:00:00Z",
-   "resumo": "Ex-presidente do BC diz que desequilíbrio das contas públicas pode alimentar círculo vicioso de dívida, prêmio de risco e juros altos"
   },
   {
    "secao": "Mercado",
@@ -704,6 +710,21 @@
    "secao": "Concursos",
    "fonte": "Estratégia Concursos",
    "editoria": "Concursos",
+   "titulo": "Concurso SES RJ: gabarito extraoficial e correção de prova!",
+   "link": "https://concursos.estrategia.com/portal/concurso-ses-rj-gabarito-extraoficial-e-correcao-de-prova/",
+   "data": "2026-11-01T15:00:00Z",
+   "resumo": "Confira neste artigo a correção ao vivo e o gabarito extraoficial da prova do Concurso SES RJ para Assistente Administrativo de Saúde Acontecem neste domingo (1º) as provas do concurso da Secretaria de Estado de Saúde do",
+   "tambem": [
+    {
+     "fonte": "Gran Cursos",
+     "link": "https://blog.grancursosonline.com.br/gabarito-detran-sp-extraoficial-2026/"
+    }
+   ]
+  },
+  {
+   "secao": "Concursos",
+   "fonte": "Estratégia Concursos",
+   "editoria": "Concursos",
    "titulo": "E-books Estratégicos para o Concurso TCE GO 2026",
    "link": "https://concursos.estrategia.com/portal/e-books-estrategicos-concurso-tce-go/",
    "data": "2026-11-01T12:00:00Z",
@@ -726,30 +747,6 @@
    "link": "https://concursos.estrategia.com/portal/simulados-especiais-trt-8-tecnico-e-analista-varias-especialidades/",
    "data": "2026-11-01T10:57:00Z",
    "resumo": "Atenção, corujas: o Estratégia Concursos terá os simulados especiais do TRT 8 para os cargos de analista judiciário e técnico judiciário!"
-  },
-  {
-   "secao": "Concursos",
-   "fonte": "Gran Cursos",
-   "editoria": "Concursos",
-   "titulo": "Gabarito Detran SP extraoficial: confira a correção!",
-   "link": "https://blog.grancursosonline.com.br/gabarito-detran-sp-extraoficial-2026/",
-   "data": "2026-11-01T10:00:00Z",
-   "resumo": "Chegou o grande dia da realização das provas do concurso Detran SP!"
-  },
-  {
-   "secao": "Concursos",
-   "fonte": "Estratégia Concursos",
-   "editoria": "Concursos",
-   "titulo": "Concursos abertos: os principais editais publicados em outubro",
-   "link": "https://concursos.estrategia.com/portal/principais-editais-concursos-outubro-2026/",
-   "data": "2026-10-31T15:00:00Z",
-   "resumo": "Confira todos os principais editais de concursos publicados em outubro de 2026 O mês de outubro de 2026 trouxe uma verdadeira chuva de editais para quem busca a sonhada estabilidade no serviço público.",
-   "tambem": [
-    {
-     "fonte": "Gran Cursos",
-     "link": "https://blog.grancursosonline.com.br/concurso-publico-30-outubro-2026/"
-    }
-   ]
   },
   {
    "secao": "Concursos",
@@ -783,6 +780,29 @@
    "link": "https://blog.grancursosonline.com.br/cnu-em-preparo-2026/",
    "data": "2026-10-31T00:09:38Z",
    "resumo": "Novidade importante sobre o CNU 3, concurseiro!"
+  },
+  {
+   "secao": "Concursos",
+   "fonte": "Gran Cursos",
+   "editoria": "Concursos",
+   "titulo": "CNU pode ter até 3 mil vagas no segundo semestre de 2027!",
+   "link": "https://blog.grancursosonline.com.br/concurso-nacional-unificado/",
+   "data": "2026-10-31T00:09:35Z",
+   "resumo": "O Concurso Nacional Unificado (CNU) poderá ter uma terceira edição no segundo semestre de 2027, com estimativa de 2 mil a 3 mil vagas.",
+   "tambem": [
+    {
+     "fonte": "Agência Brasil",
+     "link": "https://agenciabrasil.ebc.com.br/geral/noticia/2026-10/terceira-edicao-do-cnu-pode-ter-ate-3-mil-vagas"
+    },
+    {
+     "fonte": "g1",
+     "link": "https://g1.globo.com/trabalho-e-carreira/noticia/2026/10/30/governo-diz-que-cnu-2027-pode-ofertar-ate-3-mil-vagas-realizacao-do-de-provas-depende-da-aprovacao-do-orcamento-de-2027.ghtml"
+    },
+    {
+     "fonte": "Concursos no Brasil",
+     "link": "https://concursosnobrasil.com/concursos/br/2026/10/30/cnu-2027-devera-oferecer-ate-3-mil-vagas-mas-ainda-nao-tem-data/"
+    }
+   ]
   },
   {
    "secao": "Concursos",
@@ -831,6 +851,15 @@
   },
   {
    "secao": "Ciência e Saúde",
+   "fonte": "Fiocruz",
+   "editoria": "Ciência e Saúde",
+   "titulo": "Fiocruz manifesta solidariedade aos povos indígenas e repudia atos de violência após eleições",
+   "link": "https://agencia.fiocruz.br/fiocruz-manifesta-solidariedade-aos-povos-indigenas-e-repudia-atos-de-violencia-apos-eleicoes",
+   "data": "2026-11-01T14:59:40Z",
+   "resumo": "Fiocruz manifesta solidariedade aos povos indígenas e repudia atos de violência após eleições O Conselho Deliberativo da Fiocruz manifesta solidariedade aos povos originários de todo o Brasil, às suas lideranças comunitá"
+  },
+  {
+   "secao": "Ciência e Saúde",
    "fonte": "Agência Brasil",
    "editoria": "Ciência e Saúde",
    "titulo": "Campanha alerta para doença em diabéticos que pode causar cegueira",
@@ -845,7 +874,13 @@
    "titulo": "Câncer de próstata matou 50 homens por dia no país em 2025",
    "link": "https://agenciabrasil.ebc.com.br/saude/noticia/2026-10/cancer-de-prostata-matou-50-homens-por-dia-no-pais-em-2025",
    "data": "2026-11-01T11:12:00Z",
-   "resumo": "Cerca de 18,5 mil homens morreram no Brasil em 2025 vítimas do câncer de próstata."
+   "resumo": "Cerca de 18,5 mil homens morreram no Brasil em 2025 vítimas do câncer de próstata.",
+   "tambem": [
+    {
+     "fonte": "CNN Brasil",
+     "link": "https://www.cnnbrasil.com.br/saude/novembro-azul-cancer-de-prostata-e-o-segundo-tipo-mais-comum-em-homens/"
+    }
+   ]
   },
   {
    "secao": "Ciência e Saúde",
@@ -882,15 +917,6 @@
    "link": "https://g1.globo.com/saude/noticia/2026/11/01/comprimido-diario-alcanca-resultado-inedito-no-cancer-que-mais-mata-no-brasil-e-muda-futuro-de-pacientes.ghtml",
    "data": "2026-11-01T08:00:00Z",
    "resumo": "Antes e depois de três meses do tratamento com medicamento para câncer de pulmão Divulgação Durante décadas, o diagnóstico de câncer de pulmão avançado equivalia, na prática, a uma sentença de meses."
-  },
-  {
-   "secao": "Ciência e Saúde",
-   "fonte": "CNN Brasil",
-   "editoria": "Ciência e Saúde",
-   "titulo": "Novembro Azul: câncer de próstata é o segundo tipo mais comum em homens",
-   "link": "https://www.cnnbrasil.com.br/saude/novembro-azul-cancer-de-prostata-e-o-segundo-tipo-mais-comum-em-homens/",
-   "data": "2026-11-01T07:00:17Z",
-   "resumo": "Inca (Instituto Nacional de Câncer) estima mais de 77 mil novos casos por ano até 2028; diagnóstico precoce aumenta as chances de cura"
   },
   {
    "secao": "Ciência e Saúde",
@@ -971,5 +997,7 @@
    "resumo": "Desde que o exame molecular de rastreio de HPV em mulheres começou a ser disponibilizado pelo Sistema Único de Saúde (SUS), 9.904 testes apresentaram resultado positivo para HPV de alto risco, que é o subtipo do vírus as"
   }
  ],
- "erros": []
+ "erros": [
+  "Agência Câmara (Política): <urlopen error timed out>"
+ ]
 }

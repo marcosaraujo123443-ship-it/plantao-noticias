@@ -1,6 +1,6 @@
 {
  "data": "2026-11-01",
- "atualizado": "2026-11-01T11:34:22-0300",
+ "atualizado": "2026-11-01T12:20:41-0300",
  "itens": [
   {
    "hora": "16:00",
@@ -42,5 +42,7 @@
   "senado": [],
   "copom": []
  },
- "erros": []
+ "erros": [
+  "camara: URLError(TimeoutError('timed out'))"
+ ]
 }
