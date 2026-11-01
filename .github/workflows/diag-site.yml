@@ -1,0 +1,9 @@
+name: diag-site
+on: workflow_dispatch
+jobs:
+  v:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for u in analises/ analises/qual-a-melhor-maneira-de-tributar analises/qual-a-melhor-maneira-de-tributar.png; do echo "::notice::$u $(curl -sI https://plantaoinforma.com.br/$u | grep -iE '^(HTTP|content-type)' | tr '\r\n' '  ')"; done
+          echo "::notice::capa: $(curl -s https://plantaoinforma.com.br/ | grep -c 'anl-b')"
