@@ -17,6 +17,8 @@ DIAS = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-
 MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"]
 SECOES = data.get("secoes", ["Política", "IA", "Futebol", "Agro", "Mercado"])
 e = html.escape
+# podcast "Resumo do Plantão" no Spotify (feed podcast.xml, gerado pelo podcast.py)
+SPOTIFY = "https://open.spotify.com/episode/1tJLTP4Ok584YVAU1HQuSm"
 def slug(s):
     import unicodedata
     s = unicodedata.normalize("NFD", s.lower()); s = "".join(c for c in s if unicodedata.category(c) != "Mn")
@@ -80,7 +82,8 @@ if res and (upd - parse(res["gerado_utc"])).total_seconds() < 14 * 3600:
         player = (f'<div class="ouca"><span class="ouca-t">&#9654; Ouça o Plantão<small>{dur_txt}</small></span>'
                   f'<audio controls preload="none" src="plantao.mp3?v={e(res["gerado_utc"].replace(":", ""))}" '
                   f'aria-label="Ouça o Resumo do Plantão das {hr:%H}h"></audio>'
-                  '<small class="ouca-ia">Voz gerada por inteligência artificial</small></div>')
+                  '<small class="ouca-ia">Voz gerada por inteligência artificial</small>'
+                  f'<a class="spot" href="{SPOTIFY}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.4a.6.6 0 0 1-.9.2c-2.4-1.5-5.4-1.8-9-1a.6.6 0 1 1-.3-1.2c3.9-.9 7.2-.5 9.9 1.1.3.2.4.6.3.9Zm1.2-2.7a.8.8 0 0 1-1 .3c-2.7-1.7-6.9-2.2-10.2-1.2a.8.8 0 0 1-.5-1.5c3.7-1.1 8.3-.6 11.4 1.4.4.2.5.7.3 1Zm.1-2.8C14.6 9 9.2 8.8 6.1 9.8a.9.9 0 1 1-.6-1.8c3.6-1.1 9.5-.9 13.3 1.4a.9.9 0 0 1-.9 1.5Z"/></svg>Ouça no Spotify</a></div>')
         resumo_html = resumo_html.replace("</h2>", "</h2>" + player, 1)
 
 # O que acompanhar hoje (agenda.py): plenários, Copom e jogos do dia
