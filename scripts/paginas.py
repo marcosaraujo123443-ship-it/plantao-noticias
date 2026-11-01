@@ -65,9 +65,14 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .lista{columns:3 220px;padding:0;list-style:none}.lista li{padding:3px 0}
 .jogo td.pl{text-align:center;font-weight:800;white-space:nowrap}.jogo td.cs{text-align:right}.vivo{background:var(--down);color:#fff;font-size:11px;font-weight:700;padding:1px 5px;border-radius:3px}
 .nota{color:var(--ink2);font-size:13.5px;margin-top:28px;border-top:1px solid var(--rule);padding-top:12px}
+.art{max-width:72ch;font-size:17.5px;line-height:1.7}.art p{margin:0 0 1em}.art h2{font-size:23px;margin:1.6em 0 .5em}.rot{display:inline-block;font:700 12px system-ui;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);margin-bottom:6px}
+.sub{font-size:19px;line-height:1.5;color:var(--ink2);max-width:70ch;margin:0 0 14px}.byl{font-size:14px;color:var(--ink2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:10px 0;margin:0 0 26px;max-width:none}
+.comp{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}.comp a{font:600 14px system-ui;padding:8px 14px;border-radius:999px;text-decoration:none;border:1px solid var(--rule);color:var(--ink)}.comp a.zap{background:#1f8f4e;border-color:#1f8f4e;color:#fff}
+.anl{list-style:none;padding:0;max-width:75ch}.anl li{padding:16px 0;border-bottom:1px solid var(--rule)}.anl a{font:700 21px/1.3 Georgia,serif;color:var(--ink);text-decoration:none}.anl a:hover{text-decoration:underline}.anl p{margin:6px 0 0;color:var(--ink2)}.anl small{color:var(--ink2)}
+@media (max-width:600px){.art{font-size:17px}.sub{font-size:17px}}
 @media (max-width:600px){th,td{padding:7px 8px}table{font-size:13.5px}td:first-child{min-width:150px}}"""
 
-NAV = [("contas/", "Contas públicas"), ("tabelas/", "Tabelas do futebol"), ("agro.html", "Cotações do agro"),
+NAV = [("analises/", "Análises"), ("contas/", "Contas públicas"), ("tabelas/", "Tabelas do futebol"), ("agro.html", "Cotações do agro"),
        ("acoes.html", "Ações"), ("fiis.html", "Fundos imobiliários"), ("indicadores.html", "Indicadores econômicos")]
 PAGINAS = []
 
@@ -85,7 +90,7 @@ def limpa_links(doc):
         return f'{m.group(1)}"{(base or "./")}{"#" + ancora if ancora else ""}"'
     return re.sub(r'(href=)"([^"]+)"', troca, doc)
 
-def pagina(caminho, titulo, descricao, corpo, trilha=None, atualizado=None):
+def pagina(caminho, titulo, descricao, corpo, trilha=None, atualizado=None, og_tipo="website", og_img=None, extra_head="", rodape=None):
     PAGINAS.append(caminho)
     raiz = "../" * caminho.count("/")
     url = SITE + limpa_url(caminho)
@@ -97,13 +102,13 @@ def pagina(caminho, titulo, descricao, corpo, trilha=None, atualizado=None):
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(titulo)} · Plantão Informa</title><meta name="description" content="{e(descricao)}">
 <link rel="canonical" href="{e(url)}"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0b1f3a"><script>try{{var t=localStorage.getItem('plantao-tema');if(t)document.documentElement.setAttribute('data-theme',t==='escuro'?'dark':'light')}}catch(e){{}}</script>
-<meta property="og:type" content="website"><meta property="og:site_name" content="Plantão Informa"><meta property="og:title" content="{e(titulo)}">
-<meta property="og:description" content="{e(descricao)}"><meta property="og:url" content="{e(url)}"><meta property="og:image" content="{SITE}logo.jpg">
+<meta property="og:type" content="{og_tipo}"><meta property="og:site_name" content="Plantão Informa"><meta property="og:title" content="{e(titulo)}">
+<meta property="og:description" content="{e(descricao)}"><meta property="og:url" content="{e(url)}"><meta property="og:image" content="{og_img or SITE + 'logo.jpg'}">{'<meta name="twitter:card" content="summary_large_image">' if og_img else ''}{extra_head}
 <style>{CSS}</style></head><body>
 <header><div class="hd"><a class="marca" href="{raiz}./"><img src="{raiz}apple-touch-icon.png" alt="">Plantão Informa</a><nav class="pg">{nav}</nav><button type="button" class="tema" data-tema aria-label="Alternar entre tema claro e escuro" title="Tema claro ou escuro"><svg class="t-sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg><svg class="t-lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/></svg><span>Tema</span></button></div></header>
 <main>{tr}<h1>{e(titulo)}</h1>
 {corpo}
-{upd}Dados com atraso, apenas informativos. <a href="{raiz}./">Notícias</a> · <a href="{raiz}sobre">Sobre</a> · <a href="{raiz}privacidade">Privacidade</a></p>
+{upd}{rodape if rodape is not None else "Dados com atraso, apenas informativos. "}<a href="{raiz}./">Notícias</a> · <a href="{raiz}sobre">Sobre</a> · <a href="{raiz}privacidade">Privacidade</a></p>
 </main><script>(function(){{var b=document.querySelectorAll('[data-tema]');function escuro(){{var t=document.documentElement.getAttribute('data-theme');return t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches}}
 function rot(){{var e=escuro();b.forEach(function(x){{x.setAttribute('aria-pressed',e);x.querySelector('span').textContent=e?'Claro':'Escuro';x.title=e?'Mudar para o tema claro':'Mudar para o tema escuro'}})}}
 b.forEach(function(x){{x.addEventListener('click',function(){{var n=escuro()?'claro':'escuro';document.documentElement.setAttribute('data-theme',n==='escuro'?'dark':'light');try{{localStorage.setItem('plantao-tema',n)}}catch(e){{}}rot()}})}});rot();}})();</script></body></html>"""
@@ -365,7 +370,50 @@ def mercado(m):
            + '<p class="nota">Fundos com liquidez diária acima de R$ 500 mil. Fontes: Fundamentus e Yahoo Finance. Não é recomendação de investimento.</p>',
            None, m.get("atualizado_utc"))
 
+# ---------------- Análises (matérias próprias, materias/*.md) ----------------
+def analises():
+    import shutil, urllib.parse
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from materias import ler_materias, RAIZ
+    lista = ler_materias()
+    if not lista: return
+    MES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"]
+    data = lambda dt: f"{dt.day} de {MES[dt.month - 1]} de {dt.year}"
+    os.makedirs(os.path.join(OUT, "analises"), exist_ok=True)
+    for m in lista:
+        img = os.path.join(RAIZ, "materias", "img", m["slug"] + ".png")
+        og = None
+        if os.path.exists(img):
+            shutil.copy(img, os.path.join(OUT, "analises", m["slug"] + ".png")); og = f"{SITE}analises/{m['slug']}.png"
+        url = f"{SITE}analises/{m['slug']}"
+        ld = {"@context": "https://schema.org", "@type": "Article", "headline": m["titulo"], "description": m.get("subtitulo", ""),
+              "datePublished": m["dt"].isoformat(), "dateModified": m["dt"].isoformat(), "inLanguage": "pt-BR",
+              "author": {"@type": "Organization" if m["autor"].startswith("Redação") else "Person", "name": m["autor"]},
+              "publisher": {"@type": "Organization", "name": "Plantão Informa", "logo": {"@type": "ImageObject", "url": SITE + "logo.jpg"}},
+              "mainEntityOfPage": url, "image": og or SITE + "logo.jpg", "articleSection": m["rotulo"]}
+        txt_zap = urllib.parse.quote(f"*{m['titulo']}*\n\n{m.get('subtitulo', '')}\n\nLeia no Plantão Informa: {url}")
+        corpo = (f'<span class="rot">{e(m["rotulo"])}{" · " + e(m["editoria"]) if m.get("editoria") else ""}</span>'
+                 + (f'<p class="sub">{e(m["subtitulo"])}</p>' if m.get("subtitulo") else "")
+                 + f'<p class="byl">Por <b>{e(m["autor"])}</b> · {data(m["dt"])} · {m["minutos"]} min de leitura</p>'
+                 + f'<article class="art">{m["html"]}</article>'
+                 + f'<div class="comp"><a class="zap" href="https://wa.me/?text={txt_zap}" target="_blank" rel="noopener">Compartilhar no WhatsApp</a>'
+                 + f'<a href="https://www.facebook.com/sharer/sharer.php?u={urllib.parse.quote(url)}" target="_blank" rel="noopener">Facebook</a>'
+                 + f'<a href="https://twitter.com/intent/tweet?url={urllib.parse.quote(url)}&text={urllib.parse.quote(m["titulo"])}" target="_blank" rel="noopener">X</a></div>')
+        head = '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script>" + \
+               f'<meta property="article:published_time" content="{m["dt"].isoformat()}">'
+        pagina(f"analises/{m['slug']}.html", m["titulo"], m.get("subtitulo") or m["titulo"], corpo, [("analises/", "Análises")],
+               None, "article", og, head, f"{e(m['rotulo'])} do Plantão Informa. As opiniões e análises se baseiam em dados e fontes públicas. ")
+    lis = ""
+    for m in lista:
+        sub = f'<p>{e(m["subtitulo"])}</p>' if m.get("subtitulo") else ""
+        lis += f'<li><small>{e(m["rotulo"])} · {data(m["dt"])}</small><br><a href="{m["slug"]}.html">{e(m["titulo"])}</a>{sub}</li>'
+    pagina("analises/index.html", "Análises do Plantão", "Análises e explicações do Plantão Informa sobre economia, política e os temas do dia.",
+           f'<p class="lead">Textos do Plantão Informa que explicam, com calma, os temas por trás das manchetes.</p><ul class="anl">{lis}</ul>',
+           rodape="")
+
 def main():
+    try: analises()
+    except Exception as ex: print("ERRO análises", ex)
     for nome, f in (("estados.json", contas), ("futebol.json", futebol), ("agro.json", agro), ("mercado.json", mercado),
                     ("indicadores.json", indicadores)):
         d = ler(nome)

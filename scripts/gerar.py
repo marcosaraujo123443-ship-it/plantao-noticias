@@ -204,6 +204,21 @@ if _ag.get("linhas"):
                     f'</tr></thead><tbody>{_linhas}</tbody></table></div>'
                     '<p class="nota">Fontes: Cepea/Esalq, IMEA, Scot Consultoria e cooperativas, reunidos pelo Notícias Agrícolas. Valores com atraso; apenas informativo.</p></section>')
 
+# Análises do Plantão (matérias próprias, materias/*.md)
+analises_html = ""
+try:
+    sys.path.insert(0, str(Path(__file__).parent)); from materias import ler_materias
+    _mat = ler_materias()[:3]
+except Exception: _mat = []
+if _mat:
+    _MS = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
+    _it = "".join(f'<article class="anl-i"><span class="anl-r">{e(m["rotulo"])} · {m["dt"].day} {_MS[m["dt"].month - 1]}</span>'
+                  f'<h3><a href="analises/{m["slug"]}">{e(m["titulo"])}</a></h3>'
+                  + (f'<p>{e(m["subtitulo"])}</p>' if m.get("subtitulo") else "") +
+                  f'<span class="anl-m">{e(m["autor"])} · {m["minutos"]} min de leitura</span></article>' for m in _mat)
+    analises_html = (f'<section class="anl-b" aria-label="Análises do Plantão"><header><h2>Análises do Plantão</h2>'
+                     f'<a class="ver" href="analises/">Ver todas →</a></header><div class="anl-g">{_it}</div></section>')
+
 paginas = ""
 for s in SECOES:
     li = "".join(f'<li>{meta(i)}<h4>{a(i)}</h4>{resumo(i)}</li>' for i in por_sec[s])
@@ -362,7 +377,7 @@ merc_json = json.dumps(mercado, ensure_ascii=False).replace("</", "<\\/")
 tpl = (Path(__file__).parent / "modelo.html").read_text(encoding="utf-8")
 out = tpl
 for k, v in {"DATA": f"{DIAS[upd.weekday()]}, {upd.day} de {MESES[upd.month-1]} de {upd.year}",
-             "HORA": f"{upd:%H:%M}", "REDES_TOPO": REDES_TOPO, "REDES_ROD": REDES_ROD, "UPD_ISO": data["atualizado_utc"], "LEAD": lead_html, "RESUMO": resumo_html, "AGENDA": agenda_html, "DESTAQUES": dest_html, "BLOCOS": blocos,
+             "HORA": f"{upd:%H:%M}", "REDES_TOPO": REDES_TOPO, "REDES_ROD": REDES_ROD, "UPD_ISO": data["atualizado_utc"], "LEAD": lead_html, "RESUMO": resumo_html, "AGENDA": agenda_html, "DESTAQUES": dest_html, "ANALISES": analises_html, "BLOCOS": blocos,
              "PAGINAS": paginas, "TABS": tabs, "HORARIOS": horarios, "FONTES": fontes_txt,
              "TOTAL": str(len(itens)), "NFONTES": str(len(fontes)), "MERCADO": merc_json,
              "FONTES_OPT": "".join(f'<option value="{e(f)}">{e(f)}</option>' for f in sorted(fontes, key=str.lower))}.items():
