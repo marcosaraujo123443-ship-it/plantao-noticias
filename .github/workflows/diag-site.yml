@@ -1,0 +1,11 @@
+name: diag-site
+on: workflow_dispatch
+jobs:
+  v:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "::notice::xml $(curl -sI https://plantaoinforma.com.br/podcast.xml | grep -iE '^(HTTP|content-type)' | tr '\r\n' '  ') capa $(curl -sI https://plantaoinforma.com.br/podcast-capa.jpg | grep -iE '^(HTTP|content-type)' | tr '\r\n' '  ')"
+          u=$(curl -s https://plantaoinforma.com.br/podcast.xml | grep -o 'enclosure url="[^"]*' | head -1 | cut -d'"' -f2)
+          echo "::notice::mp3 $u -> $(curl -sIL "$u" | grep -iE '^(HTTP|content-type|content-length)' | tr '\r\n' '  ')"
+          pip install -q feedparser && python3 -c "import feedparser;f=feedparser.parse('https://plantaoinforma.com.br/podcast.xml');print('::notice::feedparser bozo',f.bozo,len(f.entries),f.feed.get('title'))"
