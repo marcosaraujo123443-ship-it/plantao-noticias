@@ -15,17 +15,17 @@ SECOES = {"Política": "Na política", "IA": "Em inteligência artificial", "Fut
 
 def roteiro(r):
     q = datetime.strptime(r["gerado_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).astimezone(BRT)
-    partes = [f"Plantão Informa. Resumo das {q.hour} horas desta {DIAS[q.weekday()]}, {q.day} de {MESES[q.month - 1]}.",
-              r["abertura"]]
+    saudacao = "Bom dia" if q.hour < 12 else "Boa tarde" if q.hour < 18 else "Boa noite"
+    partes = [f"{saudacao}, bem-vindo ao Plantão Informa.", r["abertura"]]
     for s in r["secoes"]:
         partes.append(f"{SECOES.get(s['secao'], s['secao'])}. {s['texto']}")
-    partes.append("Esse foi o resumo do Plantão Informa. Notícias, cotações e tabelas atualizadas de hora em hora "
-                  "em plantão informa ponto com ponto b r.")
+    partes.append("Mais notícias em plantão informa ponto com ponto b r.")
     return "\n\n".join(partes), q
 
 def falar(texto, chave):
-    pedido = ("Leia em português do Brasil, como um locutor de rádio jornalístico: tom neutro, claro e em ritmo natural, "
-              "com pausas curtas entre os assuntos.\n\n" + texto)
+    # a instrução de estilo vai separada do texto para a voz não lê-la em voz alta
+    pedido = ("Narre o texto abaixo em português do Brasil, como locutor de rádio jornalístico, tom neutro e ritmo natural. "
+              "Leia somente o texto, sem nenhuma introdução:\n\n" + texto)
     corpo = {"contents": [{"parts": [{"text": pedido}]}],
              "generationConfig": {"responseModalities": ["AUDIO"],
                                   "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": VOZ}}}}}
