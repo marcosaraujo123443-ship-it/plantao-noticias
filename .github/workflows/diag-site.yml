@@ -1,0 +1,9 @@
+name: diag-site
+on: workflow_dispatch
+jobs:
+  v:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for u in mapa-contas.js mapa_ufs.json contas/ analises/de-onde-vem-o-dinheiro-dos-estados-e-municipios analises/grafico-impostos-2023.png; do echo "::notice::$u $(curl -sI https://plantaoinforma.com.br/$u | grep -iE '^(HTTP|content-type)' | tr '\r\n' '  ')"; done
+          echo "::notice::contas mapa=$(curl -s https://plantaoinforma.com.br/contas/ | grep -c data-mapa-contas) capa mapa=$(curl -s https://plantaoinforma.com.br/ | grep -c data-mapa-contas)"
