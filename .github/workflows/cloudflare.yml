@@ -33,7 +33,7 @@ jobs:
           cp *.html *.json *.png *.jpg sw.js dist/ 2>/dev/null || true
           for f in ads.txt robots.txt sitemap.xml favicon.ico site.webmanifest sw.js podcast.xml; do [ -f $f ] && cp $f dist/ || true; done
           rm -f dist/telegram_enviados.json
-          cp scripts/brasil_mapa.json dist/mapa_ufs.json && cp mapa-contas.js dist/   # mapa das contas por estado
+          cp scripts/brasil_mapa.json dist/mapa_ufs.json && cp mapa-contas.js mapa-agro.js dist/   # mapa das contas por estado
           cp scripts/brasil_meso.json dist/mapa_meso.json   # contornos das mesorregiões (mapa do tempo)
           git fetch -q --depth 1 origin audio 2>/dev/null && git show FETCH_HEAD:plantao.mp3 > dist/plantao.mp3 || rm -f dist/plantao.mp3   # Ouça o Plantão
           python3 scripts/paginas.py dist

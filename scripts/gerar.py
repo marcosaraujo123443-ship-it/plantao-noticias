@@ -219,6 +219,32 @@ if _mat:
     analises_html = (f'<section class="anl-b" aria-label="Análises do Plantão"><header><h2>Análises do Plantão</h2>'
                      f'<a class="ver" href="analises/">Ver todas →</a></header><div class="anl-g">{_it}</div></section>')
 
+# As 20 maiores economias (economias.py, Banco Mundial)
+economias_html = ""
+try: _ec = json.loads((d / "economias.json").read_text(encoding="utf-8")).get("paises") or []
+except Exception: _ec = []
+if _ec:
+    def _us(v):
+        if v is None: return "–"
+        a = abs(v); s_ = "−" if v < 0 else ""
+        t = f"{a / 1e12:.2f} tri".replace(".", ",") if a >= 1e12 else f"{a / 1e9:.0f} bi"
+        return f"{s_}{t}"
+    _lin = ""
+    for i, p in enumerate(_ec, 1):
+        sal = p.get("saldo"); cls = "up" if (sal or 0) > 0 else "down" if (sal or 0) < 0 else ""
+        cr = p.get("cresc")
+        _lin += (f'<tr{" class=\"ec-br\"" if p["iso"] == "BRA" else ""}><td class="n">{i}</td><td>{p.get("bandeira", "")} {e(p["nome"])}</td>'
+                 f'<td class="n">{_us(p.get("pib"))}</td><td class="n {"up" if (cr or 0) > 0 else "down" if (cr or 0) < 0 else ""}">'
+                 f'{"–" if cr is None else f"{cr:+.1f}%".replace(".", ",")}</td>'
+                 f'<td class="n nm">{_us(p.get("exp"))}</td><td class="n nm">{_us(p.get("imp"))}</td><td class="n {cls}">{_us(sal)}</td></tr>')
+    _ano = max(p["anos"].get("pib", "") for p in _ec)
+    economias_html = ('<section class="quadro" aria-label="As 20 maiores economias do mundo"><header><h3>As 20 maiores economias do mundo</h3>'
+                      f'<p class="per">PIB em dólares de {_ano}, crescimento real no ano e balança comercial de bens e serviços (exportações menos importações).</p></header>'
+                      '<div class="tw"><table class="tab-m ec-t"><thead><tr><th class="n">#</th><th>País</th><th class="n">PIB (US$)</th><th class="n">Cresc.</th>'
+                      '<th class="n nm">Export.</th><th class="n nm">Import.</th><th class="n">Saldo (US$)</th></tr></thead>'
+                      f'<tbody>{_lin}</tbody></table></div><p class="nota" style="padding:8px 16px 16px">Fonte: Banco Mundial (World Development Indicators). '
+                      'Alguns países ainda não publicaram o comércio exterior do último ano; nesses casos vale o ano anterior. Taiwan não entra nas estatísticas do Banco Mundial.</p></section>')
+
 paginas = ""
 for s in SECOES:
     li = "".join(f'<li>{meta(i)}<h4>{a(i)}</h4>{resumo(i)}</li>' for i in por_sec[s])
@@ -254,6 +280,7 @@ for s in SECOES:
     <p class="nota" data-agn></p>
   </section>
 ''' + agro_uf_html + '''
+  <div data-mapa-agro></div>
   <section class="quadro" data-agclima>
     <header><h3>Clima nas regiões produtoras</h3></header>
     <p class="agc-res" data-agcr>''' + sk_txt("Carregando a previsão…", "80%") + '''</p>
@@ -315,6 +342,7 @@ for s in SECOES:
       <div class="tw"><table class="tab-m"><thead><tr><th>Indicador</th><th class="n">Último</th><th class="n">12 meses</th><th>Referência</th></tr></thead><tbody data-ecob>''' + sk_linhas(5, 4) + '''</tbody></table></div>
       <a class="mais" href="indicadores">Ver os indicadores em detalhe →</a>
     </section>
+    ''' + economias_html + '''
   </div>
   <p class="nota" data-nota></p>
 </div>'''
