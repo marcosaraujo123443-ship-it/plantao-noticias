@@ -1,9 +1,0 @@
-name: diag-site
-on: workflow_dispatch
-jobs:
-  v:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          for u in mapa-agro.js agro_estados.json economias.json estados_historico.json; do echo "::notice::$u $(curl -sI https://plantaoinforma.com.br/$u | grep -iE '^(HTTP|content-type)' | tr '\r\n' '  ')"; done
-          h=$(curl -s https://plantaoinforma.com.br/); echo "::notice::agro=$(echo "$h" | grep -c data-mapa-agro) eco=$(echo "$h" | grep -c ec-t) saldo_sr=$(curl -s https://plantaoinforma.com.br/mapa-contas.js | grep -c saldo_sr)"
