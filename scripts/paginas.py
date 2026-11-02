@@ -65,7 +65,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .lista{columns:3 220px;padding:0;list-style:none}.lista li{padding:3px 0}
 .jogo td.pl{text-align:center;font-weight:800;white-space:nowrap}.jogo td.cs{text-align:right}.vivo{background:var(--down);color:#fff;font-size:11px;font-weight:700;padding:1px 5px;border-radius:3px}
 .nota{color:var(--ink2);font-size:13.5px;margin-top:28px;border-top:1px solid var(--rule);padding-top:12px}
-.art{max-width:72ch;font-size:17.5px;line-height:1.7}.art p{margin:0 0 1em}.art h2{font-size:23px;margin:1.6em 0 .5em}.rot{display:inline-block;font:700 12px system-ui;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);margin-bottom:6px}
+.art{max-width:72ch;font-size:17.5px;line-height:1.7}.art p{margin:0 0 1em}.art figure{margin:1.4em 0}.art img{width:100%;height:auto;border:1px solid var(--rule);border-radius:8px;background:#fff}.art figcaption{font-size:13px;color:var(--ink2);margin-top:6px}.art h3{font:700 19px Georgia,serif;margin:1.3em 0 .4em}.art h2{font-size:23px;margin:1.6em 0 .5em}.rot{display:inline-block;font:700 12px system-ui;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);margin-bottom:6px}
 .sub{font-size:19px;line-height:1.5;color:var(--ink2);max-width:70ch;margin:0 0 14px}.byl{font-size:14px;color:var(--ink2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:10px 0;margin:0 0 26px;max-width:none}
 .comp{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}.comp a{font:600 14px system-ui;padding:8px 14px;border-radius:999px;text-decoration:none;border:1px solid var(--rule);color:var(--ink)}.comp a.zap{background:#1f8f4e;border-color:#1f8f4e;color:#fff}
 .anl{list-style:none;padding:0;max-width:75ch}.anl li{padding:16px 0;border-bottom:1px solid var(--rule)}.anl a{font:700 21px/1.3 Georgia,serif;color:var(--ink);text-decoration:none}.anl a:hover{text-decoration:underline}.anl p{margin:6px 0 0;color:var(--ink2)}.anl small{color:var(--ink2)}
@@ -188,10 +188,11 @@ def contas(est):
     corpo = ('<p class=lead>Quanto cada governo arrecadou e gastou neste ano, com os dados que os próprios estados e a União enviam ao Tesouro Nacional. '
              'Clique em um estado para ver receitas, despesas e o gasto por área.</p>'
              '<p><a href="brasil.html"><b>Brasil (Governo Federal)</b></a> · <a href="estados.html"><b>Todos os estados somados</b></a></p>'
+             + '<div data-mapa-contas></div>'
              + tabela([("Estado", 0), ("Arrecadado", 1), ("Gasto", 1), ("Saldo", 1), ("Por habitante", 1), ("Dados até", 1)], linhas))
     pagina("contas/index.html", "Contas públicas dos estados e da União",
            "Receitas, despesas e saldo do governo federal e dos 27 estados em 2026, com dados do Tesouro Nacional (SICONFI) atualizados diariamente.",
-           corpo, None, est.get("atualizado_utc"))
+           corpo, None, est.get("atualizado_utc"), extra_head='<script src="/mapa-contas.js" defer></script>')
 
 # ---------------- Tabelas do futebol ----------------
 SLUG_LIGA = {"bra.1": "brasileirao-serie-a", "bra.2": "brasileirao-serie-b", "eng.1": "premier-league", "esp.1": "la-liga",
@@ -380,6 +381,9 @@ def analises():
     MES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"]
     data = lambda dt: f"{dt.day} de {MES[dt.month - 1]} de {dt.year}"
     os.makedirs(os.path.join(OUT, "analises"), exist_ok=True)
+    pasta_img = os.path.join(RAIZ, "materias", "img")
+    for arq in os.listdir(pasta_img) if os.path.isdir(pasta_img) else []:   # imagens e gráficos das matérias
+        shutil.copy(os.path.join(pasta_img, arq), os.path.join(OUT, "analises", arq))
     for m in lista:
         img = os.path.join(RAIZ, "materias", "img", m["slug"] + ".png")
         og = None

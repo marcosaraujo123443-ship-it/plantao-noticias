@@ -224,7 +224,7 @@ for s in SECOES:
     li = "".join(f'<li>{meta(i)}<h4>{a(i)}</h4>{resumo(i)}</li>' for i in por_sec[s])
     painel = ""
     if s == "Política":
-        painel = '''<div class="painel contas" data-contas>''' + congresso_html + '''
+        painel = '''<div class="painel contas" data-contas>''' + congresso_html + '''<div data-mapa-contas></div>
   <section class="quadro">
     <header><h3>Contas públicas</h3>
       <div class="filtros-uf">

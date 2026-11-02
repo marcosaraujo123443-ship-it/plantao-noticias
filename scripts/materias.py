@@ -21,6 +21,10 @@ def corpo_html(texto):
     out = []
     for bloco in re.split(r"\n\s*\n", texto.strip()):
         b = bloco.strip()
+        img = re.match(r"!\[(.*?)\]\(([\w.-]+)\)$", b)
+        if img:
+            out.append(f'<figure><img src="{img.group(2)}" alt="{e(img.group(1))}" loading="lazy" width="1200" height="640">'
+                       f'<figcaption>{e(img.group(1))}</figcaption></figure>'); continue
         if b.startswith("## "): out.append(f"<h2>{inline(b[3:])}</h2>")
         elif b.startswith("### "): out.append(f"<h3>{inline(b[4:])}</h3>")
         elif all(l.strip().startswith("- ") for l in b.splitlines()):
