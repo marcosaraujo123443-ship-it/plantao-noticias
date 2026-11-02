@@ -1,42 +1,64 @@
 {
- "data": "2026-11-01",
- "atualizado": "2026-11-01T23:52:11-0300",
+ "data": "2026-11-02",
+ "atualizado": "2026-11-02T01:56:27-0300",
  "itens": [
+  {
+   "hora": "00:00",
+   "tipo": "tempo",
+   "rotulo": "Alerta INMET",
+   "titulo": "Tempestade (perigo) em MS, PR, SP",
+   "detalhe": [
+    "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
+   ],
+   "link": "#tempo",
+   "estado": ""
+  },
   {
    "hora": "16:00",
    "tipo": "futebol",
    "rotulo": "Série B",
-   "titulo": "Londrina 1 × 3 América-MG",
+   "titulo": "Fortaleza × Atlético-GO",
    "detalhe": [
     "36ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
-   "hora": "18:30",
+   "hora": "18:00",
    "tipo": "futebol",
    "rotulo": "Série B",
-   "titulo": "Cuiabá 1 × 2 São Bernardo",
+   "titulo": "Athletic × Ceará",
    "detalhe": [
     "36ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
-   "hora": "18:30",
+   "hora": "20:00",
+   "tipo": "futebol",
+   "rotulo": "Brasileirão",
+   "titulo": "Bragantino × Santos",
+   "detalhe": [
+    "34ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "20:30",
    "tipo": "futebol",
    "rotulo": "Série B",
-   "titulo": "Novorizontino 2 × 1 Operário PR",
+   "titulo": "Goiás × CRB",
    "detalhe": [
     "36ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   }
  ],
- "outros_jogos": 24,
+ "outros_jogos": 11,
  "fontes": {
   "camara": [],
   "senado": [],
