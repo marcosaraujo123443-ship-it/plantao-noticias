@@ -9,15 +9,9 @@ jobs:
       - run: |
           mkdir d && cd d
           g(){ curl -s -m 60 -A "Mozilla/5.0" -o "$1" -w "$1 %{http_code} %{size_download}\n" "$2" >> log.txt || echo "$1 falhou" >> log.txt; }
-          g imf_gdp.json "https://www.imf.org/external/datamapper/api/v1/NGDPD"
-          g imf_bca.json "https://www.imf.org/external/datamapper/api/v1/BCA"
-          g wb_gdp.json "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?format=json&per_page=400&mrnev=1"
-          g wb_bal.json "https://api.worldbank.org/v2/country/all/indicator/NE.RSB.GNFS.CD?format=json&per_page=400&mrnev=1"
-          g wb_exp.json "https://api.worldbank.org/v2/country/USA;CHN/indicator/NE.EXP.GNFS.CD?format=json&mrnev=1"
-          g sidra_pib.json "https://apisidra.ibge.gov.br/values/t/5938/n3/all/v/37,513/p/last%201"
-          g sidra_pam.json "https://apisidra.ibge.gov.br/values/t/5457/n3/all/v/215/p/last%201/c782/0"
-          g sidra_lspa.json "https://apisidra.ibge.gov.br/values/t/6588/n3/all/v/35/p/last%201/c48/39443,39441,39432"
-          g sidra_ppm.json "https://apisidra.ibge.gov.br/values/t/3939/n3/all/v/all/p/last%201/c79/2670"
-          g ibge_malha.json "https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=application/vnd.geo+json&intrarregiao=UF&qualidade=minima"
+          g pib3.json "https://apisidra.ibge.gov.br/values/t/5938/n3/all/v/37,513/p/last%203"
+          g pam_prod.json "https://apisidra.ibge.gov.br/values/t/5457/n1/all/v/214/p/last%201/c782/all"
+          g lspa_prod.json "https://apisidra.ibge.gov.br/values/t/6588/n1/all/v/35/p/last%201/c48/all"
+          g wb_paises.json "https://api.worldbank.org/v2/country?format=json&per_page=400"
           cat log.txt
           git init -q -b diag-dados && git add . && git -c user.name=bot -c user.email=b@b commit -qm d && git push -fq "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" diag-dados
