@@ -1,6 +1,6 @@
 {
  "data": "2026-11-02",
- "atualizado": "2026-11-02T01:56:27-0300",
+ "atualizado": "2026-11-02T05:25:13-0300",
  "itens": [
   {
    "hora": "00:00",
@@ -64,5 +64,7 @@
   "senado": [],
   "copom": []
  },
- "erros": []
+ "erros": [
+  "camara: <HTTPError 504: 'Gateway Timeout'>"
+ ]
 }
