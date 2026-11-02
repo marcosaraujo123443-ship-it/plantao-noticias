@@ -1,0 +1,28 @@
+name: Histórico das contas
+on:
+  schedule:
+    - cron: "10 10 5 * *"   # dia 5 de cada mês (confere se o ano passado já foi enviado ao Tesouro)
+  workflow_dispatch:
+  push:
+    paths: ["scripts/estados_hist.py", ".github/workflows/estados-historico.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: estados-historico
+  cancel-in-progress: false
+jobs:
+  coletar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Coletar os anos que faltam (SICONFI) e o IPCA
+        run: python3 scripts/estados_hist.py
+      - name: Publicar estados_historico.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add estados_historico.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Histórico das contas $(date -u +%d/%m)"
+          for i in 1 2 3; do git pull --rebase -q origin main && git push -q origin main && break; sleep 5; done
