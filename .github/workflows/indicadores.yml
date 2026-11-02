@@ -5,7 +5,7 @@ on:
     - cron: "45 23 * * *"   # 20h45 (decisão do Copom sai por volta das 18h30)
   workflow_dispatch:
   push:
-    paths: ["scripts/indicadores.py", ".github/workflows/indicadores.yml"]
+    paths: ["scripts/indicadores.py", "scripts/economias.py", ".github/workflows/indicadores.yml"]
 permissions:
   contents: write
 concurrency:
@@ -18,11 +18,14 @@ jobs:
       - uses: actions/checkout@v4
       - name: Coletar no Banco Central
         run: python3 scripts/indicadores.py
+      - name: 20 maiores economias (Banco Mundial)
+        continue-on-error: true
+        run: python3 scripts/economias.py
       - name: Publicar indicadores.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add indicadores.json
+          git add indicadores.json $( [ -f economias.json ] && echo economias.json )
           git diff --cached --quiet && exit 0
           git commit -m "Indicadores $(TZ=America/Sao_Paulo date +%d/%m\ %H:%M)"
           for i in 1 2 3; do git pull --rebase -q origin main && git push -q origin main && break; sleep 5; done
