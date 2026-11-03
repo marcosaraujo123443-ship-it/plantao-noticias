@@ -1,17 +1,26 @@
 {
  "data": "2026-11-03",
- "atualizado": "2026-11-03T08:49:44-0300",
+ "atualizado": "2026-11-03T09:55:57-0300",
  "itens": [
   {
-   "hora": "00:00",
+   "hora": "12:00",
    "tipo": "tempo",
    "rotulo": "Alerta INMET",
-   "titulo": "Acumulado de Chuva (perigo) em RS, SC",
+   "titulo": "Tempestade (perigo) em MS, PR, RS, SC",
    "detalhe": [
-    "Chuva entre 30 a 60 mm/h ou 50 a 100 mm/dia. Risco de alagamentos, deslizamentos de encostas, transbordamentos de rios, em cidades com tais…"
+    "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
    ],
    "link": "#tempo",
    "estado": ""
+  },
+  {
+   "hora": "13:55",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Deliberativa no Plenário",
+   "detalhe": [],
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
   },
   {
    "hora": "14:00",
@@ -160,7 +169,17 @@
  ],
  "outros_jogos": 0,
  "fontes": {
-  "camara": [],
+  "camara": [
+   {
+    "hora": "13:55",
+    "tipo": "politica",
+    "rotulo": "Câmara",
+    "titulo": "Sessão Deliberativa no Plenário",
+    "detalhe": [],
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
+   }
+  ],
   "senado": [
    {
     "hora": "14:00",
