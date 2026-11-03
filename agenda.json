@@ -1,6 +1,6 @@
 {
  "data": "2026-11-03",
- "atualizado": "2026-11-03T14:47:27-0300",
+ "atualizado": "2026-11-03T15:46:23-0300",
  "itens": [
   {
    "hora": "12:00",
@@ -14,19 +14,6 @@
    "estado": ""
   },
   {
-   "hora": "13:55",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Deliberativa no Plenário",
-   "detalhe": [
-    "PL 2879/2011: Altera a Lei nº 9.503, de 23 de setembro de 1997, que institui o Código de Trânsito Brasileiro, para dispor…",
-    "PL 1932/2021: Altera a Lei nº 8.080, de 19 de setembro de 1990, para determinar que o abastecimento de medicamentos e de…",
-    "REQ 3511/2026: Requer urgência, nos termos do art. 155 do Regimento Interno da Câmara dos Deputados, para apreciação do…"
-   ],
-   "link": "https://www.camara.leg.br/agenda",
-   "estado": "Convocada"
-  },
-  {
    "hora": "14:00",
    "tipo": "politica",
    "rotulo": "Senado",
@@ -37,7 +24,7 @@
     "PL 5782/2023: Institui a campanha Setembro em Flor, destinada à conscientização sobre os tumores ginecológicos."
    ],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Em andamento"
+   "estado": "Suspensa"
   },
   {
    "hora": "14:45",
@@ -60,6 +47,19 @@
    ],
    "estado": "",
    "link": "tabelas/"
+  },
+  {
+   "hora": "15:39",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Deliberativa no Plenário",
+   "detalhe": [
+    "PL 2879/2011: Altera a Lei nº 9.503, de 23 de setembro de 1997, que institui o Código de Trânsito Brasileiro, para dispor…",
+    "PL 1932/2021: Altera a Lei nº 8.080, de 19 de setembro de 1990, para determinar que o abastecimento de medicamentos e de…",
+    "REQ 3511/2026: Requer urgência, nos termos do art. 155 do Regimento Interno da Câmara dos Deputados, para apreciação do…"
+   ],
+   "link": "https://www.youtube.com/watch?v=2DuQ7sdIe8s",
+   "estado": "Em Andamento"
   },
   {
    "hora": "17:00",
@@ -175,7 +175,7 @@
  "fontes": {
   "camara": [
    {
-    "hora": "13:55",
+    "hora": "15:39",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Deliberativa no Plenário",
@@ -184,8 +184,8 @@
      "PL 1932/2021: Altera a Lei nº 8.080, de 19 de setembro de 1990, para determinar que o abastecimento de medicamentos e de…",
      "REQ 3511/2026: Requer urgência, nos termos do art. 155 do Regimento Interno da Câmara dos Deputados, para apreciação do…"
     ],
-    "link": "https://www.camara.leg.br/agenda",
-    "estado": "Convocada"
+    "link": "https://www.youtube.com/watch?v=2DuQ7sdIe8s",
+    "estado": "Em Andamento"
    }
   ],
   "senado": [
@@ -200,7 +200,7 @@
      "PL 5782/2023: Institui a campanha Setembro em Flor, destinada à conscientização sobre os tumores ginecológicos."
     ],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Em andamento"
+    "estado": "Suspensa"
    }
   ],
   "copom": [
