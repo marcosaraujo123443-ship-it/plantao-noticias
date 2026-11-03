@@ -1,68 +1,193 @@
 {
- "data": "2026-11-02",
- "atualizado": "2026-11-02T23:50:01-0300",
+ "data": "2026-11-03",
+ "atualizado": "2026-11-03T01:50:48-0300",
  "itens": [
   {
-   "hora": "08:40",
+   "hora": "00:00",
    "tipo": "tempo",
    "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (perigo) em MS, PR, SP",
+   "titulo": "Acumulado de Chuva (perigo) em RS, SC",
    "detalhe": [
-    "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
+    "Chuva entre 30 a 60 mm/h ou 50 a 100 mm/dia. Risco de alagamentos, deslizamentos de encostas, transbordamentos de rios, em cidades com tais…"
    ],
    "link": "#tempo",
    "estado": ""
   },
   {
-   "hora": "16:00",
-   "tipo": "futebol",
-   "rotulo": "Série B",
-   "titulo": "Fortaleza 0 × 0 Atlético-GO",
+   "hora": "14:00",
+   "tipo": "politica",
+   "rotulo": "Senado",
+   "titulo": "Sessão deliberativa ordinária no Plenário",
    "detalhe": [
-    "36ª rodada"
+    "PEC 18/2025: Altera os arts. 5º, 15, 22, 23, 24, 40, 49, 84, 103-B, 130-A e 144 da Constituição Federal e o art.76 do Ato…",
+    "PL 186/2025: Altera a Lei nº 14.826, de 20 de março de 2024, para incluir entre as ações destinadas à promoção da…",
+    "PL 5782/2023: Institui a campanha Setembro em Flor, destinada à conscientização sobre os tumores ginecológicos."
    ],
-   "estado": "encerrado",
+   "link": "https://www25.senado.leg.br/web/atividade/plenario",
+   "estado": "Agendada"
+  },
+  {
+   "hora": "14:45",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Galatasaray × Stuttgart",
+   "detalhe": [
+    "4ª rodada"
+   ],
+   "estado": "",
    "link": "tabelas/"
   },
   {
-   "hora": "18:00",
+   "hora": "14:45",
    "tipo": "futebol",
-   "rotulo": "Série B",
-   "titulo": "Athletic 2 × 1 Ceará",
+   "rotulo": "Champions",
+   "titulo": "Shakhtar × Sporting",
    "detalhe": [
-    "36ª rodada"
+    "4ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
-   "hora": "20:00",
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Atl Madrid × Bayern",
+   "detalhe": [
+    "4ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Barcelona × Aston Villa",
+   "detalhe": [
+    "4ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Bodo/Glimt × Lille",
+   "detalhe": [
+    "4ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Feyenoord × Inter",
+   "detalhe": [
+    "4ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "LASK Linz × S Bratislava",
+   "detalhe": [
+    "4ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Man Utd × Roma",
+   "detalhe": [
+    "4ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Villareal × PSG",
+   "detalhe": [
+    "4ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "19:30",
    "tipo": "futebol",
    "rotulo": "Brasileirão",
-   "titulo": "Bragantino 2 × 1 Santos",
+   "titulo": "Chapecoense × Mirassol",
    "detalhe": [
     "34ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
-   "hora": "20:30",
+   "hora": "21:30",
    "tipo": "futebol",
-   "rotulo": "Série B",
-   "titulo": "Goiás 2 × 1 CRB",
+   "rotulo": "Brasileirão",
+   "titulo": "Internacional × Coritiba",
    "detalhe": [
-    "36ª rodada"
+    "34ª rodada"
    ],
-   "estado": "ao vivo",
+   "estado": "",
    "link": "tabelas/"
+  },
+  {
+   "hora": "",
+   "tipo": "economia",
+   "rotulo": "Copom",
+   "titulo": "Copom começa a reunião sobre a Selic",
+   "detalhe": [
+    "A decisão sai amanhã, no início da noite."
+   ],
+   "link": "https://www.bcb.gov.br/publicacoes/comunicadoscopom"
   }
  ],
- "outros_jogos": 11,
+ "outros_jogos": 0,
  "fontes": {
   "camara": [],
-  "senado": [],
-  "copom": []
+  "senado": [
+   {
+    "hora": "14:00",
+    "tipo": "politica",
+    "rotulo": "Senado",
+    "titulo": "Sessão deliberativa ordinária no Plenário",
+    "detalhe": [
+     "PEC 18/2025: Altera os arts. 5º, 15, 22, 23, 24, 40, 49, 84, 103-B, 130-A e 144 da Constituição Federal e o art.76 do Ato…",
+     "PL 186/2025: Altera a Lei nº 14.826, de 20 de março de 2024, para incluir entre as ações destinadas à promoção da…",
+     "PL 5782/2023: Institui a campanha Setembro em Flor, destinada à conscientização sobre os tumores ginecológicos."
+    ],
+    "link": "https://www25.senado.leg.br/web/atividade/plenario",
+    "estado": "Agendada"
+   }
+  ],
+  "copom": [
+   {
+    "hora": "",
+    "tipo": "economia",
+    "rotulo": "Copom",
+    "titulo": "Copom começa a reunião sobre a Selic",
+    "detalhe": [
+     "A decisão sai amanhã, no início da noite."
+    ],
+    "link": "https://www.bcb.gov.br/publicacoes/comunicadoscopom"
+   }
+  ]
  },
  "erros": []
 }
