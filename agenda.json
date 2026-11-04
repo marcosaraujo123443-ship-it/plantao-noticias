@@ -1,6 +1,6 @@
 {
  "data": "2026-11-04",
- "atualizado": "2026-11-04T13:53:30-0300",
+ "atualizado": "2026-11-04T14:50:46-0300",
  "itens": [
   {
    "hora": "00:00",
@@ -43,19 +43,6 @@
    "estado": "Encerrada"
   },
   {
-   "hora": "13:55",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Deliberativa no Plenário",
-   "detalhe": [
-    "PL 2879/2011: Altera a Lei nº 9.503, de 23 de setembro de 1997, que institui o Código de Trânsito Brasileiro, para dispor…",
-    "PL 1932/2021: Altera a Lei nº 8.080, de 19 de setembro de 1990, para determinar que o abastecimento de medicamentos e de…",
-    "REQ 4057/2026: Requer urgência para o Projeto de Lei nº 5.086/2026, que “Dispõe sobre o regime jurídico específico das…"
-   ],
-   "link": "https://www.camara.leg.br/agenda",
-   "estado": "Convocada"
-  },
-  {
    "hora": "14:00",
    "tipo": "politica",
    "rotulo": "Senado",
@@ -66,7 +53,20 @@
     "PDL 344/2024: Aprova o texto do Acordo entre o Governo da República Federativa do Brasil e o Governo da República da…"
    ],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Agendada"
+   "estado": "Suspensa"
+  },
+  {
+   "hora": "14:44",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Deliberativa no Plenário",
+   "detalhe": [
+    "PL 2879/2011: Altera a Lei nº 9.503, de 23 de setembro de 1997, que institui o Código de Trânsito Brasileiro, para dispor…",
+    "PL 1932/2021: Altera a Lei nº 8.080, de 19 de setembro de 1990, para determinar que o abastecimento de medicamentos e de…",
+    "REQ 4057/2026: Requer urgência para o Projeto de Lei nº 5.086/2026, que “Dispõe sobre o regime jurídico específico das…"
+   ],
+   "link": "https://www.youtube.com/watch?v=AmljjQupEwk",
+   "estado": "Em Andamento"
   },
   {
    "hora": "14:45",
@@ -244,7 +244,7 @@
     "estado": "Encerrada"
    },
    {
-    "hora": "13:55",
+    "hora": "14:44",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Deliberativa no Plenário",
@@ -253,8 +253,8 @@
      "PL 1932/2021: Altera a Lei nº 8.080, de 19 de setembro de 1990, para determinar que o abastecimento de medicamentos e de…",
      "REQ 4057/2026: Requer urgência para o Projeto de Lei nº 5.086/2026, que “Dispõe sobre o regime jurídico específico das…"
     ],
-    "link": "https://www.camara.leg.br/agenda",
-    "estado": "Convocada"
+    "link": "https://www.youtube.com/watch?v=AmljjQupEwk",
+    "estado": "Em Andamento"
    }
   ],
   "senado": [
@@ -269,7 +269,7 @@
      "PDL 344/2024: Aprova o texto do Acordo entre o Governo da República Federativa do Brasil e o Governo da República da…"
     ],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Agendada"
+    "estado": "Suspensa"
    }
   ],
   "copom": [
