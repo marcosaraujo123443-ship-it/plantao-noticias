@@ -35,6 +35,21 @@ def tickers(z):
     for k in out: out[k].sort(key=lambda c: (c[-1] != "3", c[-2:] != "11", c))
     return out
 
+sys.path.insert(0, __import__("os").path.dirname(__file__))
+try: from mercado import NOMES, IBOV
+except Exception: NOMES, IBOV = {}, ""
+IBOV = set(IBOV.split() if isinstance(IBOV, str) else IBOV)
+MIN = {"de", "da", "do", "das", "dos", "e"}
+
+def curto(tks, nome):
+    for t in tks:
+        if t in NOMES: return NOMES[t]
+    n = re.sub(r"\b(S\.?/?A\.?|S/A|CIA\.?|COMPANHIA|EM RECUPERAÇÃO JUDICIAL|- EM RECUPERACAO JUDICIAL|HOLDING|PARTICIPAÇÕES|PARTICIPACOES)\b", " ", nome, flags=re.I)
+    n = re.sub(r"^BCO\b", "Banco", n.strip(), flags=re.I)
+    n = re.sub(r"[\s.,-]+$", "", re.sub(r"\s+", " ", n)).strip(" -.")
+    n = re.sub(r"\s+(e|de|da|do|das|dos)$", "", n, flags=re.I)
+    return " ".join(p.lower() if p.lower() in MIN and i else (p if len(p) <= 3 and p.isalpha() and p not in ("SID",) else p.capitalize()) for i, p in enumerate(n.split()))[:40] or nome
+
 def v(x):
     try: return float(x)
     except (TypeError, ValueError): return None
@@ -74,8 +89,9 @@ def resumo(cnpj, dt, d, tks):
         return c.get((ordem, ini)) if c else None
     rec = dre.get("3.01"); bruto = conta_dre(dre, r"^Resultado Bruto", 1)
     ebit = conta_dre(dre, r"Antes do Resultado Financeiro", 1)
+    tot = conta_dre(dre, r"^(Lucro|Resultado|Prejuízo).*(Período|Exercício)", 1) or dre.get("3.11") or dre.get("3.09")
     luc = conta_dre(dre, r"Atribuído a Sócios da Empresa Controladora", 2) if d["grupo"] == "con" else None
-    luc = luc or conta_dre(dre, r"^(Lucro|Resultado).*(Período|Exercício)", 1)
+    if not luc or not any(x for k_, x in luc.items() if k_ != "ds"): luc = tot   # algumas empresas deixam a linha dos controladores zerada
     ini_ano, ini_ant = f"{ano}-01-01", f"{int(ano) - 1}-01-01"
     mes = int(dt[5:7]); ini_tri = f"{ano}-{mes - 2:02d}-01"; ini_tri_ant = f"{int(ano) - 1}-{mes - 2:02d}-01"
     def bloco(ini_u, ini_p):
@@ -93,7 +109,7 @@ def resumo(cnpj, dt, d, tks):
     caixa = (pega(bpa, r"^Caixa e Equivalentes", 2) or pega(bpa, r"^Caixa e Equivalentes", 1) or 0) + (pega(bpa, r"^Aplicações Financeiras", 2) or 0)
     pl = pega(bpp, r"^Patrimônio Líquido", 1)
     tri_n = {3: "1T", 6: "2T", 9: "3T", 12: "4T"}.get(mes, "")
-    return {"cnpj": cnpj, "tickers": tks, "nome": d["nome"], "ref": dt, "periodo": ("Ano" if d["tipo"] == "DFP" else tri_n) + ano[2:],
+    return {"cnpj": cnpj, "tickers": tks, "nome": d["nome"], "curto": curto(tks, d["nome"]), "ibov": any(t in IBOV for t in tks), "ref": dt, "periodo": ano if d["tipo"] == "DFP" else tri_n + ano[2:],
             "tipo": d["tipo"], "recebido": d["recebido"], "link": d["link"], "consolidado": d["grupo"] == "con",
             "rotulo_receita": (rec or {}).get("ds"), "ano": {k: round(x) for k, x in ytd.items() if x is not None},
             "tri": {k: round(x) for k, x in (tri or {}).items() if x is not None},
@@ -110,7 +126,8 @@ def main():
     out = []
     for cnpj, por_data in docs.items():
         dt = max(por_data)
-        try: r = resumo(cnpj, dt, por_data[dt], tk[cnpj])
+        tks = sorted(tk[cnpj], key=lambda c: (c not in IBOV, c[-1] not in "4" and c[-2:] != "11", c))
+        try: r = resumo(cnpj, dt, por_data[dt], tks)
         except Exception as ex: print("erro", cnpj, ex); continue
         if r["ano"].get("receita") is None and r["ano"].get("lucro") is None: continue
         out.append(r)

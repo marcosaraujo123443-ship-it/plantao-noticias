@@ -343,6 +343,7 @@ for s in SECOES:
       <a class="mais" href="indicadores">Ver os indicadores em detalhe →</a>
     </section>
     ''' + economias_html + '''
+    <section data-balancos></section>
   </div>
   <p class="nota" data-nota></p>
 </div>'''
