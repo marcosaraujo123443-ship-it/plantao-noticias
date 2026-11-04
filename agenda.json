@@ -1,12 +1,23 @@
 {
- "data": "2026-11-03",
- "atualizado": "2026-11-03T23:47:26-0300",
+ "data": "2026-11-04",
+ "atualizado": "2026-11-04T01:53:38-0300",
  "itens": [
   {
-   "hora": "12:00",
+   "hora": "00:00",
    "tipo": "tempo",
    "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (perigo) em MS, PR, RS, SC",
+   "titulo": "Tempestade (grande perigo) em PR, RS, SC",
+   "detalhe": [
+    "Chuva superior a 60 mm/h ou maior que 100 mm/dia, ventos superiores a 100 km/h, e queda de granizo. Grande risco de danos em edificações,…"
+   ],
+   "link": "#tempo",
+   "estado": ""
+  },
+  {
+   "hora": "00:00",
+   "tipo": "tempo",
+   "rotulo": "Alerta INMET",
+   "titulo": "Tempestade (perigo) em MS, PR, RS, SC, SP",
    "detalhe": [
     "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
    ],
@@ -14,178 +25,236 @@
    "estado": ""
   },
   {
-   "hora": "14:00",
+   "hora": "09:00",
    "tipo": "politica",
-   "rotulo": "Senado",
-   "titulo": "Sessão deliberativa ordinária no Plenário",
-   "detalhe": [
-    "RQS 729/2026: Solicita a realização de Sessão Especial destinada a celebrar o Dia do Síndico.",
-    "PEC 18/2025: Altera os arts. 5º, 15, 22, 23, 24, 40, 49, 84, 103-B, 130-A e 144 da Constituição Federal e o art.76 do Ato…",
-    "RQS 735/2026: Solicita a realização de Sessão Especial destinada a celebrar o Dia do Biomédico."
-   ],
-   "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
+   "rotulo": "Câmara",
+   "titulo": "Sessão Não Deliberativa Solene no Plenário",
+   "detalhe": [],
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
   },
   {
-   "hora": "14:45",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Galatasaray 2 × 0 Stuttgart",
-   "detalhe": [
-    "4ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
+   "hora": "11:00",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Não Deliberativa Solene no Plenário",
+   "detalhe": [],
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
   },
   {
-   "hora": "14:45",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Shakhtar 0 × 1 Sporting",
-   "detalhe": [
-    "4ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "15:39",
+   "hora": "13:55",
    "tipo": "politica",
    "rotulo": "Câmara",
    "titulo": "Sessão Deliberativa no Plenário",
    "detalhe": [
     "PL 2879/2011: Altera a Lei nº 9.503, de 23 de setembro de 1997, que institui o Código de Trânsito Brasileiro, para dispor…",
     "PL 1932/2021: Altera a Lei nº 8.080, de 19 de setembro de 1990, para determinar que o abastecimento de medicamentos e de…",
-    "REQ 3511/2026: Requer urgência, nos termos do art. 155 do Regimento Interno da Câmara dos Deputados, para apreciação do…"
+    "REQ 4057/2026: Requer urgência para o Projeto de Lei nº 5.086/2026, que “Dispõe sobre o regime jurídico específico das…"
    ],
-   "link": "https://www.youtube.com/watch?v=2DuQ7sdIe8s",
-   "estado": "Encerrada"
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
   },
   {
-   "hora": "17:00",
+   "hora": "14:00",
+   "tipo": "politica",
+   "rotulo": "Senado",
+   "titulo": "Sessão deliberativa ordinária no Plenário",
+   "detalhe": [
+    "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
+    "PL 2234/2024: Altera a Lei nº 8.069, de 13 de julho de 1990 (Estatuto da Criança e do Adolescente), para adequar a…",
+    "PDL 344/2024: Aprova o texto do Acordo entre o Governo da República Federativa do Brasil e o Governo da República da…"
+   ],
+   "link": "https://www25.senado.leg.br/web/atividade/plenario",
+   "estado": "Agendada"
+  },
+  {
+   "hora": "14:45",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "Atl Madrid 0 × 2 Bayern",
+   "titulo": "AEK Athens × Real Madrid",
    "detalhe": [
     "4ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "14:45",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Fenerbahçe × Liverpool",
+   "detalhe": [
+    "4ª rodada"
+   ],
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "17:00",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "Barcelona 3 × 0 Aston Villa",
+   "titulo": "Borussia Dortmund × Betis",
    "detalhe": [
     "4ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "17:00",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "Bodo/Glimt 0 × 0 Lille",
+   "titulo": "FC Porto × Napoli",
    "detalhe": [
     "4ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "17:00",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "Feyenoord 0 × 3 Inter",
+   "titulo": "Lens × Como",
    "detalhe": [
     "4ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "17:00",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "LASK Linz 4 × 0 S Bratislava",
+   "titulo": "PSV × Club Brugge",
    "detalhe": [
     "4ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "17:00",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "Man Utd 3 × 2 Roma",
+   "titulo": "RB Leipzig × Man City",
    "detalhe": [
     "4ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "17:00",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "Villareal 0 × 6 PSG",
+   "titulo": "Slavia Prague × Arsenal",
    "detalhe": [
     "4ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Viking FK × Sabah",
+   "detalhe": [
+    "4ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "18:30",
+   "tipo": "economia",
+   "rotulo": "Copom",
+   "titulo": "Copom anuncia a nova taxa Selic",
+   "detalhe": [
+    "Hoje a Selic está em 13,75% ao ano; a decisão sai no início da noite."
+   ],
+   "link": "https://www.bcb.gov.br/publicacoes/comunicadoscopom"
+  },
+  {
+   "hora": "19:30",
+   "tipo": "futebol",
+   "rotulo": "Brasileirão",
+   "titulo": "Athletico-PR × Vasco",
+   "detalhe": [
+    "34ª rodada"
+   ],
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "19:30",
    "tipo": "futebol",
    "rotulo": "Brasileirão",
-   "titulo": "Chapecoense 1 × 2 Mirassol",
+   "titulo": "Flamengo × Grêmio",
    "detalhe": [
     "34ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "21:30",
    "tipo": "futebol",
    "rotulo": "Brasileirão",
-   "titulo": "Internacional 0 × 0 Coritiba",
+   "titulo": "Botafogo × Atlético-MG",
    "detalhe": [
     "34ª rodada"
    ],
-   "estado": "ao vivo",
+   "estado": "",
    "link": "tabelas/"
   },
   {
-   "hora": "",
-   "tipo": "economia",
-   "rotulo": "Copom",
-   "titulo": "Copom começa a reunião sobre a Selic",
+   "hora": "21:30",
+   "tipo": "futebol",
+   "rotulo": "Brasileirão",
+   "titulo": "São Paulo × Corinthians",
    "detalhe": [
-    "A decisão sai amanhã, no início da noite."
+    "34ª rodada"
    ],
-   "link": "https://www.bcb.gov.br/publicacoes/comunicadoscopom"
+   "estado": "",
+   "link": "tabelas/"
   }
  ],
  "outros_jogos": 0,
  "fontes": {
   "camara": [
    {
-    "hora": "15:39",
+    "hora": "09:00",
+    "tipo": "politica",
+    "rotulo": "Câmara",
+    "titulo": "Sessão Não Deliberativa Solene no Plenário",
+    "detalhe": [],
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
+   },
+   {
+    "hora": "11:00",
+    "tipo": "politica",
+    "rotulo": "Câmara",
+    "titulo": "Sessão Não Deliberativa Solene no Plenário",
+    "detalhe": [],
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
+   },
+   {
+    "hora": "13:55",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Deliberativa no Plenário",
     "detalhe": [
      "PL 2879/2011: Altera a Lei nº 9.503, de 23 de setembro de 1997, que institui o Código de Trânsito Brasileiro, para dispor…",
      "PL 1932/2021: Altera a Lei nº 8.080, de 19 de setembro de 1990, para determinar que o abastecimento de medicamentos e de…",
-     "REQ 3511/2026: Requer urgência, nos termos do art. 155 do Regimento Interno da Câmara dos Deputados, para apreciação do…"
+     "REQ 4057/2026: Requer urgência para o Projeto de Lei nº 5.086/2026, que “Dispõe sobre o regime jurídico específico das…"
     ],
-    "link": "https://www.youtube.com/watch?v=2DuQ7sdIe8s",
-    "estado": "Encerrada"
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
    }
   ],
   "senado": [
@@ -195,22 +264,22 @@
     "rotulo": "Senado",
     "titulo": "Sessão deliberativa ordinária no Plenário",
     "detalhe": [
-     "RQS 729/2026: Solicita a realização de Sessão Especial destinada a celebrar o Dia do Síndico.",
-     "PEC 18/2025: Altera os arts. 5º, 15, 22, 23, 24, 40, 49, 84, 103-B, 130-A e 144 da Constituição Federal e o art.76 do Ato…",
-     "RQS 735/2026: Solicita a realização de Sessão Especial destinada a celebrar o Dia do Biomédico."
+     "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
+     "PL 2234/2024: Altera a Lei nº 8.069, de 13 de julho de 1990 (Estatuto da Criança e do Adolescente), para adequar a…",
+     "PDL 344/2024: Aprova o texto do Acordo entre o Governo da República Federativa do Brasil e o Governo da República da…"
     ],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
+    "estado": "Agendada"
    }
   ],
   "copom": [
    {
-    "hora": "",
+    "hora": "18:30",
     "tipo": "economia",
     "rotulo": "Copom",
-    "titulo": "Copom começa a reunião sobre a Selic",
+    "titulo": "Copom anuncia a nova taxa Selic",
     "detalhe": [
-     "A decisão sai amanhã, no início da noite."
+     "Hoje a Selic está em 13,75% ao ano; a decisão sai no início da noite."
     ],
     "link": "https://www.bcb.gov.br/publicacoes/comunicadoscopom"
    }
