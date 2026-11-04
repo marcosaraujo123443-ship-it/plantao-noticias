@@ -6,14 +6,11 @@ jobs:
   v:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
       - run: |
-          mkdir d w && cd w
-          B=https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC
-          for f in ITR/DADOS/itr_cia_aberta_2026.zip FCA/DADOS/fca_cia_aberta_2026.zip DFP/DADOS/dfp_cia_aberta_2025.zip; do curl -s -m 300 -o "$(basename $f)" -w "$f %{http_code} %{size_download}\n" "$B/$f" >> ../d/log.txt; done
-          for z in *.zip; do unzip -l $z >> ../d/log.txt; done
-          unzip -q -o itr_cia_aberta_2026.zip -d itr; unzip -q -o fca_cia_aberta_2026.zip -d fca
-          for f in itr/itr_cia_aberta_DRE_con_2026.csv itr/itr_cia_aberta_BPA_con_2026.csv itr/itr_cia_aberta_BPP_con_2026.csv itr/itr_cia_aberta_2026.csv fca/fca_cia_aberta_valor_mobiliario_2026.csv; do echo "== $f" >> ../d/log.txt; iconv -f latin1 -t utf8 $f | head -5 >> ../d/log.txt; done
-          iconv -f latin1 -t utf8 itr/itr_cia_aberta_DRE_con_2026.csv | grep -i "PETROLEO BRASILEIRO" | grep "2026-09-30" | head -40 > ../d/petro_dre.txt
-          iconv -f latin1 -t utf8 itr/itr_cia_aberta_BPP_con_2026.csv | grep -i "PETROLEO BRASILEIRO" | grep "2026-09-30" | head -60 > ../d/petro_bpp.txt
-          iconv -f latin1 -t utf8 itr/itr_cia_aberta_2026.csv | sort -t';' -k5 | tail -20 > ../d/itr_recentes.txt
-          cd ../d && git init -q -b diag-dados && git add . && git -c user.name=bot -c user.email=b@b commit -qm d && git push -fq "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" diag-dados
+          mkdir d
+          python scripts/balancos.py > d/log.txt 2>&1 || true
+          cp balancos.json d/ 2>/dev/null || true
+          cd d && git init -q -b diag-dados && git add . && git -c user.name=bot -c user.email=b@b commit -qm d && git push -fq "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" diag-dados
