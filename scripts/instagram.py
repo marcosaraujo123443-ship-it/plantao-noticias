@@ -187,6 +187,20 @@ def proximo_economia():
         return "painel"
     return None
 
+def proxima_aula():
+    """Próximo dia da série (sempre em sequência, no máximo um por dia; um dia pulado só atrasa a série)."""
+    import instagram_aula as au
+    s = au.serie(); reg = registro(); fb = bool(os.environ.get("FB_PAGE_TOKEN"))
+    agora = datetime.now(BRT); hoje = agora.strftime("%Y-%m-%d")
+    if hoje < s.get("inicio", "") and not os.environ.get("AULA_DIA"): return None, f"a série começa em {s['inicio']}"
+    if os.environ.get("AULA_DIA"): return int(os.environ["AULA_DIA"]), ""
+    ult = int((reg.get("aula") or "aula 0").split()[-1])
+    if ult and fb and reg.get("fb_aula") != reg.get("aula"): return ult, ""   # faltou o Facebook do último
+    if ult >= len(s["dias"]): return None, "série completa"
+    if ult and utc(reg.get("aula_em", "2000-01-01T00:00:00Z")).astimezone(BRT).strftime("%Y-%m-%d") == hoje and not os.environ.get("IG_FORCAR"):
+        return None, f"o dia {ult} da série já saiu hoje"
+    return ult + 1, ""
+
 def gerar(tipo):
     saida = os.environ.get("GITHUB_OUTPUT")
     def sinal(ok, nome=None):
@@ -212,6 +226,20 @@ def gerar(tipo):
                        "imagens": [os.path.basename(a) for a in arquivos], "alt": alt}, f, ensure_ascii=False, indent=1)
         print(f"{len(arquivos)} card(s) gerado(s) para {sub} ({chave})\n\n{legenda}")
         sinal(True, "economia"); return
+    if tipo == "aula":   # série "Economia em 30 dias": um carrossel por dia, em sequência (serie/economia.json)
+        import instagram_aula as au
+        n, motivo = proxima_aula()
+        if not n:
+            print("Nada a publicar:", motivo); sinal(False); return
+        chave, legenda, alt = au.legenda_e_alt(n)
+        for antigo in os.listdir(PASTA) if os.path.isdir(PASTA) else []:
+            if antigo.startswith("aula-"): os.remove(os.path.join(PASTA, antigo))
+        arquivos = au.gerar(n, PASTA)
+        with open(os.path.join(PASTA, "aula.json"), "w", encoding="utf-8") as f:
+            json.dump({"chave": chave, "registro": "aula", "legenda": legenda,
+                       "imagens": [os.path.basename(a) for a in arquivos], "alt": alt}, f, ensure_ascii=False, indent=1)
+        print(f"{len(arquivos)} card(s) gerado(s) para {chave}\n\n{legenda}")
+        sinal(True, "aula"); return
     if tipo == "avulso":   # post pronto (imagens e legenda em posts/avulso.json), ex.: divulgação de uma análise
         import shutil
         raiz = os.path.dirname(PASTA)

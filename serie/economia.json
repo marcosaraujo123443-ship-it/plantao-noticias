@@ -1,0 +1,701 @@
+{
+ "nome": "Economia em 30 dias",
+ "inicio": "2026-11-04",
+ "frase": "Pessoas inteligentes sempre se mantêm bem informadas.",
+ "semanas": {
+  "1": "Os fundamentos da economia",
+  "2": "A dança dos juros",
+  "3": "O dinheiro na prática",
+  "4": "O futuro e as tendências"
+ },
+ "dias": [
+  {
+   "n": 1,
+   "semana": 1,
+   "titulo": "O que é economia?",
+   "gancho": "Como decisões tomadas a milhares de quilômetros chegam ao seu bolso.",
+   "explica": "Economia é o estudo de como pessoas, empresas e governos decidem usar recursos que são limitados: dinheiro, tempo, trabalho e matérias-primas. Ela olha desde a sua compra no mercado (microeconomia) até juros, inflação e crescimento do país (macroeconomia).",
+   "exemplo": "Uma seca nos EUA reduz a safra de milho, a ração fica mais cara e o preço do frango sobe no Brasil semanas depois.",
+   "bons": [
+    "Entender economia ajuda a antecipar aumentos de preço",
+    "Melhora decisões de compra, crédito e investimento",
+    "Permite avaliar promessas de governos com senso crítico"
+   ],
+   "ruins": [
+    "Choques globais chegam rápido e não dá para evitar todos",
+    "Economia não é ciência exata: previsões erram",
+    "Decisões erradas do governo afetam todo mundo"
+   ],
+   "bolso": "Juros, câmbio e inflação mexem no preço do pão, na parcela do carro e no rendimento da sua poupança, mesmo que você não acompanhe as notícias.",
+   "dica": "Acompanhe três números por mês: inflação (IPCA), juros (Selic) e dólar. Eles explicam boa parte do seu orçamento.",
+   "tags": "#economia #educacaofinanceira #financaspessoais"
+  },
+  {
+   "n": 2,
+   "semana": 1,
+   "titulo": "Oferta e demanda",
+   "gancho": "A regra de ouro que explica por que o tomate sobe e desce no supermercado.",
+   "explica": "O preço nasce do encontro entre quem quer vender (oferta) e quem quer comprar (demanda). Se tem pouco produto e muita gente querendo, o preço sobe. Se sobra produto e falta comprador, o preço cai.",
+   "exemplo": "Chuva forte destrói lavouras de tomate: a oferta cai e o quilo dispara. Na safra cheia, sobra tomate e o preço despenca.",
+   "bons": [
+    "Preço alto estimula produzir mais, e a oferta volta",
+    "Preço baixo estimula consumir mais",
+    "Sinaliza onde faltam e onde sobram recursos"
+   ],
+   "ruins": [
+    "Choques de oferta geram picos de preço que pesam nos mais pobres",
+    "Produtor sofre quando a safra é grande e o preço desaba",
+    "Tabelar preço costuma gerar falta do produto"
+   ],
+   "bolso": "Alimentos in natura mudam de preço conforme o clima e a safra. Comprar o que está na época sai mais barato e com mais qualidade.",
+   "dica": "Troque o item que disparou por um substituto da estação. Quando todo mundo faz isso, a demanda cai e o preço volta.",
+   "tags": "#ofertaedemanda #economia #precos"
+  },
+  {
+   "n": 3,
+   "semana": 1,
+   "titulo": "O que é inflação?",
+   "gancho": "O imposto invisível que corrói o seu poder de compra.",
+   "explica": "Inflação é o aumento generalizado e contínuo dos preços. Quando ela sobe, o mesmo dinheiro compra menos coisas. Pode vir de demanda aquecida, de custos maiores (energia, dólar, salários) ou da perda de confiança na moeda.",
+   "exemplo": "Com inflação de 5% ao ano, R$ 100 hoje compram o que custaria cerca de R$ 105 daqui a 12 meses.",
+   "bons": [
+    "Inflação baixa e estável ajuda empresas a planejar",
+    "Facilita ajustes de preços e salários relativos",
+    "Corrói o valor real de dívidas antigas"
+   ],
+   "ruins": [
+    "Tira poder de compra de salários e aposentadorias",
+    "Pesa mais em quem não tem como investir",
+    "Inflação alta gera incerteza e juros altos"
+   ],
+   "bolso": "Dinheiro parado na carteira ou na conta perde valor todo mês. Salário sem reajuste é, na prática, salário menor.",
+   "dica": "Para se proteger, deixe a reserva em aplicações que rendam acima da inflação, como Tesouro Selic, Tesouro IPCA+ ou CDBs de liquidez diária.",
+   "tags": "#inflacao #poderdecompra #educacaofinanceira"
+  },
+  {
+   "n": 4,
+   "semana": 1,
+   "titulo": "IPCA, o termômetro da inflação",
+   "gancho": "Como o Brasil mede, todo mês, quanto a vida ficou mais cara.",
+   "explica": "O IPCA é o índice oficial de inflação, calculado pelo IBGE. Ele acompanha os preços de centenas de produtos e serviços consumidos por famílias com renda de 1 a 40 salários mínimos, em várias capitais e regiões metropolitanas, e é a base da meta de inflação do Banco Central.",
+   "exemplo": "Cada grupo tem um peso: alimentação, transportes e habitação são os maiores. Por isso gasolina e energia mexem tanto no índice.",
+   "bons": [
+    "Metodologia transparente e reconhecida",
+    "Serve de referência para metas, contratos e títulos",
+    "Permite comparar a inflação ao longo dos anos"
+   ],
+   "ruins": [
+    "É uma média: a sua inflação pessoal pode ser bem diferente",
+    "Não capta bem quem gasta muito com um só item",
+    "Mudanças de hábito demoram a entrar nos pesos"
+   ],
+   "bolso": "O IPCA corrige o Tesouro IPCA+, serve de referência para reajustes e guia a Selic. Quando ele sobe acima da meta, os juros tendem a subir.",
+   "dica": "Compare o reajuste do seu salário com o IPCA dos últimos 12 meses. Se ficou abaixo, você perdeu poder de compra.",
+   "tags": "#ipca #ibge #inflacao"
+  },
+  {
+   "n": 5,
+   "semana": 1,
+   "titulo": "PIB: o que é o país crescer",
+   "gancho": "Por que esse número importa para o seu emprego.",
+   "explica": "O PIB (Produto Interno Bruto) soma o valor de todos os bens e serviços finais produzidos no país em um período. Quando cresce, há mais produção, vendas e, em geral, mais empregos. Quando cai por dois trimestres seguidos, fala-se em recessão técnica.",
+   "exemplo": "Ele pode ser visto por quem produz (agro, indústria, serviços) ou por quem gasta (consumo das famílias, investimento, governo e exportações).",
+   "bons": [
+    "Crescimento gera emprego e aumenta a renda",
+    "Eleva a arrecadação sem precisar aumentar impostos",
+    "Atrai investimentos de empresas"
+   ],
+   "ruins": [
+    "Não mede distribuição de renda nem qualidade de vida",
+    "Crescimento puxado só por gasto público pode não durar",
+    "Ignora custos ambientais e trabalho doméstico"
+   ],
+   "bolso": "Com o PIB crescendo, fica mais fácil conseguir emprego e aumento. Em recessão, empresas cortam vagas e o crédito fica mais difícil.",
+   "dica": "Olhe também o PIB per capita: ele mostra se a riqueza cresce mais rápido que a população.",
+   "tags": "#pib #crescimento #emprego"
+  },
+  {
+   "n": 6,
+   "semana": 1,
+   "titulo": "Custo de oportunidade",
+   "gancho": "O preço escondido de toda escolha que você faz.",
+   "explica": "Custo de oportunidade é o valor daquilo que você deixa de ganhar ao escolher uma opção em vez de outra. Todo recurso tem usos alternativos: o dinheiro, o tempo e a energia gastos em uma coisa não podem ir para outra.",
+   "exemplo": "Deixar R$ 10 mil na conta corrente custa o rendimento que eles teriam numa aplicação. Esse ganho perdido é o custo de oportunidade.",
+   "bons": [
+    "Ajuda a comparar opções de forma honesta",
+    "Evita decisões por impulso",
+    "Vale para dinheiro, tempo e carreira"
+   ],
+   "ruins": [
+    "Nem sempre é fácil medir o valor da opção descartada",
+    "Pode gerar ansiedade de achar que sempre há algo melhor",
+    "Ignorá-lo faz parecer que algo é de graça"
+   ],
+   "bolso": "Com juros altos, o custo de oportunidade de gastar ou de deixar dinheiro parado aumenta: o mesmo valor aplicado renderia mais.",
+   "dica": "Antes de uma compra grande, pergunte: quanto esse dinheiro renderia em um ano aplicado? A resposta muda muita decisão.",
+   "tags": "#custodeoportunidade #financaspessoais #decisoes"
+  },
+  {
+   "n": 7,
+   "semana": 1,
+   "tipo": "quiz",
+   "titulo": "Quiz da semana",
+   "gancho": "Teste o que você aprendeu sobre inflação e oferta e demanda.",
+   "perguntas": [
+    {
+     "p": "Uma geada destrói parte da safra de café. O que tende a acontecer com o preço?",
+     "op": [
+      "Cai, porque sobra café",
+      "Sobe, porque a oferta diminui",
+      "Fica igual"
+     ],
+     "certa": 1,
+     "porque": "Menos oferta com a mesma procura empurra o preço para cima."
+    },
+    {
+     "p": "O que é inflação?",
+     "op": [
+      "Aumento generalizado e contínuo dos preços",
+      "Aumento do preço de um só produto",
+      "Queda do valor do dólar"
+     ],
+     "certa": 0,
+     "porque": "Um produto subindo sozinho não é inflação; ela é o aumento geral dos preços."
+    },
+    {
+     "p": "Quem calcula o IPCA, a inflação oficial do Brasil?",
+     "op": [
+      "Banco Central",
+      "Receita Federal",
+      "IBGE"
+     ],
+     "certa": 2,
+     "porque": "O IBGE calcula o IPCA, que o Banco Central usa para a meta de inflação."
+    },
+    {
+     "p": "Você deixa R$ 5 mil parados na conta por um ano. Qual o custo de oportunidade?",
+     "op": [
+      "Nenhum, o dinheiro continua lá",
+      "O rendimento que ele teria aplicado",
+      "A tarifa do banco"
+     ],
+     "certa": 1,
+     "porque": "O ganho que você deixou de ter é o custo de oportunidade."
+    }
+   ],
+   "tags": "#quiz #inflacao #ofertaedemanda"
+  },
+  {
+   "n": 8,
+   "semana": 2,
+   "titulo": "A taxa Selic",
+   "gancho": "O freio e o acelerador da economia brasileira.",
+   "explica": "A Selic é a taxa básica de juros da economia, definida pelo Banco Central. Ela serve de referência para todas as outras taxas: empréstimos, financiamentos e investimentos. Subir a Selic esfria a economia para conter a inflação; baixar estimula consumo e investimento.",
+   "exemplo": "Com a Selic alta, o crediário fica caro, as pessoas compram menos a prazo e os preços sobem mais devagar.",
+   "bons": [
+    "Juros altos seguram a inflação",
+    "Renda fixa rende mais para quem poupa",
+    "Juros baixos estimulam crédito, emprego e investimento"
+   ],
+   "ruins": [
+    "Juros altos travam empresas e aumentam o desemprego",
+    "Encarecem a dívida pública",
+    "Juros baixos demais podem acelerar a inflação"
+   ],
+   "bolso": "A Selic mexe na parcela do financiamento, no juro do cartão e no quanto rendem a poupança, o Tesouro Selic e os CDBs.",
+   "dica": "Selic alta: hora de evitar dívidas e aproveitar a renda fixa. Selic em queda: bom momento para renegociar dívidas caras.",
+   "tags": "#selic #juros #bancocentral"
+  },
+  {
+   "n": 9,
+   "semana": 2,
+   "titulo": "Copom: quem decide os juros",
+   "gancho": "As nove pessoas que definem a Selic a cada 45 dias.",
+   "explica": "O Copom (Comitê de Política Monetária) reúne o presidente e os oito diretores do Banco Central. São oito reuniões por ano, de dois dias, em que analisam inflação, atividade, câmbio, cenário externo e contas públicas antes de decidir a Selic.",
+   "exemplo": "A decisão sai no fim da tarde da quarta-feira, com um comunicado; a ata, com os detalhes, é publicada na terça seguinte.",
+   "bons": [
+    "Decisões técnicas e com calendário conhecido",
+    "Comunicação transparente ajuda o mercado a se planejar",
+    "Diretores com mandato reduzem pressão política"
+   ],
+   "ruins": [
+    "Juros agem com atraso de 6 a 18 meses sobre a inflação",
+    "Erro de dose pode custar crescimento ou inflação",
+    "Decisões são alvo frequente de disputa política"
+   ],
+   "bolso": "Cada decisão do Copom chega aos bancos em dias: muda a taxa oferecida no crédito e a rentabilidade das aplicações atreladas ao CDI.",
+   "dica": "Leia o comunicado do Copom: ele sinaliza se os juros devem subir, cair ou ficar parados nas próximas reuniões.",
+   "tags": "#copom #selic #bancocentral"
+  },
+  {
+   "n": 10,
+   "semana": 2,
+   "titulo": "Juros altos x juros baixos",
+   "gancho": "Como os ciclos da Selic afetam a casa própria e o carro.",
+   "explica": "Os juros dos financiamentos acompanham, com atraso, a Selic e os juros de longo prazo. Em ciclos de alta, as parcelas ficam mais caras e os bancos exigem mais garantias. Em ciclos de queda, o crédito fica mais barato e o mercado imobiliário e de veículos se aquece.",
+   "exemplo": "Num financiamento de R$ 300 mil em 30 anos, cada ponto a mais na taxa anual pode somar dezenas de milhares de reais no total pago.",
+   "bons": [
+    "Juros baixos tornam a casa própria mais acessível",
+    "Queda de juros abre espaço para portabilidade",
+    "Juros altos premiam quem compra à vista"
+   ],
+   "ruins": [
+    "Juros altos excluem muita gente do crédito",
+    "Contratos com taxa pós-fixada sobem junto com a Selic",
+    "Juros baixos demais inflam preços de imóveis"
+   ],
+   "bolso": "Financiamento imobiliário costuma ter taxa fixa mais TR; o de veículo, taxa fixa. Em queda de juros, vale simular a portabilidade para outro banco.",
+   "dica": "Compare sempre o CET (Custo Efetivo Total), não só a taxa de juros: ele inclui seguros e tarifas.",
+   "tags": "#financiamento #casapropria #juros"
+  },
+  {
+   "n": 11,
+   "semana": 2,
+   "titulo": "TR e a poupança",
+   "gancho": "Por que a poupança rende menos quando a Selic cai.",
+   "explica": "A poupança segue uma regra fixa. Quando a Selic está acima de 8,5% ao ano, rende 0,5% ao mês mais a TR (Taxa Referencial). Quando a Selic está em 8,5% ou menos, rende 70% da Selic mais a TR. A TR é calculada pelo Banco Central e muitas vezes fica perto de zero.",
+   "exemplo": "Com a Selic em 13,75%, a poupança rende cerca de 6,2% ao ano mais a TR, bem abaixo de um Tesouro Selic.",
+   "bons": [
+    "Isenta de Imposto de Renda",
+    "Simples, sem taxas e com liquidez",
+    "Garantida pelo FGC até R$ 250 mil por CPF e banco"
+   ],
+   "ruins": [
+    "Rende menos que outras aplicações seguras",
+    "Rendimento só no aniversário mensal",
+    "Às vezes perde para a inflação"
+   ],
+   "bolso": "Com juros altos, a poupança fica para trás: Tesouro Selic e CDBs que pagam 100% do CDI tendem a render mais, mesmo pagando IR.",
+   "dica": "Faça a conta líquida: compare a poupança com o rendimento do CDI já descontado o Imposto de Renda do prazo que você vai ficar.",
+   "tags": "#poupanca #tr #rendafixa"
+  },
+  {
+   "n": 12,
+   "semana": 2,
+   "titulo": "CDI, o gêmeo da Selic",
+   "gancho": "A taxa que dita o rendimento da sua renda fixa.",
+   "explica": "O CDI é a taxa média dos empréstimos de um dia entre bancos. Ela anda quase colada na Selic, um pouco abaixo. Por isso a maioria dos CDBs, LCIs, LCAs e fundos de renda fixa informa o rendimento como um percentual do CDI.",
+   "exemplo": "Um CDB que paga 110% do CDI, com CDI de 13,65% ao ano, rende cerca de 15% ao ano antes do Imposto de Renda.",
+   "bons": [
+    "Referência fácil para comparar investimentos",
+    "Acompanha a Selic: protege em ciclos de alta",
+    "Aplicações atreladas costumam ter boa liquidez"
+   ],
+   "ruins": [
+    "Rendimento cai junto com a Selic",
+    "Percentual do CDI engana se você esquecer o IR",
+    "Taxa alta pode indicar um emissor mais arriscado"
+   ],
+   "bolso": "Se a sua reserva rende menos de 100% do CDI em aplicação de liquidez diária, provavelmente há opções melhores no mercado.",
+   "dica": "LCI e LCA são isentas de IR: 90% do CDI nelas pode render mais que 100% do CDI num CDB tributado.",
+   "tags": "#cdi #rendafixa #investimentos"
+  },
+  {
+   "n": 13,
+   "semana": 2,
+   "titulo": "Juros compostos",
+   "gancho": "A força mais poderosa das finanças, a favor ou contra você.",
+   "explica": "Nos juros compostos, os juros de cada período são somados ao valor e passam a render também: são juros sobre juros. Com o tempo, o crescimento acelera. Funciona assim nos investimentos e também nas dívidas.",
+   "exemplo": "R$ 300 por mês a 1% ao mês viram cerca de R$ 69 mil em 10 anos, sendo R$ 36 mil aportados e o resto juros.",
+   "bons": [
+    "Tempo multiplica pequenos aportes",
+    "Começar cedo vale mais que aportar muito tarde",
+    "Reinvestir dividendos acelera o patrimônio"
+   ],
+   "ruins": [
+    "No cartão e no cheque especial, a dívida explode",
+    "Taxas de administração também se acumulam",
+    "Exige paciência: o efeito aparece no longo prazo"
+   ],
+   "bolso": "O rotativo do cartão passa de 400% ao ano. Desde 2024 a lei limita os juros ao valor da dívida original, mas ainda assim ela pode dobrar.",
+   "dica": "Pague primeiro a dívida mais cara e invista todo mês, mesmo pouco. O tempo trabalha a favor de quem começa.",
+   "tags": "#juroscompostos #investimentos #dividas"
+  },
+  {
+   "n": 14,
+   "semana": 2,
+   "titulo": "Curva de juros",
+   "gancho": "Como o mercado tenta prever o futuro da economia.",
+   "explica": "A curva de juros mostra as taxas cobradas para emprestar dinheiro por prazos diferentes: 1, 2, 5, 10 anos. Ela revela o que o mercado espera para a Selic, a inflação e o risco do país. Normalmente prazos longos pagam mais.",
+   "exemplo": "Se os juros de 10 anos sobem enquanto a Selic cai, o mercado está cobrando mais pelo risco de inflação ou de descontrole fiscal.",
+   "bons": [
+    "Antecipa expectativas de juros e inflação",
+    "Ajuda a escolher entre títulos pré e pós-fixados",
+    "Mostra rápido a reação a notícias do governo"
+   ],
+   "ruins": [
+    "Reflete expectativas, que podem estar erradas",
+    "Oscila muito em momentos de incerteza",
+    "Curva alta encarece financiamentos longos"
+   ],
+   "bolso": "Os juros longos influenciam o financiamento imobiliário e o preço dos títulos prefixados e IPCA+ no Tesouro Direto.",
+   "dica": "Títulos longos oscilam de preço: só compre se puder levar até o vencimento ou aceitar variações no caminho.",
+   "tags": "#curvadejuros #tesourodireto #mercado"
+  },
+  {
+   "n": 15,
+   "semana": 3,
+   "titulo": "Como o banco ganha dinheiro",
+   "gancho": "O spread bancário e por que o crédito no Brasil é caro.",
+   "explica": "O banco capta dinheiro pagando uma taxa (por exemplo, no CDB e na poupança) e empresta cobrando uma taxa maior. A diferença é o spread. Ele cobre inadimplência, impostos, custos de operação e o lucro. O Brasil tem um dos maiores spreads do mundo.",
+   "exemplo": "O banco paga cerca de 14% ao ano para captar e pode cobrar mais de 50% ao ano no crédito pessoal.",
+   "bons": [
+    "Bancos sólidos dão segurança ao sistema",
+    "Concorrência de fintechs e do Pix vem pressionando tarifas",
+    "Cadastro Positivo pode baixar juros para bons pagadores"
+   ],
+   "ruins": [
+    "Crédito caro trava consumo e investimento",
+    "Inadimplência alta acaba paga por todos os clientes",
+    "Concentração em poucos bancos reduz a concorrência"
+   ],
+   "bolso": "Seu histórico conta: quem paga em dia e tem score alto consegue taxas menores. Vale negociar e comparar bancos.",
+   "dica": "Consulte as taxas médias de cada banco no site do Banco Central antes de contratar um empréstimo.",
+   "tags": "#spread #bancos #credito"
+  },
+  {
+   "n": 16,
+   "semana": 3,
+   "titulo": "Renda fixa x renda variável",
+   "gancho": "Emprestar seu dinheiro ou virar sócio de uma empresa?",
+   "explica": "Na renda fixa, você empresta dinheiro ao governo ou a uma empresa e sabe a regra de remuneração: Tesouro Direto, CDB, LCI, debêntures. Na renda variável, você compra uma parte do negócio, como ações e fundos imobiliários, e o retorno depende dos resultados e do mercado.",
+   "exemplo": "Comprar um Tesouro Selic é emprestar ao governo. Comprar uma ação é virar sócio e dividir lucros e prejuízos.",
+   "bons": [
+    "Renda fixa traz previsibilidade e segurança",
+    "Renda variável pode render mais no longo prazo",
+    "Combinar as duas equilibra risco e retorno"
+   ],
+   "ruins": [
+    "Renda fixa pode perder para a inflação",
+    "Renda variável oscila e pode dar prejuízo",
+    "Emissores ruins também quebram na renda fixa"
+   ],
+   "bolso": "A reserva de emergência deve ficar na renda fixa com liquidez diária. Renda variável é para dinheiro que pode esperar anos.",
+   "dica": "Defina primeiro o objetivo e o prazo. O investimento certo depende de quando você vai precisar do dinheiro.",
+   "tags": "#rendafixa #rendavariavel #investimentos"
+  },
+  {
+   "n": 17,
+   "semana": 3,
+   "titulo": "Câmbio e dólar",
+   "gancho": "Por que o dólar sobe e mexe no preço do pão e da gasolina.",
+   "explica": "O câmbio é o preço de uma moeda em outra. O dólar sobe quando há mais procura do que oferta da moeda no Brasil: investidores saindo, juros americanos altos, incerteza fiscal ou queda no preço das commodities que exportamos.",
+   "exemplo": "O trigo do pão e boa parte dos combustíveis têm preço em dólar. Com o real fraco, eles ficam mais caros aqui.",
+   "bons": [
+    "Dólar alto favorece exportadores e o agro",
+    "Estimula o turismo estrangeiro no Brasil",
+    "Torna a indústria nacional mais competitiva"
+   ],
+   "ruins": [
+    "Encarece importados, combustíveis e alimentos",
+    "Alimenta a inflação",
+    "Encarece viagens e dívidas em dólar"
+   ],
+   "bolso": "Eletrônicos, remédios, gasolina e trigo ficam mais caros quando o dólar sobe, mesmo que você nunca compre dólar.",
+   "dica": "Vai viajar? Compre a moeda aos poucos ao longo dos meses para diluir as oscilações.",
+   "tags": "#dolar #cambio #inflacao"
+  },
+  {
+   "n": 18,
+   "semana": 3,
+   "titulo": "Balança comercial",
+   "gancho": "O peso das exportações e importações para a riqueza do país.",
+   "explica": "A balança comercial é a diferença entre o que o país vende (exporta) e compra (importa) do exterior. Superávit é vender mais do que compra. O Brasil costuma ter superávit puxado por soja, petróleo, minério de ferro e carnes.",
+   "exemplo": "Quando a China compra mais soja brasileira, entram mais dólares no país, o que ajuda a segurar o câmbio.",
+   "bons": [
+    "Superávit traz dólares e fortalece as reservas",
+    "Exportações geram empregos no agro e na indústria",
+    "Importações trazem tecnologia e máquinas"
+   ],
+   "ruins": [
+    "Dependência de commodities expõe o país a preços globais",
+    "Pauta concentrada em poucos produtos e parceiros",
+    "Exportar matéria-prima agrega pouco valor"
+   ],
+   "bolso": "Um bom ano de exportações tende a valorizar o real, o que ajuda a baixar o preço de importados e combustíveis.",
+   "dica": "Veja no site o quadro das 20 maiores economias com a balança comercial de cada uma.",
+   "tags": "#balancacomercial #exportacoes #comercioexterior"
+  },
+  {
+   "n": 19,
+   "semana": 3,
+   "titulo": "O impacto do agronegócio",
+   "gancho": "Como o campo segura o PIB e movimenta o mercado.",
+   "explica": "O agronegócio vai da lavoura à indústria de alimentos, máquinas, insumos e transporte. O Brasil é um dos maiores exportadores do mundo de soja, café, açúcar, suco de laranja e carnes, e essas vendas trazem uma parte grande dos dólares que entram no país.",
+   "exemplo": "Uma supersafra pode, sozinha, fazer o PIB do trimestre crescer, mesmo com indústria e serviços fracos.",
+   "bons": [
+    "Gera dólares e superávit comercial",
+    "Movimenta cidades do interior e cria empregos",
+    "Tecnologia brasileira de produção é referência"
+   ],
+   "ruins": [
+    "Depende do clima: secas e geadas derrubam a safra",
+    "Exposto a preços globais e à demanda chinesa",
+    "Pressões ambientais podem fechar mercados"
+   ],
+   "bolso": "Safra boa costuma baratear alimentos e ajudar a segurar a inflação; quebra de safra faz o contrário.",
+   "dica": "Acompanhe as cotações do agro e o clima nas regiões produtoras na aba Agro do site.",
+   "tags": "#agronegocio #agro #pib"
+  },
+  {
+   "n": 20,
+   "semana": 3,
+   "titulo": "Política fiscal x monetária",
+   "gancho": "A diferença entre o governo gastar e o Banco Central controlar os juros.",
+   "explica": "Política fiscal é o que o governo faz com impostos e gastos, definida pelo Executivo e pelo Congresso. Política monetária é o controle dos juros e da quantidade de dinheiro, feito pelo Banco Central para manter a inflação na meta.",
+   "exemplo": "Se o governo gasta muito (acelera) e o Banco Central sobe juros (freia), é como dirigir com um pé no acelerador e outro no freio.",
+   "bons": [
+    "Quando andam juntas, a inflação cai com menos custo",
+    "Gasto público pode amparar a economia em crises",
+    "Banco Central autônomo dá previsibilidade"
+   ],
+   "ruins": [
+    "Gasto excessivo obriga juros mais altos",
+    "Juros altos aumentam o custo da dívida pública",
+    "Conflito entre as duas gera incerteza e dólar alto"
+   ],
+   "bolso": "Contas públicas desequilibradas costumam virar juros altos, crédito caro e pressão no dólar, que chegam ao seu orçamento.",
+   "dica": "Ao ver uma notícia de gasto ou corte do governo, pergunte: isso ajuda ou atrapalha o Banco Central a baixar os juros?",
+   "tags": "#politicafiscal #politicamonetaria #contaspublicas"
+  },
+  {
+   "n": 21,
+   "semana": 3,
+   "titulo": "O que é risco país?",
+   "gancho": "Como a desconfiança dos investidores chega à economia local.",
+   "explica": "Risco país mede quanto os investidores cobram a mais para emprestar a um país em comparação com um país considerado seguro, como os EUA. É acompanhado por indicadores como o CDS de 5 anos e o EMBI+. Quanto maior, mais caro é financiar o país.",
+   "exemplo": "Notícias de descontrole nas contas públicas fazem o CDS do Brasil subir; o dólar e os juros futuros costumam subir junto.",
+   "bons": [
+    "Risco baixo atrai investimento estrangeiro",
+    "Barateia o crédito para governo e empresas",
+    "Melhora a nota das agências de rating"
+   ],
+   "ruins": [
+    "Risco alto afasta capital e desvaloriza o real",
+    "Encarece a dívida pública",
+    "Empresas pagam mais para captar no exterior"
+   ],
+   "bolso": "Quando o risco país sobe, o dólar e os juros sobem, e isso aparece no preço da gasolina e no custo do crédito.",
+   "dica": "Credibilidade fiscal é o que mais derruba o risco país. Acompanhe as metas de resultado das contas públicas.",
+   "tags": "#riscopais #investimentos #mercado"
+  },
+  {
+   "n": 22,
+   "semana": 4,
+   "titulo": "Mercado de trabalho",
+   "gancho": "Como ler os dados de desemprego e o que eles dizem da economia.",
+   "explica": "A taxa de desemprego, medida pelo IBGE na PNAD Contínua, mostra a parcela das pessoas que procuram trabalho e não encontram. Também importam a informalidade, a renda média e o Caged, que mostra as vagas com carteira criadas a cada mês.",
+   "exemplo": "Desemprego baixo e salários subindo indicam economia aquecida, o que pode pressionar a inflação de serviços.",
+   "bons": [
+    "Mais emprego gera renda e consumo",
+    "Desemprego baixo dá poder de negociação ao trabalhador",
+    "Formalização amplia proteção e arrecadação"
+   ],
+   "ruins": [
+    "Informalidade alta mantém muita gente sem direitos",
+    "Mercado muito aquecido pressiona preços",
+    "Quem desistiu de procurar não entra na taxa"
+   ],
+   "bolso": "Com o mercado aquecido, vale negociar salário e buscar oportunidades. Em desaceleração, a reserva de emergência ganha importância.",
+   "dica": "Tenha de 6 a 12 meses de despesas guardados: é o que protege sua família se o emprego faltar.",
+   "tags": "#emprego #desemprego #mercadodetrabalho"
+  },
+  {
+   "n": 23,
+   "semana": 4,
+   "titulo": "Tecnologia e produtividade",
+   "gancho": "Como a IA e a inovação estão mudando a economia global.",
+   "explica": "Produtividade é quanto se produz com o mesmo trabalho e capital. É o que permite salários maiores sem inflação. Tecnologias como a inteligência artificial podem automatizar tarefas, acelerar pesquisas e criar novos negócios.",
+   "exemplo": "Ferramentas de IA já escrevem relatórios, atendem clientes e analisam planilhas em minutos, tarefas que levavam horas.",
+   "bons": [
+    "Mais produtividade permite crescer sem inflação",
+    "Novos produtos, serviços e profissões",
+    "Serviços mais baratos e acessíveis"
+   ],
+   "ruins": [
+    "Algumas funções podem desaparecer rapidamente",
+    "Ganhos podem se concentrar em poucas empresas e países",
+    "Exige requalificação constante dos trabalhadores"
+   ],
+   "bolso": "Profissionais que aprendem a usar as novas ferramentas tendem a ganhar mais. Quem não se atualiza fica mais exposto à automação.",
+   "dica": "Separe algumas horas por semana para aprender uma ferramenta nova da sua área. É investimento com retorno.",
+   "tags": "#inteligenciaartificial #tecnologia #produtividade"
+  },
+  {
+   "n": 24,
+   "semana": 4,
+   "titulo": "Criptomoedas e o Drex",
+   "gancho": "O papel do real digital e o futuro do dinheiro.",
+   "explica": "Criptomoedas, como o bitcoin, são moedas digitais descentralizadas, sem banco central por trás, e com preço muito volátil. O Drex é diferente: é uma plataforma do Banco Central para o real em formato digital, pensada para facilitar operações como empréstimos com garantia e negociação de ativos.",
+   "exemplo": "O Pix mudou os pagamentos; o Drex mira operações mais complexas, como usar um título como garantia de um empréstimo de forma automática.",
+   "bons": [
+    "Pode baratear crédito e serviços financeiros",
+    "Mais rapidez e menos intermediários",
+    "Inovação brasileira com o Pix como exemplo"
+   ],
+   "ruins": [
+    "Criptomoedas oscilam muito e atraem golpes",
+    "Riscos de privacidade e segurança digital",
+    "Regulação ainda em construção"
+   ],
+   "bolso": "Desconfie de promessas de ganho garantido com cripto. Golpes de pirâmide usando moedas digitais são comuns.",
+   "dica": "Se for investir em cripto, use apenas uma pequena parte do patrimônio e corretoras autorizadas a operar no Brasil.",
+   "tags": "#drex #criptomoedas #bitcoin"
+  },
+  {
+   "n": 25,
+   "semana": 4,
+   "titulo": "Tributação sobre o consumo",
+   "gancho": "Como CBS e IBS vão mudar a cadeia produtiva e os preços.",
+   "explica": "A reforma tributária troca cinco tributos (PIS, Cofins, IPI, ICMS e ISS) por um IVA dual: a CBS, federal, e o IBS, de estados e municípios. A cobrança passa a ser no destino e sem imposto em cascata, com crédito do que foi pago nas etapas anteriores. A transição vai de 2026 a 2033.",
+   "exemplo": "Hoje um produto pode pagar imposto sobre imposto ao longo da cadeia. Com o IVA, cada etapa paga só sobre o valor que agregou.",
+   "bons": [
+    "Fim da cascata e da guerra fiscal entre estados",
+    "Mais simplicidade e transparência no preço",
+    "Cashback de imposto para famílias de baixa renda"
+   ],
+   "ruins": [
+    "Alíquota padrão está entre as mais altas do mundo",
+    "Serviços podem ficar mais caros",
+    "Transição longa com dois sistemas convivendo"
+   ],
+   "bolso": "A nota fiscal vai mostrar quanto de imposto você paga. Alguns preços devem cair e outros, principalmente serviços, podem subir.",
+   "dica": "Leia no site a análise do Plantão sobre a melhor maneira de tributar.",
+   "tags": "#reformatributaria #ibs #cbs"
+  },
+  {
+   "n": 26,
+   "semana": 4,
+   "titulo": "Reservas internacionais",
+   "gancho": "O seguro do Brasil contra crises externas.",
+   "explica": "Reservas internacionais são os dólares e outros ativos em moeda forte guardados pelo Banco Central, a maior parte em títulos do Tesouro americano. O Brasil tem cerca de US$ 360 bilhões. Elas servem para enfrentar crises e evitar que falte moeda estrangeira.",
+   "exemplo": "Em momentos de pânico, o Banco Central vende dólares das reservas para acalmar o câmbio.",
+   "bons": [
+    "Reduzem o risco de crise cambial",
+    "Melhoram a confiança de investidores",
+    "Protegem contra choques externos"
+   ],
+   "ruins": [
+    "Têm custo: o governo emite dívida para comprá-las",
+    "Rendem menos que os juros pagos pela dívida brasileira",
+    "Vendê-las sem parar pode esgotar o seguro"
+   ],
+   "bolso": "Reservas fortes evitam disparadas bruscas do dólar, que encareceriam combustíveis, alimentos e importados.",
+   "dica": "Reserva é seguro, não poupança para gastar. Vale o mesmo para a sua reserva de emergência.",
+   "tags": "#reservasinternacionais #dolar #bancocentral"
+  },
+  {
+   "n": 27,
+   "semana": 4,
+   "titulo": "Investimentos alternativos",
+   "gancho": "Como buscar rentabilidade fora do modelo tradicional dos bancos.",
+   "explica": "Além da poupança e dos produtos do seu banco, há corretoras e plataformas com Tesouro Direto, CDBs de vários bancos, fundos imobiliários, debêntures incentivadas, ETFs e até investimento em empresas iniciantes (equity crowdfunding).",
+   "exemplo": "Pela corretora você compara CDBs de dezenas de bancos e encontra taxas bem acima das oferecidas pelo seu banco de sempre.",
+   "bons": [
+    "Mais opções e taxas melhores",
+    "Diversificação reduz o risco total",
+    "Custos menores, muitas vezes sem taxa de custódia"
+   ],
+   "ruins": [
+    "Mais opções exigem mais estudo",
+    "Alguns produtos têm baixa liquidez",
+    "Promessas de retorno alto podem esconder golpes"
+   ],
+   "bolso": "Saiu do óbvio? Confira se a plataforma é autorizada pela CVM ou pelo Banco Central e se o produto tem cobertura do FGC.",
+   "dica": "Retorno muito acima do mercado com risco zero não existe. Desconfie e pesquise antes.",
+   "tags": "#investimentos #fundosimobiliarios #tesourodireto"
+  },
+  {
+   "n": 28,
+   "semana": 4,
+   "titulo": "Ciclos econômicos",
+   "gancho": "Expansão, pico, recessão e recuperação: como antecipar os movimentos.",
+   "explica": "A economia anda em ciclos. Na expansão, cresce emprego e crédito. No pico, aparecem inflação e juros altos. Na recessão, a atividade cai. Na recuperação, juros mais baixos ajudam a retomar. A duração de cada fase varia e nem sempre é fácil identificá-la na hora.",
+   "exemplo": "Juros subindo, crédito encolhendo e indústria desacelerando costumam anunciar o fim de uma fase de expansão.",
+   "bons": [
+    "Entender o ciclo ajuda a planejar compras e investimentos",
+    "Recessões corrigem excessos e abrem oportunidades",
+    "Recuperações tendem a gerar empregos rapidamente"
+   ],
+   "ruins": [
+    "Ninguém acerta o momento exato das viradas",
+    "Recessões custam empregos e renda",
+    "Euforia no pico leva a endividamento excessivo"
+   ],
+   "bolso": "Na alta, evite se endividar no limite. Na baixa, quem tem reserva aproveita preços menores e boas oportunidades.",
+   "dica": "Não tente adivinhar o ciclo: mantenha reserva, invista com regularidade e evite dívidas caras em qualquer fase.",
+   "tags": "#cicloseconomicos #recessao #economia"
+  },
+  {
+   "n": 29,
+   "semana": 4,
+   "titulo": "Mitos da economia",
+   "gancho": "Crenças comuns que não se sustentam.",
+   "explica": "Muitas ideias populares parecem lógicas, mas não funcionam. Imprimir dinheiro não cria riqueza: sem mais produção, só gera inflação. Congelar preços não resolve a inflação: costuma gerar falta de produtos. E o governo não é como uma família: a dívida pública tem regras próprias.",
+   "exemplo": "Venezuela e Zimbábue imprimiram dinheiro para pagar contas e enfrentaram hiperinflação.",
+   "bons": [
+    "Desfazer mitos melhora o debate público",
+    "Ajuda a avaliar promessas fáceis",
+    "Evita decisões financeiras ruins"
+   ],
+   "ruins": [
+    "Explicações simples se espalham mais rápido que as corretas",
+    "Economistas também discordam entre si",
+    "Dados podem ser usados de forma enganosa"
+   ],
+   "bolso": "Promessas de solução mágica, de preço congelado a ganho garantido, costumam ter um custo escondido para alguém.",
+   "dica": "Quando ouvir uma solução fácil, pergunte: quem paga a conta e o que acontece no ano seguinte?",
+   "tags": "#mitos #economia #educacaofinanceira"
+  },
+  {
+   "n": 30,
+   "semana": 4,
+   "tipo": "glossario",
+   "titulo": "Glossário do investidor",
+   "gancho": "Salve este post: os 10 termos para acompanhar o noticiário econômico.",
+   "termos": [
+    [
+     "Selic",
+     "Taxa básica de juros, definida pelo Copom."
+    ],
+    [
+     "IPCA",
+     "Inflação oficial do Brasil, calculada pelo IBGE."
+    ],
+    [
+     "CDI",
+     "Taxa entre bancos que guia a renda fixa."
+    ],
+    [
+     "PIB",
+     "Soma de tudo o que o país produz."
+    ],
+    [
+     "Câmbio",
+     "Preço do real em relação a outras moedas."
+    ],
+    [
+     "Spread",
+     "Diferença entre o juro que o banco paga e cobra."
+    ],
+    [
+     "Risco país",
+     "Prêmio que investidores cobram para emprestar ao Brasil."
+    ],
+    [
+     "Liquidez",
+     "Facilidade de transformar um investimento em dinheiro."
+    ],
+    [
+     "Superávit primário",
+     "Sobra das contas do governo antes dos juros."
+    ],
+    [
+     "Diversificação",
+     "Dividir o dinheiro para reduzir o risco."
+    ]
+   ],
+   "tags": "#glossario #investimentos #educacaofinanceira"
+  }
+ ]
+}

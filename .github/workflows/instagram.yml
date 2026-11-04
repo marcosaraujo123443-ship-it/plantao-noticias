@@ -25,12 +25,16 @@ on:
     # Indicadores econômicos: posta cada divulgação nova (Copom, IPCA, IGP-M...) e um painel por mês
     - cron: "37 12 * * *"     # 9h37 (IBGE e FGV divulgam às 9h)
     - cron: "7 0 * * *"       # 21h07 (decisão do Copom sai por volta das 18h30)
+    # Série "Economia em 30 dias": um carrossel por dia (os horários seguintes são reserva)
+    - cron: "7 15 * * *"      # 12h07
+    - cron: "37 15 * * *"     # 12h37 (reserva)
+    - cron: "9 16 * * *"      # 13h09 (reserva)
   workflow_dispatch:
     inputs:
       tipo:
         description: "O que postar"
         type: choice
-        options: [resumo, reel, mercado, agro, futebol, contas, economia, avulso]
+        options: [resumo, reel, mercado, agro, futebol, contas, economia, avulso, aula]
         default: resumo
       so_ver:
         description: "Só gerar as imagens para conferir (não posta)"
@@ -75,6 +79,7 @@ jobs:
             "43 15 * * *"|"43 1 * * *"|"13 2 * * *")        t=futebol ;;
             "17 14 * * *"|"47 14 * * *")                    t=contas ;;
             "37 12 * * *"|"7 0 * * *")                      t=economia ;;
+            "7 15 * * *"|"37 15 * * *"|"9 16 * * *")         t=aula ;;
             *)               t="${{ inputs.tipo }}" ;;
           esac
           echo "tipo=$t" >> "$GITHUB_OUTPUT"; echo "Post: $t"
