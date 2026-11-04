@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-04T07:26:51Z",
+ "atualizado_utc": "2026-11-04T10:12:33Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -9,20 +9,20 @@
   },
   {
    "nome": "Dólar",
-   "valor": 5.4882,
-   "var": -0.0018220578321126446,
+   "valor": 5.4883,
+   "var": 0.0,
    "tipo": "brl"
   },
   {
    "nome": "Euro",
-   "valor": 6.176,
-   "var": 0.46033475934088575,
+   "valor": 6.1875,
+   "var": 0.6473965873416088,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 428955.187428,
-   "var": 1.0619715501634763,
+   "valor": 430174.710256,
+   "var": 1.3474448535995887,
    "tipo": "brl"
   },
   {
@@ -504,6 +504,12 @@
    "var": -2.365308804205002
   },
   {
+   "ticker": "RAIZ4",
+   "nome": "Raízen",
+   "preco": 27.1,
+   "var": 8933.333333333334
+  },
+  {
    "ticker": "RDOR3",
    "nome": "Rede D'Or",
    "preco": 31.29,
@@ -646,12 +652,6 @@
    "nome": "EZTec",
    "preco": 9.0,
    "var": 0.44642857142855874
-  },
-  {
-   "ticker": "RAIZ4",
-   "nome": "Raízen",
-   "preco": 0.3,
-   "var": 0.0
   }
  ],
  "maiores": [
@@ -1468,12 +1468,12 @@
   {
    "papel": "XPCI11",
    "segmento": "Outros",
-   "cotacao": 73.51,
+   "cotacao": 74.18,
    "dy": 14.27,
    "pvp": 0.82,
    "vm": 639651000.0,
    "liq": 1640200.0,
-   "var": -3.22538177988414
+   "var": -2.3433385992627564
   },
   {
    "papel": "RZAK11",
