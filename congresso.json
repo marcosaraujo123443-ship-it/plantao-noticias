@@ -1,6 +1,45 @@
 {
- "atualizado_utc": "2026-11-05T02:32:32Z",
+ "atualizado_utc": "2026-11-05T10:34:52Z",
  "votacoes": [
+  {
+   "casa": "Câmara",
+   "data": "2026-11-04",
+   "hora": "18:04",
+   "materia": "PL 5815/2025",
+   "tipo": "Projeto de lei",
+   "ementa": "Institui e cria o Programa Nacional de Acompanhamento Anual Pediátrico/Médico e Emocional/Psicossocial da Infância e Adolescência - PNAPE, com o objetivo de colocar crianças e adolescentes, os filhos da sociedade…",
+   "resultado": "Aprovado",
+   "descricao": "Aprovado o Substitutivo ao Projeto de Lei nº 5.815, de 2025, adotado pelo relator da Comissão de Saúde.",
+   "sim": null,
+   "nao": null,
+   "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2584437"
+  },
+  {
+   "casa": "Câmara",
+   "data": "2026-11-04",
+   "hora": "17:42",
+   "materia": "PL 3220/2025",
+   "tipo": "Projeto de lei",
+   "ementa": "Institui o Dia Nacional da Consolidação da Independência do Brasil.",
+   "resultado": "Aprovado",
+   "descricao": "Aprovado o Projeto de Lei nº 3.220, de 2025.",
+   "sim": null,
+   "nao": null,
+   "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2531613"
+  },
+  {
+   "casa": "Câmara",
+   "data": "2026-11-04",
+   "hora": "17:17",
+   "materia": "PL 3220/2019",
+   "tipo": "Projeto de lei",
+   "ementa": "Dispõe sobre o compartilhamento de infraestrutura física aérea de titularidade de prestadoras de serviços de distribuição de energia elétrica com prestadoras de serviços de telecomunicações, altera a Lei nº 9.427, de 26…",
+   "resultado": "Aprovado",
+   "descricao": "Aprovado o Substitutivo ao Projeto de Lei nº 3.220, de 2019, adotado pelo relator da Comissão de Comunicação.",
+   "sim": null,
+   "nao": null,
+   "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2617269"
+  },
   {
    "casa": "Câmara",
    "data": "2026-11-03",
@@ -80,32 +119,6 @@
    "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2648807"
   },
   {
-   "casa": "Câmara",
-   "data": "2026-10-15",
-   "hora": "15:35",
-   "materia": "PL 1435/2023",
-   "tipo": "Projeto de lei",
-   "ementa": "Dispõe sobre a obrigatoriedade da afixação de cartazes ilustrativos sobre o método pré-hospitalar denominado Manobra de Heimlich nas instituições de ensino e para outros nos estabelecimentos. NOVA EMENTA: Institui a…",
-   "resultado": "Aprovado",
-   "descricao": "Aprovado o Substitutivo do Senado Federal ao Projeto de Lei nº 1.435, de 2023.",
-   "sim": null,
-   "nao": null,
-   "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2353617"
-  },
-  {
-   "casa": "Câmara",
-   "data": "2026-10-15",
-   "hora": "15:20",
-   "materia": "MPV 1370/2026",
-   "tipo": "Medida provisória",
-   "ementa": "Altera a Lei nº 12.871, de 22 de outubro de 2013, a Lei nº 3.268, de 30 de setembro de 1957, a Lei nº 6.932, de 7 de julho de 1981, a Lei nº 13.959, de 18 de dezembro de 2019, e a Lei nº 10.861, de 14 de abril de 2004,…",
-   "resultado": "Aprovado",
-   "descricao": "Aprovada a Medida Provisória nº 1.370, de 2026, na forma do Projeto de Lei de Conversão.",
-   "sim": null,
-   "nao": null,
-   "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2634542"
-  },
-  {
    "casa": "Senado",
    "data": "2026-10-15",
    "hora": "",
@@ -132,5 +145,7 @@
    "link": "https://www25.senado.leg.br/web/atividade/materias/-/materia/174386"
   }
  ],
- "erros": []
+ "erros": [
+  "Senado: <HTTPError 503: 'Service Unavailable'>"
+ ]
 }
