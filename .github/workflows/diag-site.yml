@@ -1,9 +1,0 @@
-name: diag-site
-on: workflow_dispatch
-jobs:
-  v:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          for u in https://plantaoinforma.com.br/ https://plantaoinforma.com/ https://plantaoinforma.com.br/analises/; do
-            n=$(curl -sL "$u?x=$RANDOM" | grep -c "cloudflareinsights" || true); echo "::notice::$u beacon=$n"; done
