@@ -6,4 +6,4 @@ jobs:
     steps:
       - run: |
           for u in https://plantaoinforma.com.br/ https://plantaoinforma.com/ https://plantaoinforma.com.br/analises/; do
-            n=$(curl -sL "$u?x=$RANDOM" | grep -c "cloudflareinsights"); echo "::notice::$u beacon=$n"; done
+            n=$(curl -sL "$u?x=$RANDOM" | grep -c "cloudflareinsights" || true); echo "::notice::$u beacon=$n"; done
