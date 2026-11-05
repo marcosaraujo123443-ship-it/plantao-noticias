@@ -1,23 +1,12 @@
 {
- "data": "2026-11-04",
- "atualizado": "2026-11-04T23:57:46-0300",
+ "data": "2026-11-05",
+ "atualizado": "2026-11-05T01:55:41-0300",
  "itens": [
   {
-   "hora": "00:00",
+   "hora": "00:01",
    "tipo": "tempo",
    "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (grande perigo) em PR, RS, SC",
-   "detalhe": [
-    "Chuva superior a 60 mm/h ou maior que 100 mm/dia, ventos superiores a 100 km/h, e queda de granizo. Grande risco de danos em edificações,…"
-   ],
-   "link": "#tempo",
-   "estado": ""
-  },
-  {
-   "hora": "00:00",
-   "tipo": "tempo",
-   "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (perigo) em MS, PR, RS, SC, SP",
+   "titulo": "Tempestade (perigo) em MS, PR, SP",
    "detalhe": [
     "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
    ],
@@ -25,38 +14,7 @@
    "estado": ""
   },
   {
-   "hora": "09:34",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Não Deliberativa Solene no Plenário",
-   "detalhe": [],
-   "link": "https://www.youtube.com/watch?v=5rh7pIswP78",
-   "estado": "Encerrada"
-  },
-  {
-   "hora": "11:37",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Não Deliberativa Solene no Plenário",
-   "detalhe": [],
-   "link": "https://www.youtube.com/watch?v=M1FcU5upl-E",
-   "estado": "Encerrada"
-  },
-  {
-   "hora": "14:00",
-   "tipo": "politica",
-   "rotulo": "Senado",
-   "titulo": "Sessão deliberativa ordinária no Plenário",
-   "detalhe": [
-    "REQ 376/2026 - CDIR: Solicita, com fundamento no art. 40 do Regimento Interno, licença dos trabalhos da Casa para participar de…",
-    "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
-    "PL 2234/2024: Altera a Lei nº 8.069, de 13 de julho de 1990 (Estatuto da Criança e do Adolescente), para adequar a…"
-   ],
-   "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
-  },
-  {
-   "hora": "14:44",
+   "hora": "10:00",
    "tipo": "politica",
    "rotulo": "Câmara",
    "titulo": "Sessão Deliberativa no Plenário",
@@ -65,176 +23,57 @@
     "PL 1932/2021: Altera a Lei nº 8.080, de 19 de setembro de 1990, para determinar que o abastecimento de medicamentos e de…",
     "REQ 4057/2026: Requer urgência para o Projeto de Lei nº 5.086/2026, que “Dispõe sobre o regime jurídico específico das…"
    ],
-   "link": "https://www.youtube.com/watch?v=AmljjQupEwk",
-   "estado": "Encerrada"
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
   },
   {
-   "hora": "14:45",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "AEK Athens 2 × 3 Real Madrid",
-   "detalhe": [
-    "4ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "14:45",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Fenerbahçe 3 × 2 Liverpool",
-   "detalhe": [
-    "4ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Borussia Dortmund 2 × 1 Betis",
-   "detalhe": [
-    "4ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "FC Porto 4 × 1 Napoli",
-   "detalhe": [
-    "4ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Lens 1 × 9 Como",
-   "detalhe": [
-    "4ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "PSV 1 × 2 Club Brugge",
-   "detalhe": [
-    "4ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "RB Leipzig 2 × 3 Man City",
-   "detalhe": [
-    "4ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Slavia Prague 1 × 2 Arsenal",
-   "detalhe": [
-    "4ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Viking FK 4 × 1 Sabah",
-   "detalhe": [
-    "4ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
+   "hora": "15:00",
+   "tipo": "politica",
+   "rotulo": "Senado",
+   "titulo": "Sessão especial no Plenário",
+   "detalhe": [],
+   "link": "https://www25.senado.leg.br/web/atividade/plenario",
+   "estado": "Agendada"
   },
   {
    "hora": "19:30",
    "tipo": "futebol",
    "rotulo": "Brasileirão",
-   "titulo": "Athletico-PR 1 × 3 Vasco",
+   "titulo": "Palmeiras × Remo",
    "detalhe": [
     "34ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "19:30",
    "tipo": "futebol",
-   "rotulo": "Brasileirão",
-   "titulo": "Flamengo 3 × 1 Grêmio",
+   "rotulo": "Série B",
+   "titulo": "Botafogo-SP × Londrina",
    "detalhe": [
-    "34ª rodada"
+    "37ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "21:30",
    "tipo": "futebol",
    "rotulo": "Brasileirão",
-   "titulo": "Botafogo 1 × 0 Atlético-MG",
+   "titulo": "Cruzeiro × Bahia",
    "detalhe": [
     "34ª rodada"
    ],
-   "estado": "ao vivo",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "21:30",
-   "tipo": "futebol",
-   "rotulo": "Brasileirão",
-   "titulo": "São Paulo 0 × 0 Corinthians",
-   "detalhe": [
-    "34ª rodada"
-   ],
-   "estado": "ao vivo",
+   "estado": "",
    "link": "tabelas/"
   }
  ],
- "outros_jogos": 0,
+ "outros_jogos": 2,
  "fontes": {
   "camara": [
    {
-    "hora": "09:34",
-    "tipo": "politica",
-    "rotulo": "Câmara",
-    "titulo": "Sessão Não Deliberativa Solene no Plenário",
-    "detalhe": [],
-    "link": "https://www.youtube.com/watch?v=5rh7pIswP78",
-    "estado": "Encerrada"
-   },
-   {
-    "hora": "11:37",
-    "tipo": "politica",
-    "rotulo": "Câmara",
-    "titulo": "Sessão Não Deliberativa Solene no Plenário",
-    "detalhe": [],
-    "link": "https://www.youtube.com/watch?v=M1FcU5upl-E",
-    "estado": "Encerrada"
-   },
-   {
-    "hora": "14:44",
+    "hora": "10:00",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Deliberativa no Plenário",
@@ -243,23 +82,19 @@
      "PL 1932/2021: Altera a Lei nº 8.080, de 19 de setembro de 1990, para determinar que o abastecimento de medicamentos e de…",
      "REQ 4057/2026: Requer urgência para o Projeto de Lei nº 5.086/2026, que “Dispõe sobre o regime jurídico específico das…"
     ],
-    "link": "https://www.youtube.com/watch?v=AmljjQupEwk",
-    "estado": "Encerrada"
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
    }
   ],
   "senado": [
    {
-    "hora": "14:00",
+    "hora": "15:00",
     "tipo": "politica",
     "rotulo": "Senado",
-    "titulo": "Sessão deliberativa ordinária no Plenário",
-    "detalhe": [
-     "REQ 376/2026 - CDIR: Solicita, com fundamento no art. 40 do Regimento Interno, licença dos trabalhos da Casa para participar de…",
-     "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
-     "PL 2234/2024: Altera a Lei nº 8.069, de 13 de julho de 1990 (Estatuto da Criança e do Adolescente), para adequar a…"
-    ],
+    "titulo": "Sessão especial no Plenário",
+    "detalhe": [],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
+    "estado": "Agendada"
    }
   ],
   "copom": []
