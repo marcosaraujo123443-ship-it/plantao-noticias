@@ -1,6 +1,6 @@
 {
  "data": "2026-11-05",
- "atualizado": "2026-11-05T11:18:12-0300",
+ "atualizado": "2026-11-05T12:59:16-0300",
  "itens": [
   {
    "hora": "00:01",
@@ -14,7 +14,7 @@
    "estado": ""
   },
   {
-   "hora": "10:00",
+   "hora": "11:07",
    "tipo": "politica",
    "rotulo": "Câmara",
    "titulo": "Sessão Deliberativa no Plenário",
@@ -23,8 +23,19 @@
     "PL 1932/2021: Altera a Lei nº 8.080, de 19 de setembro de 1990, para determinar que o abastecimento de medicamentos e de…",
     "REQ 4057/2026: Requer urgência para o Projeto de Lei nº 5.086/2026, que “Dispõe sobre o regime jurídico específico das…"
    ],
-   "link": "https://www.camara.leg.br/agenda",
-   "estado": "Convocada"
+   "link": "https://www.youtube.com/watch?v=FJi9PUxHh3k",
+   "estado": "Encerrada"
+  },
+  {
+   "hora": "11:30",
+   "tipo": "tempo",
+   "rotulo": "Alerta INMET",
+   "titulo": "Acumulado de Chuva (perigo) em MG, MS, PR, SP",
+   "detalhe": [
+    "Chuva entre 30 a 60 mm/h ou 50 a 100 mm/dia. Risco de alagamentos, deslizamentos de encostas, transbordamentos de rios, em cidades com tais…"
+   ],
+   "link": "#tempo",
+   "estado": ""
   },
   {
    "hora": "15:00",
@@ -73,7 +84,7 @@
  "fontes": {
   "camara": [
    {
-    "hora": "10:00",
+    "hora": "11:07",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Deliberativa no Plenário",
@@ -82,8 +93,8 @@
      "PL 1932/2021: Altera a Lei nº 8.080, de 19 de setembro de 1990, para determinar que o abastecimento de medicamentos e de…",
      "REQ 4057/2026: Requer urgência para o Projeto de Lei nº 5.086/2026, que “Dispõe sobre o regime jurídico específico das…"
     ],
-    "link": "https://www.camara.leg.br/agenda",
-    "estado": "Convocada"
+    "link": "https://www.youtube.com/watch?v=FJi9PUxHh3k",
+    "estado": "Encerrada"
    }
   ],
   "senado": [
@@ -99,7 +110,5 @@
   ],
   "copom": []
  },
- "erros": [
-  "camara: <HTTPError 504: 'Gateway Timeout'>"
- ]
+ "erros": []
 }
