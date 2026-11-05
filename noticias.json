@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-05T04:55:39Z",
+ "atualizado_utc": "2026-11-05T08:20:26Z",
  "secoes": [
   "Política",
   "IA",
@@ -10,6 +10,24 @@
   "Ciência e Saúde"
  ],
  "itens": [
+  {
+   "secao": "Política",
+   "fonte": "CNN Brasil",
+   "editoria": "Política",
+   "titulo": "Proposta mais avançada na Câmara sobre maioridade é debatida desde 2015",
+   "link": "https://www.cnnbrasil.com.br/politica/proposta-mais-avancada-na-camara-sobre-maioridade-e-debatida-desde-2015/",
+   "data": "2026-11-05T06:30:57Z",
+   "resumo": "PEC que tramita em comissão especial ainda não tem relatório final, mas líderes preveem votação ainda em novembro; ao menos 57 propostas sobre o tema foram protocoladas no Congresso desde 1988"
+  },
+  {
+   "secao": "Política",
+   "fonte": "g1",
+   "editoria": "Política",
+   "titulo": "Fim da escala 6x1: O que fazer se a empresa não respeitar a nova jornada? Veja como denunciar",
+   "link": "https://g1.globo.com/trabalho-e-carreira/noticia/2026/11/05/fim-da-escala-6x1-veja-como-denunciar-empresa-que-nao-respeitar-a-nova-jornada.ghtml",
+   "data": "2026-11-05T06:00:00Z",
+   "resumo": "Fim da escala 6x1: Quando começa a valer e quais são as profissões impactadas O Congresso Nacional promulgou no dia 16 a Proposta de Emenda à Constituição (PEC) que prevê o fim da escala 6x1 e garante dois dias de descan"
+  },
   {
    "secao": "Política",
    "fonte": "Poder360",
@@ -127,15 +145,6 @@
   },
   {
    "secao": "Política",
-   "fonte": "g1",
-   "editoria": "Política",
-   "titulo": "Damares Alves nega que se filiará ao PL após declaração de Valdemar: 'Nunca'",
-   "link": "https://g1.globo.com/politica/noticia/2026/11/04/damares-alves-nega-que-se-filiara-ao-pl.ghtml",
-   "data": "2026-11-04T23:21:21Z",
-   "resumo": "Michelle Bolsonaro e a ministra Damares Alves participam de ação no Mato Grosso Instagram/Reprodução A senadora Damares Alves (Republicanos-DF) afirmou nesta quarta-feira (4) que nunca se filiará ao PL."
-  },
-  {
-   "secao": "Política",
    "fonte": "CNN Brasil",
    "editoria": "Política",
    "titulo": "Lula espera ter reunião bilateral com Trump durante cúpula do G20",
@@ -151,15 +160,6 @@
    "link": "https://www12.senado.leg.br/noticias/materias/2026/11/04/uso-de-organizacoes-sociais-em-contratos-na-saude-e-questionado-em-audiencia-no-senado",
    "data": "2026-11-04T22:57:29Z",
    "resumo": "A falta de transparência, as falhas na fiscalização e o uso de organizações sociais como intermediárias para contratações irregulares estão entre os principais problemas identificados em contratos de gestão de serviços públicos de saúde."
-  },
-  {
-   "secao": "Política",
-   "fonte": "Agência Senado",
-   "editoria": "Política",
-   "titulo": "Davi vai analisar questões de Randolfe sobre situação de Flávio Bolsonaro",
-   "link": "https://www12.senado.leg.br/noticias/materias/2026/11/04/davi-vai-analisar-questoes-de-randolfe-sobre-situacao-de-flavio-bolsonaro",
-   "data": "2026-11-04T22:46:06Z",
-   "resumo": "O presidente do Senado, Davi Alcolumbre, afirmou nesta quarta-feira (4) que vai analisar duas questões de ordem levantadas pelo senador Randolfe Rodrigues (PT-AP) sobre a situação do senador Flávio Bolsonaro (PL-RJ), que"
   },
   {
    "secao": "IA",
@@ -223,21 +223,18 @@
   },
   {
    "secao": "IA",
-   "fonte": "g1",
-   "editoria": "IA",
-   "titulo": "De guerra no Irã a regras para IA: o que a vitória democrata pode mudar na economia dos EUA",
-   "link": "https://g1.globo.com/economia/noticia/2026/11/04/vitoria-democrata-nos-eua-ameaca-planos-de-trump-para-economia-e-ia-entenda.ghtml",
-   "data": "2026-11-04T14:00:54Z",
-   "resumo": "Democratas conquistam controle do Congresso nos Estados Unidos A vitória dos democratas nas eleições de meio de mandato dos Estados Unidos colocou mais um fator de incerteza no radar dos investidores."
-  },
-  {
-   "secao": "IA",
    "fonte": "Tecnoblog",
    "editoria": "IA",
    "titulo": "ChatGPT já equivale a 20% das buscas do Google, mas calma",
    "link": "https://tecnoblog.net/noticias/chatgpt-ja-equivale-a-20-das-buscas-do-google-mas-calma/",
    "data": "2026-11-04T13:57:44Z",
-   "resumo": "Com 1,2 bilhão de usuários ativos, ChatGPT já é o maior rival do buscador, mas \"império do Google\" está longe do fim."
+   "resumo": "Com 1,2 bilhão de usuários ativos, ChatGPT já é o maior rival do buscador, mas \"império do Google\" está longe do fim.",
+   "tambem": [
+    {
+     "fonte": "Olhar Digital",
+     "link": "https://olhardigital.com.br/2026/11/03/inteligencia-artificial/chatgpt-ja-alcanca-20-do-volume-de-buscas-do-google-diz-openai/"
+    }
+   ]
   },
   {
    "secao": "IA",
@@ -277,6 +274,15 @@
   },
   {
    "secao": "IA",
+   "fonte": "g1",
+   "editoria": "IA",
+   "titulo": "IA consegue criar vírus que se espalha por conta própria em eletrodomésticos",
+   "link": "https://g1.globo.com/tecnologia/ciberseguranca/noticia/2026/11/02/virus-ia.ghtml",
+   "data": "2026-11-02T16:00:14Z",
+   "resumo": "Exemplo de sala de estar com pé-direito duplo SKN Incorporadora Na sala de estar, um robô aspirador percorre o ambiente, a iluminação é ajustada por meio de assistentes de voz e a televisão se conecta à internet para ace"
+  },
+  {
+   "secao": "IA",
    "fonte": "Tecnoblog",
    "editoria": "IA",
    "titulo": "Amazon prorroga acesso grátis à Alexa turbinada",
@@ -295,21 +301,102 @@
   },
   {
    "secao": "Futebol",
-   "fonte": "ge",
+   "fonte": "Gazeta Esportiva",
    "editoria": "Futebol",
-   "titulo": "Dorival não vê corte de Angileri e comemora \"gol\" do São Paulo antes da hora; veja vídeo",
-   "link": "https://ge.globo.com/futebol/times/sao-paulo/noticia/2026/11/05/dorival-nao-ve-corte-de-angileri-e-comemora-gol-do-sao-paulo-antes-da-hora-veja-video.ghtml",
-   "data": "2026-11-05T04:26:56Z",
-   "resumo": "Dorival comemora \"gol\" do São Paulo antes da hora contra o Corinthians O técnico Dorival Júnior comemorou antes da hora o \"gol\" do São Paulo no clássico contra o Corinthians na noite desta quarta-feira, na Vila Belmiro, pelo Brasileirão."
+   "titulo": "Atuações: Angileri salva o Corinthians e Yuri Alberto é vilão no clássico",
+   "link": "https://www.gazetaesportiva.com/times/corinthians/notas-corinthians-angileri-yuri-alberto-classico/",
+   "data": "2026-11-05T08:00:52Z",
+   "resumo": "O Corinthians empatou sem gols com o São Paulo, mas contou com atuação decisiva de Fabrizio Angileri para evitar a derrota.",
+   "tambem": [
+    {
+     "fonte": "ge",
+     "link": "https://ge.globo.com/futebol/times/corinthians/noticia/2026/11/04/atuacoes-do-corinthians-angileri-salva-e-yuri-alberto-e-o-pior-em-empate-no-classico-de-suas-notas.ghtml"
+    }
+   ]
+  },
+  {
+   "secao": "Futebol",
+   "fonte": "Gazeta Esportiva",
+   "editoria": "Futebol",
+   "titulo": "Marcos Antônio pode perder final de temporada do São Paulo: “Ele não conseguia nem andar”",
+   "link": "https://www.gazetaesportiva.com/times/sao-paulo/marcos-antonio-desfalque-sao-paulo-temporada/",
+   "data": "2026-11-05T08:00:28Z",
+   "resumo": "Dorival Júnior explicou a lesão de Marcos Antônio e afirmou que o volante pode perder a reta final de temporada do São Paulo.",
+   "tambem": [
+    {
+     "fonte": "ge",
+     "link": "https://ge.globo.com/futebol/times/sao-paulo/noticia/2026/11/05/dorival-lamenta-empate-do-sao-paulo-e-explica-lesao-de-marcos-antonio-nao-consegue-andar.ghtml"
+    }
+   ]
+  },
+  {
+   "secao": "Futebol",
+   "fonte": "CNN Brasil",
+   "editoria": "Futebol",
+   "titulo": "Bayer Leverkusen x Marseille: situação na tabela e o que está em jogo",
+   "link": "https://www.cnnbrasil.com.br/esportes/futebol/futebol-internacional/bayer-leverkusen-x-marseille-situacao-na-tabela-e-o-que-esta-em-jogo/",
+   "data": "2026-11-05T08:00:03Z",
+   "resumo": "Equipes duelam pela Europa League na tarde desta quinta-feira (4)",
+   "tambem": [
+    {
+     "fonte": "Gazeta Esportiva",
+     "link": "https://www.gazetaesportiva.com/campeonatos/liga-europa/bayer-leverkusen-x-marseille-veja-provaveis-escalacoes-e-onde-assistir-ao-duelo-pela-liga-europa/"
+    }
+   ]
+  },
+  {
+   "secao": "Futebol",
+   "fonte": "CNN Brasil",
+   "editoria": "Futebol",
+   "titulo": "Real Sociedad x Lyon: horário e onde assistir ao jogo da Europa League",
+   "link": "https://www.cnnbrasil.com.br/esportes/futebol/futebol-internacional/real-sociedad-x-lyon-horario-e-onde-assistir-ao-jogo-da-europa-league/",
+   "data": "2026-11-05T07:03:15Z",
+   "resumo": "Equipes vão a campo nesta quinta-feira (5), no Estádio de Anoeta, em San Sebastián, às 14h45, em partida válida pela 4ª rodada da competição europeia"
+  },
+  {
+   "secao": "Futebol",
+   "fonte": "CNN Brasil",
+   "editoria": "Futebol",
+   "titulo": "Patrik Schick, do Bayer Leverkusen, já fez história na Eurocopa; conheça",
+   "link": "https://www.cnnbrasil.com.br/esportes/futebol/futebol-internacional/patrik-schick-do-bayer-leverkusen-ja-fez-historia-na-eurocopa-conheca/",
+   "data": "2026-11-05T07:00:53Z",
+   "resumo": "Atacante da Tchéquia estará em campo nesta quinta-feira (5) pelo clube alemão, no duelo contra o Marseille; jogo da Europa League terá transmissão ao vivo no CNN Esportes"
   },
   {
    "secao": "Futebol",
    "fonte": "ge",
    "editoria": "Futebol",
-   "titulo": "Quem é Douvikas, o grego que lidera a artilharia da Champions à frente de Haaland e Mbappé",
-   "link": "https://ge.globo.com/futebol/futebol-internacional/noticia/2026/11/05/quem-e-douvikas-o-grego-que-lidera-a-artilharia-da-champions-a-frente-de-haaland-e-mbappe.ghtml",
-   "data": "2026-11-05T04:11:44Z",
-   "resumo": "Lens 1 x 9 Como | Melhores momentos | 4ª rodada | Liga dos Campeões 26/27 Anastasios Douvikas é o novo artilheiro da Champions League."
+   "titulo": "Análise: São Paulo desperdiça chances em clássico e caminha para fim de ano melancólico",
+   "link": "https://ge.globo.com/futebol/times/sao-paulo/noticia/2026/11/05/analise-sao-paulo-desperdica-chances-em-classico-e-caminha-para-fim-de-ano-melancolico.ghtml",
+   "data": "2026-11-05T07:00:00Z",
+   "resumo": "São Paulo 0 x 0 Corinthians | Melhores momentos | 34ª rodada | Brasileirão 2026 O São Paulo tinha tudo para dar ao seu torcedor uma noite feliz na quarta-feira, mas nem as pequenas alegrias parecem estar ao alcance."
+  },
+  {
+   "secao": "Futebol",
+   "fonte": "ge",
+   "editoria": "Futebol",
+   "titulo": "Análise: Botafogo transforma sufoco em alívio e finalmente respira contra o Z-4",
+   "link": "https://ge.globo.com/futebol/times/botafogo/noticia/2026/11/05/analise-botafogo-transforma-sufoco-em-alivio-e-finalmente-respira-contra-o-z-4.ghtml",
+   "data": "2026-11-05T07:00:00Z",
+   "resumo": "Botafogo 1 x 0 Atlético-MG | Melhores momentos | 34ª rodada | Brasileirão 2026 A comemoração dos torcedores do Botafogo no apito final da vitória sobre o Atlético-MG, nesta quarta-feira, pode ser definida em uma palavra: alívio."
+  },
+  {
+   "secao": "Futebol",
+   "fonte": "ge",
+   "editoria": "Futebol",
+   "titulo": "Análise: reservas do Atlético-MG não evitam 5ª derrota seguida, e pressão aumenta para a Copa do Brasil",
+   "link": "https://ge.globo.com/futebol/times/atletico-mg/noticia/2026/11/05/analise-reservas-do-atletico-mg-nao-evitam-5a-derrota-seguida-e-pressao-aumenta-para-a-copa-do-brasil.ghtml",
+   "data": "2026-11-05T07:00:00Z",
+   "resumo": "Botafogo 1 x 0 Atlético-MG | Melhores momentos | 34ª rodada | Brasileirão 2026 Cinco derrotas seguidas."
+  },
+  {
+   "secao": "Futebol",
+   "fonte": "ge",
+   "editoria": "Futebol",
+   "titulo": "Análise: falhas de Yuri custam caro, e Corinthians é obrigado a se contentar com empate no clássico",
+   "link": "https://ge.globo.com/futebol/times/corinthians/noticia/2026/11/05/analise-falhas-de-yuri-custam-caro-e-corinthians-e-obrigado-a-se-contentar-com-empate-no-classico.ghtml",
+   "data": "2026-11-05T07:00:00Z",
+   "resumo": "São Paulo 0 x 0 Corinthians | Melhores momentos | 34ª rodada | Brasileirão 2026 O Corinthians continua agarrado à briga contra o rebaixamento no Campeonato Brasileiro."
   },
   {
    "secao": "Futebol",
@@ -331,91 +418,12 @@
   },
   {
    "secao": "Futebol",
-   "fonte": "ge",
-   "editoria": "Futebol",
-   "titulo": "Veja cinco curiosidades do Como, que saiu da Quarta Divisão e virou sensação da Champions League",
-   "link": "https://ge.globo.com/futebol/futebol-internacional/noticia/2026/11/05/veja-cinco-curiosidades-do-como-que-saiu-da-quarta-divisao-e-virou-sensacao-da-champions-league.ghtml",
-   "data": "2026-11-05T04:00:01Z",
-   "resumo": "Lens 1 x 9 Como | Melhores momentos | 4ª rodada | Liga dos Campeões 26/27 O italiano Como é a grande surpresa da Champions League 2026/27."
-  },
-  {
-   "secao": "Futebol",
-   "fonte": "ge",
-   "editoria": "Futebol",
-   "titulo": "Seedorf valoriza \"espírito\" do Corinthians e mostra confiança na recuperação: \"Nas nossas mãos\"",
-   "link": "https://ge.globo.com/futebol/times/corinthians/noticia/2026/11/05/seedorf-valoriza-espirito-do-corinthians-e-mostra-confianca-na-recuperacao-nas-nossas-maos.ghtml",
-   "data": "2026-11-05T03:57:40Z",
-   "resumo": "Veja a entrevista coletiva de Clarence Seedorf após São Paulo 0 x 0 Corinthians O técnico Clarence Seedorf demonstra confiança na recuperação do Corinthians no Campeonato Brasileiro, apesar de a equipe passar a Data Fifa"
-  },
-  {
-   "secao": "Futebol",
-   "fonte": "CNN Brasil",
-   "editoria": "Futebol",
-   "titulo": "Tite explica mudanças e elogia solidez do Botafogo: “Poderia ser mais”",
-   "link": "https://www.cnnbrasil.com.br/esportes/futebol/botafogo/tite-explica-mudancas-e-elogia-solidez-do-botafogo-poderia-ser-mais/",
-   "data": "2026-11-05T03:56:17Z",
-   "resumo": "Treinador explicou as alterações na equipe titular realizadas na partida desta quarta (4), no Nilton Santos, pela 34ª rodada do Campeonato Brasileiro"
-  },
-  {
-   "secao": "Futebol",
-   "fonte": "Gazeta Esportiva",
-   "editoria": "Futebol",
-   "titulo": "Seedorf exalta espírito do Corinthians e aposta em recuperação de Memphis",
-   "link": "https://www.gazetaesportiva.com/times/corinthians/seedorf-exalta-corinthians-previsao-memphis-depay/",
-   "data": "2026-11-05T03:54:49Z",
-   "resumo": "Clarence Seedorf elogiou a postura defensiva do Corinthians no empate sem gols com o São Paulo e destacou a entrega da equipe mesmo após a expulsão de Yuri Alberto."
-  },
-  {
-   "secao": "Futebol",
-   "fonte": "CNN Brasil",
-   "editoria": "Futebol",
-   "titulo": "Atlético-MG amarga marca negativa inédita na década após nova derrota",
-   "link": "https://www.cnnbrasil.com.br/esportes/futebol/atletico-mineiro/atletico-mg-amarga-marca-negativa-inedita-na-decada-apos-nova-derrota/",
-   "data": "2026-11-05T03:37:13Z",
-   "resumo": "Time mineiro vive o pior momento do ano; antes de derrota para o Botafogo, Galo acumulou derrotas para o Montevideo City Torque, Flamengo, Cruzeiro e Grêmio",
-   "tambem": [
-    {
-     "fonte": "ge",
-     "link": "https://ge.globo.com/futebol/times/atletico-mg/noticia/2026/11/04/as-vesperas-de-decisao-atletico-mg-tenta-evitar-marca-inedita-na-decada.ghtml"
-    }
-   ]
-  },
-  {
-   "secao": "Futebol",
    "fonte": "Gazeta Esportiva",
    "editoria": "Futebol",
    "titulo": "Recuperado, Everson analisa derrota do Atlético-MG e mira reação na Copa do Brasil",
    "link": "https://www.gazetaesportiva.com/times/atletico-mg/recuperado-everson-analisa-derrota-do-atletico-mg-e-mira-reacao-na-copa-do-brasil/",
    "data": "2026-11-05T03:02:40Z",
    "resumo": "De volta após dois meses afastado por lesão, Everson lamentou a derrota para o Botafogo e projetou a semifinal da Copa do Brasil."
-  },
-  {
-   "secao": "Futebol",
-   "fonte": "CNN Brasil",
-   "editoria": "Futebol",
-   "titulo": "Yuri Alberto é expulso e desfalca o Corinthians contra o Botafogo",
-   "link": "https://www.cnnbrasil.com.br/esportes/futebol/corinthians/yuri-alberto-e-expulso-e-desfalca-o-corinthians-contra-o-botafogo/",
-   "data": "2026-11-05T02:57:55Z",
-   "resumo": "Atacante foi punido por falta dura em Ferreira, em clássico com o São Paulo; Matheus Pereira e André Ramalho também são baixas",
-   "tambem": [
-    {
-     "fonte": "ge",
-     "link": "https://ge.globo.com/futebol/times/corinthians/noticia/2026/11/04/yuri-alberto-e-expulso-em-classico-e-corinthians-tem-mais-dois-suspensos-contra-o-botafogo.ghtml"
-    },
-    {
-     "fonte": "Gazeta Esportiva",
-     "link": "https://www.gazetaesportiva.com/times/corinthians/corinthians-desfalques-botafogo-suspensoes-yuri-alberto/"
-    }
-   ]
-  },
-  {
-   "secao": "Futebol",
-   "fonte": "Gazeta Esportiva",
-   "editoria": "Futebol",
-   "titulo": "Herói do Corinthians, Angileri valoriza empate no clássico e avisa: “Vamos lutar até o final”",
-   "link": "https://www.gazetaesportiva.com/times/corinthians/angileri-valoriza-empate-recado-corinthians-z4/",
-   "data": "2026-11-05T02:52:55Z",
-   "resumo": "Fabrizio Angileri foi um dos destaques do Corinthians no empate sem gols contra o São Paulo, pela 34ª rodada do Brasileirão."
   },
   {
    "secao": "Futebol",
@@ -446,6 +454,24 @@
   },
   {
    "secao": "Agro",
+   "fonte": "CNN Brasil",
+   "editoria": "Agro",
+   "titulo": "Campanha quer aumentar o consumo de frutas, legumes e verduras no Brasil",
+   "link": "https://www.cnnbrasil.com.br/agro/campanha-quer-aumentar-o-consumo-de-frutas-legumes-e-verduras-no-brasil/",
+   "data": "2026-11-05T08:00:24Z",
+   "resumo": "Iniciativa busca ampliar a demanda por produtos frescos e fortalecer a cadeia produtiva; apenas 21,4% dos adultos das capitais e do Distrito Federal atingiam a recomendação de consumo em 2023"
+  },
+  {
+   "secao": "Agro",
+   "fonte": "g1",
+   "editoria": "Agro",
+   "titulo": "Eleições nos EUA: votação popular proíbe foie gras em Washington; Brasil também vetou neste ano",
+   "link": "https://g1.globo.com/mundo/noticia/2026/11/05/eleicoes-nos-eua-votacao-popular-proibe-foie-gras-em-washington-brasil-tambem-vetou-neste-ano.ghtml",
+   "data": "2026-11-05T06:00:00Z",
+   "resumo": "Aborto, armas, direitos trans: eleições nos EUA tem referendos em 39 estados Além de decidir novos representantes na Câmara e no Senado, as eleições de meio de mandato dos Estados Unidos, conhecida como midterms, parte d"
+  },
+  {
+   "secao": "Agro",
    "fonte": "Canal Rural",
    "editoria": "Agro",
    "titulo": "Máximas devem chegar a 38 °C em três municípios da Bahia",
@@ -466,6 +492,15 @@
    "secao": "Agro",
    "fonte": "Canal Rural",
    "editoria": "Agro",
+   "titulo": "Vibra tem lucro líquido de R$ 2,46 bilhões no 3º trimestre",
+   "link": "https://www.canalrural.com.br/economia/vibra-tem-lucro-liquido-de-r-246-bilhoes-no-3o-trimestre/",
+   "data": "2026-11-05T00:00:10Z",
+   "resumo": "Resultado veio acompanhado de alta no Ebitda, avanço da receita, expansão da rede de postos e redução da dívida líquida."
+  },
+  {
+   "secao": "Agro",
+   "fonte": "Canal Rural",
+   "editoria": "Agro",
    "titulo": "Pará registra maior área de exploração madeireira em cinco anos",
    "link": "https://www.canalrural.com.br/politica/para-registra-maior-area-de-exploracao-madeireira-em-cinco-anos/",
    "data": "2026-11-04T23:59:03Z",
@@ -479,25 +514,6 @@
    "link": "https://www.cnnbrasil.com.br/agro/nutrien-ve-demanda-por-fertilizantes-no-brasil-mas-credito-rural-preocupa/",
    "data": "2026-11-04T23:56:33Z",
    "resumo": "Companhia projeta mercado global de nitrogênio mais apertado até 2027 e espera aumento dos embarques mundiais de potássio no próximo ano"
-  },
-  {
-   "secao": "Agro",
-   "fonte": "Canal Rural",
-   "editoria": "Agro",
-   "titulo": "Copom mantém Selic em 13,75% ao ano; perspectivas para 2027",
-   "link": "https://www.canalrural.com.br/videos/copom-mantem-selic-em-1375-ao-ano-perspectivas-para-2027/",
-   "data": "2026-11-04T23:15:31Z",
-   "resumo": "Banco Central decide manter a Selic em 13,75% ao ano; análise aponta desafios para os próximos anos",
-   "tambem": [
-    {
-     "fonte": "g1",
-     "link": "https://g1.globo.com/economia/noticia/2026/11/04/copom-mantem-taxa-basica-de-juros-da-economia-em-1375percent-ao-ano.ghtml"
-    },
-    {
-     "fonte": "Agência Brasil",
-     "link": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/copom-decide-nesta-quarta-feira-se-corta-ou-mantem-taxa-selic"
-    }
-   ]
   },
   {
    "secao": "Agro",
@@ -545,13 +561,82 @@
    "resumo": "Galinhas em granja de Santa Maria de Jetibá, no Espírito Santo Reprodução/TV Gazeta Conhecida nacionalmente como capital do ovo, Santa Maria de Jetibá, na Região Serrana do Espírito Santo, também lidera o ranking de prod"
   },
   {
-   "secao": "Agro",
-   "fonte": "g1",
-   "editoria": "Agro",
-   "titulo": "Compras agrícolas da China nos EUA vão ao menor nível em 7 anos apesar de acordo comercial",
-   "link": "https://g1.globo.com/economia/agronegocios/noticia/2026/11/02/compras-agricolas-china-eua.ghtml",
-   "data": "2026-11-02T13:47:08Z",
-   "resumo": "Mais de 60% do volume de soja exportado de MT vai para a China Reprodução/TVCA As compras chinesas de produtos agrícolas dos Estados Unidos, excluindo a soja, caminham para o menor nível em sete anos, apesar do compromis"
+   "secao": "Mercado",
+   "fonte": "InfoMoney",
+   "editoria": "Mercado",
+   "titulo": "Selic em 13,75%: pausa era esperada, mas comunicado deve ditar Bolsa e dólar nesta 5ª",
+   "link": "https://www.infomoney.com.br/mercados/selic-em-1375-pausa-era-esperada-mas-comunicado-deve-ditar-bolsa-e-dolar-nesta-5a/",
+   "data": "2026-11-05T08:00:00Z",
+   "resumo": "Analistas veem reação dos mercados mais ligada à leitura do comunicado do Comitê e ao risco fiscal do que à decisão em si"
+  },
+  {
+   "secao": "Mercado",
+   "fonte": "InfoMoney",
+   "editoria": "Mercado",
+   "titulo": "Vale investir nos EUA após vitória democrata? Gestor vê cenário favorável",
+   "link": "https://www.infomoney.com.br/onde-investir/vale-investir-nos-eua-apos-vitoria-democrata-gestor-ve-cenario-favoravel/",
+   "data": "2026-11-05T08:00:00Z",
+   "resumo": "Para Marcelo Cabral, da Stratton Capital, governo dividido limita interferência na economia, melhora perspectiva fiscal e reduz prêmio de risco político"
+  },
+  {
+   "secao": "Mercado",
+   "fonte": "InfoMoney",
+   "editoria": "Mercado",
+   "titulo": "3 sinais de alerta de que seu fornecedor está em dificuldades. Saiba identificar",
+   "link": "https://www.infomoney.com.br/business/global/3-sinais-de-alerta-de-que-seu-fornecedor-esta-em-dificuldades-saiba-identificar/",
+   "data": "2026-11-05T08:00:00Z",
+   "resumo": "Pesquisa sugere que sugere que o estresse do fornecedor frequentemente se torna visível antes de uma falha formal ocorrer, mas somente se as empresas souberem o que procurar"
+  },
+  {
+   "secao": "Mercado",
+   "fonte": "InfoMoney",
+   "editoria": "Mercado",
+   "titulo": "“Midterms” não reduzirão custos de empréstimos. O que os CFOs podem fazer?",
+   "link": "https://www.infomoney.com.br/business/global/midterms-nao-reduzirao-custos-de-emprestimos-o-que-os-cfos-podem-fazer/",
+   "data": "2026-11-05T08:00:00Z",
+   "resumo": "Déficits crescentes, forte demanda de capital, volatilidade da inflação e incerteza política pressionam as taxas de longo prazo, tornando a alocação disciplinada de capital, a gestão de dívidas e as decisões de investime"
+  },
+  {
+   "secao": "Mercado",
+   "fonte": "CNN Brasil",
+   "editoria": "Mercado",
+   "titulo": "“Bola no chão”: BC sinaliza independência contra pressão, dizem economistas",
+   "link": "https://www.cnnbrasil.com.br/economia/money/macroeconomia/bola-no-chao-bc-sinaliza-independencia-contra-pressao-dizem-economistas/",
+   "data": "2026-11-05T07:34:14Z",
+   "resumo": "Em meio a discussões entre governistas e o mercado sobre futuro da política monetária, Copom manteve taxa de juros em 13,75%"
+  },
+  {
+   "secao": "Mercado",
+   "fonte": "CNN Brasil",
+   "editoria": "Mercado",
+   "titulo": "Como a economia ajuda a explicar a virada dos Democrata nos EUA?",
+   "link": "https://www.cnnbrasil.com.br/economia/money/macroeconomia/como-a-economia-ajuda-a-explicar-a-virada-dos-democrata-nos-eua/",
+   "data": "2026-11-05T07:30:07Z",
+   "resumo": "Inflação, guerra no Irã e políticas de Trump alimentam insatisfação dos americanos a dois anos das eleições de 2024",
+   "tambem": [
+    {
+     "fonte": "g1",
+     "link": "https://g1.globo.com/economia/noticia/2026/11/04/vitoria-democrata-nos-eua-ameaca-planos-de-trump-para-economia-e-ia-entenda.ghtml"
+    }
+   ]
+  },
+  {
+   "secao": "Mercado",
+   "fonte": "CNN Brasil",
+   "editoria": "Mercado",
+   "titulo": "Mercado avalia possibilidade de Selic seguir em 13,75% até o final de 2027",
+   "link": "https://www.cnnbrasil.com.br/economia/money/macroeconomia/mercado-avalia-possibilidade-de-selic-seguir-em-1375-ate-o-final-de-2027/",
+   "data": "2026-11-05T06:54:13Z",
+   "resumo": "Agentes econômicos e Banco Central enxergam cenário inflacionário ambíguo pela frente e pregam \"estado de contingência\""
+  },
+  {
+   "secao": "Mercado",
+   "fonte": "CNN Brasil",
+   "editoria": "Mercado",
+   "titulo": "VA e VR devem ser aceitos em qualquer maquininha a partir deste sábado (7)",
+   "link": "https://www.cnnbrasil.com.br/economia/money/negocios/va-e-vr-devem-ser-aceitos-em-qualquer-maquininha-a-partir-deste-sabado-7/",
+   "data": "2026-11-05T06:00:39Z",
+   "resumo": "Decreto do Ministério do Trabalho e Emprego alterou as regras para vale-refeição e vale-alimentação; estabelecimentos precisam estar cadastrados no PAT"
   },
   {
    "secao": "Mercado",
@@ -570,15 +655,6 @@
   },
   {
    "secao": "Mercado",
-   "fonte": "CNN Brasil",
-   "editoria": "Mercado",
-   "titulo": "Decisão do Copom vem da incerteza das contas públicas, diz Rafaela Vitória",
-   "link": "https://www.cnnbrasil.com.br/economia/money/macroeconomia/decisao-do-copom-vem-da-incerteza-das-contas-publicas-diz-rafaela-vitoria/",
-   "data": "2026-11-05T01:46:15Z",
-   "resumo": "Ao CNN Prime Time, a economista-chefe do Inter avalia que falta de sinalização fiscal influenciou decisão do Copom de manter a Selic estável"
-  },
-  {
-   "secao": "Mercado",
    "fonte": "g1",
    "editoria": "Mercado",
    "titulo": "Governo edita medida provisória que define alíquotas do 'imposto do pecado'",
@@ -588,75 +664,12 @@
   },
   {
    "secao": "Mercado",
-   "fonte": "CNN Brasil",
-   "editoria": "Mercado",
-   "titulo": "Waack: Juros elevados antecipam a conta do populismo de Lula",
-   "link": "https://www.cnnbrasil.com.br/economia/money/macroeconomia/waack-juros-elevados-antecipam-a-conta-do-populismo-de-lula/",
-   "data": "2026-11-05T01:02:37Z",
-   "resumo": "O presidente já deu inúmeras demonstrações públicas de não ser capaz de entender o funcionamento de alguns mecanismos básicos em economia, apegado à ideia equivocada de que gasto público é vida"
-  },
-  {
-   "secao": "Mercado",
-   "fonte": "CNN Brasil",
-   "editoria": "Mercado",
-   "titulo": "Totvs tem lucro de R$ 237,2 milhões no 3° tri, alta de 8,8%",
-   "link": "https://www.cnnbrasil.com.br/economia/money/negocios/totvs-tem-lucro-de-r-2372-milhoes-no-3-tri-alta-de-88/",
-   "data": "2026-11-05T00:58:20Z",
-   "resumo": "Ebitda ajustado somou R$ 500,9 milhões no mesmo período, crescimento de 16,9%"
-  },
-  {
-   "secao": "Mercado",
-   "fonte": "CNN Brasil",
-   "editoria": "Mercado",
-   "titulo": "Qualcomm tem lucro de US$ 1,25 bi no 4° tri com expansão por data centers",
-   "link": "https://www.cnnbrasil.com.br/economia/money/negocios/qualcomm-tem-lucro-de-us-125-bi-no-4-tri-com-expansao-por-data-centers/",
-   "data": "2026-11-05T00:57:01Z",
-   "resumo": "Receita de internet das coisas cresceu 4%, para US$ 1,89 bilhão"
-  },
-  {
-   "secao": "Mercado",
-   "fonte": "InfoMoney",
-   "editoria": "Mercado",
-   "titulo": "Dia de Sorte: confira o resultado do concurso 1339 sorteado nesta quarta-feira (4)",
-   "link": "https://www.infomoney.com.br/consumo/dia-de-sorte-confira-o-resultado-do-concurso-1339-sorteado-nesta-quarta-feira-4/",
-   "data": "2026-11-05T00:33:48Z",
-   "resumo": "O prêmio estimado para este concurso era de R$ 2 milhão"
-  },
-  {
-   "secao": "Mercado",
-   "fonte": "InfoMoney",
-   "editoria": "Mercado",
-   "titulo": "Lotomania: confira o resultado do concurso 2995 sorteado nesta terça-feira (4)",
-   "link": "https://www.infomoney.com.br/consumo/lotomania-confira-o-resultado-do-concurso-2995-sorteado-nesta-terca-feira-4/",
-   "data": "2026-11-05T00:28:32Z",
-   "resumo": "Veja as 20 dezenas sorteadas no concurso 2995 da Lotomania e confira o valor estimado do prêmio"
-  },
-  {
-   "secao": "Mercado",
    "fonte": "g1",
    "editoria": "Mercado",
    "titulo": "Mega-Sena 3081 acumula e prêmio vai a R$ 55 milhões; confira os números sorteados",
    "link": "https://g1.globo.com/loterias/mega-sena/noticia/2026/11/04/mega-sena-concurso-3081-confira-os-numeros-sorteados.ghtml",
    "data": "2026-11-05T00:03:49Z",
    "resumo": "Como funciona a Mega-Sena? O sorteio do concurso 3.081 da Mega-Sena foi realizado na noite desta quarta-feira (4), em São Paulo."
-  },
-  {
-   "secao": "Mercado",
-   "fonte": "InfoMoney",
-   "editoria": "Mercado",
-   "titulo": "Vibra (VBBR3) tem resultado acima do esperado no 3º tri com lucro de R$ 2,4 bi",
-   "link": "https://www.infomoney.com.br/mercados/resultados-vibra-vbbr3-terceiro-trimestre-2026/",
-   "data": "2026-11-04T23:55:46Z",
-   "resumo": "Companhia teve um resultado operacional medido pelo Ebitda ajustado de R$ 4,3 bilhões, mais do que o dobro ante o desempenho de 2025"
-  },
-  {
-   "secao": "Mercado",
-   "fonte": "InfoMoney",
-   "editoria": "Mercado",
-   "titulo": "Viridis fecha acordo de venda de terras raras de projeto em MG com Solvay",
-   "link": "https://www.infomoney.com.br/business/viridis-fecha-acordo-de-venda-de-terras-raras-de-projeto-em-mg-com-solvay/",
-   "data": "2026-11-04T23:55:36Z",
-   "resumo": "O acordo prevê a compra de volumes mínimos de carbonato misto de terras raras (MREC) desde o início da produção, prevista para 2028, até o fim de 2034"
   },
   {
    "secao": "Mercado",
@@ -708,6 +721,21 @@
   },
   {
    "secao": "Concursos",
+   "fonte": "Gran Cursos",
+   "editoria": "Concursos",
+   "titulo": "Edital GHC: SAIU! Iniciais de até R$ 12,9 mil e provas em 10/01",
+   "link": "https://blog.grancursosonline.com.br/concurso-ghc-edital-publicado-novembro-2026/",
+   "data": "2026-11-05T05:37:06Z",
+   "resumo": "O edital GHC foi publicado no Diário Oficial da União (DOU) desta quinta-feira, 5 de novembro.",
+   "tambem": [
+    {
+     "fonte": "Estratégia Concursos",
+     "link": "https://concursos.estrategia.com/portal/concurso-ima-sc/"
+    }
+   ]
+  },
+  {
+   "secao": "Concursos",
    "fonte": "Estratégia Concursos",
    "editoria": "Concursos",
    "titulo": "Concurso IDAF ES: SAIU; iniciais até R$ 8,4 mil!",
@@ -717,7 +745,7 @@
    "tambem": [
     {
      "fonte": "Gran Cursos",
-     "link": "https://blog.grancursosonline.com.br/concurso-ima-sc-edital-publicado-2026/"
+     "link": "https://blog.grancursosonline.com.br/concurso-pgm-caxias-do-sul-rs/"
     }
    ]
   },
@@ -774,15 +802,6 @@
    "link": "https://blog.grancursosonline.com.br/concurso-antonio-prado-de-minas-mg/",
    "data": "2026-11-04T21:51:06Z",
    "resumo": "O edital do Concurso Antônio Prado de Minas MG já está na praça!"
-  },
-  {
-   "secao": "Concursos",
-   "fonte": "Gran Cursos",
-   "editoria": "Concursos",
-   "titulo": "Concurso Ijuí RS: SAIU! São 157 vagas; até R$21,3 mil; confira!",
-   "link": "https://blog.grancursosonline.com.br/concurso-ijui-rs/",
-   "data": "2026-11-04T21:15:33Z",
-   "resumo": "Atenção, concurseiros do Rio Grande do Sul: o Concurso Ijuí RS está com edital publicado para a Administração Direta do Poder Executivo do Município de Ijuí."
   },
   {
    "secao": "Concursos",
@@ -849,6 +868,75 @@
   },
   {
    "secao": "Ciência e Saúde",
+   "fonte": "g1",
+   "editoria": "Ciência e Saúde",
+   "titulo": "Nova diretriz de cardiogeriatria orienta tratamento de pacientes idosos",
+   "link": "https://g1.globo.com/bemestar/blog/longevidade-modo-de-usar/post/2026/11/05/nova-diretriz-de-cardiogeriatria-orienta-tratamento-de-pacientes-idosos.ghtml",
+   "data": "2026-11-05T07:00:01Z",
+   "resumo": "Cardiogeriatria é tema de livro No mês passado, durante o 81º."
+  },
+  {
+   "secao": "Ciência e Saúde",
+   "fonte": "g1",
+   "editoria": "Ciência e Saúde",
+   "titulo": "O que é o zeptoverso descoberto por cientistas, mundo 100 bilhões de vezes menor que um átomo",
+   "link": "https://g1.globo.com/ciencia/noticia/2026/11/05/o-que-e-o-zeptoverso-descoberto-por-cientistas-mundo-100-bilhoes-de-vezes-menor-que-um-atomo.ghtml",
+   "data": "2026-11-05T07:00:00Z",
+   "resumo": "Muitas partículas subatômicas são produzidas por colisões entre os componentes internos dos átomos CERN/Getty Images Cientistas detectaram sinais na menor escala da natureza já explorada: 100 bilhões de vezes menor que um átomo."
+  },
+  {
+   "secao": "Ciência e Saúde",
+   "fonte": "g1",
+   "editoria": "Ciência e Saúde",
+   "titulo": "Justiça manda suspender 'Bolsa Mounjaro' em Urupês; prefeitura aplicava versão manipulada, comprada com emenda de Tiririca",
+   "link": "https://g1.globo.com/saude/noticia/2026/11/05/justica-manda-suspender-bolsa-mounjaro-em-urupes-prefeitura-aplicava-versao-manipulada-comprada-com-emenda-de-tiririca.ghtml",
+   "data": "2026-11-05T07:00:00Z",
+   "resumo": "Prefeitura de Urupês aplica doses de Mounjaro Divulgação A Justiça de São Paulo mandou a Prefeitura de Urupês, no interior de São Paulo, suspender as aplicações de tirzepatida manipulada em pacientes com obesidade atendi"
+  },
+  {
+   "secao": "Ciência e Saúde",
+   "fonte": "g1",
+   "editoria": "Ciência e Saúde",
+   "titulo": "Por que grávidas têm desejos por determinados alimentos? O que a ciência já sabe",
+   "link": "https://g1.globo.com/saude/noticia/2026/11/05/por-que-gravidas-tem-desejos-por-determinados-alimentos-o-que-a-ciencia-ja-sabe.ghtml",
+   "data": "2026-11-05T07:00:00Z",
+   "resumo": "Gravidez: por que grávidas têm desejos por determinados alimentos?"
+  },
+  {
+   "secao": "Ciência e Saúde",
+   "fonte": "CNN Brasil",
+   "editoria": "Ciência e Saúde",
+   "titulo": "Estudo aponta combinação capaz de conter avanço de câncer de pulmão",
+   "link": "https://www.cnnbrasil.com.br/saude/estudo-aponta-combinacao-capaz-de-conter-avanco-de-cancer-de-pulmao/",
+   "data": "2026-11-05T06:37:57Z",
+   "resumo": "Tratamento testado pelo IDOR e centros internacionais superou a quimioterapia tradicional no controle de tumores com alteração genética"
+  },
+  {
+   "secao": "Ciência e Saúde",
+   "fonte": "CNN Brasil",
+   "editoria": "Ciência e Saúde",
+   "titulo": "Super El Niño atinge anomalia recorde para outubro e registra o maior valor da história com +2,47 ºC",
+   "link": "https://www.cnnbrasil.com.br/ciencia/super-el-nino-atinge-anomalia-recorde-para-outubro-e-registra-o-maior-valor-da-historia-com-247-oc/",
+   "data": "2026-11-05T06:34:30Z",
+   "resumo": "Fenômeno figura entre os mais intensos das últimas décadas; aquecimento na América do Sul teve grande impacto no Brasil",
+   "tambem": [
+    {
+     "fonte": "Olhar Digital",
+     "link": "https://olhardigital.com.br/2026/11/04/ciencia-e-espaco/el-nino-atinge-recorde-historico-de-aquecimento-em-outubro/"
+    }
+   ]
+  },
+  {
+   "secao": "Ciência e Saúde",
+   "fonte": "CNN Brasil",
+   "editoria": "Ciência e Saúde",
+   "titulo": "Exames e atendimentos gratuitos: veja ações voltadas ao Novembro Azul",
+   "link": "https://www.cnnbrasil.com.br/saude/exames-e-atendimentos-gratuitos-veja-acoes-voltadas-ao-novembro-azul/",
+   "data": "2026-11-05T06:33:04Z",
+   "resumo": "Ações levam exames, informações e reforçam sobre a importância do diagnóstico precoce do câncer de próstata; tumor é o segundo tipo que mais mata homens no Brasil"
+  },
+  {
+   "secao": "Ciência e Saúde",
    "fonte": "CNN Brasil",
    "editoria": "Ciência e Saúde",
    "titulo": "Caneta emagrecedora: 60,7% buscam reduzir porções em restaurantes",
@@ -909,72 +997,6 @@
   },
   {
    "secao": "Ciência e Saúde",
-   "fonte": "g1",
-   "editoria": "Ciência e Saúde",
-   "titulo": "Telescópio da Nasa que operou por quase 22 anos entra na atmosfera sobre a Indonésia",
-   "link": "https://g1.globo.com/ciencia/noticia/2026/11/04/telescopio-da-nasa-atmosfera.ghtml",
-   "data": "2026-11-04T20:41:17Z",
-   "resumo": "Ilustração mostra o telescópio espacial Neil Gehrels Swift, da Nasa, em órbita da Terra.",
-   "tambem": [
-    {
-     "fonte": "Olhar Digital",
-     "link": "https://olhardigital.com.br/2026/11/04/ciencia-e-espaco/telescopio-da-nasa-cai-na-terra-apos-22-anos-no-espaco/"
-    }
-   ]
-  },
-  {
-   "secao": "Ciência e Saúde",
-   "fonte": "CNN Brasil",
-   "editoria": "Ciência e Saúde",
-   "titulo": "Um observatório da Nasa de 1.451 kg cairá em alta velocidade na Terra; veja o que você precisa saber",
-   "link": "https://www.cnnbrasil.com.br/ciencia/um-observatorio-da-nasa-de-1-451-kg-caira-em-alta-velocidade-na-terra-veja-o-que-voce-precisa-saber/",
-   "data": "2026-11-04T20:34:48Z",
-   "resumo": "Maior parte da espaçonave deve se desintegrar na descida e risco de atingir pessoas na Terra é considerado muito baixo"
-  },
-  {
-   "secao": "Ciência e Saúde",
-   "fonte": "g1",
-   "editoria": "Ciência e Saúde",
-   "titulo": "Janaína Barbosa sofreu choque anafilático: entenda a reação alérgica extrema que pode ser provocada por um remédio",
-   "link": "https://g1.globo.com/saude/noticia/2026/11/04/janaina-barbosa-sofreu-choque-anafilatico-entenda-a-reacao-alergica-extrema-que-pode-ser-provocada-por-um-remedio.ghtml",
-   "data": "2026-11-04T19:22:33Z",
-   "resumo": "Janaína Barbosa Reprodução Coceira, manchas vermelhas e inchaço estão entre as manifestações alérgicas a um remédio."
-  },
-  {
-   "secao": "Ciência e Saúde",
-   "fonte": "CNN Brasil",
-   "editoria": "Ciência e Saúde",
-   "titulo": "Saúde projeta aumento de até 40% nos casos de dengue com El Nino",
-   "link": "https://www.cnnbrasil.com.br/saude/saude-projeta-aumento-de-ate-40-nos-casos-de-dengue-com-el-nino/",
-   "data": "2026-11-04T18:53:50Z",
-   "resumo": "Projeção é para a região Sudeste no período do verão, dentro do pior dos cenários estudados."
-  },
-  {
-   "secao": "Ciência e Saúde",
-   "fonte": "g1",
-   "editoria": "Ciência e Saúde",
-   "titulo": "Anvisa aprova Wegovy em comprimido: o que falta para versão oral da caneta emagracedora chegar às farmácias do Brasil?",
-   "link": "https://g1.globo.com/saude/noticia/2026/11/04/anvisa-aprova-wegovy-em-comprimido-o-que-falta-para-versao-oral-da-caneta-emagracedora-chegar-as-farmacias-do-brasil.ghtml",
-   "data": "2026-11-04T18:36:26Z",
-   "resumo": "Anvisa aprova Wegovy em comprimido REUTERS/Hannah Beier/Ilustration A Agência Nacional de Vigilância Sanitária (Anvisa) aprovou nesta quarta-feira (4/11) a versão em comprimido do Wegovy, remédio para obesidade da farmac",
-   "tambem": [
-    {
-     "fonte": "Agência Brasil",
-     "link": "https://agenciabrasil.ebc.com.br/saude/noticia/2026-11/anvisa-aprova-primeiro-medicamento-de-glp-1-oral-para-obesidade"
-    }
-   ]
-  },
-  {
-   "secao": "Ciência e Saúde",
-   "fonte": "CNN Brasil",
-   "editoria": "Ciência e Saúde",
-   "titulo": "Estudo associa miopia elevada ao olho seco em crianças",
-   "link": "https://www.cnnbrasil.com.br/saude/estudo-associa-miopia-elevada-ao-olho-seco-em-criancas/",
-   "data": "2026-11-04T18:36:14Z",
-   "resumo": "Especialista alerta que hábito de olhar para dispositivos reduz as piscadas e rompe a camada de lágrima"
-  },
-  {
-   "secao": "Ciência e Saúde",
    "fonte": "Fiocruz",
    "editoria": "Ciência e Saúde",
    "titulo": "Pesquisador da Fiocruz participa da Reforma da Arquitetura Global da Saúde da OMS",
@@ -990,15 +1012,6 @@
    "link": "https://agencia.fiocruz.br/webinario-apresenta-projecoes-para-temporada-2027-de-dengue",
    "data": "2026-11-04T13:15:43Z",
    "resumo": "Webinário apresenta projeções para a temporada 2027 de dengue renata.moehlecke Qua, 04/11/2026 - 10:15"
-  },
-  {
-   "secao": "Ciência e Saúde",
-   "fonte": "Fiocruz",
-   "editoria": "Ciência e Saúde",
-   "titulo": "Exposição à seca na gestação eleva chance de prematuridade e afeta crescimento do bebê",
-   "link": "https://agencia.fiocruz.br/exposicao-seca-na-gestacao-eleva-chance-de-prematuridade-e-afeta-crescimento-do-bebe",
-   "data": "2026-11-04T12:47:57Z",
-   "resumo": "Exposição à seca na gestação eleva chance de prematuridade e afeta crescimento do bebê renata.moehlecke Qua, 04/11/2026 - 09:47"
   }
  ],
  "erros": []
