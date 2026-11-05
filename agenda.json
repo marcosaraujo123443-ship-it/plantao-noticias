@@ -1,6 +1,6 @@
 {
  "data": "2026-11-05",
- "atualizado": "2026-11-05T10:36:59-0300",
+ "atualizado": "2026-11-05T11:18:12-0300",
  "itens": [
   {
    "hora": "00:01",
@@ -99,5 +99,7 @@
   ],
   "copom": []
  },
- "erros": []
+ "erros": [
+  "camara: <HTTPError 504: 'Gateway Timeout'>"
+ ]
 }
