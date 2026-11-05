@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-04T12:54:06Z",
+ "atualizado_utc": "2026-11-05T00:20:22Z",
  "fonte": "Banco Central (SGS)",
  "series": {
   "ipca": {
@@ -858,19 +858,11 @@
  },
  "copom": [
   {
-   "reuniao": 270,
-   "data": "2025-05-07",
-   "titulo": "270ª reunião - Copom eleva a taxa Selic para 14,75% a.a.",
-   "acao": "eleva",
-   "taxa": 14.75
-  },
-  {
    "reuniao": 271,
    "data": "2025-06-18",
    "titulo": "271ª reunião - Copom eleva a taxa Selic para 15,00% a.a.",
    "acao": "eleva",
-   "taxa": 15.0,
-   "variacao": 0.25
+   "taxa": 15.0
   },
   {
    "reuniao": 272,
@@ -951,6 +943,14 @@
    "acao": "reduz",
    "taxa": 13.75,
    "variacao": -0.25
+  },
+  {
+   "reuniao": 282,
+   "data": "2026-11-04",
+   "titulo": "282ª reunião - Copom mantém a taxa Selic em 13,75% a.a.",
+   "acao": "mantém",
+   "taxa": 13.75,
+   "variacao": 0.0
   }
  ],
  "erros": []
