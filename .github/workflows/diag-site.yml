@@ -1,0 +1,31 @@
+name: diag-site
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  v:
+    runs-on: ubuntu-latest
+    env:
+      CF: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      ACC: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      IG: ${{ secrets.IG_TOKEN }}
+      IGU: ${{ secrets.IG_USER_ID }}
+      TG: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+    steps:
+      - run: |
+          mkdir d; cd d
+          H="Authorization: Bearer $CF"
+          curl -s -H "$H" https://api.cloudflare.com/client/v4/user/tokens/verify | jq -c '.success,.result.status' > tok.txt
+          curl -s -H "$H" "https://api.cloudflare.com/client/v4/zones?per_page=50" | jq -c '{ok:.success,err:.errors,z:[.result[]?|{id,name,plan:.plan.name}]}' > zonas.json
+          Z=$(jq -r '.z[]|select(.name=="plantaoinforma.com.br")|.id' zonas.json)
+          echo "zona=$Z" >> tok.txt
+          if [ -n "$Z" ]; then
+            Q='{"query":"query($z:String!,$a:Date!,$b:Date!){viewer{zones(filter:{zoneTag:$z}){httpRequests1dGroups(limit:40,filter:{date_geq:$a,date_leq:$b},orderBy:[date_ASC]){dimensions{date} sum{requests pageViews cachedRequests threats countryMap{clientCountryName requests}} uniq{uniques}}}}}","variables":{"z":"'$Z'","a":"'$(date -u -d '30 days ago' +%F)'","b":"'$(date -u +%F)'"}}'
+            curl -s -H "$H" -H "Content-Type: application/json" https://api.cloudflare.com/client/v4/graphql -d "$Q" > dias.json
+            Q2='{"query":"query($z:String!,$a:Time!,$b:Time!){viewer{zones(filter:{zoneTag:$z}){httpRequestsAdaptiveGroups(limit:60,filter:{datetime_geq:$a,datetime_lt:$b,requestSource:\"eyeball\",edgeResponseContentTypeName:\"html\"},orderBy:[count_DESC]){count dimensions{clientRequestPath}} ref:httpRequestsAdaptiveGroups(limit:40,filter:{datetime_geq:$a,datetime_lt:$b,requestSource:\"eyeball\",edgeResponseContentTypeName:\"html\"},orderBy:[count_DESC]){count dimensions{clientRefererHost}} ua:httpRequestsAdaptiveGroups(limit:30,filter:{datetime_geq:$a,datetime_lt:$b,requestSource:\"eyeball\",edgeResponseContentTypeName:\"html\"},orderBy:[count_DESC]){count dimensions{userAgentBrowser clientDeviceType}} ip:httpRequestsAdaptiveGroups(limit:15,filter:{datetime_geq:$a,datetime_lt:$b,requestSource:\"eyeball\",edgeResponseContentTypeName:\"html\"},orderBy:[count_DESC]){count dimensions{clientCountryName clientASNDescription}}}}}","variables":{"z":"'$Z'","a":"'$(date -u -d '1 day ago' +%FT%TZ)'","b":"'$(date -u +%FT%TZ)'"}}'
+            curl -s -H "$H" -H "Content-Type: application/json" https://api.cloudflare.com/client/v4/graphql -d "$Q2" > paginas.json
+          fi
+          [ -n "$IG" ] && curl -s "https://graph.instagram.com/v23.0/me?fields=username,followers_count,media_count&access_token=$IG" > ig.json
+          [ -n "$IG" ] && curl -s "https://graph.instagram.com/v23.0/$IGU/insights?metric=reach,views,profile_views,website_clicks,accounts_engaged&period=day&metric_type=total_value&since=$(date -u -d '7 days ago' +%s)&until=$(date -u +%s)&access_token=$IG" > ig_ins.json
+          [ -n "$TG" ] && curl -s "https://api.telegram.org/bot$TG/getChatMemberCount?chat_id=@plantaodenoticias" > tg.json
+          git init -q -b diag-dados && git add . && git -c user.name=bot -c user.email=b@b commit -qm d && git push -fq "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" diag-dados
