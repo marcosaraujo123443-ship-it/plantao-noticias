@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 
 API = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
 # Tenta na ordem; o principal às vezes fica sobrecarregado (erro 503) e o resumo parava
-MODELOS = [m.strip() for m in os.environ.get("RESUMO_MODELOS", "gemini-flash-latest,gemini-flash-lite-latest").split(",") if m.strip()]
+MODELOS = [m.strip() for m in os.environ.get("RESUMO_MODELOS", "gemini-flash-latest,gemini-flash-lite-latest,gemini-2.5-flash,gemini-2.5-flash-lite").split(",") if m.strip()]
 BRT = timezone(timedelta(hours=-3))
 POR_SECAO = 6
 
@@ -54,7 +54,22 @@ def perguntar(corpo, chave):
                 if err.code not in (429, 500, 503): break
             except Exception as err:
                 erros.append(f"{modelo}: {err!r}")
-            time.sleep(10)
+            time.sleep(10 + 20 * tentativa)
+    # Todos sobrecarregados: procura na lista de modelos da chave outros "flash" de texto e tenta cada um
+    if not os.environ.get("_RESUMO_EXTRA"):
+        os.environ["_RESUMO_EXTRA"] = "1"
+        try:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key={chave}"
+            with urllib.request.urlopen(url, timeout=30) as r: lista = json.loads(r.read().decode())["models"]
+            extra = [m["name"].split("/")[-1] for m in lista if "generateContent" in m.get("supportedGenerationMethods", [])
+                     and "flash" in m["name"] and not re.search(r"tts|image|live|audio|embed|thinking|exp", m["name"])]
+            extra = [m for m in sorted(extra, reverse=True) if m not in MODELOS][:5]
+            if extra:
+                print("Tentando outros modelos:", ", ".join(extra))
+                MODELOS[:] = extra
+                return perguntar(corpo, chave)
+        except SystemExit: raise
+        except Exception as err: erros.append(f"lista de modelos: {err!r}")
     msg = "Gemini não respondeu: " + " | ".join(erros)
     print("::error::" + msg.replace("\n", " ")[:900])
     raise SystemExit(msg)
