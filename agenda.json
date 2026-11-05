@@ -1,6 +1,6 @@
 {
  "data": "2026-11-05",
- "atualizado": "2026-11-05T17:46:27-0300",
+ "atualizado": "2026-11-05T18:45:56-0300",
  "itens": [
   {
    "hora": "00:01",
@@ -44,7 +44,7 @@
    "titulo": "Sessão especial no Plenário",
    "detalhe": [],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Em andamento"
+   "estado": "Encerrada"
   },
   {
    "hora": "19:30",
@@ -105,10 +105,12 @@
     "titulo": "Sessão especial no Plenário",
     "detalhe": [],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Em andamento"
+    "estado": "Encerrada"
    }
   ],
   "copom": []
  },
- "erros": []
+ "erros": [
+  "copom: JSONDecodeError('Expecting value: line 1 column 1 (char 0)')"
+ ]
 }
