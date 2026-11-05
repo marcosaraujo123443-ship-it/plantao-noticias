@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-05T07:28:19Z",
+ "atualizado_utc": "2026-11-05T10:13:15Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -9,20 +9,20 @@
   },
   {
    "nome": "Dólar",
-   "valor": 5.4597,
-   "var": 0.0256490115970065,
+   "valor": 5.4623,
+   "var": 0.07328289027719315,
    "tipo": "brl"
   },
   {
    "nome": "Euro",
-   "valor": 6.1488,
-   "var": 0.31978072179077444,
+   "valor": 6.1359,
+   "var": 0.10931279775501235,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 439585.124844,
-   "var": 0.107194848878156,
+   "valor": 438764.218193,
+   "var": -0.12731214464856144,
    "tipo": "brl"
   },
   {
@@ -504,6 +504,12 @@
    "var": 3.9030955585464433
   },
   {
+   "ticker": "RAIZ4",
+   "nome": "Raízen",
+   "preco": 27.57,
+   "var": 9090.0
+  },
+  {
    "ticker": "RDOR3",
    "nome": "Rede D'Or",
    "preco": 32.54,
@@ -646,12 +652,6 @@
    "nome": "EZTec",
    "preco": 9.5,
    "var": 5.555555555555558
-  },
-  {
-   "ticker": "RAIZ4",
-   "nome": "Raízen",
-   "preco": 0.3,
-   "var": 0.0
   }
  ],
  "maiores": [
@@ -1348,12 +1348,12 @@
   {
    "papel": "PSEC11",
    "segmento": "Outros",
-   "cotacao": 43.8,
+   "cotacao": 43.98,
    "dy": 16.71,
    "pvp": 0.62,
    "vm": 805893000.0,
    "liq": 2536150.0,
-   "var": 1.8604651162790642
+   "var": 2.2790697674418547
   },
   {
    "papel": "BTCI11",
@@ -1418,12 +1418,12 @@
   {
    "papel": "PQAG11",
    "segmento": "Logística",
-   "cotacao": 53.5,
+   "cotacao": 54.0,
    "dy": 10.87,
    "pvp": 0.95,
    "vm": 748566000.0,
    "liq": 1082430.0,
-   "var": -3.5862317534690935
+   "var": -2.685168498828616
   },
   {
    "papel": "VGIA11",
@@ -1547,12 +1547,12 @@
   {
    "papel": "PQDP11",
    "segmento": "Shoppings",
-   "cotacao": 2300.0,
+   "cotacao": 2299.99,
    "dy": 9.33,
    "pvp": 0.88,
    "vm": 595939000.0,
    "liq": 1873350.0,
-   "var": -1.2875536480686733
+   "var": -1.2879828326180398
   },
   {
    "papel": "SNAG11",
