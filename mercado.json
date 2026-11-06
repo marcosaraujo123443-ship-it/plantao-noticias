@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-06T07:25:47Z",
+ "atualizado_utc": "2026-11-06T10:11:07Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -9,20 +9,20 @@
   },
   {
    "nome": "Dólar",
-   "valor": 5.5037,
-   "var": 0.0,
+   "valor": 5.487,
+   "var": -0.3034322364954489,
    "tipo": "brl"
   },
   {
    "nome": "Euro",
-   "valor": 6.165,
-   "var": -0.13121446274967363,
+   "valor": 6.1392,
+   "var": -0.5491568255819645,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 414436.370217,
-   "var": -0.8967817852485238,
+   "valor": 417006.51300000004,
+   "var": 0.021307450987939625,
    "tipo": "brl"
   },
   {
@@ -504,6 +504,12 @@
    "var": -4.857512953367871
   },
   {
+   "ticker": "RAIZ4",
+   "nome": "Raízen",
+   "preco": 27.3,
+   "var": 9000.0
+  },
+  {
    "ticker": "RDOR3",
    "nome": "Rede D'Or",
    "preco": 32.67,
@@ -646,12 +652,6 @@
    "nome": "EZTec",
    "preco": 9.14,
    "var": -3.7894736842105203
-  },
-  {
-   "ticker": "RAIZ4",
-   "nome": "Raízen",
-   "preco": 0.3,
-   "var": 0.0
   }
  ],
  "maiores": [
@@ -1249,12 +1249,12 @@
   {
    "papel": "GSFI11",
    "segmento": "Shoppings",
-   "cotacao": 11.38,
+   "cotacao": 11.44,
    "dy": 1.91,
    "pvp": 0.88,
    "vm": 1093690000.0,
    "liq": 17163200.0,
-   "var": 1.6071428571428736
+   "var": 2.1428571428571352
   },
   {
    "papel": "VRTA11",
@@ -1587,12 +1587,12 @@
   {
    "papel": "RINV11",
    "segmento": "Multicategoria",
-   "cotacao": 103.0,
+   "cotacao": 103.25,
    "dy": 12.93,
    "pvp": 1.02,
    "vm": 518263000.0,
    "liq": 616540.0,
-   "var": -0.0582185134872959
+   "var": 0.18435862604306852
   }
  ],
  "vm_cache": {
