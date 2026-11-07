@@ -31,6 +31,7 @@ on:
     - cron: "9 16 * * *"      # 13h09 (reserva)
     # Fila de posts agendados (posts/fila): confere a cada hora se há algum com horário vencido
     - cron: "18 * * * *"
+    - cron: "48 * * * *"      # reserva (o GitHub às vezes atrasa ou pula um horário)
   workflow_dispatch:
     inputs:
       tipo:
@@ -82,7 +83,7 @@ jobs:
             "17 14 * * *"|"47 14 * * *")                    t=contas ;;
             "37 12 * * *"|"7 0 * * *")                      t=economia ;;
             "7 15 * * *"|"37 15 * * *"|"9 16 * * *")         t=aula ;;
-            "18 * * * *")                                    t=avulso ;;
+            "18 * * * *"|"48 * * * *")                       t=avulso ;;
             *)               t="${{ inputs.tipo }}" ;;
           esac
           echo "tipo=$t" >> "$GITHUB_OUTPUT"; echo "Post: $t"
