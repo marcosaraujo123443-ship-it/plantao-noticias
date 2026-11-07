@@ -243,8 +243,19 @@ def gerar(tipo):
     if tipo == "avulso":   # post pronto (imagens e legenda em posts/avulso.json), ex.: divulgação de uma análise
         import shutil
         raiz = os.path.dirname(PASTA)
-        info = json.load(open(os.path.join(raiz, "posts", "avulso.json"), encoding="utf-8"))
+        origem = os.path.join(raiz, "posts")
+        info = json.load(open(os.path.join(origem, "avulso.json"), encoding="utf-8"))
         reg = registro()
+        # Fila de posts agendados (posts/fila/<id>.json + pasta <id>/ com as imagens): publica o primeiro já vencido
+        import glob
+        fb = bool(os.environ.get("FB_PAGE_TOKEN")); agora = datetime.now(timezone.utc)
+        for arq in sorted(glob.glob(os.path.join(origem, "fila", "*.json"))):
+            item = json.load(open(arq, encoding="utf-8"))
+            feito = reg.get(item["registro"]) == item["chave"] and (not fb or reg.get("fb_" + item["registro"]) == item["chave"])
+            em = datetime.fromisoformat(item["em"]) if item.get("em") else agora
+            if feito or em > agora: continue
+            info, origem = item, os.path.join(origem, "fila", os.path.basename(arq)[:-5])
+            break
         if reg.get(info["registro"]) == info["chave"] and (not os.environ.get("FB_PAGE_TOKEN") or reg.get("fb_" + info["registro"]) == info["chave"]) \
                 and not os.environ.get("IG_FORCAR"):
             print("Já publicado:", info["chave"]); sinal(False); return
@@ -252,7 +263,7 @@ def gerar(tipo):
         for antigo in os.listdir(PASTA):
             if antigo.startswith("avulso-"): os.remove(os.path.join(PASTA, antigo))
         for n in info["imagens"] + ([info["story"]] if info.get("story") else []):
-            shutil.copy(os.path.join(raiz, "posts", n), os.path.join(PASTA, n))
+            shutil.copy(os.path.join(origem, n), os.path.join(PASTA, n))
         with open(os.path.join(PASTA, "avulso.json"), "w", encoding="utf-8") as f: json.dump(info, f, ensure_ascii=False, indent=1)
         print(f"Post avulso pronto: {info['chave']}\n\n{info['legenda']}")
         sinal(True); return
@@ -443,7 +454,7 @@ def publicar_facebook(tipo):
 def publicar_facebook_feed(pagina, tipo, info):
     base = os.environ["IMAGENS_BASE"].rstrip("/")
     urls = [f"{base}/{n}" for n in info["imagens"]]
-    leg = legenda_fb(info["legenda"])
+    leg = legenda_fb(info["legenda"]) if not info.get("link") else re.sub(r"[Ll]ink na bio", info["link"], info["legenda"]).replace("➡️ Arraste para ver:", "➡️ Nas imagens:")
     if tipo == "reel":
         post = chamar_fb(f"{pagina}/videos", file_url=urls[0], description=leg,
                          title="Resumo do Plantão")["id"]
