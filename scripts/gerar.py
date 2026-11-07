@@ -310,10 +310,14 @@ for s in SECOES:
   </section>
 </div>'''
     if s == "Mercado":
-        painel = '''<div class="painel">
-  <div class="ind-grid" data-ind></div>
-  <div class="quadros">
-    <section class="quadro" aria-label="Ações">
+        def grupo(gid, titulo, desc, corpo, cls="quadros"):
+            return (f'  <section class="mk-g" id="mk-{gid}" aria-labelledby="mk-{gid}-t"><header class="mk-gh"><h2 id="mk-{gid}-t">{titulo}</h2><p>{desc}</p></header>\n'
+                    f'  <div class="{cls}">\n{corpo}  </div></section>\n')
+        painel = ('<div class="painel mk">\n'
+          '  <nav class="mk-nav" aria-label="Seções do mercado"><button data-mkgo="hoje">Hoje</button><button data-mkgo="bolsa">Ações e FIIs</button>'
+          '<button data-mkgo="empresas">Balanços</button><button data-mkgo="dinheiro">Seu dinheiro</button><button data-mkgo="economia">Economia</button></nav>\n'
+          + grupo("hoje", "Hoje no mercado", "Bolsa, moedas e juros agora", '    <div class="ind-grid" data-ind></div>\n', cls="mk-c")
+          + grupo("bolsa", "Ações e fundos imobiliários", "O que mais subiu, caiu e as maiores da B3", '''    <section class="quadro" aria-label="Ações">
       <header><h3>Ações</h3>
         <div class="seg" role="group" aria-label="Filtrar ações">
           <button class="on" data-af="altas" aria-pressed="true">Maiores altas</button><button data-af="quedas" aria-pressed="false">Maiores quedas</button><button data-af="maiores" aria-pressed="false">Maiores empresas</button>
@@ -329,7 +333,9 @@ for s in SECOES:
       <div class="tw"><table class="tab-m"><thead><tr><th>Fundo</th><th class="seg-col">Segmento</th><th class="n">Cotação</th><th class="n">Dia</th><th class="n">DY 12m</th><th class="n">P/VP</th><th class="n">Valor merc.</th></tr></thead><tbody data-fb></tbody></table></div>
       <a class="mais" href="fiis">Ver todos os fundos imobiliários →</a>
     </section>
-    <section class="quadro" aria-label="Calculadora de rendimento" data-calc>
+''')
+          + grupo("empresas", "Balanços das empresas", "Resultados entregues à CVM, atualizados sozinhos", '    <section data-balancos></section>\n')
+          + grupo("dinheiro", "Seu dinheiro", "Quanto rende cada aplicação com os juros de hoje", '''    <section class="quadro" aria-label="Calculadora de rendimento" data-calc>
       <header><h3>Quanto rende seu dinheiro?</h3>
         <div class="calc-in"><label>Valor <span class="calc-rs">R$<input type="number" inputmode="decimal" data-cv value="1000" min="1" step="100" aria-label="Valor aplicado em reais"></span></label>
           <label>Prazo <select data-cp aria-label="Prazo da aplicação"><option value="6">6 meses</option><option value="12" selected>1 ano</option><option value="24">2 anos</option><option value="36">3 anos</option></select></label></div>
@@ -337,16 +343,14 @@ for s in SECOES:
       <div class="tw"><table class="tab-m"><thead><tr><th>Aplicação</th><th class="n">Rende (líquido)</th><th class="n">Você terá</th></tr></thead><tbody data-cb>''' + sk_linhas(4, 3) + '''</tbody></table></div>
       <p class="nota" data-cn></p>
     </section>
-    <section class="quadro" aria-label="Indicadores econômicos" data-eco>
+''')
+          + grupo("economia", "Economia", "Indicadores do Brasil e as maiores economias do mundo", '''    <section class="quadro" aria-label="Indicadores econômicos" data-eco>
       <header><h3>Indicadores econômicos</h3><p class="per" data-ecot>''' + sk_txt("Carregando os indicadores…", "55%") + '''</p></header>
       <div class="tw"><table class="tab-m"><thead><tr><th>Indicador</th><th class="n">Último</th><th class="n">12 meses</th><th>Referência</th></tr></thead><tbody data-ecob>''' + sk_linhas(5, 4) + '''</tbody></table></div>
       <a class="mais" href="indicadores">Ver os indicadores em detalhe →</a>
     </section>
-    ''' + economias_html + '''
-    <section data-balancos></section>
-  </div>
-  <p class="nota" data-nota></p>
-</div>'''
+''' + economias_html + "\n")
+          + '  <p class="nota" data-nota></p>\n</div>')
     if s == "IA" and ia_html:
         painel = f'<div class="painel">{ia_html}</div>'
     if s == "Concursos":

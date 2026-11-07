@@ -160,7 +160,8 @@ def main():
     except Exception:
         pass
     cot = cotacoes(IBOV)
-    ibov = [{"ticker": t, "nome": NOMES.get(t, ""), "preco": p, "var": v} for t, (p, v) in cot.items() if v is not None]
+    # variação acima de 60% num dia costuma ser grupamento/desdobramento ou erro da fonte, não alta real
+    ibov = [{"ticker": t, "nome": NOMES.get(t, ""), "preco": p, "var": v} for t, (p, v) in cot.items() if v is not None and abs(v) < 60]
     vmc = valor_mercado(anterior.get("vm_cache", {}))
     maiores = []
     for t, x in vmc.get("vm", {}).items():

@@ -385,6 +385,11 @@ main.buscando .pagina{display:none!important}
 .nota{margin:0;font-size:12.5px;color:var(--ink-2)}
 /* Quadros de ações e FIIs */
 .quadros{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:18px}
+.mk{gap:26px}.mk-g{display:grid;gap:12px;scroll-margin-top:90px}.mk-gh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;border-bottom:2px solid var(--ink);padding-bottom:6px}
+.mk-gh h2{margin:0;font:700 21px var(--f-head);color:var(--ink)}.mk-gh p{margin:0;font-size:13.5px;color:var(--ink-2)}
+.mk-nav{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.mk-nav::-webkit-scrollbar{display:none}
+.mk-nav button{flex:none;font:600 13.5px var(--f-body,system-ui);padding:7px 13px;border-radius:999px;border:1px solid var(--rule);background:var(--card);color:var(--ink);cursor:pointer}
+.mk-nav button:hover{border-color:var(--ink)}.mk .bl-h h3{display:none}.mk .quadros{gap:16px}
 .quadro{background:var(--card);border:1px solid var(--rule);display:grid;align-content:start;min-width:0}
 .quadro header{display:grid;gap:10px;padding:16px 16px 12px;border-bottom:1px solid var(--rule)}
 .quadro h3{font:700 19px var(--f-head);margin:0}
@@ -955,7 +960,7 @@ footer a{font-weight:600}
   function bi(v){ if(v==null) return '–'; if(v>=1e12) return 'R$ '+nf2.format(v/1e12)+' tri'; if(v>=1e9) return 'R$ '+nf2.format(v/1e9)+' bi'; return 'R$ '+nf0.format(v/1e6)+' mi'; }
   function quadroAcoes(){
     var h=document.querySelector('[data-ah]'), b=document.querySelector('[data-ab]'); if(!h||!b) return;
-    var L=(ULT.ibov||ULT.acoes||[]).filter(function(a){return a.var!=null});
+    var L=(ULT.ibov||ULT.acoes||[]).filter(function(a){return a.var!=null&&Math.abs(a.var)<60});   // acima de 60% costuma ser grupamento ou erro da fonte
     var rows, cab;
     if(AF==='maiores'){
       rows=(ULT.maiores||[]).slice(0,20);
@@ -976,10 +981,11 @@ footer a{font-weight:600}
     else if(FF==='altas') L=L.filter(function(f){return f.var!=null}).sort(function(a,b){return b.var-a.var});
     else if(FF==='baixas') L=L.filter(function(f){return f.var!=null}).sort(function(a,b){return a.var-b.var});
     else L.sort(function(a,b){return b.vm-a.vm});
-    L=L.slice(0,(FF==='altas'||FF==='baixas')?10:15);
+    L=L.slice(0,10);
     b.innerHTML=L.length?L.map(function(f){return '<tr><td>'+esc(f.papel)+'</td><td class="nm seg-col">'+esc(f.segmento)+'</td><td class="n">'+nf2.format(f.cotacao)+'</td><td class="n '+vr(f.var).c+'">'+(f.var!=null?vr(f.var).t:'–')+'</td><td class="n">'+nf2.format(f.dy)+'%</td><td class="n">'+nf2.format(f.pvp)+'</td><td class="n">'+bi(f.vm)+'</td></tr>'}).join(''):'<tr><td colspan="7" class="nm">Aguardando dados dos fundos.</td></tr>';
   }
   document.addEventListener('click',function(ev){
+    var g=ev.target.closest('[data-mkgo]'); if(g){var alvo=document.getElementById('mk-'+g.dataset.mkgo); if(alvo) alvo.scrollIntoView({behavior:'smooth',block:'start'}); return;}
     var a=ev.target.closest('[data-af]'), f=ev.target.closest('[data-ff]');
     if(a){AF=a.dataset.af; a.parentNode.querySelectorAll('button').forEach(function(x){var on=x===a;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on)}); quadroAcoes();}
     if(f){FF=f.dataset.ff; f.parentNode.querySelectorAll('button').forEach(function(x){var on=x===f;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on)}); quadroFii();}
