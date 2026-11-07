@@ -1,23 +1,23 @@
 {
- "data": "2026-11-06",
- "atualizado": "2026-11-06T23:52:19-0300",
+ "data": "2026-11-07",
+ "atualizado": "2026-11-07T01:48:47-0300",
  "itens": [
   {
-   "hora": "10:00",
+   "hora": "00:00",
    "tipo": "tempo",
    "rotulo": "Alerta INMET",
-   "titulo": "Baixa Umidade (perigo) em AL, BA, CE, PB, PE, PI…",
+   "titulo": "Tempestade (grande perigo) em PR, RS, SC",
    "detalhe": [
-    "Umidade relativa do ar variando entre 20% e 12%. Risco de incêndios florestais e à saúde. Ressecamento da pele, desconforto nos olhos, boca…"
+    "Chuva superior a 60 mm/h ou maior que 100 mm/dia, ventos superiores a 100 km/h, e queda de granizo. Grande risco de danos em edificações,…"
    ],
    "link": "#tempo",
    "estado": ""
   },
   {
-   "hora": "15:00",
+   "hora": "00:00",
    "tipo": "tempo",
    "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (perigo) em PR, RS, SC",
+   "titulo": "Tempestade (perigo) em MS, PR, RS, SC, SP",
    "detalhe": [
     "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
    ],
@@ -25,10 +25,21 @@
    "estado": ""
   },
   {
-   "hora": "19:30",
+   "hora": "16:00",
    "tipo": "futebol",
    "rotulo": "Série B",
-   "titulo": "Operário PR × Sport",
+   "titulo": "Avaí × São Bernardo",
+   "detalhe": [
+    "37ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "16:10",
+   "tipo": "futebol",
+   "rotulo": "Série B",
+   "titulo": "Novorizontino × Fortaleza",
    "detalhe": [
     "37ª rodada"
    ],
@@ -38,16 +49,38 @@
   {
    "hora": "20:00",
    "tipo": "futebol",
-   "rotulo": "Brasileirão",
-   "titulo": "Vitória 0 × 3 Fluminense",
+   "rotulo": "Série B",
+   "titulo": "Cuiabá × Juventude",
    "detalhe": [
-    "34ª rodada"
+    "37ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "20:00",
+   "tipo": "futebol",
+   "rotulo": "Série B",
+   "titulo": "Vila Nova × Criciúma",
+   "detalhe": [
+    "37ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "21:30",
+   "tipo": "futebol",
+   "rotulo": "Série B",
+   "titulo": "Náutico × CRB",
+   "detalhe": [
+    "37ª rodada"
+   ],
+   "estado": "",
    "link": "tabelas/"
   }
  ],
- "outros_jogos": 12,
+ "outros_jogos": 28,
  "fontes": {
   "camara": [],
   "senado": [],
