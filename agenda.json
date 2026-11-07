@@ -1,18 +1,7 @@
 {
  "data": "2026-11-07",
- "atualizado": "2026-11-07T12:39:35-0300",
+ "atualizado": "2026-11-07T13:36:39-0300",
  "itens": [
-  {
-   "hora": "00:00",
-   "tipo": "tempo",
-   "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (grande perigo) em PR, RS, SC",
-   "detalhe": [
-    "Chuva superior a 60 mm/h ou maior que 100 mm/dia, ventos superiores a 100 km/h, e queda de granizo. Grande risco de danos em edificações,…"
-   ],
-   "link": "#tempo",
-   "estado": ""
-  },
   {
    "hora": "09:00",
    "tipo": "tempo",
@@ -31,6 +20,17 @@
    "titulo": "Baixa Umidade (perigo) em BA, CE, PB, PE, PI, RN",
    "detalhe": [
     "Umidade relativa do ar variando entre 20% e 12%. Risco de incêndios florestais e à saúde. Ressecamento da pele, desconforto nos olhos, boca…"
+   ],
+   "link": "#tempo",
+   "estado": ""
+  },
+  {
+   "hora": "11:45",
+   "tipo": "tempo",
+   "rotulo": "Alerta INMET",
+   "titulo": "Tempestade (grande perigo) em PR, SC",
+   "detalhe": [
+    "Chuva superior a 60 mm/h ou maior que 100 mm/dia, ventos superiores a 100 km/h, e queda de granizo. Grande risco de danos em edificações,…"
    ],
    "link": "#tempo",
    "estado": ""
