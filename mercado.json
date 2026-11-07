@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-07T07:08:05Z",
+ "atualizado_utc": "2026-11-07T09:54:28Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -21,8 +21,8 @@
   },
   {
    "nome": "Bitcoin",
-   "valor": 417163.321714,
-   "var": 0.21579324998757254,
+   "valor": 417303.35724599997,
+   "var": 0.24943420352323553,
    "tipo": "brl"
   },
   {
@@ -476,8 +476,8 @@
   {
    "ticker": "PETR4",
    "nome": "Petrobras",
-   "preco": 45.36,
-   "var": -1.2840043525571332
+   "preco": 45.3,
+   "var": -1.414581066376508
   },
   {
    "ticker": "RECV3",
@@ -502,6 +502,12 @@
    "nome": "Raia Drogasil",
    "preco": 14.83,
    "var": 0.9530292716133371
+  },
+  {
+   "ticker": "RAIZ4",
+   "nome": "Raízen",
+   "preco": 28.0,
+   "var": 9233.333333333334
   },
   {
    "ticker": "RDOR3",
@@ -646,21 +652,15 @@
    "nome": "EZTec",
    "preco": 9.48,
    "var": 3.7199124726476906
-  },
-  {
-   "ticker": "RAIZ4",
-   "nome": "Raízen",
-   "preco": 0.3,
-   "var": 0.0
   }
  ],
  "maiores": [
   {
    "ticker": "PETR4",
    "nome": "Petrobras",
-   "preco": 45.36,
-   "var": -1.2840043525571332,
-   "vm": 584632651142.5463
+   "preco": 45.3,
+   "var": -1.414581066376508,
+   "vm": 583859327529.9237
   },
   {
    "ticker": "ITUB4",
@@ -1159,12 +1159,12 @@
   {
    "papel": "TVRI11",
    "segmento": "Escritórios",
-   "cotacao": 82.89,
+   "cotacao": 82.88,
    "dy": 15.02,
    "pvp": 0.82,
    "vm": 1319580000.0,
    "liq": 1405550.0,
-   "var": 0.5458515283842891
+   "var": 0.5337214944201918
   },
   {
    "papel": "VGIR11",
@@ -1249,12 +1249,12 @@
   {
    "papel": "GSFI11",
    "segmento": "Shoppings",
-   "cotacao": 11.44,
+   "cotacao": 11.42,
    "dy": 1.9,
    "pvp": 0.89,
    "vm": 1099460000.0,
    "liq": 16754600.0,
-   "var": 0.5272407732864526
+   "var": 0.35149384885764245
   },
   {
    "papel": "BRCR11",
