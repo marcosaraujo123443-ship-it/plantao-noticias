@@ -179,10 +179,11 @@ def proximo_economia():
     import instagram_economia as ec
     reg, fb = registro(), bool(os.environ.get("FB_PAGE_TOKEN"))
     pend = lambda k, chave: reg.get("eco_" + k) != chave or (fb and reg.get("fb_eco_" + k) != chave)
-    for k in ec.ORDEM:
-        try: chave = ec.legenda_e_alt(k)[0]
+    import instagram_dados as dd
+    for k in ec.ORDEM + dd.IDS:
+        try: chave = (dd.ultimo(k) if k in dd.IDS else ec.legenda_e_alt(k)[0])
         except Exception: continue
-        if pend(k, chave): return k
+        if chave and pend(k, chave): return k
     if datetime.now(BRT).weekday() < 5 and pend("painel", ec.legenda_e_alt("painel")[0]):
         return "painel"
     return None
@@ -214,13 +215,15 @@ def gerar(tipo):
         sub = os.environ.get("ECO_TIPO") or proximo_economia()
         if not sub:
             print("Nada a publicar: nenhuma divulgação nova de indicadores"); sinal(False); return
-        chave, legenda, alt = ec.legenda_e_alt(sub)
+        import instagram_dados as dd
+        mod = dd if sub in dd.IDS else ec
+        chave, legenda, alt = mod.legenda_e_alt(sub)
         lista = PERGUNTAS["economia"]
         legenda += ("\n\n💬 " + lista[datetime.now(BRT).timetuple().tm_yday % len(lista)] + "\n\n"
-                    + ec.TAGS[sub] + " #plantaoinforma")
+                    + (dd.tags(sub) if mod is dd else ec.TAGS[sub]) + " #plantaoinforma")
         for antigo in os.listdir(PASTA) if os.path.isdir(PASTA) else []:
             if antigo.startswith("economia-"): os.remove(os.path.join(PASTA, antigo))
-        arquivos = ec.gerar(sub, PASTA)
+        arquivos = mod.gerar(sub, PASTA)
         with open(os.path.join(PASTA, "economia.json"), "w", encoding="utf-8") as f:
             json.dump({"chave": chave, "registro": "eco_" + sub, "legenda": legenda,
                        "imagens": [os.path.basename(a) for a in arquivos], "alt": alt}, f, ensure_ascii=False, indent=1)

@@ -25,6 +25,8 @@ on:
     # Indicadores econômicos: posta cada divulgação nova (Copom, IPCA, IGP-M...) e um painel por mês
     - cron: "37 12 * * *"     # 9h37 (IBGE e FGV divulgam às 9h)
     - cron: "7 0 * * *"       # 21h07 (decisão do Copom sai por volta das 18h30)
+    - cron: "53 14 * * *"     # 11h53 (mais de uma divulgação no mesmo dia: um card por vez)
+    - cron: "53 18 * * *"     # 15h53 (payroll, Fed e BCE)
     # Série "Economia em 30 dias": um carrossel por dia (os horários seguintes são reserva)
     - cron: "7 15 * * *"      # 12h07
     - cron: "37 15 * * *"     # 12h37 (reserva)
@@ -81,7 +83,7 @@ jobs:
             "52 15 * * 0,6"|"22 16 * * 0,6")                t=resumo ;;
             "43 15 * * *"|"43 1 * * *"|"13 2 * * *")        t=futebol ;;
             "17 14 * * *"|"47 14 * * *")                    t=contas ;;
-            "37 12 * * *"|"7 0 * * *")                      t=economia ;;
+            "37 12 * * *"|"7 0 * * *"|"53 14 * * *"|"53 18 * * *") t=economia ;;
             "7 15 * * *"|"37 15 * * *"|"9 16 * * *")         t=aula ;;
             "18 * * * *"|"48 * * * *")                       t=avulso ;;
             *)               t="${{ inputs.tipo }}" ;;

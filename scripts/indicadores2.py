@@ -35,7 +35,12 @@ def sidra(tab, vars_, classif, n=13):
     return {k: sorted(v) for k, v in out.items()}
 
 def fred(serie):
-    linhas = list(csv.reader(io.StringIO(get(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={serie}&cosd={date.today().year - 3}-01-01", tentativas=2, timeout=40, ua={"User-Agent": "curl/8.5.0", "Accept": "*/*"}))))[1:]
+    url = f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={serie}&cosd={date.today().year - 3}-01-01"
+    try: texto = get(url, tentativas=2, timeout=40, ua={"User-Agent": "curl/8.5.0", "Accept": "*/*"})
+    except Exception:   # o FRED às vezes trava conexões do urllib; o curl costuma passar
+        import subprocess
+        texto = subprocess.run(["curl", "-sL", "-m", "90", "--retry", "2", url], capture_output=True, text=True, check=True).stdout
+    linhas = list(csv.reader(io.StringIO(texto)))[1:]
     return [(a, float(b)) for a, b in linhas if b not in (".", "")]
 
 def rot(m): return f"{MESES[int(m[5:]) - 1]}/{m[2:4]}"
@@ -59,7 +64,7 @@ def caged():
     if ant: selo = ("▲ ACIMA DE " if v > ant[1] else "▼ ABAIXO DE ") + rot(ant[0]).upper(), "bom" if v > ant[1] else "ruim"
     return {"id": "caged", "tag": "Brasil · Trabalho", "titulo": "Empregos com carteira", "sub": "Saldo do mês · Novo Caged",
             "ref": m, "ref_txt": ext(m), "valor": mil(v), "cor": "bom" if v > 0 else "ruim", "selo": selo,
-            "frase": f"{'Vagas criadas' if v >= 0 else 'Vagas fechadas'} em {ext(m)}: contratações {'menos' if v >= 0 else 'mais'} demissões." + (f" Em {rot(ant[0])}, o saldo foi de {mil(ant[1])}." if ant else ""),
+            "frase": f"{'vagas criadas' if v >= 0 else 'vagas fechadas'} em {ext(m)}: contratações {'menos' if v >= 0 else 'mais'} demissões." + (f" Em {rot(ant[0])}, o saldo foi de {mil(ant[1])}." if ant else ""),
             "apoio": [("No ano", mil(no_ano), f"saldo desde janeiro de {ano}"), ("Em 12 meses", mil(sum(x for _, x in saldos[-12:])), "vagas com carteira"),
                       ("Total com carteira", br(est[-1][1] / 1e6, 1) + " mi", "vínculos formais ativos")],
             "graf_tit": "Saldo mês a mês · mil vagas", "graf": [(rot(mm), round(x / 1000)) for mm, x in saldos[-12:]], "graf_fmt": "num0",
@@ -182,10 +187,10 @@ def juros_externos(id_, tag, titulo, sub, series, datas, porque, tags, fonte, ap
     mudou = ult_mud >= reun
     acao = ("▼ CORTE DE " if var < 0 else "▲ ALTA DE ") + br(abs(var), 2) + " P.P." if mudou else "= MANTIDOS"
     graf = [(f"{MESES[int(d[5:7]) - 1]}/{d[2:4]}", v) for d, v in mudancas[-10:]]
-    return {"id": id_, "tag": tag, "titulo": titulo, "sub": sub, "ref": reun, "ref_txt": f"decisão de {reun[8:]}/{reun[5:7]}/{reun[:4]}",
+    return {"id": id_, "tag": tag, "titulo": titulo, "sub": sub, "ref": reun, "ref_txt": (f"em vigor desde {reun[8:]}/{reun[5:7]}" if ult_mud >= reun else f"decisão de {reun[8:]}/{reun[5:7]}"),
             "valor": valor, "cor": "neutro", "selo": (acao, "neutro"),
             "frase": "ao ano. " + ("Os juros foram " + ("cortados" if var < 0 else "elevados") + " na última reunião." if mudou else f"A taxa segue no mesmo nível desde {MESES_EXT[int(ult_mud[5:7]) - 1]} de {ult_mud[:4]}."),
-            "apoio": apoio_extra(hist, mudancas), "graf_tit": "Taxa a cada mudança · % ao ano", "graf": graf, "graf_fmt": "num2", "base_zero": False,
+            "apoio": apoio_extra(hist, mudancas), "graf_tit": "Taxa a cada mudança · % ao ano", "graf": graf, "graf_fmt": "num2", "base_zero": False, "graf_rot": "completo",
             "porque": porque, "fonte": fonte, "tags": tags}
 
 def _apoio(rotulo_taxa, datas, terceiro):

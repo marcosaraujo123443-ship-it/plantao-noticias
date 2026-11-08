@@ -1,0 +1,842 @@
+{
+ "atualizado_utc": "2026-11-08T03:42:57Z",
+ "itens": {
+  "caged": {
+   "id": "caged",
+   "tag": "Brasil · Trabalho",
+   "titulo": "Empregos com carteira",
+   "sub": "Saldo do mês · Novo Caged",
+   "ref": "2026-09",
+   "ref_txt": "setembro de 2026",
+   "valor": "+121 mil",
+   "cor": "bom",
+   "selo": [
+    "▼ ABAIXO DE SET/25",
+    "ruim"
+   ],
+   "frase": "vagas criadas em setembro de 2026: contratações menos demissões. Em set/25, o saldo foi de +215 mil.",
+   "apoio": [
+    [
+     "No ano",
+     "+1.249 mil",
+     "saldo desde janeiro de 2026"
+    ],
+    [
+     "Em 12 meses",
+     "+787 mil",
+     "vagas com carteira"
+    ],
+    [
+     "Total com carteira",
+     "48,4 mi",
+     "vínculos formais ativos"
+    ]
+   ],
+   "graf_tit": "Saldo mês a mês · mil vagas",
+   "graf": [
+    [
+     "out/25",
+     93
+    ],
+    [
+     "nov/25",
+     81
+    ],
+    [
+     "dez/25",
+     -636
+    ],
+    [
+     "jan/26",
+     118
+    ],
+    [
+     "fev/26",
+     268
+    ],
+    [
+     "mar/26",
+     228
+    ],
+    [
+     "abr/26",
+     79
+    ],
+    [
+     "mai/26",
+     81
+    ],
+    [
+     "jun/26",
+     136
+    ],
+    [
+     "jul/26",
+     56
+    ],
+    [
+     "ago/26",
+     161
+    ],
+    [
+     "set/26",
+     121
+    ]
+   ],
+   "graf_fmt": "num0",
+   "porque": "O Caged mostra a geração de empregos formais. Mais vagas significam mais renda e consumo.",
+   "fonte": "Ministério do Trabalho (Novo Caged), via Banco Central",
+   "tags": "#emprego #caged #carteiraassinada #economia"
+  },
+  "inadimplencia": {
+   "id": "inadimplencia",
+   "tag": "Brasil · Crédito",
+   "titulo": "Inadimplência das famílias",
+   "sub": "Crédito livre · atrasos acima de 90 dias",
+   "ref": "2026-09",
+   "ref_txt": "setembro de 2026",
+   "valor": "8,1%",
+   "cor": "ruim",
+   "selo": [
+    "▲ RECORDE DA SÉRIE",
+    "ruim"
+   ],
+   "frase": "do valor emprestado às famílias com recursos livres está com atraso de mais de 90 dias. É o maior nível da série, iniciada em 2011.",
+   "apoio": [
+    [
+     "Mês anterior",
+     "8,0%",
+     "ago/26"
+    ],
+    [
+     "Um ano antes",
+     "6,9%",
+     "set/25"
+    ],
+    [
+     "Em 12 meses",
+     "+1,2 p.p.",
+     "variação"
+    ]
+   ],
+   "graf_tit": "Inadimplência mês a mês · %",
+   "graf": [
+    [
+     "out/25",
+     6.86
+    ],
+    [
+     "nov/25",
+     6.94
+    ],
+    [
+     "dez/25",
+     7.06
+    ],
+    [
+     "jan/26",
+     7.17
+    ],
+    [
+     "fev/26",
+     7.42
+    ],
+    [
+     "mar/26",
+     7.25
+    ],
+    [
+     "abr/26",
+     7.37
+    ],
+    [
+     "mai/26",
+     7.56
+    ],
+    [
+     "jun/26",
+     7.38
+    ],
+    [
+     "jul/26",
+     7.78
+    ],
+    [
+     "ago/26",
+     8.03
+    ],
+    [
+     "set/26",
+     8.09
+    ]
+   ],
+   "graf_fmt": "num1",
+   "base_zero": false,
+   "porque": "Mais famílias atrasando pagamentos fazem os bancos cobrarem juros maiores e emprestarem menos.",
+   "fonte": "Banco Central",
+   "tags": "#inadimplencia #credito #endividamento #economia"
+  },
+  "contas_externas": {
+   "id": "contas_externas",
+   "tag": "Brasil · Setor externo",
+   "titulo": "Contas externas",
+   "sub": "Transações correntes · Banco Central",
+   "ref": "2026-09",
+   "ref_txt": "setembro de 2026",
+   "valor": "−US$ 5,1 bi",
+   "cor": "ruim",
+   "selo": [
+    "▼ DÉFICIT MENOR QUE SET/25",
+    "bom"
+   ],
+   "frase": "de déficit nas transações correntes em setembro de 2026: o saldo de tudo o que o país compra, vende, paga e recebe do exterior. Em set/25: US$ -8,8 bi.",
+   "apoio": [
+    [
+     "Em 12 meses",
+     "2,33% do PIB",
+     "déficit acumulado"
+    ],
+    [
+     "Investimento direto",
+     "US$ 11,3 bi",
+     "no mês (set/26)"
+    ],
+    [
+     "Reservas",
+     "US$ 362,8 bi",
+     "fim de set/26"
+    ]
+   ],
+   "graf_tit": "Saldo em 12 meses · % do PIB",
+   "graf": [
+    [
+     "out/25",
+     -3.39
+    ],
+    [
+     "nov/25",
+     -3.31
+    ],
+    [
+     "dez/25",
+     -2.96
+    ],
+    [
+     "jan/26",
+     -2.93
+    ],
+    [
+     "fev/26",
+     -2.69
+    ],
+    [
+     "mar/26",
+     -2.61
+    ],
+    [
+     "abr/26",
+     -2.47
+    ],
+    [
+     "mai/26",
+     -2.46
+    ],
+    [
+     "jun/26",
+     -2.37
+    ],
+    [
+     "jul/26",
+     -2.45
+    ],
+    [
+     "ago/26",
+     -2.5
+    ],
+    [
+     "set/26",
+     -2.33
+    ]
+   ],
+   "graf_fmt": "num2",
+   "porque": "Quando o investimento estrangeiro cobre o déficit, o país se financia sem pressão sobre o dólar.",
+   "fonte": "Banco Central",
+   "tags": "#setorexterno #dolar #investimentos #economia"
+  },
+  "incc": {
+   "id": "incc",
+   "tag": "Brasil · Construção",
+   "titulo": "Custo da construção",
+   "sub": "INCC-M · FGV",
+   "ref": "2026-10",
+   "ref_txt": "outubro de 2026",
+   "valor": "+0,35%",
+   "cor": "ruim",
+   "selo": [
+    "▲ ALTA NO MÊS",
+    "ruim"
+   ],
+   "frase": "em outubro de 2026, ante +0,25% no mês anterior. Mede materiais, equipamentos e mão de obra da construção.",
+   "apoio": [
+    [
+     "Em 12 meses",
+     "+6,75%",
+     "acumulado"
+    ],
+    [
+     "No ano",
+     "+6,22%",
+     "desde janeiro de 2026"
+    ],
+    [
+     "Out/25",
+     "+0,21%",
+     "mesmo mês do ano passado"
+    ]
+   ],
+   "graf_tit": "Variação mês a mês · %",
+   "graf": [
+    [
+     "nov/25",
+     0.28
+    ],
+    [
+     "dez/25",
+     0.21
+    ],
+    [
+     "jan/26",
+     0.63
+    ],
+    [
+     "fev/26",
+     0.34
+    ],
+    [
+     "mar/26",
+     0.36
+    ],
+    [
+     "abr/26",
+     1.04
+    ],
+    [
+     "mai/26",
+     0.77
+    ],
+    [
+     "jun/26",
+     0.85
+    ],
+    [
+     "jul/26",
+     0.62
+    ],
+    [
+     "ago/26",
+     0.85
+    ],
+    [
+     "set/26",
+     0.25
+    ],
+    [
+     "out/26",
+     0.35
+    ]
+   ],
+   "graf_fmt": "num2",
+   "porque": "O INCC corrige parcelas de imóveis na planta: quando ele sobe, a prestação do comprador sobe junto.",
+   "fonte": "FGV Ibre, via Banco Central",
+   "tags": "#incc #construcao #imoveis #economia"
+  },
+  "industria": {
+   "id": "industria",
+   "tag": "Brasil · Indústria",
+   "titulo": "Produção industrial",
+   "sub": "Indústria geral · PIM-PF · IBGE",
+   "ref": "2026-09",
+   "ref_txt": "setembro de 2026",
+   "valor": "−0,8%",
+   "cor": "ruim",
+   "selo": [
+    "▼ 2ª QUEDA SEGUIDA",
+    "ruim"
+   ],
+   "frase": "em setembro de 2026 na comparação com o mês anterior, já descontados os efeitos sazonais.",
+   "apoio": [
+    [
+     "Ante um ano antes",
+     "−2,5%",
+     "set/26 x set/25"
+    ],
+    [
+     "No ano",
+     "+0,4%",
+     "acumulado"
+    ],
+    [
+     "Em 12 meses",
+     "+0,2%",
+     "acumulado"
+    ]
+   ],
+   "graf_tit": "Mês a mês · % em relação ao mês anterior",
+   "graf": [
+    [
+     "out/25",
+     0.0
+    ],
+    [
+     "nov/25",
+     -0.2
+    ],
+    [
+     "dez/25",
+     -2.0
+    ],
+    [
+     "jan/26",
+     2.1
+    ],
+    [
+     "fev/26",
+     0.9
+    ],
+    [
+     "mar/26",
+     0.1
+    ],
+    [
+     "abr/26",
+     1.1
+    ],
+    [
+     "mai/26",
+     -1.0
+    ],
+    [
+     "jun/26",
+     -1.6
+    ],
+    [
+     "jul/26",
+     0.0
+    ],
+    [
+     "ago/26",
+     -0.7
+    ],
+    [
+     "set/26",
+     -0.8
+    ]
+   ],
+   "graf_fmt": "num1",
+   "porque": "A indústria puxa empregos de maior salário e investimentos; quedas seguidas indicam economia desacelerando.",
+   "fonte": "IBGE (PIM-PF)",
+   "tags": "#industria #ibge #pib #economia"
+  },
+  "varejo": {
+   "id": "varejo",
+   "tag": "Brasil · Varejo",
+   "titulo": "Vendas no varejo",
+   "sub": "Volume de vendas · PMC · IBGE",
+   "ref": "2026-08",
+   "ref_txt": "agosto de 2026",
+   "valor": "+0,1%",
+   "cor": "bom",
+   "selo": [
+    "▲ ALTA NO MÊS",
+    "bom"
+   ],
+   "frase": "em agosto de 2026 na comparação com o mês anterior, já descontados os efeitos sazonais.",
+   "apoio": [
+    [
+     "Ante um ano antes",
+     "+0,4%",
+     "ago/26 x ago/25"
+    ],
+    [
+     "No ano",
+     "+1,7%",
+     "acumulado"
+    ],
+    [
+     "Em 12 meses",
+     "+1,6%",
+     "acumulado"
+    ]
+   ],
+   "graf_tit": "Mês a mês · % em relação ao mês anterior",
+   "graf": [
+    [
+     "set/25",
+     -0.3
+    ],
+    [
+     "out/25",
+     0.6
+    ],
+    [
+     "nov/25",
+     1.1
+    ],
+    [
+     "dez/25",
+     -0.7
+    ],
+    [
+     "jan/26",
+     0.5
+    ],
+    [
+     "fev/26",
+     0.7
+    ],
+    [
+     "mar/26",
+     0.5
+    ],
+    [
+     "abr/26",
+     -1.1
+    ],
+    [
+     "mai/26",
+     0.2
+    ],
+    [
+     "jun/26",
+     0.3
+    ],
+    [
+     "jul/26",
+     -0.8
+    ],
+    [
+     "ago/26",
+     0.1
+    ]
+   ],
+   "graf_fmt": "num1",
+   "porque": "As vendas do varejo mostram o fôlego do consumo das famílias, o maior componente do PIB.",
+   "fonte": "IBGE (PMC)",
+   "tags": "#varejo #consumo #ibge #economia"
+  },
+  "focus": {
+   "id": "focus",
+   "tag": "Brasil · Expectativas",
+   "titulo": "Boletim Focus",
+   "sub": "Mercado espera inflação de 2026 de",
+   "ref": "2026-10-30",
+   "ref_txt": "divulgado em 02/11",
+   "valor": "5,22%",
+   "cor": "ruim",
+   "selo": [
+    "▲ SOBE NA SEMANA",
+    "ruim"
+   ],
+   "frase": "para o IPCA de 2026, ante 5,19% na semana anterior. A meta de inflação é de 3%, com tolerância até 4,5%.",
+   "apoio": [
+    [
+     "Selic no fim do ano",
+     "13,50%",
+     "mediana"
+    ],
+    [
+     "PIB",
+     "+1,76%",
+     "crescimento em 2026"
+    ],
+    [
+     "Dólar no fim do ano",
+     "R$ 5,34",
+     "mediana"
+    ]
+   ],
+   "graf_tit": "IPCA 2026 esperado nas últimas semanas · %",
+   "graf": [
+    [
+     "25/09",
+     4.9915
+    ],
+    [
+     "02/10",
+     5.0129
+    ],
+    [
+     "09/10",
+     5.2245
+    ],
+    [
+     "16/10",
+     5.219
+    ],
+    [
+     "23/10",
+     5.1891
+    ],
+    [
+     "30/10",
+     5.2166
+    ]
+   ],
+   "graf_fmt": "num2",
+   "base_zero": false,
+   "porque": "O Focus reúne as projeções de cerca de cem instituições e orienta as apostas sobre os próximos passos do Copom.",
+   "fonte": "Banco Central (Boletim Focus)",
+   "tags": "#focus #inflacao #selic #economia"
+  },
+  "fed": {
+   "id": "fed",
+   "tag": "EUA · Juros",
+   "titulo": "Juros nos EUA",
+   "sub": "Decisão do Fed (Federal Reserve)",
+   "ref": "2026-09-17",
+   "ref_txt": "em vigor desde 17/09",
+   "valor": "3,75%–4,00%",
+   "cor": "neutro",
+   "selo": [
+    "▲ ALTA DE 0,25 P.P.",
+    "neutro"
+   ],
+   "frase": "ao ano. Os juros foram elevados na última reunião.",
+   "apoio": [
+    [
+     "Última mudança",
+     "17/09/26",
+     "teto da taxa"
+    ],
+    [
+     "Taxa anterior",
+     "3,75%",
+     "antes da última mudança"
+    ],
+    [
+     "Desemprego nos EUA",
+     "4,1%",
+     "out/26"
+    ]
+   ],
+   "graf_tit": "Taxa a cada mudança · % ao ano",
+   "graf": [
+    [
+     "mar/23",
+     5.0
+    ],
+    [
+     "mai/23",
+     5.25
+    ],
+    [
+     "jul/23",
+     5.5
+    ],
+    [
+     "set/24",
+     5.0
+    ],
+    [
+     "nov/24",
+     4.75
+    ],
+    [
+     "dez/24",
+     4.5
+    ],
+    [
+     "set/25",
+     4.25
+    ],
+    [
+     "out/25",
+     4.0
+    ],
+    [
+     "dez/25",
+     3.75
+    ],
+    [
+     "set/26",
+     4.0
+    ]
+   ],
+   "graf_fmt": "num2",
+   "base_zero": false,
+   "porque": "Juros altos nos EUA atraem dólares para lá e costumam pressionar o câmbio no Brasil.",
+   "fonte": "Federal Reserve, via FRED",
+   "tags": "#fed #juros #eua #economia",
+   "graf_rot": "completo"
+  },
+  "bce": {
+   "id": "bce",
+   "tag": "Zona do euro · Juros",
+   "titulo": "Juros na zona do euro",
+   "sub": "Taxa de depósito do BCE",
+   "ref": "2026-09-16",
+   "ref_txt": "em vigor desde 16/09",
+   "valor": "2,50%",
+   "cor": "neutro",
+   "selo": [
+    "▲ ALTA DE 0,25 P.P.",
+    "neutro"
+   ],
+   "frase": "ao ano. Os juros foram elevados na última reunião.",
+   "apoio": [
+    [
+     "Última mudança",
+     "16/09/26",
+     "taxa de depósito"
+    ],
+    [
+     "Taxa anterior",
+     "2,25%",
+     "antes da última mudança"
+    ],
+    [
+     "Próxima reunião",
+     "17/12",
+     "calendário oficial"
+    ]
+   ],
+   "graf_tit": "Taxa a cada mudança · % ao ano",
+   "graf": [
+    [
+     "jun/24",
+     3.75
+    ],
+    [
+     "set/24",
+     3.5
+    ],
+    [
+     "out/24",
+     3.25
+    ],
+    [
+     "dez/24",
+     3.0
+    ],
+    [
+     "fev/25",
+     2.75
+    ],
+    [
+     "mar/25",
+     2.5
+    ],
+    [
+     "abr/25",
+     2.25
+    ],
+    [
+     "jun/25",
+     2.0
+    ],
+    [
+     "jun/26",
+     2.25
+    ],
+    [
+     "set/26",
+     2.5
+    ]
+   ],
+   "graf_fmt": "num2",
+   "base_zero": false,
+   "porque": "Os juros europeus influenciam o fluxo de capital para emergentes como o Brasil e o preço do euro.",
+   "fonte": "Banco Central Europeu, via FRED",
+   "tags": "#bce #juros #europa #economia",
+   "graf_rot": "completo"
+  },
+  "payroll": {
+   "id": "payroll",
+   "tag": "EUA · Emprego",
+   "titulo": "Payroll",
+   "sub": "Vagas criadas fora do campo · EUA",
+   "ref": "2026-10",
+   "ref_txt": "outubro de 2026",
+   "valor": "+165 mil",
+   "cor": "bom",
+   "selo": [
+    "▲ ACIMA DE SET/26",
+    "bom"
+   ],
+   "frase": "vagas em outubro de 2026 nos Estados Unidos, fora do setor agrícola. No mês anterior, +60 mil.",
+   "apoio": [
+    [
+     "Desemprego",
+     "4,1%",
+     "out/26"
+    ],
+    [
+     "Média de 3 meses",
+     "+137 mil",
+     "vagas por mês"
+    ],
+    [
+     "Total empregado",
+     "159,3 mi",
+     "fora do campo"
+    ]
+   ],
+   "graf_tit": "Vagas criadas por mês · mil",
+   "graf": [
+    [
+     "nov/25",
+     41.0
+    ],
+    [
+     "dez/25",
+     -17.0
+    ],
+    [
+     "jan/26",
+     160.0
+    ],
+    [
+     "fev/26",
+     -156.0
+    ],
+    [
+     "mar/26",
+     214.0
+    ],
+    [
+     "abr/26",
+     148.0
+    ],
+    [
+     "mai/26",
+     63.0
+    ],
+    [
+     "jun/26",
+     31.0
+    ],
+    [
+     "jul/26",
+     -10.0
+    ],
+    [
+     "ago/26",
+     186.0
+    ],
+    [
+     "set/26",
+     60.0
+    ],
+    [
+     "out/26",
+     165.0
+    ]
+   ],
+   "graf_fmt": "num0",
+   "porque": "Um mercado de trabalho forte nos EUA reduz a chance de corte de juros por lá, o que afeta dólar e bolsa no Brasil.",
+   "fonte": "BLS (Departamento do Trabalho dos EUA), via FRED",
+   "tags": "#payroll #eua #emprego #economia"
+  }
+ },
+ "erros": []
+}
