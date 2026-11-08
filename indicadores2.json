@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-08T03:42:57Z",
+ "atualizado_utc": "2026-11-08T03:44:24Z",
  "itens": {
   "caged": {
    "id": "caged",
@@ -664,10 +664,10 @@
    ],
    "graf_fmt": "num2",
    "base_zero": false,
+   "graf_rot": "completo",
    "porque": "Juros altos nos EUA atraem dólares para lá e costumam pressionar o câmbio no Brasil.",
    "fonte": "Federal Reserve, via FRED",
-   "tags": "#fed #juros #eua #economia",
-   "graf_rot": "completo"
+   "tags": "#fed #juros #eua #economia"
   },
   "bce": {
    "id": "bce",
@@ -745,10 +745,10 @@
    ],
    "graf_fmt": "num2",
    "base_zero": false,
+   "graf_rot": "completo",
    "porque": "Os juros europeus influenciam o fluxo de capital para emergentes como o Brasil e o preço do euro.",
    "fonte": "Banco Central Europeu, via FRED",
-   "tags": "#bce #juros #europa #economia",
-   "graf_rot": "completo"
+   "tags": "#bce #juros #europa #economia"
   },
   "payroll": {
    "id": "payroll",
