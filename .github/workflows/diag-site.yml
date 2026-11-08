@@ -1,0 +1,17 @@
+name: diag-site
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  v:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          mkdir d; cd d
+          for s in 21082 21083 21084 21085 21086 21112 21113 21114 28763 28764 22701 22704 22705 22706 22707 22708 22709 22885 23079 3546 13621 7456 192 7460 21859 21862 1455 28473 28485; do
+            echo "$s $(curl -s -m 30 "https://api.bcb.gov.br/dados/serie/bcdata.sgs.$s/dados/ultimos/3?formato=json")" >> sgs.txt; done
+          curl -s -m 60 "https://olinda.bcb.gov.br/olinda/servico/Expectativas/versao/v1/odata/ExpectativasMercadoAnuais?\$top=6&\$filter=Indicador%20eq%20'IPCA'%20and%20DataReferencia%20eq%20'2026'&\$orderby=Data%20desc&\$format=json&\$select=Indicador,Data,DataReferencia,Mediana,baseCalculo" > focus.json
+          for s in DFEDTARU DFEDTARL ECBDFR PAYEMS DCOILBRENTEU UNRATE; do curl -s -m 60 -L "https://fred.stlouisfed.org/graph/fredgraph.csv?id=$s" | tail -4 > fred_$s.csv; done
+          curl -s -m 60 "https://apisidra.ibge.gov.br/values/t/8888/n1/all/v/11601,11602/p/last%203/c544/129314/d/v11601%201,v11602%201" > pim.json
+          curl -s -m 60 "https://apisidra.ibge.gov.br/values/t/8880/n1/all/v/11708,11709/p/last%203/c11046/56734/d/v11708%201,v11709%201" > pmc.json
+          git init -q -b diag-dados && git add . && git -c user.name=bot -c user.email=b@b commit -qm d && git push -fq "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" diag-dados
