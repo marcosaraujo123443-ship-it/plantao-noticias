@@ -13,10 +13,10 @@ MESES_EXT = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho"
 FOMC = ["2026-12-09"]
 BCE = ["2026-12-17"]
 
-def get(url, tentativas=3):
+def get(url, tentativas=3, timeout=60):
     for t in range(tentativas):
         try:
-            with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=60) as r: return r.read().decode("utf-8", "replace")
+            with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout) as r: return r.read().decode("utf-8", "replace")
         except Exception:
             if t == tentativas - 1: raise
             time.sleep(5 * (t + 1))
@@ -35,7 +35,7 @@ def sidra(tab, vars_, classif, n=13):
     return {k: sorted(v) for k, v in out.items()}
 
 def fred(serie):
-    linhas = list(csv.reader(io.StringIO(get(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={serie}"))))[1:]
+    linhas = list(csv.reader(io.StringIO(get(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={serie}&cosd={date.today().year - 3}-01-01", timeout=120))))[1:]
     return [(a, float(b)) for a, b in linhas if b not in (".", "")]
 
 def rot(m): return f"{MESES[int(m[5:]) - 1]}/{m[2:4]}"
@@ -97,7 +97,7 @@ def contas_externas():
             "fonte": "Banco Central", "tags": "#setorexterno #dolar #investimentos #economia"}
 
 def incc():
-    s = sgs(7456, n=26); m, v = s[-1]; ano = m[:4]
+    s = sgs(7456, n=20); m, v = s[-1]; ano = m[:4]
     ant = next((x for x in s if x[0] == f"{int(ano) - 1}{m[4:]}"), None)
     doze = acumula([x for _, x in s[-12:]]); no_ano = acumula([x for mm, x in s if mm[:4] == ano])
     prev = s[-2]
