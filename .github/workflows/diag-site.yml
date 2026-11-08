@@ -1,0 +1,14 @@
+name: diag-site
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  v:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          mkdir d; cd d
+          curl -s -m 60 "https://dadosabertos.bcb.gov.br/api/3/action/package_search?q=%22fluxo%20mensal%20corrente%22&rows=200&fl=title" | jq -r '.result.results[].title' | sort > titulos.txt
+          curl -s -m 60 "https://dadosabertos.bcb.gov.br/api/3/action/package_search?q=%22fluxo%20acumulado%20em%2012%20meses%22%20PIB%20prim%C3%A1rio&rows=100" | jq -r '.result.results[].title' | sort > titulos12.txt
+          for s in 4639 4640 4641 4642 4643 4649 4650 4651 4652 4653 4654 4655 4656 4657 4658 4659 4660 4606 4607 4608 4609 4610 4611 4612 4613 4614 4615 4616 5793 4513 13762; do echo "$s $(curl -s -m 30 "https://api.bcb.gov.br/dados/serie/bcdata.sgs.$s/dados/ultimos/2?formato=json")" >> sgs.txt; done
+          git init -q -b diag-dados && git add . && git -c user.name=bot -c user.email=b@b commit -qm d && git push -fq "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" diag-dados
