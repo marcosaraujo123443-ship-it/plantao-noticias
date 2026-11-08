@@ -4,7 +4,7 @@ on:
     - cron: "40 9 * * *"   # uma vez por dia, 6h40 de Brasília (o Tesouro publica a cada bimestre)
   workflow_dispatch:
   push:
-    paths: ["scripts/estados.py", "scripts/agro_estados.py", ".github/workflows/estados.yml"]
+    paths: ["scripts/estados.py", "scripts/estados_bim.py", "scripts/agro_estados.py", ".github/workflows/estados.yml"]
 permissions:
   contents: write
 concurrency:
@@ -13,6 +13,7 @@ concurrency:
 jobs:
   coletar:
     runs-on: ubuntu-latest
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
       - name: Coletar RREO no SICONFI
@@ -20,11 +21,14 @@ jobs:
       - name: Produção do agro por estado (IBGE)
         continue-on-error: true
         run: python3 scripts/agro_estados.py
+      - name: Histórico bimestre a bimestre (SICONFI)
+        continue-on-error: true
+        run: python3 scripts/estados_bim.py
       - name: Publicar estados.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add estados.json $( [ -f agro_estados.json ] && echo agro_estados.json )
+          git add estados.json $( [ -f agro_estados.json ] && echo agro_estados.json ) $( [ -f estados_bimestral.json ] && echo estados_bimestral.json )
           git diff --cached --quiet && exit 0
           git commit -m "Contas dos estados $(date -u +%d/%m)"
           for i in 1 2 3; do git pull --rebase -q origin main && git push -q origin main && break; sleep 5; done
