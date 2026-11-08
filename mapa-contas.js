@@ -3,10 +3,10 @@
    Dados: /estados.json (Tesouro Nacional, SICONFI/RREO) e /mapa_ufs.json (contornos dos estados). */
 (function(){
   var raiz=document.querySelector('[data-mapa-contas]'); if(!raiz) return;
-  var css='.mc{--mi:var(--ink-2,var(--ink2,#4a5873));--mr:var(--rule,#d9e0ea);--mc:var(--card,#fff);--mt:var(--ink,#0a1d3d);--mp:var(--paper,#f5f7fa);background:var(--mc);border:1px solid var(--mr);color:var(--mt);margin:18px 0}'+
-  '.mc-h{padding:16px 16px 10px;border-bottom:1px solid var(--mr);display:grid;gap:10px}.mc-h h3{margin:0;font:700 19px Georgia,serif}'+
-  '.mc-f{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}.mc-f label{display:flex;gap:6px;align-items:center;font:600 13px system-ui;color:var(--mi)}'+
-  '.mc-f select{font:600 14.5px system-ui;color:var(--mt);background:var(--mp);border:1px solid var(--mr);border-radius:8px;padding:6px 8px;max-width:100%}'+
+  var css='.mc{--mi:var(--ink-2,var(--ink2,#4a5873));--mr:var(--rule,#d9e0ea);--mc:var(--card,#fff);--mt:var(--ink,#0a1d3d);--mp:var(--paper,#f5f7fa);background:var(--mc);border:1px solid var(--mr);color:var(--mt);margin:18px 0;min-width:0}'+
+  '.mc-h{padding:16px 16px 10px;border-bottom:1px solid var(--mr);display:grid;grid-template-columns:minmax(0,1fr);gap:10px}.mc-h h3{margin:0;font:700 19px Georgia,serif}'+
+  '.mc-f{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}.mc-f label{display:flex;gap:6px;align-items:center;min-width:0;max-width:100%;font:600 13px system-ui;color:var(--mi)}'+
+  '.mc-f select{min-width:0;flex:1 1 auto;font:600 14.5px system-ui;color:var(--mt);background:var(--mp);border:1px solid var(--mr);border-radius:8px;padding:6px 8px;max-width:100%}'+
   '.mc-seg{display:flex;flex-wrap:wrap;gap:6px}.mc-seg button{font:600 13px system-ui;border:1px solid var(--mr);background:var(--mp);color:var(--mi);border-radius:999px;padding:6px 11px;cursor:pointer}.mc-seg button.on{background:var(--mt);border-color:var(--mt);color:var(--mc)}'+
   '.mc-b{display:grid;gap:14px;padding:12px 16px 16px}.mc-b>div{min-width:0}@media(min-width:900px){.mc-b{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}}'+
   '.mc svg{width:100%;height:auto;display:block}.mc-uf{stroke:var(--mc);stroke-width:1.2;cursor:pointer;transition:fill .25s}.mc-uf:hover{stroke:var(--mt);stroke-width:1.6}.mc-uf.on{stroke:var(--mt);stroke-width:2.6}'+

@@ -267,6 +267,7 @@ for s in SECOES:
     <a class="mais" data-ulink href="contas/">Ver todas as contas públicas →</a>
     <p class="nota">Fonte: Tesouro Nacional, SICONFI (Relatório Resumido da Execução Orçamentária, enviado pelos próprios estados a cada bimestre). Valores acumulados no ano, sem as operações intraorçamentárias.</p>
   </section>
+  <section data-contas-bim></section>
 </div>'''
     if s == "Agro":
         painel = '''<div class="painel" data-agro>
