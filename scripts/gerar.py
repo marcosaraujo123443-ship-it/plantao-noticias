@@ -315,7 +315,7 @@ for s in SECOES:
                     f'  <div class="{cls}">\n{corpo}  </div></section>\n')
         painel = ('<div class="painel mk">\n'
           '  <nav class="mk-nav" aria-label="Seções do mercado"><button data-mkgo="hoje">Hoje</button><button data-mkgo="bolsa">Ações e FIIs</button>'
-          '<button data-mkgo="empresas">Balanços</button><button data-mkgo="dinheiro">Seu dinheiro</button><button data-mkgo="economia">Economia</button></nav>\n'
+          '<button data-mkgo="empresas">Balanços</button><button data-mkgo="dinheiro">Seu dinheiro</button><button data-tab="indicadores">Indicadores →</button></nav>\n'
           + grupo("hoje", "Hoje no mercado", "Bolsa, moedas e juros agora", '    <div class="ind-grid" data-ind></div>\n', cls="mk-c")
           + grupo("bolsa", "Ações e fundos imobiliários", "O que mais subiu, caiu e as maiores da B3", '''    <section class="quadro" aria-label="Ações">
       <header><h3>Ações</h3>
@@ -344,12 +344,7 @@ for s in SECOES:
       <p class="nota" data-cn></p>
     </section>
 ''')
-          + grupo("economia", "Economia", "Indicadores do Brasil e as maiores economias do mundo", '''    <section class="quadro" aria-label="Indicadores econômicos" data-eco>
-      <header><h3>Indicadores econômicos</h3><p class="per" data-ecot>''' + sk_txt("Carregando os indicadores…", "55%") + '''</p></header>
-      <div class="tw"><table class="tab-m"><thead><tr><th>Indicador</th><th class="n">Último</th><th class="n">12 meses</th><th>Referência</th></tr></thead><tbody data-ecob>''' + sk_linhas(5, 4) + '''</tbody></table></div>
-      <a class="mais" href="indicadores">Ver os indicadores em detalhe →</a>
-    </section>
-''' + economias_html + "\n")
+          + '  <a class="mk-ix" href="#indicadores" data-tab="indicadores"><b>Indicadores da economia</b><span>Inflação, juros, emprego, Focus, indústria, varejo, Fed, BCE e as maiores economias do mundo, em uma aba só</span><i>Abrir →</i></a>\n'
           + '  <p class="nota" data-nota></p>\n</div>')
     if s == "IA" and ia_html:
         painel = f'<div class="painel">{ia_html}</div>'
@@ -374,6 +369,10 @@ for s in SECOES:
   <div class="sec-t s-{slug(s)}"><h2>{e(s)}</h2><span>{len(por_sec[s])} notícias</span></div>
   {corpo}
 </section>'''
+
+# Indicadores: aba própria com o último dado de cada indicador (aba_indicadores.py)
+import aba_indicadores
+paginas += aba_indicadores.aba(d, economias_html)
 
 # Tempo: previsão nas capitais e alertas do INMET (tempo.py); o mapa é SVG com os contornos de scripts/brasil_mapa.json
 _mapa = json.loads((Path(__file__).parent / "brasil_mapa.json").read_text(encoding="utf-8"))
@@ -400,7 +399,8 @@ paginas += f'''<section class="pagina" id="pg-tempo" data-pg="tempo" hidden>
 </section>'''
 
 tabs = '<button class="tab on" data-tab="inicio" aria-pressed="true">Início</button>' + "".join(
-    f'<button class="tab" data-tab="{slug(s)}" aria-pressed="false">{e(s)}</button>' for s in SECOES) + \
+    f'<button class="tab" data-tab="{slug(s)}" aria-pressed="false">{e(s)}</button>'
+    + ('<button class="tab" data-tab="indicadores" aria-pressed="false">Indicadores</button>' if s == "Mercado" else "") for s in SECOES) + \
     '<button class="tab" data-tab="tempo" aria-pressed="false">Tempo</button>'
 fontes_txt = ", ".join(e(f) for f in fontes)
 _hs = [f"{h}h" for h in (1, 5, 9, 13, 17, 21)]
