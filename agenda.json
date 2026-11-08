@@ -1,14 +1,25 @@
 {
- "data": "2026-11-07",
- "atualizado": "2026-11-07T23:47:34-0300",
+ "data": "2026-11-08",
+ "atualizado": "2026-11-08T01:50:21-0300",
  "itens": [
   {
-   "hora": "15:47",
+   "hora": "00:00",
    "tipo": "tempo",
    "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (perigo) em MG, MS, PR, RJ, SC, SP",
+   "titulo": "Tempestade (perigo) em ES, GO, MG, MS, SP",
    "detalhe": [
     "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
+   ],
+   "link": "#tempo",
+   "estado": ""
+  },
+  {
+   "hora": "00:00",
+   "tipo": "tempo",
+   "rotulo": "Alerta INMET",
+   "titulo": "Ventos Costeiros (perigo) em RJ, SP",
+   "detalhe": [
+    "Intensificação dos ventos nas regiões litorâneas, movimentando dunas de areia sobre construções na orla."
    ],
    "link": "#tempo",
    "estado": ""
@@ -17,59 +28,37 @@
    "hora": "16:00",
    "tipo": "futebol",
    "rotulo": "Série B",
-   "titulo": "Avaí 2 × 1 São Bernardo",
+   "titulo": "Athletic × Atlético-GO",
    "detalhe": [
     "37ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
-   "hora": "16:10",
+   "hora": "19:15",
    "tipo": "futebol",
    "rotulo": "Série B",
-   "titulo": "Novorizontino 2 × 1 Fortaleza",
+   "titulo": "Ceará × América-MG",
    "detalhe": [
     "37ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
-   "hora": "20:00",
+   "hora": "19:15",
    "tipo": "futebol",
    "rotulo": "Série B",
-   "titulo": "Cuiabá 1 × 2 Juventude",
+   "titulo": "Goiás × Ponte Preta",
    "detalhe": [
     "37ª rodada"
    ],
-   "estado": "ao vivo",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "20:00",
-   "tipo": "futebol",
-   "rotulo": "Série B",
-   "titulo": "Vila Nova 1 × 0 Criciúma",
-   "detalhe": [
-    "37ª rodada"
-   ],
-   "estado": "ao vivo",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "21:30",
-   "tipo": "futebol",
-   "rotulo": "Série B",
-   "titulo": "Náutico 0 × 0 CRB",
-   "detalhe": [
-    "37ª rodada"
-   ],
-   "estado": "ao vivo",
+   "estado": "",
    "link": "tabelas/"
   }
  ],
- "outros_jogos": 27,
+ "outros_jogos": 31,
  "fontes": {
   "camara": [],
   "senado": [],
