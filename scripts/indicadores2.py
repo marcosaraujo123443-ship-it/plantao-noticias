@@ -13,10 +13,10 @@ MESES_EXT = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho"
 FOMC = ["2026-12-09"]
 BCE = ["2026-12-17"]
 
-def get(url, tentativas=3, timeout=60):
+def get(url, tentativas=3, timeout=60, ua=None):
     for t in range(tentativas):
         try:
-            with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=timeout) as r: return r.read().decode("utf-8", "replace")
+            with urllib.request.urlopen(urllib.request.Request(url, headers=ua or UA), timeout=timeout) as r: return r.read().decode("utf-8", "replace")
         except Exception:
             if t == tentativas - 1: raise
             time.sleep(5 * (t + 1))
@@ -35,7 +35,7 @@ def sidra(tab, vars_, classif, n=13):
     return {k: sorted(v) for k, v in out.items()}
 
 def fred(serie):
-    linhas = list(csv.reader(io.StringIO(get(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={serie}&cosd={date.today().year - 3}-01-01", timeout=120))))[1:]
+    linhas = list(csv.reader(io.StringIO(get(f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={serie}&cosd={date.today().year - 3}-01-01", tentativas=2, timeout=40, ua={"User-Agent": "curl/8.5.0", "Accept": "*/*"}))))[1:]
     return [(a, float(b)) for a, b in linhas if b not in (".", "")]
 
 def rot(m): return f"{MESES[int(m[5:]) - 1]}/{m[2:4]}"
@@ -62,7 +62,7 @@ def caged():
             "frase": f"{'Vagas criadas' if v >= 0 else 'Vagas fechadas'} em {ext(m)}: contratações {'menos' if v >= 0 else 'mais'} demissões." + (f" Em {rot(ant[0])}, o saldo foi de {mil(ant[1])}." if ant else ""),
             "apoio": [("No ano", mil(no_ano), f"saldo desde janeiro de {ano}"), ("Em 12 meses", mil(sum(x for _, x in saldos[-12:])), "vagas com carteira"),
                       ("Total com carteira", br(est[-1][1] / 1e6, 1) + " mi", "vínculos formais ativos")],
-            "graf_tit": "Saldo mês a mês · mil vagas", "graf": [(rot(mm), round(x / 1000, 1)) for mm, x in saldos[-12:]], "graf_fmt": "num1",
+            "graf_tit": "Saldo mês a mês · mil vagas", "graf": [(rot(mm), round(x / 1000)) for mm, x in saldos[-12:]], "graf_fmt": "num0",
             "porque": "O Caged mostra a geração de empregos formais. Mais vagas significam mais renda e consumo.",
             "fonte": "Ministério do Trabalho (Novo Caged), via Banco Central", "tags": "#emprego #caged #carteiraassinada #economia"}
 
