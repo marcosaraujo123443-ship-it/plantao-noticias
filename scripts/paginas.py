@@ -68,7 +68,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .art{max-width:72ch;font-size:17.5px;line-height:1.7}.art p{margin:0 0 1em}.art figure{margin:1.4em 0}.art img{width:100%;height:auto;border:1px solid var(--rule);border-radius:8px;background:#fff}.art figcaption{font-size:13px;color:var(--ink2);margin-top:6px}.art h3{font:700 19px Georgia,serif;margin:1.3em 0 .4em}.art h2{font-size:23px;margin:1.6em 0 .5em}.rot{display:inline-block;font:700 12px system-ui;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);margin-bottom:6px}
 .sub{font-size:19px;line-height:1.5;color:var(--ink2);max-width:70ch;margin:0 0 14px}.byl{font-size:14px;color:var(--ink2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:10px 0;margin:0 0 26px;max-width:none}
 .comp{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}.comp a{font:600 14px system-ui;padding:8px 14px;border-radius:999px;text-decoration:none;border:1px solid var(--rule);color:var(--ink)}.comp a.zap{background:#1f8f4e;border-color:#1f8f4e;color:#fff}
-.anl{list-style:none;padding:0;max-width:75ch}.anl li{padding:16px 0;border-bottom:1px solid var(--rule)}.anl a{font:700 21px/1.3 Georgia,serif;color:var(--ink);text-decoration:none}.anl a:hover{text-decoration:underline}.anl p{margin:6px 0 0;color:var(--ink2)}.anl small{color:var(--ink2)}
+.btn-ix{display:inline-block;font-weight:700;padding:8px 14px;border:1px solid var(--rule);border-radius:999px;text-decoration:none;color:var(--ink)}.btn-ix:hover{border-color:var(--ink)}.anl{list-style:none;padding:0;max-width:75ch}.anl li{padding:16px 0;border-bottom:1px solid var(--rule)}.anl a{font:700 21px/1.3 Georgia,serif;color:var(--ink);text-decoration:none}.anl a:hover{text-decoration:underline}.anl p{margin:6px 0 0;color:var(--ink2)}.anl small{color:var(--ink2)}
 @media (max-width:600px){.art{font-size:17px}.sub{font-size:17px}}
 @media (max-width:600px){th,td{padding:7px 8px}table{font-size:13.5px}td:first-child{min-width:150px}}"""
 
@@ -372,6 +372,35 @@ def mercado(m):
            None, m.get("atualizado_utc"))
 
 # ---------------- Análises (matérias próprias, materias/*.md) ----------------
+def guias():
+    """Guias dos indicadores (guias/*.md) em guia/<slug>.html, com atalho a partir da aba Indicadores."""
+    import urllib.parse
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from materias import ler_materias
+    lista = sorted(ler_materias("guias"), key=lambda m: m["titulo"])
+    if not lista: return
+    os.makedirs(os.path.join(OUT, "guia"), exist_ok=True)
+    for m in lista:
+        url = f"{SITE}guia/{m['slug']}"
+        ld = {"@context": "https://schema.org", "@type": "Article", "headline": m["titulo"], "description": m.get("subtitulo", ""),
+              "dateModified": m["dt"].isoformat(), "inLanguage": "pt-BR", "author": {"@type": "Organization", "name": "Redação Plantão Informa"},
+              "publisher": {"@type": "Organization", "name": "Plantão Informa", "logo": {"@type": "ImageObject", "url": SITE + "logo.jpg"}},
+              "mainEntityOfPage": url, "articleSection": "Guia dos indicadores"}
+        txt_zap = urllib.parse.quote(f"*{m['titulo']}*\n\n{m.get('subtitulo', '')}\n\n{url}")
+        corpo = (f'<span class="rot">Guia dos indicadores</span>' + (f'<p class="sub">{e(m["subtitulo"])}</p>' if m.get("subtitulo") else "")
+                 + f'<p class="byl">Redação Plantão Informa · {m["minutos"]} min de leitura</p>'
+                 + f'<p><a class="btn-ix" href="../#indicadores">Ver o dado mais recente na aba Indicadores →</a></p>'
+                 + f'<article class="art">{m["html"]}</article>'
+                 + f'<div class="comp"><a class="zap" href="https://wa.me/?text={txt_zap}" target="_blank" rel="noopener">Compartilhar no WhatsApp</a>'
+                 + f'<a href="index.html">Todos os guias</a></div>')
+        head = '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script>"
+        pagina(f"guia/{m['slug']}.html", m["titulo"], m.get("subtitulo") or m["titulo"], corpo, [("guia/", "Guias dos indicadores")],
+               None, "article", None, head, "Guia do Plantão Informa, com base em informações das instituições que calculam cada indicador. ")
+    lis = "".join(f'<li><a href="{m["slug"]}.html">{e(m["titulo"])}</a>' + (f'<p>{e(m["subtitulo"])}</p>' if m.get("subtitulo") else "") + "</li>" for m in lista)
+    pagina("guia/index.html", "Guias dos indicadores", "Entenda cada indicador da economia: o que mede, como é calculado e onde afeta o seu bolso.",
+           f'<p class="lead">O que mede cada indicador, quem divulga, o que faz ele subir ou cair e onde ele afeta o seu bolso.</p><ul class="anl">{lis}</ul>',
+           [], None)
+
 def analises():
     import shutil, urllib.parse
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -418,6 +447,8 @@ def analises():
 def main():
     try: analises()
     except Exception as ex: print("ERRO análises", ex)
+    try: guias()
+    except Exception as ex: print("ERRO guias", ex)
     for nome, f in (("estados.json", contas), ("futebol.json", futebol), ("agro.json", agro), ("mercado.json", mercado),
                     ("indicadores.json", indicadores)):
         d = ler(nome)

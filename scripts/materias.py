@@ -32,9 +32,9 @@ def corpo_html(texto):
         else: out.append(f"<p>{inline(' '.join(b.splitlines()))}</p>")
     return "\n".join(out)
 
-def ler_materias():
+def ler_materias(pasta="materias"):
     lista = []
-    for arq in sorted(glob.glob(os.path.join(RAIZ, "materias", "*.md"))):
+    for arq in sorted(glob.glob(os.path.join(RAIZ, pasta, "*.md"))):
         bruto = open(arq, encoding="utf-8").read()
         cab, _, texto = bruto.partition("\n---\n")
         m = {k.strip(): v.strip() for k, v in (l.split(":", 1) for l in cab.splitlines() if ":" in l)}

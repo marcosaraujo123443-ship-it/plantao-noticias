@@ -68,7 +68,12 @@ def cartao(it):
             f'<h3>{e(it["titulo"])}</h3><p class="ix-sub">{e(it["sub"])}</p>'
             f'<div class="ix-v"><b class="{it["cor"]}">{e(it["valor"])}</b>{selo}</div><p class="ix-f">{e(it["frase"])}</p>'
             f'<div class="ix-a">{apoio}</div>{barras(it["graf"], it.get("base_zero", True))}'
-            f'<p class="ix-fn">Fonte: {e(it["fonte"])}</p></article>')
+            f'<div class="ix-fim"><span class="ix-fn">Fonte: {e(it["fonte"])}</span>'
+            + (f'<a class="ix-ent" href="guia/{GUIA[it["id"]]}">Entenda o indicador →</a>' if it["id"] in GUIA else "") + '</div></article>')
+
+GUIA = {"selic": "selic", "ipca": "ipca", "ipca15": "ipca-15", "focus": "focus", "igpm": "igp-m", "inpc": "inpc", "incc": "incc",
+        "desemprego": "desemprego", "caged": "caged", "industria": "producao-industrial", "varejo": "varejo", "inadimplencia": "inadimplencia",
+        "contas_externas": "contas-externas", "fed": "fed", "bce": "bce", "payroll": "payroll"}
 
 GRUPOS = [("Inflação e juros", "Quanto os preços sobem e quanto custa o dinheiro", ["selic", "ipca", "ipca15", "focus", "igpm", "inpc", "incc"]),
           ("Emprego e atividade", "Vagas, produção e consumo", ["desemprego", "caged", "industria", "varejo"]),
@@ -92,4 +97,4 @@ def aba(raiz, economias_html=""):
             f'  <div class="sec-t s-indicadores"><h2>Indicadores</h2><span>O último dado de cada indicador, com fonte oficial</span></div>\n'
             f'  <div class="painel ixp"><nav class="mk-nav" aria-label="Grupos de indicadores">{nav}</nav>{corpo}'
             f'<p class="nota">Fontes: IBGE, FGV, Banco Central, Ministério do Trabalho e FRED (Federal Reserve Bank of St. Louis). Atualizado várias vezes ao dia. '
-            f'<a href="indicadores">Séries históricas em detalhe →</a></p></div>\n</section>')
+            f'<a href="guia/">Guias de todos os indicadores</a> · <a href="indicadores">Séries históricas em detalhe →</a></p></div>\n</section>')
