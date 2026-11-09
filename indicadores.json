@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-09T12:59:40Z",
+ "atualizado_utc": "2026-11-09T15:17:40Z",
  "fonte": "Banco Central (SGS)",
  "series": {
   "ipca": {
@@ -955,5 +955,7 @@
    "variacao": 0.0
   }
  ],
- "erros": []
+ "erros": [
+  "cdi: HTTP Error 304: Not Modified"
+ ]
 }
