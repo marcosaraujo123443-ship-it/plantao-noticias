@@ -1,15 +1,15 @@
 {
  "data": "2026-11-10",
- "atualizado": "2026-11-10T12:34:43-0300",
+ "atualizado": "2026-11-10T18:50:32-0300",
  "itens": [
   {
-   "hora": "09:00",
+   "hora": "09:12",
    "tipo": "politica",
    "rotulo": "Câmara",
    "titulo": "Sessão Não Deliberativa Solene no Plenário",
    "detalhe": [],
-   "link": "https://www.camara.leg.br/agenda",
-   "estado": "Convocada"
+   "link": "https://www.youtube.com/watch?v=vH_e-1pgD-A",
+   "estado": "Encerrada"
   },
   {
    "hora": "10:00",
@@ -21,13 +21,13 @@
    "estado": "Encerrada"
   },
   {
-   "hora": "11:00",
+   "hora": "11:23",
    "tipo": "politica",
    "rotulo": "Câmara",
    "titulo": "Sessão Não Deliberativa Solene no Plenário",
    "detalhe": [],
-   "link": "https://www.camara.leg.br/agenda",
-   "estado": "Convocada"
+   "link": "https://www.youtube.com/watch?v=YrYADMrBfhA",
+   "estado": "Encerrada"
   },
   {
    "hora": "14:00",
@@ -35,34 +35,60 @@
    "rotulo": "Senado",
    "titulo": "Sessão deliberativa ordinária no Plenário",
    "detalhe": [
+    "RQS 753/2026: Solicita o adiamento da discussão do Projeto de Decreto Legislativo nº 934/2025, para oitiva da Comissão de…",
     "PLP 109/2025: Dispõe sobre o acesso da Agência Nacional do Petróleo, Gás Natural e Biocombustíveis (ANP) às informações…",
-    "PL 5608/2023: Dispõe sobre as condições de trabalho de mulheres com diagnóstico, em tratamento ou em período de espera de…",
-    "PDL 934/2025: Aprova o texto do Acordo Regional sobre Acesso à Informação, Participação Pública e Acesso à Justiça em…"
+    "RQS 749/2026: Solicita a realização de Sessão Especial destinada a homenagear o navegador e escritor Amyr Klink."
    ],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Agendada"
+   "estado": "Em andamento"
+  },
+  {
+   "hora": "14:03",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Deliberativa no Plenário",
+   "detalhe": [
+    "REQ 2965/2026: Requer regime de urgência para apreciação do PL nº 479/2025, que “Define a Pessoa com Transtorno do Déficit…",
+    "REQ 2994/2026: Requer a urgência para a apreciação do PLP nº 226/2025",
+    "REQ 3338/2026: Solicita urgência no trâmite do Projeto de Lei nº 724/2003, que “Altera a Lei nº 9.503, de 23 de setembro de…"
+   ],
+   "link": "https://www.youtube.com/watch?v=uYaSA0ANr-g",
+   "estado": "Em Andamento"
   }
  ],
  "outros_jogos": 0,
  "fontes": {
   "camara": [
    {
-    "hora": "09:00",
+    "hora": "09:12",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Não Deliberativa Solene no Plenário",
     "detalhe": [],
-    "link": "https://www.camara.leg.br/agenda",
-    "estado": "Convocada"
+    "link": "https://www.youtube.com/watch?v=vH_e-1pgD-A",
+    "estado": "Encerrada"
    },
    {
-    "hora": "11:00",
+    "hora": "11:23",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Não Deliberativa Solene no Plenário",
     "detalhe": [],
-    "link": "https://www.camara.leg.br/agenda",
-    "estado": "Convocada"
+    "link": "https://www.youtube.com/watch?v=YrYADMrBfhA",
+    "estado": "Encerrada"
+   },
+   {
+    "hora": "14:03",
+    "tipo": "politica",
+    "rotulo": "Câmara",
+    "titulo": "Sessão Deliberativa no Plenário",
+    "detalhe": [
+     "REQ 2965/2026: Requer regime de urgência para apreciação do PL nº 479/2025, que “Define a Pessoa com Transtorno do Déficit…",
+     "REQ 2994/2026: Requer a urgência para a apreciação do PLP nº 226/2025",
+     "REQ 3338/2026: Solicita urgência no trâmite do Projeto de Lei nº 724/2003, que “Altera a Lei nº 9.503, de 23 de setembro de…"
+    ],
+    "link": "https://www.youtube.com/watch?v=uYaSA0ANr-g",
+    "estado": "Em Andamento"
    }
   ],
   "senado": [
@@ -81,17 +107,15 @@
     "rotulo": "Senado",
     "titulo": "Sessão deliberativa ordinária no Plenário",
     "detalhe": [
+     "RQS 753/2026: Solicita o adiamento da discussão do Projeto de Decreto Legislativo nº 934/2025, para oitiva da Comissão de…",
      "PLP 109/2025: Dispõe sobre o acesso da Agência Nacional do Petróleo, Gás Natural e Biocombustíveis (ANP) às informações…",
-     "PL 5608/2023: Dispõe sobre as condições de trabalho de mulheres com diagnóstico, em tratamento ou em período de espera de…",
-     "PDL 934/2025: Aprova o texto do Acordo Regional sobre Acesso à Informação, Participação Pública e Acesso à Justiça em…"
+     "RQS 749/2026: Solicita a realização de Sessão Especial destinada a homenagear o navegador e escritor Amyr Klink."
     ],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Agendada"
+    "estado": "Em andamento"
    }
   ],
   "copom": []
  },
- "erros": [
-  "camara: <HTTPError 503: 'Service Unavailable'>"
- ]
+ "erros": []
 }
