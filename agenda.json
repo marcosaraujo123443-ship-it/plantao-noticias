@@ -1,6 +1,6 @@
 {
  "data": "2026-11-10",
- "atualizado": "2026-11-10T01:34:20-0300",
+ "atualizado": "2026-11-10T12:34:43-0300",
  "itens": [
   {
    "hora": "09:00",
@@ -18,7 +18,7 @@
    "titulo": "Sessão especial no Plenário",
    "detalhe": [],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Agendada"
+   "estado": "Encerrada"
   },
   {
    "hora": "11:00",
@@ -73,7 +73,7 @@
     "titulo": "Sessão especial no Plenário",
     "detalhe": [],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Agendada"
+    "estado": "Encerrada"
    },
    {
     "hora": "14:00",
@@ -91,5 +91,7 @@
   ],
   "copom": []
  },
- "erros": []
+ "erros": [
+  "camara: <HTTPError 503: 'Service Unavailable'>"
+ ]
 }
