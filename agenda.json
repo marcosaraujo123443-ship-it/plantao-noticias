@@ -1,7 +1,16 @@
 {
- "data": "2026-11-09",
- "atualizado": "2026-11-09T20:00:50-0300",
+ "data": "2026-11-10",
+ "atualizado": "2026-11-10T01:34:20-0300",
  "itens": [
+  {
+   "hora": "09:00",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Não Deliberativa Solene no Plenário",
+   "detalhe": [],
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
+  },
   {
    "hora": "10:00",
    "tipo": "politica",
@@ -9,12 +18,53 @@
    "titulo": "Sessão especial no Plenário",
    "detalhe": [],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
+   "estado": "Agendada"
+  },
+  {
+   "hora": "11:00",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Não Deliberativa Solene no Plenário",
+   "detalhe": [],
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
+  },
+  {
+   "hora": "14:00",
+   "tipo": "politica",
+   "rotulo": "Senado",
+   "titulo": "Sessão deliberativa ordinária no Plenário",
+   "detalhe": [
+    "PLP 109/2025: Dispõe sobre o acesso da Agência Nacional do Petróleo, Gás Natural e Biocombustíveis (ANP) às informações…",
+    "PL 5608/2023: Dispõe sobre as condições de trabalho de mulheres com diagnóstico, em tratamento ou em período de espera de…",
+    "PDL 934/2025: Aprova o texto do Acordo Regional sobre Acesso à Informação, Participação Pública e Acesso à Justiça em…"
+   ],
+   "link": "https://www25.senado.leg.br/web/atividade/plenario",
+   "estado": "Agendada"
   }
  ],
  "outros_jogos": 0,
  "fontes": {
-  "camara": [],
+  "camara": [
+   {
+    "hora": "09:00",
+    "tipo": "politica",
+    "rotulo": "Câmara",
+    "titulo": "Sessão Não Deliberativa Solene no Plenário",
+    "detalhe": [],
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
+   },
+   {
+    "hora": "11:00",
+    "tipo": "politica",
+    "rotulo": "Câmara",
+    "titulo": "Sessão Não Deliberativa Solene no Plenário",
+    "detalhe": [],
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
+   }
+  ],
   "senado": [
    {
     "hora": "10:00",
@@ -23,7 +73,20 @@
     "titulo": "Sessão especial no Plenário",
     "detalhe": [],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
+    "estado": "Agendada"
+   },
+   {
+    "hora": "14:00",
+    "tipo": "politica",
+    "rotulo": "Senado",
+    "titulo": "Sessão deliberativa ordinária no Plenário",
+    "detalhe": [
+     "PLP 109/2025: Dispõe sobre o acesso da Agência Nacional do Petróleo, Gás Natural e Biocombustíveis (ANP) às informações…",
+     "PL 5608/2023: Dispõe sobre as condições de trabalho de mulheres com diagnóstico, em tratamento ou em período de espera de…",
+     "PDL 934/2025: Aprova o texto do Acordo Regional sobre Acesso à Informação, Participação Pública e Acesso à Justiça em…"
+    ],
+    "link": "https://www25.senado.leg.br/web/atividade/plenario",
+    "estado": "Agendada"
    }
   ],
   "copom": []
