@@ -1,33 +1,66 @@
 {
- "data": "2026-11-10",
- "atualizado": "2026-11-10T22:48:44-0300",
+ "data": "2026-11-11",
+ "atualizado": "2026-11-11T06:11:12-0300",
  "itens": [
   {
-   "hora": "09:12",
+   "hora": "00:00",
+   "tipo": "tempo",
+   "rotulo": "Alerta INMET",
+   "titulo": "Tempestade (perigo) em GO, MS, MT",
+   "detalhe": [
+    "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
+   ],
+   "link": "#tempo",
+   "estado": ""
+  },
+  {
+   "hora": "08:30",
    "tipo": "politica",
    "rotulo": "Câmara",
    "titulo": "Sessão Não Deliberativa Solene no Plenário",
    "detalhe": [],
-   "link": "https://www.youtube.com/watch?v=vH_e-1pgD-A",
-   "estado": "Encerrada"
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
+  },
+  {
+   "hora": "09:30",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Não Deliberativa Solene no Plenário",
+   "detalhe": [],
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
   },
   {
    "hora": "10:00",
    "tipo": "politica",
-   "rotulo": "Senado",
-   "titulo": "Sessão especial no Plenário",
+   "rotulo": "Congresso",
+   "titulo": "Sessão solene no Plenário",
    "detalhe": [],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
+   "estado": "Convocada"
   },
   {
-   "hora": "11:23",
+   "hora": "11:00",
    "tipo": "politica",
    "rotulo": "Câmara",
    "titulo": "Sessão Não Deliberativa Solene no Plenário",
    "detalhe": [],
-   "link": "https://www.youtube.com/watch?v=YrYADMrBfhA",
-   "estado": "Encerrada"
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
+  },
+  {
+   "hora": "13:55",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Deliberativa no Plenário",
+   "detalhe": [
+    "REQ 2965/2026: Requer regime de urgência para apreciação do PL nº 479/2025, que “Define a Pessoa com Transtorno do Déficit…",
+    "REC 1/2026: Recurso contra parecer terminativo ao Projeto de Lei nº 2812, de 2022, que revoga a Lei nº 12.318, de 26 de…",
+    "PL 215/2015: Acrescenta inciso V ao art. 141 do Decreto-Lei nº 2.848, de 7 de dezembro de 1940."
+   ],
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
   },
   {
    "hora": "14:00",
@@ -35,71 +68,78 @@
    "rotulo": "Senado",
    "titulo": "Sessão deliberativa ordinária no Plenário",
    "detalhe": [
-    "RQS 753/2026: Solicita o adiamento da discussão do Projeto de Decreto Legislativo nº 934/2025, para oitiva da Comissão de…",
-    "PLP 109/2025: Dispõe sobre o acesso da Agência Nacional do Petróleo, Gás Natural e Biocombustíveis (ANP) às informações…",
-    "RQS 749/2026: Solicita a realização de Sessão Especial destinada a homenagear o navegador e escritor Amyr Klink."
+    "PLP 230/2025: Altera a Lei Complementar nº 101, de 4 de maio de 2000 (Lei de Responsabilidade Fiscal), para vedar a…",
+    "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
+    "PL 6683/2025: Dispõe sobre os requisitos essenciais relativos aos implantes cirúrgicos; e estabelece a notificação…"
    ],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
+   "estado": "Agendada"
   },
   {
-   "hora": "14:03",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Deliberativa no Plenário",
+   "hora": "19:00",
+   "tipo": "futebol",
+   "rotulo": "Série B",
+   "titulo": "Londrina × Náutico",
    "detalhe": [
-    "REQ 2965/2026: Requer regime de urgência para apreciação do PL nº 479/2025, que “Define a Pessoa com Transtorno do Déficit…",
-    "REQ 2994/2026: Requer a urgência para a apreciação do PLP nº 226/2025",
-    "REQ 3338/2026: Solicita urgência no trâmite do Projeto de Lei nº 724/2003, que “Altera a Lei nº 9.503, de 23 de setembro de…"
+    "38ª rodada · adiado"
    ],
-   "link": "https://www.youtube.com/watch?v=uYaSA0ANr-g",
-   "estado": "Encerrada"
+   "estado": "",
+   "link": "tabelas/"
   }
  ],
  "outros_jogos": 0,
  "fontes": {
   "camara": [
    {
-    "hora": "09:12",
+    "hora": "11:00",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Não Deliberativa Solene no Plenário",
     "detalhe": [],
-    "link": "https://www.youtube.com/watch?v=vH_e-1pgD-A",
-    "estado": "Encerrada"
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
    },
    {
-    "hora": "11:23",
+    "hora": "08:30",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Não Deliberativa Solene no Plenário",
     "detalhe": [],
-    "link": "https://www.youtube.com/watch?v=YrYADMrBfhA",
-    "estado": "Encerrada"
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
    },
    {
-    "hora": "14:03",
+    "hora": "09:30",
+    "tipo": "politica",
+    "rotulo": "Câmara",
+    "titulo": "Sessão Não Deliberativa Solene no Plenário",
+    "detalhe": [],
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
+   },
+   {
+    "hora": "13:55",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Deliberativa no Plenário",
     "detalhe": [
      "REQ 2965/2026: Requer regime de urgência para apreciação do PL nº 479/2025, que “Define a Pessoa com Transtorno do Déficit…",
-     "REQ 2994/2026: Requer a urgência para a apreciação do PLP nº 226/2025",
-     "REQ 3338/2026: Solicita urgência no trâmite do Projeto de Lei nº 724/2003, que “Altera a Lei nº 9.503, de 23 de setembro de…"
+     "REC 1/2026: Recurso contra parecer terminativo ao Projeto de Lei nº 2812, de 2022, que revoga a Lei nº 12.318, de 26 de…",
+     "PL 215/2015: Acrescenta inciso V ao art. 141 do Decreto-Lei nº 2.848, de 7 de dezembro de 1940."
     ],
-    "link": "https://www.youtube.com/watch?v=uYaSA0ANr-g",
-    "estado": "Encerrada"
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
    }
   ],
   "senado": [
    {
     "hora": "10:00",
     "tipo": "politica",
-    "rotulo": "Senado",
-    "titulo": "Sessão especial no Plenário",
+    "rotulo": "Congresso",
+    "titulo": "Sessão solene no Plenário",
     "detalhe": [],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
+    "estado": "Convocada"
    },
    {
     "hora": "14:00",
@@ -107,12 +147,12 @@
     "rotulo": "Senado",
     "titulo": "Sessão deliberativa ordinária no Plenário",
     "detalhe": [
-     "RQS 753/2026: Solicita o adiamento da discussão do Projeto de Decreto Legislativo nº 934/2025, para oitiva da Comissão de…",
-     "PLP 109/2025: Dispõe sobre o acesso da Agência Nacional do Petróleo, Gás Natural e Biocombustíveis (ANP) às informações…",
-     "RQS 749/2026: Solicita a realização de Sessão Especial destinada a homenagear o navegador e escritor Amyr Klink."
+     "PLP 230/2025: Altera a Lei Complementar nº 101, de 4 de maio de 2000 (Lei de Responsabilidade Fiscal), para vedar a…",
+     "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
+     "PL 6683/2025: Dispõe sobre os requisitos essenciais relativos aos implantes cirúrgicos; e estabelece a notificação…"
     ],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
+    "estado": "Agendada"
    }
   ],
   "copom": []
