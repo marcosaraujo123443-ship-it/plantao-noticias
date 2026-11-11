@@ -14,5 +14,5 @@ jobs:
       - name: Publicar o Worker e o secret
         working-directory: agendador
         run: |
-          npx --yes wrangler@3 deploy
-          printf '%s' "${{ secrets.GH_PAT }}" | npx --yes wrangler@3 secret put GH_PAT
+          npx --yes wrangler@4 deploy
+          printf '%s' "${{ secrets.GH_PAT }}" | npx --yes wrangler@4 secret put GH_PAT
