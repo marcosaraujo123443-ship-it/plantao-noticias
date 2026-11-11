@@ -28,7 +28,7 @@ export default {
     const lista = tarefas(new Date(evento.scheduledTime));
     ctx.waitUntil(Promise.all(lista.map(t => disparar(env, t))).then(r => console.log(r.join(" "))));
   },
-  async fetch(req, env) {   // conferência manual: GET /?ver=1 mostra o que seria disparado agora (não dispara)
+  async fetch(req, env) {   // sem rota pública; mantido para testes com "wrangler dev"
     return new Response(JSON.stringify({ agora: new Date().toISOString(), tarefas: tarefas(new Date()) }), { headers: { "content-type": "application/json" } });
   },
 };
