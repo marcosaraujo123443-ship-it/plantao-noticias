@@ -3,6 +3,8 @@ on:
   schedule:
     - cron: "20 * * * *"   # de hora em hora
   workflow_dispatch:
+  repository_dispatch:
+    types: [futebol]   # disparado pelo agendador (agendador/worker.js)
   push:
     paths: ["scripts/futebol.py", ".github/workflows/futebol.yml"]
 permissions:

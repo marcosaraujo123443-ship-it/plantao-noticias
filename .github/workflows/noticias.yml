@@ -4,6 +4,8 @@ on:
     # de hora em hora das 7h às 23h de Brasília, mais 01h e 04h (horários em UTC)
     - cron: "5 0-2,4,7,10-23 * * *"
   workflow_dispatch:
+  repository_dispatch:
+    types: [noticias]   # disparado pelo agendador (agendador/worker.js)
   push:
     paths: ["scripts/og.py", "scripts/resumo.py", "scripts/telegram.py", "scripts/noticias.py", "scripts/gerar.py", "scripts/modelo.html", "scripts/agenda.py", "scripts/audio.py", "scripts/ia_lancamentos.py", "scripts/brasil_mapa.json", "scripts/materias.py", "materias/**", ".github/workflows/noticias.yml"]
 permissions:

@@ -4,6 +4,8 @@ on:
     - cron: "10,40 11-22 * * 1-5"   # a cada 30 min em dia útil
     - cron: "45 1 * * *"
   workflow_dispatch:
+  repository_dispatch:
+    types: [agro]   # disparado pelo agendador (agendador/worker.js)
   push:
     paths: ["scripts/agro.py", "scripts/agro_hist.py", ".github/workflows/agro.yml"]
 permissions:

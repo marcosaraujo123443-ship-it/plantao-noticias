@@ -4,6 +4,8 @@ on:
     # a cada 2 horas, das 6h às 22h de Brasília (UTC)
     - cron: "35 9-23/2,1 * * *"
   workflow_dispatch:
+  repository_dispatch:
+    types: [tempo]   # disparado pelo agendador (agendador/worker.js)
   push:
     paths: ["scripts/tempo.py", "scripts/concursos.py", "scripts/congresso.py", ".github/workflows/tempo.yml"]
 permissions:

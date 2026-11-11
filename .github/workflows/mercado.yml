@@ -4,6 +4,8 @@ on:
     - cron: "*/15 12-21 * * 1-5"   # a cada 15 min no pregão (9h-18h de Brasília)
     - cron: "17 */3 * * *"          # moedas e bitcoin fora do pregão
   workflow_dispatch:
+  repository_dispatch:
+    types: [mercado]   # disparado pelo agendador (agendador/worker.js)
   push:
     paths: ["scripts/mercado.py", ".github/workflows/mercado.yml"]
 permissions:
