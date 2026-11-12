@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-12T18:01:22Z",
+ "atualizado_utc": "2026-11-12T18:06:10Z",
  "secoes": [
   "Política",
   "IA",
@@ -82,10 +82,6 @@
     {
      "fonte": "CNN Brasil",
      "link": "https://www.cnnbrasil.com.br/politica/congresso-libera-1494-bi-para-governo-custear-previdencia-e-bolsa-familia/"
-    },
-    {
-     "fonte": "InfoMoney",
-     "link": "https://www.infomoney.com.br/politica/congresso-aprova-credito-de-r-149-bi-para-bolsa-familia-bpc-e-previdencia/"
     },
     {
      "fonte": "g1",
@@ -314,6 +310,15 @@
   },
   {
    "secao": "Futebol",
+   "fonte": "ge",
+   "editoria": "Futebol",
+   "titulo": "Eleição do Vasco: ge entrevista o candidato a presidente Raul Lima Neto",
+   "link": "https://ge.globo.com/futebol/times/vasco/noticia/2026/11/12/eleicao-do-vasco-ge-entrevista-o-candidato-a-presidente-raul-lima-neto.ghtml",
+   "data": "2026-11-12T18:00:04Z",
+   "resumo": "As eleições presidenciais do Vasco serão realizadas no próximo sábado."
+  },
+  {
+   "secao": "Futebol",
    "fonte": "Gazeta Esportiva",
    "editoria": "Futebol",
    "titulo": "Crystal Palace demite técnico Pierre Sage",
@@ -338,6 +343,21 @@
    "link": "https://ge.globo.com/futebol/times/sao-paulo/noticia/2026/11/12/fifa-retira-transfer-ban-do-sao-paulo.ghtml",
    "data": "2026-11-12T17:54:21Z",
    "resumo": "Eder Traskini comenta sobre os bastidores das eleições no São Paulo A Fifa retirou nesta quinta-feira o São Paulo da lista de clubes impedidos de contratar jogadores."
+  },
+  {
+   "secao": "Futebol",
+   "fonte": "CNN Brasil",
+   "editoria": "Futebol",
+   "titulo": "Brasil x Japão: horário e onde assistir ao amistoso da Seleção",
+   "link": "https://www.cnnbrasil.com.br/esportes/futebol/selecao-brasileira/brasil-x-japao-horario-e-onde-assistir-ao-amistoso-da-selecao/",
+   "data": "2026-11-12T17:50:16Z",
+   "resumo": "Seleções se enfrentam neste sábado (14), em possível revanche japonesa após eliminação para o Brasil na Copa do Mundo de 2026",
+   "tambem": [
+    {
+     "fonte": "ge",
+     "link": "https://ge.globo.com/futebol/futebol-internacional/noticia/2026/11/12/argentina-x-uruguai-onde-assistir-ao-vivo-horario-e-escalacoes-do-amistoso.ghtml"
+    }
+   ]
   },
   {
    "secao": "Futebol",
@@ -377,15 +397,6 @@
   },
   {
    "secao": "Futebol",
-   "fonte": "ge",
-   "editoria": "Futebol",
-   "titulo": "Raynan entra na Justiça e pede rescisão de contrato com o Figueirense",
-   "link": "https://ge.globo.com/sc/futebol/times/figueirense/noticia/2026/11/12/raynan-entra-na-justica-e-pede-rescisao-de-contrato-com-o-figueirense.ghtml",
-   "data": "2026-11-12T16:58:59Z",
-   "resumo": "Marcílio Dias 1 x 0 Figueirense | Semifinal | Ida | Copa SC - Vídeo: Metrópoles O volante Raynan não faz mais parte do elenco do Figueirense, embora o contrato com o clube ainda esteja em vigor."
-  },
-  {
-   "secao": "Futebol",
    "fonte": "Agência Brasil",
    "editoria": "Futebol",
    "titulo": "Congresso muda orçamento em favor da Copa do Mundo de futebol feminino",
@@ -393,6 +404,10 @@
    "data": "2026-11-12T16:47:00Z",
    "resumo": "O Congresso Nacional aprovou, nesta quinta-feira (12), projeto de lei que flexibiliza regras fiscais e orçamentárias para a realização da Copa do Mundo Feminina da Fifa 2027 , no Brasil entre 24 de junho e 25 de julho.",
    "tambem": [
+    {
+     "fonte": "CNN Brasil",
+     "link": "https://www.cnnbrasil.com.br/politica/congresso-aprova-excecao-no-orcamento-para-a-copa-feminina-de-2027/"
+    },
     {
      "fonte": "Agência Senado",
      "link": "https://www12.senado.leg.br/noticias/materias/2026/11/12/aprovada-dispensa-de-regras-fiscais-para-copa-do-mundo-feminina-de-2027"
@@ -420,21 +435,6 @@
     {
      "fonte": "ge",
      "link": "https://ge.globo.com/futebol/futebol-internacional/futebol-espanhol/noticia/2026/11/12/tecnico-do-tenerife-diz-que-goleiro-do-caso-jesus-miguel-ainda-nao-decidiu-se-voltara-a-jogar.ghtml"
-    }
-   ]
-  },
-  {
-   "secao": "Futebol",
-   "fonte": "CNN Brasil",
-   "editoria": "Futebol",
-   "titulo": "Veja provável escalação da Seleção Brasileira para enfrentar o Japão",
-   "link": "https://www.cnnbrasil.com.br/esportes/futebol/selecao-brasileira/veja-provavel-escalacao-da-selecao-brasileira-para-enfrentar-o-japao/",
-   "data": "2026-11-12T14:01:56Z",
-   "resumo": "Brasil encara os japoneses no próximo sábado (14), no primeiro amistoso da equipe em Singapura, nesta última Data Fifa do ano",
-   "tambem": [
-    {
-     "fonte": "Gazeta Esportiva",
-     "link": "https://www.gazetaesportiva.com/times/brasil/ancelotti-escalacao-selecao-brasileira-japao-duvidas/"
     }
    ]
   },
@@ -575,12 +575,36 @@
   },
   {
    "secao": "Mercado",
+   "fonte": "InfoMoney",
+   "editoria": "Mercado",
+   "titulo": "Pacote fiscal é bom sinal, mas não toca na estrutura dos gastos, dizem economistas",
+   "link": "https://www.infomoney.com.br/economia/pacote-fiscal-e-bom-sinal-mas-nao-toca-na-estrutura-dos-gastos-dizem-economistas/",
+   "data": "2026-11-12T18:05:34Z",
+   "resumo": "Economistas apontam que medidas do PLP 299 ajudam a perseguir o centro da meta, mas dependem de gatilhos e evitam mexer nas despesas obrigatórias",
+   "tambem": [
+    {
+     "fonte": "CNN Brasil",
+     "link": "https://www.cnnbrasil.com.br/economia/money/macroeconomia/economistas-apontam-falta-de-medidas-estruturais-em-pacote-fiscal/"
+    }
+   ]
+  },
+  {
+   "secao": "Mercado",
    "fonte": "g1",
    "editoria": "Mercado",
    "titulo": "Justiça proíbe Uber de cobrar taxa para motoristas aceitarem corridas no Brasil",
    "link": "https://g1.globo.com/trabalho-e-carreira/noticia/2026/11/12/justica-suspende-cobranca-de-taxa-da-uber-para-motoristas.ghtml",
    "data": "2026-11-12T17:54:07Z",
    "resumo": "Logo da Uber é visto nesta ilustração tirada em 5 de agosto de 2025."
+  },
+  {
+   "secao": "Mercado",
+   "fonte": "CNN Brasil",
+   "editoria": "Mercado",
+   "titulo": "Azul quer converter dívida em dólar para reais, diz CFO",
+   "link": "https://www.cnnbrasil.com.br/economia/money/negocios/azul-quer-converter-divida-em-dolar-para-reais-diz-cfo/",
+   "data": "2026-11-12T17:51:02Z",
+   "resumo": "Atualmente, só 7,3% da dívida total da Azul está em moeda local; quando exclui dívida ligada a aeronaves, essa fatia sobe para 17,0%, ante 6,6% um ano antes"
   },
   {
    "secao": "Mercado",
@@ -635,15 +659,6 @@
   },
   {
    "secao": "Mercado",
-   "fonte": "InfoMoney",
-   "editoria": "Mercado",
-   "titulo": "Queda dos FIIs abre oportunidades para investidores de longo prazo, diz André Bacci",
-   "link": "https://www.infomoney.com.br/onde-investir/queda-dos-fiis-abre-oportunidades-para-investidores-de-longo-prazo-diz-andre-bacci/",
-   "data": "2026-11-12T17:18:33Z",
-   "resumo": "s fundamentos de diferentes segmentos do setor imobiliário seguem consistentes"
-  },
-  {
-   "secao": "Mercado",
    "fonte": "CNN Brasil",
    "editoria": "Mercado",
    "titulo": "Caixa sofre ataque hacker que afeta 7,6 milhões de clientes",
@@ -671,15 +686,6 @@
      "link": "https://g1.globo.com/economia/noticia/2026/11/12/petrobras-anuncia-compra-de-empresa-de-transporte-de-etanol-por-r-620-milhoes.ghtml"
     }
    ]
-  },
-  {
-   "secao": "Mercado",
-   "fonte": "CNN Brasil",
-   "editoria": "Mercado",
-   "titulo": "Siemens tem resultados mistos no 4º tri e reafirma parceria com Nvidia",
-   "link": "https://www.cnnbrasil.com.br/economia/money/negocios/siemens-tem-resultados-mistos-no-4o-tri-e-reafirma-parceria-com-nvidia/",
-   "data": "2026-11-12T15:56:31Z",
-   "resumo": "Presidente executivo afirmou que os projetos conjuntos continuam mesmo diante das incertezas sobre o comando da fabricante de chips"
   },
   {
    "secao": "Mercado",
@@ -725,6 +731,15 @@
    "link": "https://g1.globo.com/economia/noticia/2026/11/12/ipca-inflacao-outubro-2026.ghtml",
    "data": "2026-11-12T12:00:26Z",
    "resumo": "IPCA fica em 0,14% no mês de outubro O Índice Nacional de Preços ao Consumidor Amplo (IPCA), considerado a inflação oficial do país, subiu 0,14% em outubro."
+  },
+  {
+   "secao": "Concursos",
+   "fonte": "Gran Cursos",
+   "editoria": "Concursos",
+   "titulo": "Termo de referência detalha Concurso Câmara Taboão da Serra SP!",
+   "link": "https://blog.grancursosonline.com.br/concurso-camara-taboao-da-serra-sp-termo-referencia-2026/",
+   "data": "2026-11-12T18:05:41Z",
+   "resumo": "Novidade importante sobre o Concurso Câmara Taboão da Serra SP!"
   },
   {
    "secao": "Concursos",
@@ -839,15 +854,6 @@
      "link": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/governo-estuda-novo-modelo-para-concurso-publico-unificado-em-2027"
     }
    ]
-  },
-  {
-   "secao": "Concursos",
-   "fonte": "Gran Cursos",
-   "editoria": "Concursos",
-   "titulo": "Concurso Bacen: 170 vagas; edital até 30 de dezembro!",
-   "link": "https://blog.grancursosonline.com.br/concurso-bacen/",
-   "data": "2026-11-12T16:13:42Z",
-   "resumo": "Atualizações sobre o Concurso Bacen! O Banco Central do Brasil confirmou, por meio de FAQ oficial, que o edital de abertura do novo certame deve ser publicado até 30 de dezembro de 2026."
   },
   {
    "secao": "Concursos",
@@ -977,6 +983,15 @@
    "secao": "Ciência e Saúde",
    "fonte": "g1",
    "editoria": "Ciência e Saúde",
+   "titulo": "Anvisa suspende lote de muçarela fatiada Italy contaminado com bactéria",
+   "link": "https://g1.globo.com/saude/noticia/2026/11/12/anvisa-suspende-lote-de-mucarela-fatiada-italy-contaminado-com-bacteria.ghtml",
+   "data": "2026-11-12T11:16:31Z",
+   "resumo": "Queijo muçarela fatiado foi suspenso Divulgação A Agência Nacional de Vigilância Sanitária (Anvisa) suspendeu um lote de queijo muçarela fatiado da marca Italy depois que um laudo encontrou a bactéria Listeria monocytogenes no produto."
+  },
+  {
+   "secao": "Ciência e Saúde",
+   "fonte": "g1",
+   "editoria": "Ciência e Saúde",
    "titulo": "Câncer de próstata: 8 em cada 10 pacientes já diagnosticados demoram mais de 60 dias para iniciar o tratamento no SUS",
    "link": "https://g1.globo.com/saude/noticia/2026/11/12/cancer-de-prostata-8-em-cada-10-pacientes-ja-diagnosticados-demoram-mais-de-60-dias-para-iniciar-o-tratamento-no-sus.ghtml",
    "data": "2026-11-12T10:55:00Z",
@@ -999,15 +1014,6 @@
    "link": "https://g1.globo.com/bemestar/blog/longevidade-modo-de-usar/post/2026/11/12/a-epidemia-silenciosa-de-caries-em-idosos.ghtml",
    "data": "2026-11-12T06:00:00Z",
    "resumo": "A epidemia silenciosa de cáries em idosos A cárie é uma das doenças crônicas mais prevalentes no mundo e está longe de ser um problema exclusivo da infância."
-  },
-  {
-   "secao": "Ciência e Saúde",
-   "fonte": "g1",
-   "editoria": "Ciência e Saúde",
-   "titulo": "Qual é o risco de doença grave nos olhos por uso de Ozempic e Mounjaro que gerou alerta de agência dos EUA",
-   "link": "https://g1.globo.com/saude/noticia/2026/11/12/qual-e-o-risco-de-doenca-grave-nos-olhos-por-uso-de-ozempic-e-mounjaro-que-gerou-alerta-de-agencia-dos-eua.ghtml",
-   "data": "2026-11-12T05:00:00Z",
-   "resumo": "ozempic Getty Images/BBC A FDA, agência reguladora de medicamentos dos Estados Unidos, determinou que os fabricantes de canetas para perda de peso da classe dos agonistas de GLP-1 devem incluir em suas bulas alertas sobr"
   },
   {
    "secao": "Ciência e Saúde",
