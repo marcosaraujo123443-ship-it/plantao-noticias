@@ -1,155 +1,98 @@
 {
- "data": "2026-11-11",
- "atualizado": "2026-11-11T23:01:15-0300",
+ "data": "2026-11-12",
+ "atualizado": "2026-11-12T01:01:20-0300",
  "itens": [
-  {
-   "hora": "08:47",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Não Deliberativa Solene no Plenário",
-   "detalhe": [],
-   "link": "https://www.youtube.com/watch?v=Jvf7JILTCWE",
-   "estado": "Encerrada"
-  },
-  {
-   "hora": "09:15",
-   "tipo": "tempo",
-   "rotulo": "Alerta INMET",
-   "titulo": "Acumulado de Chuva (perigo) em BA",
-   "detalhe": [
-    "Chuva entre 30 a 60 mm/h ou 50 a 100 mm/dia. Risco de alagamentos, deslizamentos de encostas, transbordamentos de rios, em cidades com tais…"
-   ],
-   "link": "#tempo",
-   "estado": ""
-  },
-  {
-   "hora": "09:53",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Não Deliberativa Solene no Plenário",
-   "detalhe": [],
-   "link": "https://www.youtube.com/watch?v=Z-yz-n97wRI",
-   "estado": "Encerrada"
-  },
-  {
-   "hora": "10:00",
-   "tipo": "politica",
-   "rotulo": "Congresso",
-   "titulo": "Sessão solene no Plenário",
-   "detalhe": [],
-   "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
-  },
-  {
-   "hora": "11:23",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Não Deliberativa Solene no Plenário",
-   "detalhe": [],
-   "link": "https://www.youtube.com/watch?v=mn27XsdK5mc",
-   "estado": "Encerrada"
-  },
   {
    "hora": "14:00",
    "tipo": "politica",
    "rotulo": "Senado",
+   "titulo": "Sessão especial no Plenário",
+   "detalhe": [],
+   "link": "https://www25.senado.leg.br/web/atividade/plenario",
+   "estado": "Agendada"
+  },
+  {
+   "hora": "16:00",
+   "tipo": "politica",
+   "rotulo": "Senado",
    "titulo": "Sessão deliberativa ordinária no Plenário",
    "detalhe": [
-    "PLP 230/2025: Altera a Lei Complementar nº 101, de 4 de maio de 2000 (Lei de Responsabilidade Fiscal), para vedar a…",
-    "MPV 1376/2026: Autoriza a criação de linhas de crédito para composição de dívidas para liquidação ou amortização de…",
-    "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…"
+    "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
+    "PL 6683/2025: Dispõe sobre os requisitos essenciais relativos aos implantes cirúrgicos; e estabelece a notificação…"
    ],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
    "estado": "Suspensa"
   },
   {
-   "hora": "14:39",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Deliberativa no Plenário",
-   "detalhe": [
-    "REQ 2965/2026: Requer regime de urgência para apreciação do PL nº 479/2025, que “Define a Pessoa com Transtorno do Déficit…",
-    "REC 1/2026: Recurso contra parecer terminativo ao Projeto de Lei nº 2812, de 2022, que revoga a Lei nº 12.318, de 26 de…",
-    "REC 1/2026: Recurso contra parecer terminativo ao Projeto de Lei nº 2812, de 2022, que revoga a Lei nº 12.318, de 26 de…"
-   ],
-   "link": "https://www.youtube.com/watch?v=qTcOGuWH7CQ",
-   "estado": "Encerrada"
-  },
-  {
    "hora": "19:00",
    "tipo": "futebol",
    "rotulo": "Série B",
-   "titulo": "Londrina 2 × 1 Náutico",
+   "titulo": "Ponte Preta × Operário PR",
    "detalhe": [
     "38ª rodada · adiado"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
+  },
+  {
+   "hora": "20:00",
+   "tipo": "futebol",
+   "rotulo": "Série B",
+   "titulo": "São Bernardo × Athletic",
+   "detalhe": [
+    "38ª rodada · adiado"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "9:00",
+   "tipo": "politica",
+   "rotulo": "Congresso",
+   "titulo": "Sessão conjunta no Plenário",
+   "detalhe": [
+    "PLN 1/2026: Altera o Anexo V à Lei nº 15.346, de 14 de janeiro de 2026, que estima a receita e fixa a despesa da União…",
+    "PLN 3/2026: Abre ao Orçamento Fiscal da União, em favor do Ministério da Ciência, Tecnologia e Inovação, crédito…",
+    "PLN 4/2026: Abre ao Orçamento Fiscal da União, em favor do Ministério da Fazenda, crédito suplementar no valor de R$…"
+   ],
+   "link": "https://www25.senado.leg.br/web/atividade/plenario",
+   "estado": "Convocada"
   }
  ],
  "outros_jogos": 0,
  "fontes": {
-  "camara": [
-   {
-    "hora": "11:23",
-    "tipo": "politica",
-    "rotulo": "Câmara",
-    "titulo": "Sessão Não Deliberativa Solene no Plenário",
-    "detalhe": [],
-    "link": "https://www.youtube.com/watch?v=mn27XsdK5mc",
-    "estado": "Encerrada"
-   },
-   {
-    "hora": "08:47",
-    "tipo": "politica",
-    "rotulo": "Câmara",
-    "titulo": "Sessão Não Deliberativa Solene no Plenário",
-    "detalhe": [],
-    "link": "https://www.youtube.com/watch?v=Jvf7JILTCWE",
-    "estado": "Encerrada"
-   },
-   {
-    "hora": "09:53",
-    "tipo": "politica",
-    "rotulo": "Câmara",
-    "titulo": "Sessão Não Deliberativa Solene no Plenário",
-    "detalhe": [],
-    "link": "https://www.youtube.com/watch?v=Z-yz-n97wRI",
-    "estado": "Encerrada"
-   },
-   {
-    "hora": "14:39",
-    "tipo": "politica",
-    "rotulo": "Câmara",
-    "titulo": "Sessão Deliberativa no Plenário",
-    "detalhe": [
-     "REQ 2965/2026: Requer regime de urgência para apreciação do PL nº 479/2025, que “Define a Pessoa com Transtorno do Déficit…",
-     "REC 1/2026: Recurso contra parecer terminativo ao Projeto de Lei nº 2812, de 2022, que revoga a Lei nº 12.318, de 26 de…",
-     "REC 1/2026: Recurso contra parecer terminativo ao Projeto de Lei nº 2812, de 2022, que revoga a Lei nº 12.318, de 26 de…"
-    ],
-    "link": "https://www.youtube.com/watch?v=qTcOGuWH7CQ",
-    "estado": "Encerrada"
-   }
-  ],
+  "camara": [],
   "senado": [
    {
-    "hora": "10:00",
+    "hora": "9:00",
     "tipo": "politica",
     "rotulo": "Congresso",
-    "titulo": "Sessão solene no Plenário",
-    "detalhe": [],
+    "titulo": "Sessão conjunta no Plenário",
+    "detalhe": [
+     "PLN 1/2026: Altera o Anexo V à Lei nº 15.346, de 14 de janeiro de 2026, que estima a receita e fixa a despesa da União…",
+     "PLN 3/2026: Abre ao Orçamento Fiscal da União, em favor do Ministério da Ciência, Tecnologia e Inovação, crédito…",
+     "PLN 4/2026: Abre ao Orçamento Fiscal da União, em favor do Ministério da Fazenda, crédito suplementar no valor de R$…"
+    ],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
+    "estado": "Convocada"
    },
    {
     "hora": "14:00",
     "tipo": "politica",
     "rotulo": "Senado",
+    "titulo": "Sessão especial no Plenário",
+    "detalhe": [],
+    "link": "https://www25.senado.leg.br/web/atividade/plenario",
+    "estado": "Agendada"
+   },
+   {
+    "hora": "16:00",
+    "tipo": "politica",
+    "rotulo": "Senado",
     "titulo": "Sessão deliberativa ordinária no Plenário",
     "detalhe": [
-     "PLP 230/2025: Altera a Lei Complementar nº 101, de 4 de maio de 2000 (Lei de Responsabilidade Fiscal), para vedar a…",
-     "MPV 1376/2026: Autoriza a criação de linhas de crédito para composição de dívidas para liquidação ou amortização de…",
-     "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…"
+     "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
+     "PL 6683/2025: Dispõe sobre os requisitos essenciais relativos aos implantes cirúrgicos; e estabelece a notificação…"
     ],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
     "estado": "Suspensa"
