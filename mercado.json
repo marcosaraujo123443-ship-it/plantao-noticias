@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-12T01:37:40Z",
+ "atualizado_utc": "2026-11-12T03:16:03Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -15,14 +15,14 @@
   },
   {
    "nome": "Euro",
-   "valor": 6.1887,
-   "var": 0.0,
+   "valor": 6.1814,
+   "var": -0.11795692148592885,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 410927.67963,
-   "var": -0.43353287289489284,
+   "valor": 411132.683718,
+   "var": -0.38386103573085917,
    "tipo": "brl"
   },
   {
@@ -504,6 +504,12 @@
    "var": 0.3429355281207247
   },
   {
+   "ticker": "RAIZ4",
+   "nome": "Raízen",
+   "preco": 0.3,
+   "var": 0.0
+  },
+  {
    "ticker": "RDOR3",
    "nome": "Rede D'Or",
    "preco": 34.29,
@@ -646,12 +652,6 @@
    "nome": "EZTec",
    "preco": 9.87,
    "var": 3.894736842105262
-  },
-  {
-   "ticker": "RAIZ4",
-   "nome": "Raízen",
-   "preco": 0.3,
-   "var": 0.0
   }
  ],
  "maiores": [
