@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-12T04:14:10Z",
+ "atualizado_utc": "2026-11-12T19:43:32Z",
  "fonte": "Banco Central (SGS)",
  "series": {
   "ipca": {
@@ -7,10 +7,6 @@
    "fonte": "IBGE",
    "tipo": "mensal",
    "dados": [
-    {
-     "mes": "2024-09",
-     "valor": 0.44
-    },
     {
      "mes": "2024-10",
      "valor": 0.56
@@ -146,6 +142,12 @@
      "valor": 0.82,
      "doze": 4.58,
      "ano": 3.95
+    },
+    {
+     "mes": "2026-10",
+     "valor": 0.14,
+     "doze": 4.63,
+     "ano": 4.1
     }
    ]
   },
@@ -602,10 +604,6 @@
    "tipo": "mensal",
    "dados": [
     {
-     "mes": "2024-09",
-     "valor": 0.48
-    },
-    {
      "mes": "2024-10",
      "valor": 0.61
     },
@@ -740,6 +738,12 @@
      "valor": 0.82,
      "doze": 4.29,
      "ano": 4.01
+    },
+    {
+     "mes": "2026-10",
+     "valor": 0.22,
+     "doze": 4.49,
+     "ano": 4.24
     }
    ]
   },
@@ -855,7 +859,7 @@
    "fonte": "B3/Banco Central",
    "tipo": "nivel",
    "atual": 13.65,
-   "data": "10/11/2026"
+   "data": "11/11/2026"
   }
  },
  "copom": [
