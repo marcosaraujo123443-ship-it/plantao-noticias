@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-12T12:46:03Z",
+ "atualizado_utc": "2026-11-12T13:01:00Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -9,20 +9,20 @@
   },
   {
    "nome": "Dólar",
-   "valor": 5.5949,
-   "var": 0.21494205520427023,
+   "valor": 5.6019,
+   "var": 0.34032492074009824,
    "tipo": "brl"
   },
   {
    "nome": "Euro",
-   "valor": 6.1987,
-   "var": 0.1615848239533202,
+   "valor": 6.2054,
+   "var": 0.2698466560020707,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 407315.210084,
-   "var": -1.5204965993323771,
+   "valor": 407715.861249,
+   "var": -1.546806981490334,
    "tipo": "brl"
   },
   {
@@ -61,19 +61,19 @@
    "ticker": "BBDC4",
    "nome": "Bradesco",
    "preco": 14.33,
-   "var": -1.4442916093534985
+   "var": 0.0
   },
   {
    "ticker": "BBAS3",
    "nome": "Banco do Brasil",
    "preco": 16.89,
-   "var": -1.2280701754386003
+   "var": 0.0
   },
   {
    "ticker": "B3SA3",
    "nome": "B3",
    "preco": 14.8,
-   "var": 2.20994475138121
+   "var": 0.0
   },
   {
    "ticker": "ABEV3",
@@ -151,7 +151,7 @@
    "ticker": "AXIA3",
    "nome": "Axia (Eletrobras)",
    "preco": 48.79,
-   "var": 0.5564715581203528
+   "var": 0.0
   },
   {
    "ticker": "CMIG4",
@@ -177,43 +177,43 @@
    "ticker": "ASAI3",
    "nome": "Assaí",
    "preco": 9.54,
-   "var": 4.0348964013086075
+   "var": 0.0
   },
   {
    "ticker": "AURE3",
    "nome": "Auren",
    "preco": 11.8,
-   "var": 0.42553191489362874
+   "var": 0.0
   },
   {
    "ticker": "AZZA3",
    "nome": "Azzas 2154",
    "preco": 15.37,
-   "var": 4.344874405974197
+   "var": 0.0
   },
   {
    "ticker": "B3SA3",
    "nome": "B3",
    "preco": 14.8,
-   "var": 2.20994475138121
+   "var": 0.0
   },
   {
    "ticker": "BBSE3",
    "nome": "BB Seguridade",
    "preco": 39.66,
-   "var": -0.27659039476994884
+   "var": 0.0
   },
   {
    "ticker": "BBDC3",
    "nome": "Bradesco",
    "preco": 13.29,
-   "var": -0.15026296018032514
+   "var": 0.0
   },
   {
    "ticker": "BBDC4",
    "nome": "Bradesco",
    "preco": 14.33,
-   "var": -1.4442916093534985
+   "var": 0.0
   },
   {
    "ticker": "BRAP4",
@@ -225,7 +225,7 @@
    "ticker": "BBAS3",
    "nome": "Banco do Brasil",
    "preco": 16.89,
-   "var": -1.2280701754386003
+   "var": 0.0
   },
   {
    "ticker": "BRKM5",
@@ -321,7 +321,7 @@
    "ticker": "AXIA3",
    "nome": "Axia (Eletrobras)",
    "preco": 48.79,
-   "var": 0.5564715581203528
+   "var": 0.0
   },
   {
    "ticker": "EMBJ3",
@@ -701,7 +701,7 @@
    "ticker": "BBDC4",
    "nome": "Bradesco",
    "preco": 14.33,
-   "var": -1.4442916093534985,
+   "var": 0.0,
    "vm": 160450664374.14032
   },
   {
@@ -715,7 +715,7 @@
    "ticker": "AXIA3",
    "nome": "Axia (Eletrobras)",
    "preco": 48.79,
-   "var": 0.5564715581203528,
+   "var": 0.0,
    "vm": 133978426009.8928
   },
   {
@@ -743,7 +743,7 @@
    "ticker": "BBAS3",
    "nome": "Banco do Brasil",
    "preco": 16.89,
-   "var": -1.2280701754386003,
+   "var": 0.0,
    "vm": 96793824385.9649
   },
   {
@@ -757,7 +757,7 @@
    "ticker": "BBSE3",
    "nome": "BB Seguridade",
    "preco": 39.66,
-   "var": -0.27659039476994884,
+   "var": 0.0,
    "vm": 76995945939.1501
   },
   {
@@ -771,7 +771,7 @@
    "ticker": "B3SA3",
    "nome": "B3",
    "preco": 14.8,
-   "var": 2.20994475138121,
+   "var": 0.0,
    "vm": 74688179558.01105
   },
   {
@@ -1269,12 +1269,12 @@
   {
    "papel": "RBRR11",
    "segmento": "Multicategoria",
-   "cotacao": 63.0,
+   "cotacao": 0.0,
    "dy": 15.48,
    "pvp": 0.68,
    "vm": 1026920000.0,
    "liq": 4081620.0,
-   "var": 0.0
+   "var": -100.0
   },
   {
    "papel": "VRTA11",
@@ -1319,12 +1319,12 @@
   {
    "papel": "VCJR11",
    "segmento": "Outros",
-   "cotacao": 63.0,
+   "cotacao": 0.0,
    "dy": 17.5,
    "pvp": 0.66,
    "vm": 927610000.0,
    "liq": 3298080.0,
-   "var": 0.0
+   "var": -100.0
   },
   {
    "papel": "CVBI11",
