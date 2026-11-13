@@ -5,9 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          U=https://www.noticiasagricolas.com.br/cotacoes/soja
-          for ua in "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36" "curl/8.5.0"; do
-            c=$(curl -s -o b.html -D h.txt -w "%{http_code}" -A "$ua" -H "Accept: text/html,application/xhtml+xml" -H "Accept-Language: pt-BR,pt;q=0.9" "$U")
-            echo "::notice::$c server=$(grep -i '^server:' h.txt | tr -d '\r') cf=$(grep -ic 'cf-mitigated\|challenge' h.txt b.html | tr '\n' ' ') title=$(grep -o '<title>[^<]*' b.html | head -1)"
+          for u in "https://www.cepea.org.br/br/widgetproduto.js.php?fonte=arial&tamanho=10&largura=400px&corfundo=dbd6b2&cortexto=333333&corlinha=ede7bf&id_indicador%5B%5D=92&id_indicador%5B%5D=2&id_indicador%5B%5D=77" "https://cepea.org.br/br/indicador/boi-gordo.aspx" "https://www.cepea.esalq.usp.br/br/indicador/soja.aspx" "https://portaldeinformacoes.conab.gov.br/index.php/precos-agropecuarios"; do
+            c=$(curl -sL -o b.html -w "%{http_code}" -A "Mozilla/5.0 (X11; Linux x86_64) Chrome/130.0 Safari/537.36" "$u")
+            echo "::notice::$c $(wc -c < b.html) $(head -c 300 b.html | tr '\n<>' '   ' | cut -c1-250) || $u"
           done
-          c=$(curl -s -o b2.html -w "%{http_code}" "https://www.cepea.org.br/br/indicador/soja.aspx" -A "Mozilla/5.0 Chrome/130"); echo "::notice::cepea $c $(grep -o '<title>[^<]*' b2.html | head -1)"
