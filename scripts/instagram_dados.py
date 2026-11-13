@@ -11,7 +11,7 @@ from instagram_contas import tiles
 COR = c.COR_SECAO["Mercado"]
 TOM = {"bom": c.SOBE, "ruim": c.DESCE, "neutro": c.TINTA}
 FUNDO_SELO = {"bom": "#e3f3e8", "ruim": "#fbe4e6", "neutro": "#e7ecf3"}
-IDS = ["focus", "caged", "industria", "varejo", "inadimplencia", "contas_externas", "incc", "payroll", "fed", "bce"]
+IDS = ["focus", "caged", "industria", "varejo", "inadimplencia", "contas_externas", "incc", "payroll", "fed", "bce", "cpi_eua", "pce_eua", "pib_eua"]
 
 def ler(): return c.ler("indicadores2.json")["itens"]
 def ultimo(k, itens=None):
@@ -81,7 +81,7 @@ def gerar(k, saida):
 def legenda_e_alt(k):
     it = ler()[k]
     emoji = {"caged": "👷", "payroll": "🇺🇸", "inadimplencia": "💳", "contas_externas": "🌎", "incc": "🏗️", "industria": "🏭",
-             "varejo": "🛒", "focus": "🔮", "fed": "🏦", "bce": "🇪🇺"}.get(k, "📊")
+             "varejo": "🛒", "focus": "🔮", "fed": "🏦", "bce": "🇪🇺", "cpi_eua": "🇺🇸", "pce_eua": "🇺🇸", "pib_eua": "🇺🇸"}.get(k, "📊")
     apoio = "\n".join(f"• {a}: {b} ({s})" if s else f"• {a}: {b}" for a, b, s in it["apoio"])
     selo = f" · {it['selo'][0].replace('▲ ', '').replace('▼ ', '').replace('= ', '').capitalize()}" if it.get("selo") else ""
     leg = (f"{emoji} {it['titulo']}: {it['valor']}{selo}\n\n{it['valor']} {it['frase']}\n\n{apoio}\n\n"
