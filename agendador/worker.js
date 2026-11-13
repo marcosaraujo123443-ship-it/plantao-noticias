@@ -8,7 +8,7 @@ function tarefas(d) {
   if (slot === 0 && [0, 1, 2, 4, 7].concat([...Array(14).keys()].map(x => x + 10)).includes(h)) t.push("noticias");  // 7h–23h, 21h, 22h, 1h de Brasília
   if ((util && h >= 12 && h <= 21) || (slot === 1 && h % 3 === 0)) t.push("mercado");                                 // pregão a cada 15 min
   if (slot === 1) t.push("futebol");
-  if (util && h >= 11 && h <= 22 && slot % 2 === 0) t.push("agro");
+  if (util && h >= 11 && h <= 22 && slot === 0) t.push("agro");   // de hora em hora (as fontes limitam acessos frequentes)
   if (slot === 2 && ((h >= 9 && h <= 23 && h % 2 === 1) || h === 1)) t.push("tempo");
   return t;
 }

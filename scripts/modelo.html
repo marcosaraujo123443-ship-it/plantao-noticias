@@ -582,7 +582,7 @@ footer a{font-weight:600}
     box.querySelector('[data-agb]').innerHTML=h;
     if(AGRO.atualizado_utc){
       var hr=new Date(AGRO.atualizado_utc).toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
-      box.querySelector('[data-agn]').textContent='Consultado em '+hr+' (horário de Brasília). Fontes: Cepea/Esalq, B3, CME Group, ICE e cooperativas, reunidos pelo Notícias Agrícolas. Valores com atraso; apenas informativo.';
+      box.querySelector('[data-agn]').textContent='Consultado em '+hr+' (horário de Brasília). Fontes: Cepea/Esalq, B3, CME Group, ICE e cooperativas, reunidos pelo Notícias Agrícolas. Valores com atraso; apenas informativo.'+(AGRO.pracas_ate?' As cotações das bolsas e das praças são da coleta de '+new Date(AGRO.pracas_ate).toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})+'; a fonte está temporariamente indisponível.':'');
     }
   }
   document.addEventListener('click',function(ev){ var b=ev.target.closest('[data-ag]'); if(b){ AG=b.dataset.ag; quadroAgro(); } });

@@ -167,6 +167,44 @@ def estados(paginas):
     ordem = sorted(linhas.values(), key=lambda l: (-sum(1 for p, _, _ in PRODUTOS if p in l), l["uf"]))
     return {"produtos": [{"id": p, "nome": n, "un": u} for p, n, u in PRODUTOS], "linhas": ordem}
 
+# Indicadores direto no Cepea (usado quando o Notícias Agrícolas bloqueia o acesso automático)
+CEPEA_URL = "https://cepea.org.br/br/indicador/{}.aspx"
+CEPEA = [  # (página, regex do título da tabela, nome, unidade, coluna do preço, coluna da variação, filtro da linha)
+    ("soja", r"SOJA CEPEA/ESALQ - PARANAGUÁ", "Soja (Paranaguá)", "R$/sc 60 kg", 1, 2, None),
+    ("milho", r"INDICADOR DO MILHO", "Milho (Campinas)", "R$/sc 60 kg", 1, 2, None),
+    ("boi-gordo", r"INDICADOR DO BOI GORDO", "Boi gordo (SP)", "R$/@", 1, 2, None),
+    ("bezerro", r"INDICADOR DO BEZERRO", "Bezerro (MS)", "R$/cabeça", 1, 2, None),
+    ("cafe", r"CAFÉ ARÁBICA", "Café arábica", "R$/sc 60 kg", 1, 2, None),
+    ("cafe", r"CAFÉ ROBUSTA", "Café robusta", "R$/sc 60 kg", 1, 2, None),
+    ("trigo", r"TRIGO CEPEA/ESALQ - PARANÁ", "Trigo (PR)", "R$/t", 1, 2, None),
+    ("algodao", r"Algodão em Pluma CEPEA/ESALQ - Prazo de 8 dias", "Algodão em pluma", "centavos de R$/lb", 1, 2, None),
+    ("acucar", r"AÇÚCAR CRISTAL BRANCO CEPEA/ESALQ - SÃO PAULO", "Açúcar cristal (SP)", "R$/sc 50 kg", 1, 2, None),
+    ("etanol", r"ETANOL HIDRATADO COMBUSTÍVEL", "Etanol hidratado (semanal)", "R$/litro", 1, 3, None),
+    ("arroz", r"^.*INDICADOR DO ARROZ EM CASCA CEPEA/IRGA-RS \(58%", "Arroz em casca (RS)", "R$/sc 50 kg", 1, 2, None),
+    ("frango", r"FRANGO CONGELADO", "Frango congelado", "R$/kg", 1, 2, None),
+    ("suino", r"INDICADOR DO SUÍNO VIVO CEPEA/ESALQ \(R\$/kg\)", "Suíno vivo", "R$/kg", 2, 3, r"^SP"),
+]
+
+def cepea():
+    ind, erros, cache = [], [], {}
+    for pag, rx, nome, un, cp, cv, filtro in CEPEA:
+        try:
+            if pag not in cache: cache[pag] = texto(CEPEA_URL.format(pag)); time.sleep(1)
+            pg = cache[pag]
+            for m in re.finditer(r"<table\b.*?</table>", pg, re.S | re.I):
+                antes = limpo(pg[max(0, m.start() - 1500):m.start()])[-220:]
+                if not re.search(rx, antes, re.I): continue
+                for tr in re.findall(r"<tr[^>]*>(.*?)</tr>", m.group(0), re.S | re.I):
+                    l = [limpo(c) for c in re.findall(r"<td[^>]*>(.*?)</td>", tr, re.S | re.I)]
+                    if len(l) <= max(cp, cv) or num(l[cp]) is None: continue
+                    if filtro and not re.search(filtro, l[1]): continue
+                    ind.append({"nome": nome, "un": un, "preco": num(l[cp]), "var": num(l[cv]), "data": l[0], "fonte": "Cepea/Esalq"})
+                    break
+                break
+        except Exception as e:
+            erros.append(f"cepea {pag}: {e}")
+    return ind, erros
+
 def main():
     paginas, erros = {}, []
     if len(sys.argv) > 1: paginas = json.load(open(sys.argv[1], encoding="utf-8"))["paginas"]
@@ -175,12 +213,24 @@ def main():
             paginas[p] = tabelas(texto(BASE + p))
         except Exception as e:
             erros.append(f"{p}: {e}")
+            if "403" in str(e): break   # bloqueio de robôs: não insiste nas outras páginas
         time.sleep(1)
-    if not any(paginas.values()): raise SystemExit("Nada coletado: " + "; ".join(erros))
+    try: ant = json.load(open("agro.json", encoding="utf-8"))
+    except Exception: ant = {}
+    agora = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    if any(paginas.values()):
+        ind, bol, pr = montar(paginas); est = estados(paginas); fonte = "Notícias Agrícolas"; extra = {}
+    else:
+        # Notícias Agrícolas fora do ar ou bloqueando robôs: indicadores direto do Cepea; bolsas e praças ficam
+        # com a última coleta (com a data dela), até a fonte voltar
+        ind, e2 = cepea(); erros += e2
+        if not ind: raise SystemExit("Nada coletado: " + "; ".join(erros))
+        bol, pr, est = ant.get("bolsas", []), ant.get("pracas", []), ant.get("estados", {})
+        fonte = "Cepea/Esalq (indicadores); demais tabelas da última coleta"
+        extra = {"pracas_ate": ant.get("pracas_ate") or ant.get("atualizado_utc")}
     with open("agro.json", "w", encoding="utf-8") as f:
-        ind, bol, pr = montar(paginas)
-        json.dump({"atualizado_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "fonte": "Notícias Agrícolas",
-                   "indicadores": ind, "bolsas": bol, "pracas": pr, "estados": estados(paginas), "erros": erros}, f, ensure_ascii=False, separators=(",", ":"))
+        json.dump({"atualizado_utc": agora, "fonte": fonte, "indicadores": ind, "bolsas": bol, "pracas": pr, "estados": est,
+                   **extra, "erros": erros}, f, ensure_ascii=False, separators=(",", ":"))
     print(f"{len(ind)} indicadores, {len(bol)} bolsas, {len(pr)} tabelas por praça", erros)
 
 if __name__ == "__main__":
