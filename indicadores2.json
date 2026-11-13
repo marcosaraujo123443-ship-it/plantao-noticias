@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-13T03:35:19Z",
+ "atualizado_utc": "2026-11-13T12:13:56Z",
  "itens": {
   "caged": {
    "id": "caged",
@@ -442,20 +442,20 @@
    "tag": "Brasil · Varejo",
    "titulo": "Vendas no varejo",
    "sub": "Volume de vendas · PMC · IBGE",
-   "ref": "2026-08",
-   "ref_txt": "agosto de 2026",
-   "valor": "+0,1%",
+   "ref": "2026-09",
+   "ref_txt": "setembro de 2026",
+   "valor": "+0,2%",
    "cor": "bom",
    "selo": [
-    "▲ ALTA NO MÊS",
+    "▲ 2ª ALTA SEGUIDA",
     "bom"
    ],
-   "frase": "em agosto de 2026 na comparação com o mês anterior, já descontados os efeitos sazonais.",
+   "frase": "em setembro de 2026 na comparação com o mês anterior, já descontados os efeitos sazonais.",
    "apoio": [
     [
      "Ante um ano antes",
-     "+0,4%",
-     "ago/26 x ago/25"
+     "+1,7%",
+     "set/26 x set/25"
     ],
     [
      "No ano",
@@ -464,19 +464,15 @@
     ],
     [
      "Em 12 meses",
-     "+1,6%",
+     "+1,7%",
      "acumulado"
     ]
    ],
    "graf_tit": "Mês a mês · % em relação ao mês anterior",
    "graf": [
     [
-     "set/25",
-     -0.3
-    ],
-    [
      "out/25",
-     0.6
+     0.5
     ],
     [
      "nov/25",
@@ -516,7 +512,11 @@
     ],
     [
      "ago/26",
-     0.1
+     0.2
+    ],
+    [
+     "set/26",
+     0.2
     ]
    ],
    "graf_fmt": "num1",
@@ -593,15 +593,15 @@
    "tag": "EUA · Juros",
    "titulo": "Juros nos EUA",
    "sub": "Decisão do Fed (Federal Reserve)",
-   "ref": "2026-09-17",
-   "ref_txt": "em vigor desde 17/09",
+   "ref": "2026-10-28",
+   "ref_txt": "decisão de 28/10",
    "valor": "3,75%–4,00%",
    "cor": "neutro",
    "selo": [
-    "▲ ALTA DE 0,25 P.P.",
+    "= MANTIDOS",
     "neutro"
    ],
-   "frase": "ao ano. Os juros foram elevados na última reunião.",
+   "frase": "ao ano. A taxa segue no mesmo nível desde setembro de 2026.",
    "apoio": [
     [
      "Última mudança",
@@ -667,7 +667,227 @@
    "graf_rot": "completo",
    "porque": "Juros altos nos EUA atraem dólares para lá e costumam pressionar o câmbio no Brasil.",
    "fonte": "Federal Reserve, via FRED",
-   "tags": "#fed #juros #eua #economia"
+   "tags": "#fed #juros #eua #economia",
+   "decisoes": [
+    {
+     "data": "2024-01-31",
+     "faixa": [
+      5.25,
+      5.5
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    },
+    {
+     "data": "2024-03-20",
+     "faixa": [
+      5.25,
+      5.5
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    },
+    {
+     "data": "2024-05-01",
+     "faixa": [
+      5.25,
+      5.5
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    },
+    {
+     "data": "2024-06-12",
+     "faixa": [
+      5.25,
+      5.5
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    },
+    {
+     "data": "2024-07-31",
+     "faixa": [
+      5.25,
+      5.5
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    },
+    {
+     "data": "2024-09-18",
+     "faixa": [
+      4.75,
+      5.0
+     ],
+     "var": -0.5,
+     "acao": "corte"
+    },
+    {
+     "data": "2024-11-07",
+     "faixa": [
+      4.5,
+      4.75
+     ],
+     "var": -0.25,
+     "acao": "corte"
+    },
+    {
+     "data": "2024-12-18",
+     "faixa": [
+      4.25,
+      4.5
+     ],
+     "var": -0.25,
+     "acao": "corte"
+    },
+    {
+     "data": "2025-01-29",
+     "faixa": [
+      4.25,
+      4.5
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    },
+    {
+     "data": "2025-03-19",
+     "faixa": [
+      4.25,
+      4.5
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    },
+    {
+     "data": "2025-05-07",
+     "faixa": [
+      4.25,
+      4.5
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    },
+    {
+     "data": "2025-06-18",
+     "faixa": [
+      4.25,
+      4.5
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    },
+    {
+     "data": "2025-07-30",
+     "faixa": [
+      4.25,
+      4.5
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    },
+    {
+     "data": "2025-09-17",
+     "faixa": [
+      4.0,
+      4.25
+     ],
+     "var": -0.25,
+     "acao": "corte"
+    },
+    {
+     "data": "2025-10-29",
+     "faixa": [
+      3.75,
+      4.0
+     ],
+     "var": -0.25,
+     "acao": "corte"
+    },
+    {
+     "data": "2025-12-10",
+     "faixa": [
+      3.5,
+      3.75
+     ],
+     "var": -0.25,
+     "acao": "corte"
+    },
+    {
+     "data": "2026-01-28",
+     "faixa": [
+      3.5,
+      3.75
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    },
+    {
+     "data": "2026-03-18",
+     "faixa": [
+      3.5,
+      3.75
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    },
+    {
+     "data": "2026-04-29",
+     "faixa": [
+      3.5,
+      3.75
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    },
+    {
+     "data": "2026-06-17",
+     "faixa": [
+      3.5,
+      3.75
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    },
+    {
+     "data": "2026-07-29",
+     "faixa": [
+      3.5,
+      3.75
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    },
+    {
+     "data": "2026-09-16",
+     "faixa": [
+      3.75,
+      4.0
+     ],
+     "var": 0.25,
+     "acao": "alta"
+    },
+    {
+     "data": "2026-10-28",
+     "faixa": [
+      3.75,
+      4.0
+     ],
+     "var": 0.0,
+     "acao": "manteve"
+    }
+   ],
+   "proximas": [
+    "2026-12-09",
+    "2027-01-27",
+    "2027-03-17",
+    "2027-04-28",
+    "2027-06-09",
+    "2027-07-28",
+    "2027-09-15",
+    "2027-10-27",
+    "2027-12-08"
+   ]
   },
   "bce": {
    "id": "bce",
@@ -836,6 +1056,350 @@
    "porque": "Um mercado de trabalho forte nos EUA reduz a chance de corte de juros por lá, o que afeta dólar e bolsa no Brasil.",
    "fonte": "BLS (Departamento do Trabalho dos EUA), via FRED",
    "tags": "#payroll #eua #emprego #economia"
+  },
+  "cpi_eua": {
+   "id": "cpi_eua",
+   "tag": "EUA · Inflação",
+   "titulo": "Inflação nos EUA (CPI)",
+   "sub": "Preços ao consumidor · BLS",
+   "ref": "2026-09",
+   "ref_txt": "setembro de 2026",
+   "valor": "3,7%",
+   "cor": "ruim",
+   "selo": [
+    "▲ ACELERA",
+    "ruim"
+   ],
+   "frase": "em 12 meses. A inflação americana define o ritmo dos juros do Fed e mexe com o dólar no mundo todo.",
+   "apoio": [
+    [
+     "Anterior",
+     "3,35%",
+     "período anterior"
+    ],
+    [
+     "No mês",
+     "+0,4%",
+     "variação mensal"
+    ],
+    [
+     "Um ano antes",
+     "3,02%",
+     "set/25"
+    ]
+   ],
+   "graf_tit": "Últimos 12 meses · %",
+   "graf": [
+    [
+     "set/25",
+     3.0225715847133294
+    ],
+    [
+     "nov/25",
+     2.6964439164939513
+    ],
+    [
+     "dez/25",
+     2.653304114557753
+    ],
+    [
+     "jan/26",
+     2.391201432150014
+    ],
+    [
+     "fev/26",
+     2.4340041103732224
+    ],
+    [
+     "mar/26",
+     3.2859577528651984
+    ],
+    [
+     "abr/26",
+     3.7792458367415627
+    ],
+    [
+     "mai/26",
+     4.166614684049641
+    ],
+    [
+     "jun/26",
+     3.463530729385411
+    ],
+    [
+     "jul/26",
+     3.303856050706311
+    ],
+    [
+     "ago/26",
+     3.353016322755642
+    ],
+    [
+     "set/26",
+     3.7172508442689933
+    ]
+   ],
+   "graf_fmt": "num1",
+   "base_zero": false,
+   "porque": "A inflação americana define o ritmo dos juros do Fed e mexe com o dólar no mundo todo.",
+   "fonte": "BLS (Departamento do Trabalho dos EUA), via FRED",
+   "tags": "#cpi #inflacao #eua #economia"
+  },
+  "pce_eua": {
+   "id": "pce_eua",
+   "tag": "EUA · Inflação",
+   "titulo": "PCE núcleo",
+   "sub": "A inflação preferida do Fed · BEA",
+   "ref": "2026-09",
+   "ref_txt": "setembro de 2026",
+   "valor": "3,1%",
+   "cor": "ruim",
+   "selo": [
+    "▲ ACELERA",
+    "ruim"
+   ],
+   "frase": "em 12 meses. É a medida que o Fed usa para avaliar sua meta de 2%, sem alimentos e energia.",
+   "apoio": [
+    [
+     "Anterior",
+     "3,03%",
+     "período anterior"
+    ],
+    [
+     "No mês",
+     "+0,3%",
+     "variação mensal"
+    ],
+    [
+     "Um ano antes",
+     "2,82%",
+     "set/25"
+    ]
+   ],
+   "graf_tit": "Últimos 12 meses · %",
+   "graf": [
+    [
+     "out/25",
+     2.704820055566337
+    ],
+    [
+     "nov/25",
+     2.7212091395204308
+    ],
+    [
+     "dez/25",
+     2.8720269247491936
+    ],
+    [
+     "jan/26",
+     2.9379900328226904
+    ],
+    [
+     "fev/26",
+     2.9591526535575507
+    ],
+    [
+     "mar/26",
+     3.1052227833535673
+    ],
+    [
+     "abr/26",
+     3.0838724068704026
+    ],
+    [
+     "mai/26",
+     3.161709771256893
+    ],
+    [
+     "jun/26",
+     3.041234252733216
+    ],
+    [
+     "jul/26",
+     2.9953388254473134
+    ],
+    [
+     "ago/26",
+     3.034442461664799
+    ],
+    [
+     "set/26",
+     3.1211596029620203
+    ]
+   ],
+   "graf_fmt": "num1",
+   "base_zero": false,
+   "porque": "É a medida que o Fed usa para avaliar sua meta de 2%, sem alimentos e energia.",
+   "fonte": "BEA (Departamento de Comércio dos EUA), via FRED",
+   "tags": "#pce #inflacao #fed #eua"
+  },
+  "pib_eua": {
+   "id": "pib_eua",
+   "tag": "EUA · Atividade",
+   "titulo": "PIB dos EUA",
+   "sub": "Crescimento anualizado no trimestre · BEA",
+   "ref": "2026-07-01",
+   "ref_txt": "3º trimestre de 2026",
+   "valor": "+3,4%",
+   "cor": "bom",
+   "selo": [
+    "▲ ACELERA",
+    "bom"
+   ],
+   "frase": "no 3º trimestre de 2026, na taxa anualizada usada nos EUA (o ritmo do trimestre projetado para um ano inteiro).",
+   "apoio": [
+    [
+     "Trimestre anterior",
+     "+2,2%",
+     "anualizado"
+    ],
+    [
+     "Média de 4 trimestres",
+     "2,1%",
+     "anualizado"
+    ],
+    [
+     "",
+     "",
+     ""
+    ]
+   ],
+   "graf_tit": "Crescimento por trimestre · % anualizado",
+   "graf": [
+    [
+     "2T/24",
+     3.6
+    ],
+    [
+     "3T/24",
+     3.2
+    ],
+    [
+     "4T/24",
+     2.4
+    ],
+    [
+     "1T/25",
+     0.1
+    ],
+    [
+     "2T/25",
+     4.0
+    ],
+    [
+     "3T/25",
+     3.9
+    ],
+    [
+     "4T/25",
+     0.2
+    ],
+    [
+     "1T/26",
+     2.5
+    ],
+    [
+     "2T/26",
+     2.2
+    ],
+    [
+     "3T/26",
+     3.4
+    ]
+   ],
+   "graf_fmt": "num1",
+   "graf_rot": "completo",
+   "porque": "A economia americana é a maior do mundo: quando ela acelera ou freia, o efeito chega às exportações e aos mercados do Brasil.",
+   "fonte": "BEA (Departamento de Comércio dos EUA), via FRED",
+   "tags": "#pib #eua #economia"
+  },
+  "juros10_eua": {
+   "id": "juros10_eua",
+   "tag": "EUA · Mercado",
+   "titulo": "Juro de 10 anos dos EUA",
+   "sub": "Rendimento do título do Tesouro americano",
+   "ref": "2026-11-10",
+   "ref_txt": "10/11/2026",
+   "valor": "4,98%",
+   "cor": "neutro",
+   "selo": [
+    "▼ CAI",
+    "bom"
+   ],
+   "frase": "ao ano. É a referência dos juros de longo prazo no mundo e influencia o dólar, a bolsa e os juros futuros no Brasil.",
+   "apoio": [
+    [
+     "Anterior",
+     "5,24%",
+     "há 1 mês"
+    ],
+    [
+     "Um ano antes",
+     "4,13%",
+     "nov/25"
+    ],
+    [
+     "",
+     "",
+     ""
+    ]
+   ],
+   "graf_tit": "Últimos 12 meses · %",
+   "graf": [
+    [
+     "dez/25",
+     4.18
+    ],
+    [
+     "jan/26",
+     4.26
+    ],
+    [
+     "fev/26",
+     3.97
+    ],
+    [
+     "mar/26",
+     4.3
+    ],
+    [
+     "abr/26",
+     4.4
+    ],
+    [
+     "mai/26",
+     4.45
+    ],
+    [
+     "jun/26",
+     4.44
+    ],
+    [
+     "jul/26",
+     4.75
+    ],
+    [
+     "ago/26",
+     4.75
+    ],
+    [
+     "set/26",
+     5.29
+    ],
+    [
+     "out/26",
+     4.94
+    ],
+    [
+     "nov/26",
+     4.98
+    ]
+   ],
+   "graf_fmt": "num1",
+   "base_zero": false,
+   "porque": "É a referência dos juros de longo prazo no mundo e influencia o dólar, a bolsa e os juros futuros no Brasil.",
+   "fonte": "Tesouro dos EUA, via FRED",
+   "tags": "#treasury #juros #eua"
   }
  },
  "erros": []
