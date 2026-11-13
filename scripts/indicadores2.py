@@ -10,7 +10,11 @@ UA = {"User-Agent": "Mozilla/5.0 (compatible; PlantaoInforma/1.0)"}
 MESES = "jan fev mar abr mai jun jul ago set out nov dez".split()
 MESES_EXT = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"]
 # Reuniões de política monetária (o card sai no dia seguinte, quando a nova taxa já consta no FRED). Atualizar a cada ano.
-FOMC = ["2026-12-09"]
+# Reuniões do FOMC (segundo dia, quando sai a decisão), calendário oficial do Fed
+FOMC = ["2024-01-31", "2024-03-20", "2024-05-01", "2024-06-12", "2024-07-31", "2024-09-18", "2024-11-07", "2024-12-18",
+        "2025-01-29", "2025-03-19", "2025-05-07", "2025-06-18", "2025-07-30", "2025-09-17", "2025-10-29", "2025-12-10",
+        "2026-01-28", "2026-03-18", "2026-04-29", "2026-06-17", "2026-07-29", "2026-09-16", "2026-10-28", "2026-12-09",
+        "2027-01-27", "2027-03-17", "2027-04-28", "2027-06-09", "2027-07-28", "2027-09-15", "2027-10-27", "2027-12-08"]
 BCE = ["2026-12-17"]
 
 def get(url, tentativas=3, timeout=60, ua=None):
@@ -203,6 +207,12 @@ def _apoio(rotulo_taxa, datas, terceiro):
 
 def fed():
     u = fred("UNRATE")
+    it = _fed(u)
+    try: it["decisoes"], it["proximas"] = decisoes_fed()
+    except Exception as ex: print("::warning::decisões do Fed:", repr(ex)[:200])
+    return it
+
+def _fed(u):
     return juros_externos("fed", "EUA · Juros", "Juros nos EUA", "Decisão do Fed (Federal Reserve)", ["DFEDTARU", "DFEDTARL"], FOMC,
                           "Juros altos nos EUA atraem dólares para lá e costumam pressionar o câmbio no Brasil.", "#fed #juros #eua #economia",
                           "Federal Reserve, via FRED", _apoio("teto da taxa", FOMC, lambda: ("Desemprego nos EUA", pct(u[-1][1], 1), rot(u[-1][0][:7]))))
@@ -226,7 +236,88 @@ def payroll():
             "porque": "Um mercado de trabalho forte nos EUA reduz a chance de corte de juros por lá, o que afeta dólar e bolsa no Brasil.",
             "fonte": "BLS (Departamento do Trabalho dos EUA), via FRED", "tags": "#payroll #eua #emprego #economia"}
 
-COLETORES = [caged, inadimplencia, contas_externas, incc, industria, varejo, focus, fed, bce, payroll]
+def decisoes_fed():
+    """Cada reunião do FOMC desde 2024 com a faixa decidida (a taxa nova vale a partir do dia seguinte no FRED)."""
+    up, lo = dict(fred("DFEDTARU")), dict(fred("DFEDTARL"))
+    dias = sorted(up); hoje = date.today().isoformat(); out = []
+    def taxa(apos):
+        d = next((x for x in dias if x > apos), None)
+        return (lo[d], up[d]) if d else None
+    def antes(dia):
+        d = [x for x in dias if x <= dia]
+        return (lo[d[-1]], up[d[-1]]) if d else None
+    for r in FOMC:
+        if r >= hoje: continue
+        depois, ant = taxa(r), antes(r)
+        if not depois or not ant: continue
+        var = round(depois[1] - ant[1], 2)
+        out.append({"data": r, "faixa": [depois[0], depois[1]], "var": var,
+                    "acao": "corte" if var < 0 else "alta" if var > 0 else "manteve"})
+    return out, [r for r in FOMC if r >= hoje]
+
+def fred_card(id_, serie, tag, titulo, sub, modo, porque, fonte, tags, unidade="%", meses=13):
+    """Indicadores dos EUA no FRED. modo: 'yoy' (variação em 12 meses de um índice), 'nivel' (taxa já em %), 'diario'."""
+    s = fred(serie)
+    if modo == "yoy":
+        idx = {d[:7]: v for d, v in s}; ks = sorted(idx)
+        pts = [(k, (idx[k] / idx[f"{int(k[:4]) - 1}{k[4:]}"] - 1) * 100) for k in ks if f"{int(k[:4]) - 1}{k[4:]}" in idx]
+        mm = [(ks[i], (idx[ks[i]] / idx[ks[i - 1]] - 1) * 100) for i in range(1, len(ks))]
+    else:
+        pts = [(d[:7] if modo != "diario" else d, v) for d, v in s]; mm = []
+    if modo == "diario":   # um ponto por mês (último dia útil) para o gráfico
+        por_mes = {}
+        for d, v in pts: por_mes[d[:7]] = (d, v)
+        graf = [(rot(m), v) for m, (d, v) in sorted(por_mes.items())][-12:]
+        ref, v = pts[-1]; ant = [x for x in pts if x[0] <= (date.fromisoformat(ref) - timedelta(days=30)).isoformat()]
+        a = ant[-1][1] if ant else None
+        ref_txt = f"{ref[8:]}/{ref[5:7]}/{ref[:4]}"
+    else:
+        ref, v = pts[-1]; a = pts[-2][1] if len(pts) > 1 else None
+        graf = [(rot(m) if len(m) == 7 else m, x) for m, x in pts[-12:]]
+        ref_txt = ext(ref) if len(ref) == 7 else ref
+    selo = None
+    if a is not None and round(v, 2) != round(a, 2):
+        selo = (("▲ ACELERA" if v > a else "▼ DESACELERA") if modo == "yoy" else ("▲ SOBE" if v > a else "▼ CAI"), "ruim" if v > a else "bom")
+    apoio = [("Anterior", br(a, 2) + unidade if a is not None else "—", "período anterior" if modo != "diario" else "há 1 mês")]
+    if mm: apoio.append(("No mês", ("+" if mm[-1][1] > 0 else "") + br(mm[-1][1], 1) + "%", "variação mensal"))
+    um_ano = next((x for x in pts if x[0][:7] == f"{int(ref[:4]) - 1}{ref[4:7]}"), None)
+    apoio.append(("Um ano antes", br(um_ano[1], 2) + unidade if um_ano else "—", rot(um_ano[0][:7]) if um_ano else ""))
+    if len(apoio) < 3: apoio.append(("", "", ""))
+    return {"id": id_, "tag": tag, "titulo": titulo, "sub": sub, "ref": ref, "ref_txt": ref_txt, "valor": br(v, 2 if modo != "yoy" else 1) + unidade,
+            "cor": "neutro" if modo == "diario" else ("ruim" if a is not None and v > a else "bom"), "selo": selo,
+            "frase": {"yoy": "em 12 meses.", "nivel": "no período.", "diario": "ao ano."}[modo] + " " + porque.split(".")[0] + ".",
+            "apoio": apoio, "graf_tit": "Últimos 12 meses · %", "graf": graf, "graf_fmt": "num1", "base_zero": modo != "diario" and modo != "yoy",
+            "porque": porque, "fonte": fonte, "tags": tags}
+
+def cpi_eua():
+    return fred_card("cpi_eua", "CPIAUCSL", "EUA · Inflação", "Inflação nos EUA (CPI)", "Preços ao consumidor · BLS", "yoy",
+                     "A inflação americana define o ritmo dos juros do Fed e mexe com o dólar no mundo todo.",
+                     "BLS (Departamento do Trabalho dos EUA), via FRED", "#cpi #inflacao #eua #economia")
+
+def pce_eua():
+    return fred_card("pce_eua", "PCEPILFE", "EUA · Inflação", "PCE núcleo", "A inflação preferida do Fed · BEA", "yoy",
+                     "É a medida que o Fed usa para avaliar sua meta de 2%, sem alimentos e energia.",
+                     "BEA (Departamento de Comércio dos EUA), via FRED", "#pce #inflacao #fed #eua")
+
+def pib_eua():
+    s = fred("A191RL1Q225SBEA")
+    ref, v = s[-1]; a = s[-2][1]; tri = (int(ref[5:7]) - 1) // 3 + 1
+    return {"id": "pib_eua", "tag": "EUA · Atividade", "titulo": "PIB dos EUA", "sub": "Crescimento anualizado no trimestre · BEA",
+            "ref": ref, "ref_txt": f"{tri}º trimestre de {ref[:4]}", "valor": ("+" if v > 0 else "") + br(v, 1) + "%", "cor": "bom" if v > 0 else "ruim",
+            "selo": (("▲ ACELERA" if v > a else "▼ DESACELERA"), "bom" if v > a else "ruim") if v != a else None,
+            "frase": f"no {tri}º trimestre de {ref[:4]}, na taxa anualizada usada nos EUA (o ritmo do trimestre projetado para um ano inteiro).",
+            "apoio": [("Trimestre anterior", ("+" if a > 0 else "") + br(a, 1) + "%", "anualizado"),
+                      ("Média de 4 trimestres", br(sum(x for _, x in s[-4:]) / 4, 1) + "%", "anualizado"), ("", "", "")],
+            "graf_tit": "Crescimento por trimestre · % anualizado", "graf": [(f"{(int(d[5:7]) - 1) // 3 + 1}T/{d[2:4]}", x) for d, x in s[-10:]],
+            "graf_fmt": "num1", "graf_rot": "completo", "porque": "A economia americana é a maior do mundo: quando ela acelera ou freia, o efeito chega às exportações e aos mercados do Brasil.",
+            "fonte": "BEA (Departamento de Comércio dos EUA), via FRED", "tags": "#pib #eua #economia"}
+
+def juros10_eua():
+    return fred_card("juros10_eua", "DGS10", "EUA · Mercado", "Juro de 10 anos dos EUA", "Rendimento do título do Tesouro americano", "diario",
+                     "É a referência dos juros de longo prazo no mundo e influencia o dólar, a bolsa e os juros futuros no Brasil.",
+                     "Tesouro dos EUA, via FRED", "#treasury #juros #eua")
+
+COLETORES = [caged, inadimplencia, contas_externas, incc, industria, varejo, focus, fed, bce, payroll, cpi_eua, pce_eua, pib_eua, juros10_eua]
 
 def main():
     try: anterior = json.load(open("indicadores2.json", encoding="utf-8"))["itens"]

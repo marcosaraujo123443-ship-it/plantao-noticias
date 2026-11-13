@@ -318,7 +318,7 @@ for s in SECOES:
         painel = ('<div class="painel mk">\n'
           '  <nav class="mk-nav" aria-label="Seções do mercado"><button data-mkgo="hoje">Hoje</button><button data-mkgo="bolsa">Ações e FIIs</button>'
           '<button data-mkgo="empresas">Balanços</button><button data-mkgo="dinheiro">Seu dinheiro</button><button data-tab="indicadores">Indicadores →</button></nav>\n'
-          + grupo("hoje", "Hoje no mercado", "Bolsa, moedas e juros agora", '    <div class="ind-grid" data-ind></div>\n', cls="mk-c")
+          + grupo("hoje", "Hoje no mercado", "Bolsa, moedas e juros agora", '    <div class="ind-grid" data-ind></div>\n    <section data-forex></section>\n', cls="mk-c")
           + grupo("bolsa", "Ações e fundos imobiliários", "O que mais subiu, caiu e as maiores da B3", '''    <section class="quadro" aria-label="Ações">
       <header><h3>Ações</h3>
         <div class="seg" role="group" aria-label="Filtrar ações">

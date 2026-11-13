@@ -73,12 +73,29 @@ def cartao(it):
 
 GUIA = {"selic": "selic", "ipca": "ipca", "ipca15": "ipca-15", "focus": "focus", "igpm": "igp-m", "inpc": "inpc", "incc": "incc",
         "desemprego": "desemprego", "caged": "caged", "industria": "producao-industrial", "varejo": "varejo", "inadimplencia": "inadimplencia",
-        "contas_externas": "contas-externas", "fed": "fed", "bce": "bce", "payroll": "payroll"}
+        "contas_externas": "contas-externas", "fed": "fed", "bce": "bce", "payroll": "payroll",
+        "cpi_eua": "cpi", "pce_eua": "pce", "pib_eua": "pib-eua", "juros10_eua": "treasury"}
 
 GRUPOS = [("Inflação e juros", "Quanto os preços sobem e quanto custa o dinheiro", ["selic", "ipca", "ipca15", "focus", "igpm", "inpc", "incc"]),
           ("Emprego e atividade", "Vagas, produção e consumo", ["desemprego", "caged", "industria", "varejo"]),
           ("Crédito e setor externo", "Endividamento das famílias e as contas do país com o exterior", ["inadimplencia", "contas_externas"]),
-          ("Mundo", "Juros e emprego nas maiores economias", ["fed", "bce", "payroll"])]
+          ("Estados Unidos", "Juros, inflação, emprego e crescimento da maior economia do mundo", ["fed", "cpi_eua", "pce_eua", "payroll", "pib_eua", "juros10_eua"]),
+          ("Europa", "Juros da zona do euro", ["bce"])]
+
+def decisoes_fed(todos):
+    f = todos.get("fed") or {}; dec = list(reversed(f.get("decisoes") or []))
+    if not dec: return ""
+    MES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
+    dt = lambda d: f"{int(d[8:])} {MES[int(d[5:7]) - 1]} {d[:4]}"
+    cls = {"corte": "bom", "alta": "ruim", "manteve": ""}
+    txt = {"corte": "Corte de {} p.p.", "alta": "Alta de {} p.p.", "manteve": "Manteve"}
+    lin = "".join(f'<tr><td>{dt(x["data"])}</td><td class="ixd-{x["acao"]}">{txt[x["acao"]].format(br(abs(x["var"])))}</td>'
+                  f'<td class="n">{br(x["faixa"][0])}% a {br(x["faixa"][1])}%</td></tr>' for x in dec[:16])
+    prox = " · ".join(dt(d) for d in (f.get("proximas") or [])[:4])
+    return (f'<div class="ixd"><h3>Decisões do Fed</h3><p>Cada reunião do FOMC, o comitê de política monetária dos EUA, e a faixa da taxa básica decidida.'
+            + (f' <b>Próximas reuniões:</b> {e(prox)}.' if prox else "") + '</p>'
+            f'<div class="tw"><table class="tab-m"><thead><tr><th>Reunião</th><th>Decisão</th><th class="n">Taxa (ao ano)</th></tr></thead><tbody>{lin}</tbody></table></div>'
+            '<p class="ix-fn">Fonte: Federal Reserve (calendário oficial do FOMC e taxa básica via FRED).</p></div>')
 
 def aba(raiz, economias_html=""):
     try: ind = json.loads((Path(raiz) / "indicadores.json").read_text(encoding="utf-8"))
@@ -91,7 +108,7 @@ def aba(raiz, economias_html=""):
     corpo = ""
     for i, (g, desc, ids) in enumerate(GRUPOS):
         cards = "".join(cartao(todos[k]) for k in ids if k in todos)
-        if cards: corpo += f'<section class="ix-g0" id="ix-grupo-{i}"><header class="mk-gh"><h2>{e(g)}</h2><p>{e(desc)}</p></header><div class="ix-grade">{cards}</div></section>'
+        if cards: corpo += f'<section class="ix-g0" id="ix-grupo-{i}"><header class="mk-gh"><h2>{e(g)}</h2><p>{e(desc)}</p></header><div class="ix-grade">{cards}</div>{decisoes_fed(todos) if g == "Estados Unidos" else ""}</section>'
     if economias_html: corpo += f'<section class="ix-g0" id="ix-grupo-eco"><header class="mk-gh"><h2>Maiores economias do mundo</h2><p>PIB e balança comercial</p></header>{economias_html}</section>'
     return (f'<section class="pagina" id="pg-indicadores" data-pg="indicadores" hidden>\n'
             f'  <div class="sec-t s-indicadores"><h2>Indicadores</h2><span>O último dado de cada indicador, com fonte oficial</span></div>\n'
