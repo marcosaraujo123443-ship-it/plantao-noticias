@@ -45,6 +45,15 @@ def main():
                 else: out[grupo].append(x)
             except Exception as ex: erros.append(f"{par}: {ex!r}"[:120])
             time.sleep(0.3)
+    # yuan em reais: o par direto quase não negocia no Yahoo; calcula pelo cruzamento USD/BRL ÷ USD/CNY
+    usd = next((x for x in out["real"] if x["par"] == "USD/BRL"), None); cny = next((x for x in out["pares"] if x["par"] == "USD/CNY"), None)
+    yuan = next((x for x in out["real"] if x["par"] == "CNY/BRL"), None)
+    if usd and cny and yuan:
+        n = min(len(usd["hist"]), len(cny["hist"]))
+        yuan.update({"preco": usd["preco"] / cny["preco"],
+                     "dia": ((1 + usd["dia"] / 100) / (1 + cny["dia"] / 100) - 1) * 100 if usd["dia"] is not None and cny["dia"] is not None else None,
+                     "mes": ((1 + usd["mes"] / 100) / (1 + cny["mes"] / 100) - 1) * 100 if usd["mes"] is not None and cny["mes"] is not None else None,
+                     "hist": [round(a / b, 6) for a, b in zip(usd["hist"][-n:], cny["hist"][-n:])]})
     if not out["real"]: sys.exit("Forex: nada coletado " + "; ".join(erros))
     out.update({"atualizado_utc": agora.strftime("%Y-%m-%dT%H:%M:%SZ"), "fonte": "Yahoo Finance (cotações de mercado, com atraso)", "erros": erros})
     json.dump(out, open("forex.json", "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
