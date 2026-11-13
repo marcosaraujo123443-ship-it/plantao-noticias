@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-13T12:46:00Z",
+ "atualizado_utc": "2026-11-13T13:01:03Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -9,20 +9,20 @@
   },
   {
    "nome": "Dólar",
-   "valor": 5.6523,
-   "var": 0.12399695321771986,
+   "valor": 5.6536,
+   "var": 0.14702495881531163,
    "tipo": "brl"
   },
   {
    "nome": "Euro",
-   "valor": 6.2446,
-   "var": -0.05921610678104594,
+   "valor": 6.2431,
+   "var": -0.08322263655714535,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 391193.93078700005,
-   "var": -3.029315541946942,
+   "valor": 390460.34347200004,
+   "var": -3.233415858029909,
    "tipo": "brl"
   },
   {
@@ -646,6 +646,12 @@
    "nome": "EZTec",
    "preco": 9.62,
    "var": -2.532928064842954
+  },
+  {
+   "ticker": "RAIZ4",
+   "nome": "Raízen",
+   "preco": 0.3,
+   "var": 0.0
   }
  ],
  "maiores": [
@@ -1263,12 +1269,12 @@
   {
    "papel": "RBRR11",
    "segmento": "Multicategoria",
-   "cotacao": 63.0,
+   "cotacao": 0.0,
    "dy": 15.45,
    "pvp": 0.68,
    "vm": 1026920000.0,
    "liq": 3969520.0,
-   "var": 0.0
+   "var": -100.0
   },
   {
    "papel": "VRTA11",
@@ -1303,12 +1309,12 @@
   {
    "papel": "VCJR11",
    "segmento": "Outros",
-   "cotacao": 63.0,
+   "cotacao": 0.0,
    "dy": 17.5,
    "pvp": 0.66,
    "vm": 927610000.0,
    "liq": 3214140.0,
-   "var": 0.0
+   "var": -100.0
   },
   {
    "papel": "GTWR11",
