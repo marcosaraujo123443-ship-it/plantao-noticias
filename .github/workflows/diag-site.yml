@@ -1,11 +1,13 @@
 name: diag-site
 on: workflow_dispatch
+permissions:
+  contents: write
 jobs:
   v:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          for u in "https://www.cepea.org.br/br/widgetproduto.js.php?fonte=arial&tamanho=10&largura=400px&corfundo=dbd6b2&cortexto=333333&corlinha=ede7bf&id_indicador%5B%5D=92&id_indicador%5B%5D=2&id_indicador%5B%5D=77" "https://cepea.org.br/br/indicador/boi-gordo.aspx" "https://www.cepea.esalq.usp.br/br/indicador/soja.aspx" "https://portaldeinformacoes.conab.gov.br/index.php/precos-agropecuarios"; do
-            c=$(curl -sL -o b.html -w "%{http_code}" -A "Mozilla/5.0 (X11; Linux x86_64) Chrome/130.0 Safari/537.36" "$u")
-            echo "::notice::$c $(wc -c < b.html) $(head -c 300 b.html | tr '\n<>' '   ' | cut -c1-250) || $u"
-          done
+          mkdir d; cd d
+          for p in soja milho boi-gordo bezerro cafe trigo algodao acucar etanol arroz frango suino laranja; do
+            curl -sL -m 60 -o $p.html -w "$p %{http_code} %{size_download}\n" -A "Mozilla/5.0 (X11; Linux x86_64) Chrome/130.0 Safari/537.36" "https://cepea.org.br/br/indicador/$p.aspx" >> log.txt; sleep 2; done
+          git init -q -b diag-dados && git add . && git -c user.name=bot -c user.email=b@b commit -qm d && git push -fq "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" diag-dados
