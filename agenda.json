@@ -1,6 +1,6 @@
 {
  "data": "2026-11-16",
- "atualizado": "2026-11-16T03:00:34-0300",
+ "atualizado": "2026-11-16T04:02:52-0300",
  "itens": [
   {
    "hora": "10:00",
@@ -28,5 +28,7 @@
   ],
   "copom": []
  },
- "erros": []
+ "erros": [
+  "camara: URLError(TimeoutError('timed out'))"
+ ]
 }
