@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-16T03:06:26Z",
+ "atualizado_utc": "2026-11-16T21:50:03Z",
  "itens": {
   "caged": {
    "id": "caged",
@@ -529,13 +529,13 @@
    "tag": "Brasil · Expectativas",
    "titulo": "Boletim Focus",
    "sub": "Mercado espera inflação de 2026 de",
-   "ref": "2026-11-06",
-   "ref_txt": "divulgado em 09/11",
-   "valor": "5,22%",
-   "cor": "ruim",
+   "ref": "2026-11-13",
+   "ref_txt": "divulgado em 16/11",
+   "valor": "5,11%",
+   "cor": "bom",
    "selo": [
-    "▲ 2ª ALTA SEGUIDA",
-    "ruim"
+    "▼ CAI NA SEMANA",
+    "bom"
    ],
    "frase": "para o IPCA de 2026, ante 5,22% na semana anterior. A meta de inflação é de 3%, com tolerância até 4,5%.",
    "apoio": [
@@ -546,21 +546,17 @@
     ],
     [
      "PIB",
-     "+1,75%",
+     "+1,72%",
      "crescimento em 2026"
     ],
     [
      "Dólar no fim do ano",
-     "R$ 5,35",
+     "R$ 5,40",
      "mediana"
     ]
    ],
    "graf_tit": "IPCA 2026 esperado nas últimas semanas · %",
    "graf": [
-    [
-     "02/10",
-     5.0129
-    ],
     [
      "09/10",
      5.2245
@@ -580,6 +576,10 @@
     [
      "06/11",
      5.2195
+    ],
+    [
+     "13/11",
+     5.1082
     ]
    ],
    "graf_fmt": "num2",
@@ -1318,9 +1318,9 @@
    "tag": "EUA · Mercado",
    "titulo": "Juro de 10 anos dos EUA",
    "sub": "Rendimento do título do Tesouro americano",
-   "ref": "2026-11-12",
-   "ref_txt": "12/11/2026",
-   "valor": "5,10%",
+   "ref": "2026-11-13",
+   "ref_txt": "13/11/2026",
+   "valor": "5,15%",
    "cor": "neutro",
    "selo": [
     "▼ CAI",
@@ -1330,7 +1330,7 @@
    "apoio": [
     [
      "Anterior",
-     "5,21%",
+     "5,19%",
      "há 1 mês"
     ],
     [
@@ -1392,7 +1392,7 @@
     ],
     [
      "nov/26",
-     5.1
+     5.15
     ]
    ],
    "graf_fmt": "num1",
