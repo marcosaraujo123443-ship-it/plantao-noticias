@@ -57,6 +57,7 @@ def jogo(ev):
     st = (ev.get("status") or comp.get("status") or {}).get("type", {})
     return {"id": ev.get("id"), "data": ev.get("date"), "estado": st.get("state"), "detalhe": st.get("shortDetail") or st.get("detail"),
             "casa": time_jogo(casa), "fora": time_jogo(fora), "local": (comp.get("venue") or {}).get("fullName"),
+            "_adiado": st.get("name") == "STATUS_POSTPONED",
             "_temp": "{year}/{type}/{slug}".format(**{"year": "", "type": "", "slug": "", **(ev.get("season") or {})})}
 
 def ts(iso): return datetime.fromisoformat(iso.replace("Z", "+00:00")).timestamp()
@@ -64,7 +65,43 @@ def ts(iso): return datetime.fromisoformat(iso.replace("Z", "+00:00")).timestamp
 def numerar_rodadas(js, n_times):
     """A ESPN não informa a rodada: os jogos de uma rodada acontecem num bloco de datas (folga de 30 h entre blocos).
     Blocos grandes são rodadas, numeradas em ordem; jogos soltos (adiados/antecipados) vão para a rodada que falta
-    aos dois times."""
+    aos dois times. Jogo adiado que a ESPN mantém na data original (STATUS_POSTPONED) marca a rodada certa: a
+    remarcação herda essa rodada e o registro fantasma sai."""
+    par = lambda g: (g["casa"]["id"], g["fora"]["id"])
+    fantasmas = {par(g): g for g in js if g.get("_adiado")}
+    remarcados = [g for g in js if not g.get("_adiado") and par(g) in fantasmas]
+    js = [g for g in js if g not in remarcados]
+    js = _numerar(js, n_times)
+    for g in remarcados:
+        f = fantasmas[par(g)]; g["rodada"] = f["rodada"]; g["adiado"] = True; js.remove(f); js.append(g)
+    for g in js:
+        if g.pop("_adiado", False): g["adiado"] = True; g["detalhe"] = "Adiado"
+    # nunca passa do total de rodadas de pontos corridos (ida e volta)
+    maxr = 2 * (n_times - 1)
+    if n_times >= 10:
+        # conserto: cada time joga uma vez por rodada; jogo em conflito ou além da última vai para a rodada livre
+        # para os dois times mais próxima da que tinha
+        js.sort(key=lambda g: g["data"]); uso, fora = {}, []
+        for g in js:
+            a, b = g["casa"]["id"], g["fora"]["id"]
+            if g["rodada"] > maxr or g["rodada"] in uso.get(a, set()) | uso.get(b, set()): fora.append(g); continue
+            for t in (a, b): uso.setdefault(t, set()).add(g["rodada"])
+        for g in fora:
+            a, b = g["casa"]["id"], g["fora"]["id"]; ocup = uso.get(a, set()) | uso.get(b, set())
+            livres = [r for r in range(1, maxr + 1) if r not in ocup]
+            if livres: g["rodada"] = min(livres, key=lambda r: (abs(r - g["rodada"]), r))
+            for t in (a, b): uso.setdefault(t, set()).add(g["rodada"])
+    # "adiado" = jogo depois do grosso da sua rodada (mais de 4 dias após a data mediana dela)
+    for r in {g["rodada"] for g in js}:
+        rod = [g for g in js if g["rodada"] == r]; ds = sorted(ts(g["data"]) for g in rod); med = ds[len(ds) // 2]
+        for g in rod:
+            if g.get("detalhe") == "Adiado" and g["estado"] != "pre": continue
+            if ts(g["data"]) - med > 4 * 86400: g["adiado"] = True
+            else: g.pop("adiado", None)
+    js.sort(key=lambda g: g["data"])
+    return js
+
+def _numerar(js, n_times):
     js.sort(key=lambda g: g["data"])
     blocos, atual = [], []
     for g in js:
