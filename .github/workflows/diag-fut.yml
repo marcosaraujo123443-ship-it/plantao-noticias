@@ -1,0 +1,14 @@
+name: diag-fut
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  d:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          mkdir out && cd out
+          for a in 2025 2026 2027; do curl -s -A Mozilla "https://site.api.espn.com/apis/site/v2/sports/soccer/bra.1/scoreboard?dates=$a&limit=1000&region=br&lang=pt" -o bra-$a.json; done
+          ls -la
+          git init -q && git checkout -q -b diag-dados && git add . && git -c user.name=diag -c user.email=diag@x commit -qm diag
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" diag-dados
