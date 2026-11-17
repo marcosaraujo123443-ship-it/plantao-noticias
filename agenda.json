@@ -1,6 +1,6 @@
 {
  "data": "2026-11-17",
- "atualizado": "2026-11-17T14:01:30-0300",
+ "atualizado": "2026-11-17T15:01:26-0300",
  "itens": [
   {
    "hora": "00:00",
@@ -32,15 +32,6 @@
    "estado": "Encerrada"
   },
   {
-   "hora": "13:55",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Deliberativa no Plenário",
-   "detalhe": [],
-   "link": "https://www.camara.leg.br/agenda",
-   "estado": "Convocada"
-  },
-  {
    "hora": "14:00",
    "tipo": "politica",
    "rotulo": "Senado",
@@ -51,7 +42,16 @@
     "PL 4035/2023: Institui o mês de agosto como o Mês Nacional de Combate à Desigualdade Social e de Enfrentamento à Pobreza."
    ],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Agendada"
+   "estado": "Suspensa"
+  },
+  {
+   "hora": "14:32",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Deliberativa no Plenário",
+   "detalhe": [],
+   "link": "https://www.youtube.com/watch?v=XwiLj7eSj2s",
+   "estado": "Em Andamento"
   }
  ],
  "outros_jogos": 0,
@@ -67,13 +67,13 @@
     "estado": "Encerrada"
    },
    {
-    "hora": "13:55",
+    "hora": "14:32",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Deliberativa no Plenário",
     "detalhe": [],
-    "link": "https://www.camara.leg.br/agenda",
-    "estado": "Convocada"
+    "link": "https://www.youtube.com/watch?v=XwiLj7eSj2s",
+    "estado": "Em Andamento"
    }
   ],
   "senado": [
@@ -97,7 +97,7 @@
      "PL 4035/2023: Institui o mês de agosto como o Mês Nacional de Combate à Desigualdade Social e de Enfrentamento à Pobreza."
     ],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Agendada"
+    "estado": "Suspensa"
    }
   ],
   "copom": []
