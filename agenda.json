@@ -1,12 +1,12 @@
 {
- "data": "2026-11-16",
- "atualizado": "2026-11-16T23:13:03-0300",
+ "data": "2026-11-17",
+ "atualizado": "2026-11-17T01:01:32-0300",
  "itens": [
   {
-   "hora": "09:05",
+   "hora": "00:00",
    "tipo": "tempo",
    "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (perigo) em BA, ES, GO, MA, MG, MT…",
+   "titulo": "Tempestade (perigo) em BA, GO, MA, MG, MT, PI…",
    "detalhe": [
     "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
    ],
@@ -20,12 +20,62 @@
    "titulo": "Sessão especial no Plenário",
    "detalhe": [],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
+   "estado": "Agendada"
+  },
+  {
+   "hora": "11:00",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Não Deliberativa Solene no Plenário",
+   "detalhe": [],
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
+  },
+  {
+   "hora": "13:55",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Deliberativa no Plenário",
+   "detalhe": [],
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
+  },
+  {
+   "hora": "14:00",
+   "tipo": "politica",
+   "rotulo": "Senado",
+   "titulo": "Sessão deliberativa ordinária no Plenário",
+   "detalhe": [
+    "PLP 299/2026: Altera a Lei Complementar nº 200, de 30 de agosto de 2023, para conferir ao Poder Executivo federal novos…",
+    "PL 6683/2025: Dispõe sobre os requisitos essenciais relativos aos implantes cirúrgicos; e estabelece a notificação…",
+    "PL 4035/2023: Institui o mês de agosto como o Mês Nacional de Combate à Desigualdade Social e de Enfrentamento à Pobreza."
+   ],
+   "link": "https://www25.senado.leg.br/web/atividade/plenario",
+   "estado": "Agendada"
   }
  ],
  "outros_jogos": 0,
  "fontes": {
-  "camara": [],
+  "camara": [
+   {
+    "hora": "11:00",
+    "tipo": "politica",
+    "rotulo": "Câmara",
+    "titulo": "Sessão Não Deliberativa Solene no Plenário",
+    "detalhe": [],
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
+   },
+   {
+    "hora": "13:55",
+    "tipo": "politica",
+    "rotulo": "Câmara",
+    "titulo": "Sessão Deliberativa no Plenário",
+    "detalhe": [],
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
+   }
+  ],
   "senado": [
    {
     "hora": "10:00",
@@ -34,7 +84,20 @@
     "titulo": "Sessão especial no Plenário",
     "detalhe": [],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
+    "estado": "Agendada"
+   },
+   {
+    "hora": "14:00",
+    "tipo": "politica",
+    "rotulo": "Senado",
+    "titulo": "Sessão deliberativa ordinária no Plenário",
+    "detalhe": [
+     "PLP 299/2026: Altera a Lei Complementar nº 200, de 30 de agosto de 2023, para conferir ao Poder Executivo federal novos…",
+     "PL 6683/2025: Dispõe sobre os requisitos essenciais relativos aos implantes cirúrgicos; e estabelece a notificação…",
+     "PL 4035/2023: Institui o mês de agosto como o Mês Nacional de Combate à Desigualdade Social e de Enfrentamento à Pobreza."
+    ],
+    "link": "https://www25.senado.leg.br/web/atividade/plenario",
+    "estado": "Agendada"
    }
   ],
   "copom": []
