@@ -1,12 +1,23 @@
 {
- "data": "2026-11-17",
- "atualizado": "2026-11-17T23:01:17-0300",
+ "data": "2026-11-18",
+ "atualizado": "2026-11-18T01:01:26-0300",
  "itens": [
   {
    "hora": "00:00",
    "tipo": "tempo",
    "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (perigo) em BA, GO, MA, MG, MT, PI…",
+   "titulo": "Tempestade (perigo) em BA, GO, MG, MT, TO",
+   "detalhe": [
+    "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
+   ],
+   "link": "#tempo",
+   "estado": ""
+  },
+  {
+   "hora": "00:00",
+   "tipo": "tempo",
+   "rotulo": "Alerta INMET",
+   "titulo": "Tempestade (perigo) em MS, PR, RS, SC, SP",
    "detalhe": [
     "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
    ],
@@ -16,20 +27,33 @@
   {
    "hora": "10:00",
    "tipo": "politica",
-   "rotulo": "Senado",
-   "titulo": "Sessão especial no Plenário",
+   "rotulo": "Congresso",
+   "titulo": "Sessão solene no Plenário",
    "detalhe": [],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
+   "estado": "Convocada"
   },
   {
-   "hora": "11:13",
+   "hora": "10:30",
    "tipo": "politica",
    "rotulo": "Câmara",
    "titulo": "Sessão Não Deliberativa Solene no Plenário",
    "detalhe": [],
-   "link": "https://www.youtube.com/watch?v=kRHfNqKJOLM",
-   "estado": "Encerrada"
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
+  },
+  {
+   "hora": "13:55",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Deliberativa no Plenário",
+   "detalhe": [
+    "PL 724/2003: Altera a Lei nº 9.503, de 23 de setembro de 1997, que \"Institui o Código de Trânsito Brasileiro\", para dispor…",
+    "PL 479/2015: Altera a Lei nº 9.394, de 20 de dezembro de 1996 (Lei de Diretrizes e Bases da Educação - LDB), para dispor…",
+    "PL 3965/2024: Institui o feriado escolar e o dia nacional dos professores, professoras e profissionais de educação"
+   ],
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
   },
   {
    "hora": "14:00",
@@ -38,61 +62,114 @@
    "titulo": "Sessão deliberativa ordinária no Plenário",
    "detalhe": [
     "PLP 299/2026: Altera a Lei Complementar nº 200, de 30 de agosto de 2023, para conferir ao Poder Executivo federal novos…",
-    "MPV 1379/2026: Altera a Lei nº 15.473, de 2026, para ampliar o limite de recursos destinados às linhas de financiamento e…",
-    "PL 6683/2025: Dispõe sobre os requisitos essenciais relativos aos implantes cirúrgicos; e estabelece a notificação…"
+    "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
+    "PL 5756/2026: Altera o §3º do art. 2º da Lei nº 14.172, de 10 de junho de 2021, para ampliar o prazo para aplicação e…"
    ],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
+   "estado": "Agendada"
   },
   {
-   "hora": "14:32",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Deliberativa no Plenário",
+   "hora": "19:30",
+   "tipo": "futebol",
+   "rotulo": "Brasileirão",
+   "titulo": "Coritiba × Santos",
    "detalhe": [
-    "REQ 1078/2026: Requer regime de urgência para apreciação do Projeto de Lei nº 5.389, de 2019, que “Altera a Lei nº 9.933, de…",
-    "REQ 2575/2026: Requer a urgência para a apreciação do PRC 25/2026.",
-    "REQ 3672/2026: Requer regime de urgência na apreciação do Projeto de Lei Complementar nº 150, de 2022."
+    "35ª rodada"
    ],
-   "link": "https://www.youtube.com/watch?v=XwiLj7eSj2s",
-   "estado": "Encerrada"
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "20:00",
+   "tipo": "futebol",
+   "rotulo": "Brasileirão",
+   "titulo": "Remo × Chapecoense",
+   "detalhe": [
+    "35ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "20:30",
+   "tipo": "futebol",
+   "rotulo": "Brasileirão",
+   "titulo": "Cruzeiro × Palmeiras",
+   "detalhe": [
+    "35ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "20:30",
+   "tipo": "futebol",
+   "rotulo": "Brasileirão",
+   "titulo": "Flamengo × Athletico-PR",
+   "detalhe": [
+    "35ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "21:30",
+   "tipo": "futebol",
+   "rotulo": "Brasileirão",
+   "titulo": "Corinthians × Botafogo",
+   "detalhe": [
+    "35ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "21:30",
+   "tipo": "futebol",
+   "rotulo": "Brasileirão",
+   "titulo": "Grêmio × Bahia",
+   "detalhe": [
+    "35ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
   }
  ],
  "outros_jogos": 0,
  "fontes": {
   "camara": [
    {
-    "hora": "11:13",
+    "hora": "10:30",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Não Deliberativa Solene no Plenário",
     "detalhe": [],
-    "link": "https://www.youtube.com/watch?v=kRHfNqKJOLM",
-    "estado": "Encerrada"
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
    },
    {
-    "hora": "14:32",
+    "hora": "13:55",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Deliberativa no Plenário",
     "detalhe": [
-     "REQ 1078/2026: Requer regime de urgência para apreciação do Projeto de Lei nº 5.389, de 2019, que “Altera a Lei nº 9.933, de…",
-     "REQ 2575/2026: Requer a urgência para a apreciação do PRC 25/2026.",
-     "REQ 3672/2026: Requer regime de urgência na apreciação do Projeto de Lei Complementar nº 150, de 2022."
+     "PL 724/2003: Altera a Lei nº 9.503, de 23 de setembro de 1997, que \"Institui o Código de Trânsito Brasileiro\", para dispor…",
+     "PL 479/2015: Altera a Lei nº 9.394, de 20 de dezembro de 1996 (Lei de Diretrizes e Bases da Educação - LDB), para dispor…",
+     "PL 3965/2024: Institui o feriado escolar e o dia nacional dos professores, professoras e profissionais de educação"
     ],
-    "link": "https://www.youtube.com/watch?v=XwiLj7eSj2s",
-    "estado": "Encerrada"
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
    }
   ],
   "senado": [
    {
     "hora": "10:00",
     "tipo": "politica",
-    "rotulo": "Senado",
-    "titulo": "Sessão especial no Plenário",
+    "rotulo": "Congresso",
+    "titulo": "Sessão solene no Plenário",
     "detalhe": [],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
+    "estado": "Convocada"
    },
    {
     "hora": "14:00",
@@ -101,11 +178,11 @@
     "titulo": "Sessão deliberativa ordinária no Plenário",
     "detalhe": [
      "PLP 299/2026: Altera a Lei Complementar nº 200, de 30 de agosto de 2023, para conferir ao Poder Executivo federal novos…",
-     "MPV 1379/2026: Altera a Lei nº 15.473, de 2026, para ampliar o limite de recursos destinados às linhas de financiamento e…",
-     "PL 6683/2025: Dispõe sobre os requisitos essenciais relativos aos implantes cirúrgicos; e estabelece a notificação…"
+     "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
+     "PL 5756/2026: Altera o §3º do art. 2º da Lei nº 14.172, de 10 de junho de 2021, para ampliar o prazo para aplicação e…"
     ],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
+    "estado": "Agendada"
    }
   ],
   "copom": []
