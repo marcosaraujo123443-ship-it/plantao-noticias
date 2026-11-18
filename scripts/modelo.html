@@ -778,7 +778,7 @@ main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-colu
     if(!R.length){ ul.innerHTML='<li class="jg-vazio">Jogos indisponíveis para este campeonato.</li>'; if(tt) tt.textContent='Rodada'; nav.forEach(function(b){b.disabled=true}); return; }
     var nums=R.map(function(r){return r.n}), n=RD[lg.id]; if(nums.indexOf(n)<0) n=nums.indexOf(J.atual)>=0?J.atual:nums[0]; RD[lg.id]=n;
     var r=R[nums.indexOf(n)];
-    if(tt) tt.textContent=n+'ª rodada'+(n===J.atual?' · atual':'');
+    if(tt) tt.textContent=(r.nome||n+'ª rodada')+(n===J.atual?' · atual':'');
     nav[0].disabled=nums.indexOf(n)===0; nav[1].disabled=nums.indexOf(n)===nums.length-1;
     var o={timeZone:'America/Sao_Paulo'}, html='', dia0='';
     function tm(t,lado,ven){ var img=escu(t.escudo);

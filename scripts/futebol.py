@@ -237,7 +237,7 @@ def jogos(cod, n_times):
         if not lista: continue
         for g in lista:
             g.pop("_temp", None); g.pop("_gols", None)
-        rodadas.append({"n": r, "jogos": lista})
+        rodadas.append({"n": r, "jogos": lista, **({"nome": "Fase final"} if n_times >= 10 and r > 2 * (n_times - 1) else {})})
     return {"atual": atual, "rodadas": rodadas}, {k: "".join(v[-5:]) for k, v in forma.items()}, extra
 
 def lideres(cod, n=10):
