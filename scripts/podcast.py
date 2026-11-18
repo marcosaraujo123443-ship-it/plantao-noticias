@@ -63,7 +63,7 @@ def feed(episodios):
     <itunes:explicit>false</itunes:explicit>
     <link>{SITE}</link>
   </item>""")
-    sobre = ("O Resumo do Plantão traz, três vezes por dia, as principais notícias de política, inteligência artificial, "
+    sobre = ("O Resumo do Plantão traz, três vezes por dia, e o Plantão Express, de manhã e à noite, as principais notícias de política, inteligência artificial, "
              "futebol, agro, mercado, concursos, ciência e saúde em poucos minutos. Resumo escrito e narrado por "
              f"inteligência artificial a partir das manchetes do Plantão Informa ({SITE}), com veículos confiáveis.")
     xml = f"""<?xml version="1.0" encoding="UTF-8"?>
