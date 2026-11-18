@@ -70,11 +70,42 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .comp{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}.comp a{font:600 14px system-ui;padding:8px 14px;border-radius:999px;text-decoration:none;border:1px solid var(--rule);color:var(--ink)}.comp a.zap{background:#1f8f4e;border-color:#1f8f4e;color:#fff}
 .btn-ix{display:inline-block;font-weight:700;padding:8px 14px;border:1px solid var(--rule);border-radius:999px;text-decoration:none;color:var(--ink)}.btn-ix:hover{border-color:var(--ink)}.anl{list-style:none;padding:0;max-width:75ch}.anl li{padding:16px 0;border-bottom:1px solid var(--rule)}.anl a{font:700 21px/1.3 Georgia,serif;color:var(--ink);text-decoration:none}.anl a:hover{text-decoration:underline}.anl p{margin:6px 0 0;color:var(--ink2)}.anl small{color:var(--ink2)}
 @media (max-width:600px){.art{font-size:17px}.sub{font-size:17px}}
-@media (max-width:600px){th,td{padding:7px 8px}table{font-size:13.5px}td:first-child{min-width:150px}}"""
+@media (max-width:600px){th,td{padding:7px 8px}table{font-size:13.5px}td:first-child{min-width:150px}}
+.prog{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--brand);z-index:50;pointer-events:none}
+.r30{max-width:72ch;background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:16px 20px 12px;margin:0 0 20px;box-shadow:inset 4px 0 0 var(--brand),0 6px 20px -10px rgba(10,29,61,.18)}
+.r30 h2{font:800 12.5px system-ui;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);margin:0 0 8px;display:flex;align-items:center;gap:8px}
+.r30 ul{margin:0;padding-left:20px;font-size:16px;line-height:1.55}.r30 li{margin:0 0 8px}.r30 li::marker{color:var(--brand)}
+.sumario{max-width:72ch;border:1px solid var(--rule);border-radius:14px;margin:0 0 26px;background:var(--card)}
+.sumario summary{cursor:pointer;font:700 14px system-ui;padding:12px 16px;list-style:none;display:flex;justify-content:space-between}.sumario summary::-webkit-details-marker{display:none}
+.sumario summary::after{content:"▾";color:var(--ink2)}.sumario[open] summary::after{content:"▴"}
+.sumario ul{margin:0;padding:0 16px 12px 34px;font-size:15px;line-height:1.45}.sumario li{margin:0 0 6px}.sumario li::marker{color:var(--brand)}.sumario a{color:var(--ink);text-decoration:none}.sumario a:hover{color:var(--brand);text-decoration:underline}
+.art h2{scroll-margin-top:16px}
+.comp button{font:600 14px system-ui;padding:8px 14px;border-radius:999px;border:1px solid var(--rule);background:var(--card);color:var(--ink);cursor:pointer}
+.comp a,.comp button{transition:border-color .15s,background .15s}.comp a:hover,.comp button:hover{border-color:var(--ink)}
+.relac-s{margin:34px 0 0}.relac-s h2{margin:0 0 10px}.relac{max-width:72ch;margin:0;padding:0;list-style:none;display:grid;gap:10px}.relac h2{margin:0 0 4px}
+.relac li a{display:block;background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:12px 16px;text-decoration:none;color:var(--ink);transition:transform .2s,box-shadow .2s}
+.relac li a:hover{transform:translateY(-2px);box-shadow:0 10px 24px -14px rgba(10,29,61,.35)}.relac small{display:block;color:var(--ink2);font-size:12.5px}.relac b{font:700 17px/1.3 Georgia,serif}
+@media (prefers-reduced-motion:reduce){.relac li a{transition:none}}"""
+
+def leitura(m):
+    """Barra de progresso, box "Em 30 segundos" e sumário da matéria."""
+    tl = ("<section class=\"r30\" aria-label=\"Em 30 segundos\"><h2>⏱ Em 30 segundos</h2><ul>"
+          + "".join(f"<li>{e(x)}</li>" for x in m.get("tldr", [])) + "</ul></section>") if m.get("tldr") else ""
+    sm = ("<details class=\"sumario\" open><summary>Nesta matéria</summary><ul>"
+          + "".join(f'<li><a href="#{a}">{e(t)}</a></li>' for a, t in m["sumario"]) + "</ul></details>") if len(m.get("sumario", [])) >= 3 else ""
+    js = ("<div class=\"prog\" data-prog aria-hidden=\"true\"></div><script>(function(){var b=document.querySelector('[data-prog]'),a=document.querySelector('.art');"
+          "if(!b||!a)return;function f(){var r=a.getBoundingClientRect(),t=r.height-innerHeight*.6;b.style.transform='scaleX('+Math.min(1,Math.max(0,-r.top/(t>0?t:1)))+')'}"
+          "addEventListener('scroll',f,{passive:true});addEventListener('resize',f);f();"
+          "var d=document.querySelector('.sumario');if(d&&innerWidth<700)d.open=false;"
+          "document.querySelectorAll('[data-copia]').forEach(function(x){x.addEventListener('click',function(){var u=x.dataset.copia;"
+          "if(navigator.share&&innerWidth<700){navigator.share({title:document.title,url:u}).catch(function(){});return}"
+          "(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){x.textContent='Link copiado ✓'},function(){prompt('Copie o link:',u)})})})})();</script>")
+    return js + tl + sm
 
 NAV = [("analises/", "Análises"), ("contas/", "Contas públicas"), ("tabelas/", "Tabelas do futebol"), ("agro.html", "Cotações do agro"),
        ("acoes.html", "Ações"), ("fiis.html", "Fundos imobiliários"), ("indicadores.html", "Indicadores econômicos")]
 PAGINAS = []
+NOTICIAS_SM = []   # matérias próprias para o news-sitemap (Google Notícias: só as das últimas 48 horas)
 
 def limpa_url(caminho):
     """O Cloudflare Pages serve /contas/sp.html como /contas/sp (e index.html como a pasta)."""
@@ -390,9 +421,10 @@ def guias():
         corpo = (f'<span class="rot">Guia dos indicadores</span>' + (f'<p class="sub">{e(m["subtitulo"])}</p>' if m.get("subtitulo") else "")
                  + f'<p class="byl">Redação Plantão Informa · {m["minutos"]} min de leitura</p>'
                  + f'<p><a class="btn-ix" href="../#indicadores">Ver o dado mais recente na aba Indicadores →</a></p>'
+                 + leitura(m)
                  + f'<article class="art">{m["html"]}</article>'
                  + f'<div class="comp"><a class="zap" href="https://wa.me/?text={txt_zap}" target="_blank" rel="noopener">Compartilhar no WhatsApp</a>'
-                 + f'<a href="index.html">Todos os guias</a></div>')
+                 + f'<button type="button" data-copia="{e(url)}">Copiar link</button><a href="index.html">Todos os guias</a></div>')
         head = '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script>"
         pagina(f"guia/{m['slug']}.html", m["titulo"], m.get("subtitulo") or m["titulo"], corpo, [("guia/", "Guias dos indicadores")],
                None, "article", None, head, "Guia do Plantão Informa, com base em informações das instituições que calculam cada indicador. ")
@@ -419,7 +451,7 @@ def analises():
         if os.path.exists(img):
             shutil.copy(img, os.path.join(OUT, "analises", m["slug"] + ".png")); og = f"{SITE}analises/{m['slug']}.png"
         url = f"{SITE}analises/{m['slug']}"
-        ld = {"@context": "https://schema.org", "@type": "Article", "headline": m["titulo"], "description": m.get("subtitulo", ""),
+        ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": m["titulo"][:110], "description": m.get("subtitulo", ""),
               "datePublished": m["dt"].isoformat(), "dateModified": m["dt"].isoformat(), "inLanguage": "pt-BR",
               "author": {"@type": "Organization" if m["autor"].startswith("Redação") else "Person", "name": m["autor"]},
               "publisher": {"@type": "Organization", "name": "Plantão Informa", "logo": {"@type": "ImageObject", "url": SITE + "logo.jpg"}},
@@ -428,11 +460,22 @@ def analises():
         corpo = (f'<span class="rot">{e(m["rotulo"])}{" · " + e(m["editoria"]) if m.get("editoria") else ""}</span>'
                  + (f'<p class="sub">{e(m["subtitulo"])}</p>' if m.get("subtitulo") else "")
                  + f'<p class="byl">Por <b>{e(m["autor"])}</b> · {data(m["dt"])} · {m["minutos"]} min de leitura</p>'
+                 + leitura(m)
                  + f'<article class="art">{m["html"]}</article>'
                  + f'<div class="comp"><a class="zap" href="https://wa.me/?text={txt_zap}" target="_blank" rel="noopener">Compartilhar no WhatsApp</a>'
                  + f'<a href="https://www.facebook.com/sharer/sharer.php?u={urllib.parse.quote(url)}" target="_blank" rel="noopener">Facebook</a>'
-                 + f'<a href="https://twitter.com/intent/tweet?url={urllib.parse.quote(url)}&text={urllib.parse.quote(m["titulo"])}" target="_blank" rel="noopener">X</a></div>')
-        head = '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace("</", "<\\/") + "</script>" + \
+                 + f'<a href="https://twitter.com/intent/tweet?url={urllib.parse.quote(url)}&text={urllib.parse.quote(m["titulo"])}" target="_blank" rel="noopener">X</a>'
+                 + f'<button type="button" data-copia="{e(url)}">Copiar link</button></div>')
+        outras = sorted((x for x in lista if x is not m), key=lambda x: (x.get("editoria") != m.get("editoria"), -x["dt"].timestamp()))[:3]
+        if outras:
+            corpo += ('<section class="relac-s"><h2>Leia também</h2><ul class="relac">' + "".join(
+                f'<li><a href="{x["slug"]}.html"><small>{e(x["rotulo"])} · {data(x["dt"])} · {x["minutos"]} min</small><b>{e(x["titulo"])}</b></a></li>' for x in outras) + "</ul></section>")
+        bc = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+              {"@type": "ListItem", "position": 1, "name": "Início", "item": SITE},
+              {"@type": "ListItem", "position": 2, "name": "Análises", "item": SITE + "analises/"},
+              {"@type": "ListItem", "position": 3, "name": m["titulo"], "item": url}]}
+        NOTICIAS_SM.append((url, m["titulo"], m["dt"]))
+        head = '<script type="application/ld+json">' + json.dumps([ld, bc], ensure_ascii=False).replace("</", "<\\/") + "</script>" + \
                f'<meta property="article:published_time" content="{m["dt"].isoformat()}">'
         pagina(f"analises/{m['slug']}.html", m["titulo"], m.get("subtitulo") or m["titulo"], corpo, [("analises/", "Análises")],
                None, "article", og, head, f"{e(m['rotulo'])} do Plantão Informa. As opiniões e análises se baseiam em dados e fontes públicas. ")
@@ -460,7 +503,15 @@ def main():
     xml = "".join(f"  <url><loc>{e(u)}</loc><lastmod>{hoje}</lastmod></url>\n" for u in urls)
     open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8").write(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{xml}</urlset>\n')
-    print(len(PAGINAS), "páginas geradas")
+    agora = datetime.now(BRT)
+    recentes = [(u, t, dt) for u, t, dt in NOTICIAS_SM if (agora - (dt if dt.tzinfo else dt.replace(tzinfo=BRT))).total_seconds() < 48 * 3600]
+    nx = "".join(f'  <url><loc>{e(u)}</loc><news:news><news:publication><news:name>Plantão Informa</news:name><news:language>pt</news:language>'
+                 f'</news:publication><news:publication_date>{dt.isoformat()}</news:publication_date><news:title>{e(t)}</news:title></news:news></url>\n'
+                 for u, t, dt in recentes)
+    open(os.path.join(OUT, "news-sitemap.xml"), "w", encoding="utf-8").write(
+        '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+        f'xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">\n{nx}</urlset>\n')
+    print(len(PAGINAS), "páginas geradas;", len(recentes), "no news-sitemap")
 
 if __name__ == "__main__":
     main()

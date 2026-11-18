@@ -4,6 +4,7 @@ data: 2026-11-07T09:35:00-03:00
 autor: Redação Plantão Informa
 rotulo: Análise
 editoria: IA
+tldr: Pesquisa da McKinsey: 94% das empresas não conseguem atribuir ganho relevante de lucro à IA; só 6% formam o grupo de alto desempenho. | No Brasil, 40,7% dos executivos dizem ter resultado financeiro comprovado com IA generativa (resultado declarado, sem auditoria). | Quem lucra redesenhou processos, definiu responsáveis e mede receita, custo e prazo, não o número de usuários. | O custo de nuvem, chips e modelos já limita o uso para cerca de um em cada cinco executivos.
 ---
 As empresas nunca investiram tanto em inteligência artificial, e a maioria ainda não sabe dizer quanto ganhou com isso. A pesquisa *State of Organizations 2026*, da consultoria McKinsey, ouviu 1.719 executivos em 97 países entre maio e junho. O resultado: **94% das empresas não conseguem atribuir ganhos relevantes de lucro operacional à IA**. Só **6%** formam o grupo que a consultoria chama de "alto desempenho", em que a IA responde por pelo menos 5% do lucro antes de juros e impostos (Ebit).
 

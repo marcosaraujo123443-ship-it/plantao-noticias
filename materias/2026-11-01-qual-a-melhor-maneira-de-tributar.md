@@ -4,6 +4,7 @@ data: 2026-11-01T20:30:00-03:00
 autor: Redação Plantão Informa
 rotulo: Análise
 editoria: Mercado
+tldr: Não há fórmula única, mas há consenso em três pilares: simplicidade, neutralidade e progressividade. | Progressividade é tirar peso do consumo e levar para renda e patrimônio. | O IVA, adotado em mais de 170 países, unifica tributos e acaba com a cobrança em cascata; o Brasil migra para CBS e IBS. | A regra de ouro é base ampla e alíquota menor, com poucas exceções; o próximo passo no Brasil é a reforma da renda.
 ---
 O debate sobre como um país deve cobrar impostos de seus cidadãos e empresas é tão antigo quanto a própria organização em sociedade. Em um mundo globalizado e com economias cada vez mais digitais, a pergunta continua atual: afinal, qual é a melhor maneira de tributar?
 

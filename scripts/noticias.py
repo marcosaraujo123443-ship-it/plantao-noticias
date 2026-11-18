@@ -153,6 +153,46 @@ def data_iso(s):
 
 def local(tag): return tag.rsplit("}", 1)[-1]
 
+# Imagem da notícia: a que o próprio veículo publica no feed (media:content, enclosure, <img> no texto) ou, na falta,
+# a og:image da página. Exibida no site com link para a matéria original.
+RUIM_IMG = re.compile(r"(logo|padrao|default|placeholder|avatar|icon|sprite|blank|gravatar|feeds\.feedburner|1x1)", re.I)
+def img_ok(u):
+    u = html.unescape((u or "").strip())
+    if u.startswith("//"): u = "https:" + u
+    if not u.startswith("http") or RUIM_IMG.search(u.split("?")[0]) or re.search(r"\.(svg|gif)(\?|$)", u, re.I): return None
+    # miniaturas pequenas de WordPress/CDN: pede a versão grande
+    u = re.sub(r"([?&])w=\d+", r"\g<1>w=1200", u)
+    u = re.sub(r"([?&])fit=\d+(%2C|,)\d+", r"\g<1>fit=1200%2C675", u)
+    if re.search(r"youtube\.|youtu\.be|vimeo\.|/embed/", u, re.I): return None
+    return u.replace("http://", "https://", 1)
+
+def img_do_item(el):
+    cand = []
+    for c in el.iter():
+        n = local(c.tag)
+        if n in ("content", "thumbnail") and c.get("url") and (c.get("medium") in (None, "image") and not (c.get("type") or "image").startswith(("video", "audio"))):
+            w = int(c.get("width") or 0); cand.append((w, c.get("url")))
+        elif n == "enclosure" and (c.get("type") or "").startswith("image") and c.get("url"):
+            cand.append((1, c.get("url")))
+    for w, u in sorted(cand, key=lambda x: -x[0]):
+        if img_ok(u): return img_ok(u)
+    for c in el:
+        if local(c.tag) in ("encoded", "description", "content", "summary") and c.text:
+            m = re.search(r"<img[^>]+src=[\"']([^\"']+)", c.text)
+            if m and img_ok(m.group(1)): return img_ok(m.group(1))
+    return None
+
+def og_image(link):
+    try:
+        with urllib.request.urlopen(urllib.request.Request(link, headers=UA), timeout=12) as r:
+            h = r.read(400000).decode("utf-8", "ignore")
+    except Exception: return None
+    for pat in (r'<meta[^>]+(?:property|name)=["\'](?:og:image|twitter:image)["\'][^>]*content=["\']([^"\']+)',
+                r'<meta[^>]+content=["\']([^"\']+)["\'][^>]*(?:property|name)=["\'](?:og:image|twitter:image)["\']'):
+        m = re.search(pat, h, re.I)
+        if m and img_ok(m.group(1)): return img_ok(m.group(1))
+    return None
+
 def itens_do_feed(xml):
     raiz = ET.fromstring(xml)
     for el in raiz.iter():
@@ -167,7 +207,8 @@ def itens_do_feed(xml):
         link = campos.get("link", "").strip()
         yield {"titulo": limpa(campos.get("title")), "link": link,
                "resumo": resumo(campos.get("description") or campos.get("summary")),
-               "data": data_iso(campos.get("pubDate") or campos.get("date") or campos.get("published") or campos.get("updated"))}
+               "data": data_iso(campos.get("pubDate") or campos.get("date") or campos.get("published") or campos.get("updated")),
+               "img": img_do_item(el)}
 
 def main():
     try:
@@ -187,6 +228,9 @@ def main():
                 por_link[it["link"]] = {"secao": velho.get("secao", secao), "fonte": fonte, "editoria": velho.get("secao", secao),
                                         "titulo": it["titulo"], "link": it["link"], "data": it["data"],
                                         "resumo": it["resumo"] or resumo(velho.get("resumo", ""))}
+                im = it.get("img") or velho.get("img")
+                if im: por_link[it["link"]]["img"] = im
+                elif "img" in velho or velho.get("sem_img"): por_link[it["link"]]["sem_img"] = True
                 n += 1
             print(f"{secao:8} {fonte:17} {n} itens")
         except Exception as e:
@@ -201,6 +245,16 @@ def main():
             if por_fonte[i["fonte"]] >= POR_FONTE or len(lst) >= POR_SECAO: continue
             por_fonte[i["fonte"]] += 1; lst.append(i)
         final += lst
+    # og:image das páginas para as notícias que o feed trouxe sem foto (só as que vão ao ar; uma tentativa por notícia)
+    falta = [i for i in final if not i.get("img") and not i.get("sem_img")][:60]
+    if falta:
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(8) as ex:
+            for i, im in zip(falta, ex.map(lambda i: og_image(i["link"]), falta)):
+                if im: i["img"] = im
+                else: i["sem_img"] = True
+                if i["link"] in por_link: por_link[i["link"]].update({k: i[k] for k in ("img", "sem_img") if k in i})
+    print(sum(1 for i in final if i.get("img")), "de", len(final), "com imagem")
     if not final:
         raise SystemExit("Nenhuma notícia coletada: " + "; ".join(erros))
     novo = {"atualizado_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "secoes": SECOES,
