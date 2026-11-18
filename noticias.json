@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-18T01:01:22Z",
+ "atualizado_utc": "2026-11-18T01:34:17Z",
  "secoes": [
   "Política",
   "IA",
@@ -10,6 +10,15 @@
   "Ciência e Saúde"
  ],
  "itens": [
+  {
+   "secao": "Política",
+   "fonte": "CNN Brasil",
+   "editoria": "Política",
+   "titulo": "Nikolas Ferreira ameaça deixar PL caso partido apoie reeleição de Hugo",
+   "link": "https://www.cnnbrasil.com.br/politica/nikolas-ferreira-ameaca-deixar-pl-caso-partido-apoie-reeleicao-de-hugo/",
+   "data": "2026-11-18T00:41:40Z",
+   "resumo": "Deputado federal afirma que possível apoio do partido à reeleição do presidente da Câmara dos Deputados tornaria sua permanência \"insustentável\""
+  },
   {
    "secao": "Política",
    "fonte": "Poder360",
@@ -173,13 +182,13 @@
    ]
   },
   {
-   "secao": "Política",
+   "secao": "IA",
    "fonte": "CNN Brasil",
-   "editoria": "Política",
-   "titulo": "Tarcísio anuncia novo secretário e mantém outros três na gestão em SP",
-   "link": "https://www.cnnbrasil.com.br/politica/tarcisio-anuncia-novo-secretario-e-mantem-outros-tres-na-gestao-em-sp/",
-   "data": "2026-11-17T21:50:52Z",
-   "resumo": "Governador reeleito também confirmou a permanência da procuradora-geral do Estado, Inês Maria Coimbra, no cargo a partir de janeiro de 2027"
+   "editoria": "IA",
+   "titulo": "Zoox lança IA para empresas e motor de crédito 100% baseado em tecnologia",
+   "link": "https://www.cnnbrasil.com.br/economia/money/inteligencia-artificial/zoox-lanca-ia-para-empresas-e-motor-de-credito-100-baseado-em-tecnologia/",
+   "data": "2026-11-18T00:47:29Z",
+   "resumo": "Rafael de Albuquerque apresenta novidades da Zoox no ZDR 2026, incluindo solução de contexto corporativo e decisão de crédito baseada em IA"
   },
   {
    "secao": "IA",
@@ -273,15 +282,6 @@
   },
   {
    "secao": "IA",
-   "fonte": "CNN Brasil",
-   "editoria": "IA",
-   "titulo": "O que esperar do setor de IA após saída de Huang da Nvidia",
-   "link": "https://www.cnnbrasil.com.br/economia/money/inteligencia-artificial/o-que-esperar-do-setor-de-ia-apos-saida-de-huang-da-nvidia/",
-   "data": "2026-11-17T13:48:22Z",
-   "resumo": "Renúncia do CEO em meio a escândalo levanta dúvidas sobre o futuro do ecossistema financeiro que ele construiu para a inteligência artificial"
-  },
-  {
-   "secao": "IA",
    "fonte": "g1",
    "editoria": "IA",
    "titulo": "Nvidia cria comitê para supervisionar segurança nacional e controles de exportação",
@@ -318,16 +318,40 @@
   },
   {
    "secao": "Futebol",
-   "fonte": "Gazeta Esportiva",
+   "fonte": "ge",
    "editoria": "Futebol",
-   "titulo": "Com assistência de Giay, Argentina goleia a Costa Rica e vence a primeira sem Messi",
-   "link": "https://www.gazetaesportiva.com/times/argentina/com-assistencia-de-giay-argentina-goleia-a-costa-rica-e-vence-a-primeira-sem-messi/",
-   "data": "2026-11-18T00:59:25Z",
-   "resumo": "Com assistência de Giay, Argentina goleia a Costa Rica e vence a primeira sem Messi",
+   "titulo": "Com assistência de Giay e show de Nico Paz, Argentina repete o Brasil e faz sete na Costa Rica",
+   "link": "https://ge.globo.com/futebol/futebol-internacional/jogo/17-11-2026/argentina-costa-rica.ghtml",
+   "data": "2026-11-18T01:20:43Z",
+   "resumo": "Palmeirense dá passe para Julián Álvarez marcar o segundo dos argentinos; Flaco López entra no segundo tempo e tem apenas uma boa chance",
    "tambem": [
     {
-     "fonte": "ge",
-     "link": "https://ge.globo.com/futebol/futebol-internacional/jogo/17-11-2026/argentina-costa-rica.ghtml"
+     "fonte": "Gazeta Esportiva",
+     "link": "https://www.gazetaesportiva.com/times/argentina/com-assistencia-de-giay-argentina-goleia-a-costa-rica-e-vence-a-primeira-sem-messi/"
+    }
+   ]
+  },
+  {
+   "secao": "Futebol",
+   "fonte": "CNN Brasil",
+   "editoria": "Futebol",
+   "titulo": "Veja a entrevista de Ilmar Schiavenato, candidato no Corinthians, à CNN",
+   "link": "https://www.cnnbrasil.com.br/esportes/futebol/corinthians/veja-a-entrevista-de-ilmar-schiavenato-candidato-no-corinthians-a-cnn/",
+   "data": "2026-11-18T00:59:24Z",
+   "resumo": "Sabatinas, que começaram nesta terça-feira (17), são transmitidas no YouTube do CNN Esportes; eleição presidencial no clube acontece no dia 28 de novembro"
+  },
+  {
+   "secao": "Futebol",
+   "fonte": "CNN Brasil",
+   "editoria": "Futebol",
+   "titulo": "Candidatos a sucessor de Messi brilham, e Argentina goleia Costa Rica",
+   "link": "https://www.cnnbrasil.com.br/esportes/futebol/futebol-internacional/candidatos-a-sucessor-de-messi-brilham-e-argentina-goleia-costa-rica/",
+   "data": "2026-11-18T00:53:07Z",
+   "resumo": "Nico Paz e Mastantuono comandam vitória por 7 a 0 da equipe de Scaloni na última Data Fifa de 2026",
+   "tambem": [
+    {
+     "fonte": "Gazeta Esportiva",
+     "link": "https://www.gazetaesportiva.com/times/argentina/veja-as-fotos-do-amistoso-entre-argentina-e-costa-rica/"
     }
    ]
   },
@@ -399,6 +423,15 @@
   },
   {
    "secao": "Futebol",
+   "fonte": "Gazeta Esportiva",
+   "editoria": "Futebol",
+   "titulo": "Coritiba x Santos pelo Brasileirão: onde assistir ao vivo, estatísticas e prováveis escalações",
+   "link": "https://www.gazetaesportiva.com/campeonatos/brasileiro-serie-a/coritiba-x-santos-onde-assistir-escalacoes-brasileirao-2026/",
+   "data": "2026-11-17T23:00:35Z",
+   "resumo": "Coritiba x Santos pelo Brasileirão: onde assistir ao vivo, estatísticas e prováveis escalações"
+  },
+  {
+   "secao": "Futebol",
    "fonte": "ge",
    "editoria": "Futebol",
    "titulo": "Palpites e dicas para São Paulo x Fluminense pelo Brasileirão",
@@ -408,39 +441,12 @@
   },
   {
    "secao": "Futebol",
-   "fonte": "ge",
-   "editoria": "Futebol",
-   "titulo": "Palpites e dicas para Vasco x Internacional pelo Brasileirão",
-   "link": "https://ge.globo.com/gato-mestre/dicas/noticia/2026/11/17/palpites-e-dicas-para-vasco-x-internacional-pelo-brasileirao.ghtml",
-   "data": "2026-11-17T22:53:11Z",
-   "resumo": "Vasco x Internacional: informações e palpite para o jogo Em 2025, o Vasco goleou em casa o Internacional por 5 a 1, encerrando uma sequência de três vitórias seguidas do Colorado como visitante."
-  },
-  {
-   "secao": "Futebol",
    "fonte": "CNN Brasil",
    "editoria": "Futebol",
    "titulo": "CBF tem prejuízo e prevê perdas de R$ 2 bilhões após proibição das bets",
    "link": "https://www.cnnbrasil.com.br/esportes/futebol/cbf-tem-prejuizo-e-preve-perdas-de-r-2-bilhoes-apos-proibicao-das-bets/",
    "data": "2026-11-17T21:20:30Z",
    "resumo": "Entidade também projeta déficit para o próximo ano e planeja reduzir despesas, com suspensão da Copa Sul-Sudeste entre as medidas"
-  },
-  {
-   "secao": "Futebol",
-   "fonte": "CNN Brasil",
-   "editoria": "Futebol",
-   "titulo": "Exclusivo: Corinthians já teme perder Kaio César, e Mendes defende saída",
-   "link": "https://www.cnnbrasil.com.br/esportes/futebol/corinthians/exclusivo-corinthians-ja-teme-perder-kaio-cesar-e-mendes-defende-saida/",
-   "data": "2026-11-17T20:18:34Z",
-   "resumo": "Candidato à presidência do clube revelou à CNN Brasil que conversou com Osmar Stabile sobre a situação do atacante e recomendou que o Timão não exerça a opção de compra"
-  },
-  {
-   "secao": "Futebol",
-   "fonte": "CNN Brasil",
-   "editoria": "Futebol",
-   "titulo": "À CNN, José Mendes promete negociar com SAFiel se eleito no Corinthians",
-   "link": "https://www.cnnbrasil.com.br/esportes/futebol/corinthians/a-cnn-jose-mendes-promete-negociar-com-safiel-se-eleito-no-corinthians/",
-   "data": "2026-11-17T20:13:58Z",
-   "resumo": "Candidato à presidência do Timão concedeu entrevista exclusiva e defendeu uma mudança de gestão no futebol do clube"
   },
   {
    "secao": "Futebol",
@@ -579,6 +585,48 @@
   },
   {
    "secao": "Mercado",
+   "fonte": "CNN Brasil",
+   "editoria": "Mercado",
+   "titulo": "Goldman Sachs rebaixa ações do Brasil e vê espaço menor para corte de juros",
+   "link": "https://www.cnnbrasil.com.br/economia/money/mercado/goldman-sachs-rebaixa-acoes-do-brasil-e-ve-espaco-menor-para-corte-de-juros/",
+   "data": "2026-11-18T01:00:26Z",
+   "resumo": "Por outro lado, avaliação sobre mercados emergentes vai na direção oposta e perspectiva é mais positiva com expectativa de cenário macroeconômico favorável, inflação em queda e redução das taxas básicas"
+  },
+  {
+   "secao": "Mercado",
+   "fonte": "CNN Brasil",
+   "editoria": "Mercado",
+   "titulo": "Queda nas vendas leva rede do KFC no Texas a pedir recuperação",
+   "link": "https://www.cnnbrasil.com.br/economia/money/negocios/queda-nas-vendas-leva-rede-do-kfc-no-texas-a-pedir-recuperacao/",
+   "data": "2026-11-18T00:52:10Z",
+   "resumo": "Vendas dos restaurantes recuaram aproximadamente 15,6% ao longo de três exercícios fiscais e, com aumento dos custos, as margens dos restaurantes diminuíram de 11,8% no exercício fiscal de 2023 para 4,0% até momento no e"
+  },
+  {
+   "secao": "Mercado",
+   "fonte": "CNN Brasil",
+   "editoria": "Mercado",
+   "titulo": "Gigantes da tecnologia podem ampliar volatilidade no crédito, diz Fitch",
+   "link": "https://www.cnnbrasil.com.br/economia/money/negocios/gigantes-da-tecnologia-podem-ampliar-volatilidade-no-credito-diz-fitch/",
+   "data": "2026-11-18T00:46:58Z",
+   "resumo": "Agência avalia que concentração das emissões em segmentos como tecnologia, telecomunicações e varejo reduz diversificação do mercado e amplia sua vulnerabilidade a mudanças na percepção dos investidores sobre a rentabili"
+  },
+  {
+   "secao": "Mercado",
+   "fonte": "CNN Brasil",
+   "editoria": "Mercado",
+   "titulo": "Conselho da Nvidia descarta retorno de Jensen Huang ao cargo de CEO",
+   "link": "https://www.cnnbrasil.com.br/economia/money/negocios/conselho-da-nvidia-descarta-retorno-de-jensen-huang-ao-cargo-de-ceo/",
+   "data": "2026-11-18T00:40:50Z",
+   "resumo": "declaração de Harvey Jones ao iniciar teleconferência sobre os resultados trimestrais foi uma resposta contundente ao movimento para trazer Huang de volta, que renunciou na semana passada",
+   "tambem": [
+    {
+     "fonte": "g1",
+     "link": "https://g1.globo.com/tecnologia/noticia/2026/11/15/ex-ceo-da-nvidia-jensen-huang-articula-retorno-ao-cargo-apos-escandalo-diz-jornal.ghtml"
+    }
+   ]
+  },
+  {
+   "secao": "Mercado",
    "fonte": "InfoMoney",
    "editoria": "Mercado",
    "titulo": "Dia de Sorte: confira o resultado do concurso 1350 sorteado nesta terça (17)",
@@ -594,42 +642,6 @@
    "link": "https://g1.globo.com/loterias/mega-sena/noticia/2026/11/17/mega-sena-concurso-3087-confira-os-numeros-sorteados.ghtml",
    "data": "2026-11-18T00:05:09Z",
    "resumo": "Mega-Sena, concurso 3.087: confira os números sorteados O sorteio do concurso 3.087 da Mega-Sena foi realizado na noite desta terça-feira (17), em São Paulo."
-  },
-  {
-   "secao": "Mercado",
-   "fonte": "CNN Brasil",
-   "editoria": "Mercado",
-   "titulo": "Ajuste fiscal aumenta impostos e não contém gastos, diz Fiesp",
-   "link": "https://www.cnnbrasil.com.br/economia/money/macroeconomia/ajuste-fiscal-aumenta-impostos-e-nao-contem-gastos-diz-fiesp/",
-   "data": "2026-11-17T23:54:51Z",
-   "resumo": "Entidade critica projeto em análise no Congresso e estima que mudanças tributárias podem elevar em R$ 105 por ano os gastos das famílias de menor renda"
-  },
-  {
-   "secao": "Mercado",
-   "fonte": "CNN Brasil",
-   "editoria": "Mercado",
-   "titulo": "Precatórios: Revisão pelo CNJ pode afetar caixa da União e venda de crédito",
-   "link": "https://www.cnnbrasil.com.br/economia/money/macroeconomia/precatorios-revisao-pelo-cnj-pode-afetar-caixa-da-uniao-e-venda-de-credito/",
-   "data": "2026-11-17T23:38:44Z",
-   "resumo": "Corregedoria já determinou devolução ao Tesouro dos valores de 16 precatórios cancelados; OAB quer que fiscalização preserve créditos expedidos de acordo com regra do STF"
-  },
-  {
-   "secao": "Mercado",
-   "fonte": "CNN Brasil",
-   "editoria": "Mercado",
-   "titulo": "IA impulsionou operações globalmente, diz presidente da Dell Technologies",
-   "link": "https://www.cnnbrasil.com.br/economia/money/negocios/ia-impulsionou-operacoes-globalmente-diz-presidente-da-dell-technologies/",
-   "data": "2026-11-17T23:13:34Z",
-   "resumo": "Diego Puerta destaca crescimento acelerado da Dell e aposta na fabricação local de servidores para inteligência artificial no Brasil"
-  },
-  {
-   "secao": "Mercado",
-   "fonte": "CNN Brasil",
-   "editoria": "Mercado",
-   "titulo": "Ibovespa terá BDRs de empresas brasileiras a partir de 2027",
-   "link": "https://www.cnnbrasil.com.br/economia/money/mercado/ibovespa-tera-bdrs-de-empresas-brasileiras-a-partir-de-2027/",
-   "data": "2026-11-17T22:50:44Z",
-   "resumo": "Inclusão dependerá do cumprimento das regras de elegibilidade e seleção em cada período de rebalanceamento"
   },
   {
    "secao": "Mercado",
@@ -860,37 +872,43 @@
    "secao": "Ciência e Saúde",
    "fonte": "CNN Brasil",
    "editoria": "Ciência e Saúde",
+   "titulo": "Estudo identifica padrões de linguagem ligados a traços de psicopatia",
+   "link": "https://www.cnnbrasil.com.br/saude/estudo-identifica-padroes-de-linguagem-ligados-a-tracos-de-psicopatia/",
+   "data": "2026-11-18T00:58:11Z",
+   "resumo": "Psiquiatra Elaine Bida esclarece que diferenças de linguagem observadas em grupos não substituem a avaliação clínica estruturada"
+  },
+  {
+   "secao": "Ciência e Saúde",
+   "fonte": "CNN Brasil",
+   "editoria": "Ciência e Saúde",
+   "titulo": "Brasil amplia defesa e anuncia novo sistema de ‘satélites’ para proteção da comunicação estratégica nacional",
+   "link": "https://www.cnnbrasil.com.br/ciencia/brasil-amplia-defesa-e-anuncia-novo-sistema-de-satelites-para-protecao-da-comunicacao-estrategica-nacional/",
+   "data": "2026-11-18T00:52:23Z",
+   "resumo": "Medida procura fortalecer a indústria nacional com satélites totalmente desenvolvidos e operados no Brasil, planejando missões desde o seu planejamento até o descarte do satélite"
+  },
+  {
+   "secao": "Ciência e Saúde",
+   "fonte": "CNN Brasil",
+   "editoria": "Ciência e Saúde",
+   "titulo": "Chuva de meteoros Leônidas atinge pico nesta terça-feira (17); fenômeno pode ser visto em todo o Brasil",
+   "link": "https://www.cnnbrasil.com.br/ciencia/chuva-de-meteoros-leonidas-atinge-pico-nesta-terca-feira-17-fenomeno-pode-ser-visto-em-todo-o-brasil/",
+   "data": "2026-11-18T00:43:55Z",
+   "resumo": "Fenômeno astronômico poderá pôde ser observado em locais com pouca iluminação; especialista recomenda observar a olho nu",
+   "tambem": [
+    {
+     "fonte": "Olhar Digital",
+     "link": "https://olhardigital.com.br/2026/11/17/ciencia-e-espaco/chuva-de-meteoros-rasga-os-ceus-do-brasil-esta-semana-e-voce-pode-ver/"
+    }
+   ]
+  },
+  {
+   "secao": "Ciência e Saúde",
+   "fonte": "CNN Brasil",
+   "editoria": "Ciência e Saúde",
    "titulo": "Novas tecnologias transformam o tratamento do câncer de próstata",
    "link": "https://www.cnnbrasil.com.br/saude/novas-tecnologias-transformam-o-tratamento-do-cancer-de-prostata/",
    "data": "2026-11-17T22:38:31Z",
    "resumo": "Da vigilância ativa aos radiofármacos, o oncologista Fernando Maluf aborda opções que ampliam o controle da doença e ajudam a preservar a qualidade de vida"
-  },
-  {
-   "secao": "Ciência e Saúde",
-   "fonte": "CNN Brasil",
-   "editoria": "Ciência e Saúde",
-   "titulo": "Fiona, a famosa hipopótamo do zoológico de Cincinnati, está sob observação médica após engolir um gorro de tricô",
-   "link": "https://www.cnnbrasil.com.br/ciencia/fiona-a-famosa-hipopotamo-do-zoologico-de-cincinnati-esta-sob-observacao-medica-apos-engolir-um-gorro-de-trico/",
-   "data": "2026-11-17T22:01:20Z",
-   "resumo": "A touca de tricô foi jogada para o ar em frente ao habitat e apanhada por um ventilador de teto, que a catapultou através de uma abertura de 30 centímetros acima das janelas de observação de 3,6 metros de altura"
-  },
-  {
-   "secao": "Ciência e Saúde",
-   "fonte": "CNN Brasil",
-   "editoria": "Ciência e Saúde",
-   "titulo": "Como as abelhas sem ferrão no Peru se tornaram os primeiros insetos do mundo a receber direitos legais",
-   "link": "https://www.cnnbrasil.com.br/ciencia/como-as-abelhas-sem-ferrao-no-peru-se-tornaram-os-primeiros-insetos-do-mundo-a-receber-direitos-legais/",
-   "data": "2026-11-17T21:40:17Z",
-   "resumo": "Legislação pioneira no mundo busca proteger mais de 175 espécies nativas contra o desmatamento, pesticidas e mudanças climáticas no país"
-  },
-  {
-   "secao": "Ciência e Saúde",
-   "fonte": "CNN Brasil",
-   "editoria": "Ciência e Saúde",
-   "titulo": "Donzelas do gelo: três crianças acabaram entre as famosas ‘múmias de gelo’ incas, em sacrifícios humanos em um ritual conhecido como capacocha",
-   "link": "https://www.cnnbrasil.com.br/ciencia/donzelas-do-gelo-tres-criancas-acabaram-entre-as-famosas-mumias-de-gelo-incas-em-sacrificios-humanos-em-um-ritual-conhecido-como-capacocha/",
-   "data": "2026-11-17T21:18:46Z",
-   "resumo": "Exames químicos em múmias dos Andes indicam uso prolongado de drogas e bebidas alcoólicas antes dos rituais"
   },
   {
    "secao": "Ciência e Saúde",
@@ -981,21 +999,21 @@
   },
   {
    "secao": "Ciência e Saúde",
-   "fonte": "Olhar Digital",
-   "editoria": "Ciência e Saúde",
-   "titulo": "Chuva de meteoros rasga os céus do Brasil esta semana – e você pode ver!",
-   "link": "https://olhardigital.com.br/2026/11/17/ciencia-e-espaco/chuva-de-meteoros-rasga-os-ceus-do-brasil-esta-semana-e-voce-pode-ver/",
-   "data": "2026-11-17T11:55:00Z",
-   "resumo": "Chuva de meteoros Leônidas atinge o pico nesta semana e pode ser observada a olho nu em todo o Brasil."
-  },
-  {
-   "secao": "Ciência e Saúde",
    "fonte": "g1",
    "editoria": "Ciência e Saúde",
    "titulo": "Brucelose passa a ter notificação compulsória; entenda o que é a doença, o que significa a medida e motivação",
    "link": "https://g1.globo.com/saude/noticia/2026/11/17/brucelose-passa-a-ter-notificacao-compulsoria-entenda-o-que-e-a-doenca-o-que-significa-a-medida-e-motivacao.ghtml",
    "data": "2026-11-17T11:37:19Z",
    "resumo": "Bactérias do gênero Brucella responsáveis pela doença brucelose humana."
+  },
+  {
+   "secao": "Ciência e Saúde",
+   "fonte": "g1",
+   "editoria": "Ciência e Saúde",
+   "titulo": "EUA perdem status de país livre do sarampo após 26 anos; entenda o que significa e como o país chegou até aqui",
+   "link": "https://g1.globo.com/saude/noticia/2026/11/17/eua-deixam-de-ser-pais-livre-do-sarampo-pais-vive-o-pior-cenario-desde-que-eliminou-a-doenca-nos-anos-2000.ghtml",
+   "data": "2026-11-17T10:39:51Z",
+   "resumo": "Vacinação por sarampo nos Estados Unidos Arte/g1 Os Estados Unidos perderam o status de país livre do sarampo após 26 anos, segundo informações de uma fonte na Casa Branca."
   }
  ],
  "erros": []
