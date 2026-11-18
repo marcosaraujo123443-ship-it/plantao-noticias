@@ -60,8 +60,21 @@ def a(i, cls=""):
 
 def resumo(i): return f'<p>{e(i["resumo"])}</p>' if i.get("resumo") else ""
 
-# Manchete: a mais recente com resumo (senão a mais recente)
-lead = itens[0]
+# Foto da notícia (a do próprio veículo, com link para a matéria). Passa pelo wsrv.nl, que redimensiona e entrega
+# em WebP leve; se falhar, tenta o endereço original; se também falhar, a moldura some.
+def foto(i, w, h, cls="th", eager=False):
+    u = i.get("img")
+    if not u: return ""
+    q = urllib.parse.quote(u, safe="")
+    src = f"https://wsrv.nl/?url={q}&w={w}&h={h}&fit=cover&a=attention&output=webp&q=72"
+    src2 = f"https://wsrv.nl/?url={q}&w={w*2}&h={h*2}&fit=cover&a=attention&output=webp&q=62"
+    lz = 'fetchpriority="high"' if eager else 'loading="lazy" decoding="async"'
+    return (f'<a class="{cls}" href="{e(i["link"])}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">'
+            f'<img src="{e(src)}" srcset="{e(src)} 1x, {e(src2)} 2x" width="{w}" height="{h}" alt="" {lz} referrerpolicy="no-referrer" '
+            f'data-o="{e(u)}" onerror="if(this.dataset.o){{this.srcset=\'\';this.src=this.dataset.o;this.dataset.o=\'\'}}else{{this.parentNode.remove()}}"></a>')
+
+# Manchete: entre as 4 mais recentes, a primeira com foto (senão a mais recente)
+lead = next((i for i in itens[:4] if i.get("img")), itens[0])
 # Resumo do Plantão (escrito por IA no resumo.py); some se tiver mais de 14 horas
 resumo_html = ""
 if res and (upd - parse(res["gerado_utc"])).total_seconds() < 14 * 3600:
@@ -124,14 +137,15 @@ if ag.get("data") == f"{upd:%Y-%m-%d}" and ag.get("itens"):
                    f'<small>{upd.day} de {MESES[upd.month-1]}</small></h2><ol>{"".join(lis)}</ol>{extra}'
                    '<p class="ag-fonte">Fontes: Câmara dos Deputados, Senado Federal, Banco Central, INMET e ESPN. Horários de Brasília.</p></section>')
 
-lead_html = f'''<article class="lead">
+lead_html = f'''<article class="lead{' com-foto' if lead.get('img') else ''}">
+  {foto(lead, 800, 450, "th th-lead", True)}
   {meta(lead, True)}
   <h2>{a(lead)}</h2>
   {f'<p>{e(lead["resumo"])}</p>' if lead.get("resumo") else ""}
 </article>'''
 # Destaques: a mais recente de cada seção (exceto a da manchete)
 dest = [por_sec[s][0] for s in SECOES if por_sec[s] and por_sec[s][0]["link"] != lead["link"]][:4]
-dest_html = "".join(f'<article class="dest">{meta(i, True)}<h3>{a(i)}</h3></article>' for i in dest)
+dest_html = "".join(f'<article class="dest">{foto(i, 220, 220, "th th-q")}<div>{meta(i, True)}<h3>{a(i)}</h3></div></article>' for i in dest)
 
 blocos = ""
 for s in SECOES:
@@ -139,7 +153,7 @@ for s in SECOES:
     lst = [i for i in por_sec[s] if i["link"] not in usados][:5]
     if not lst: continue
     extra = '<div class="mini-ind" data-mini></div>' if s == "Mercado" else ""
-    li = "".join(f'<li>{meta(i)}<h4>{a(i)}</h4></li>' for i in lst)
+    li = "".join(f'<li>{foto(i, 640, 360, "th th-b") if k == 0 else ""}{meta(i)}<h4>{a(i)}</h4></li>' for k, i in enumerate(lst))
     blocos += f'''<section class="bloco s-{slug(s)}">
   <header><h2>{e(s)}</h2><a class="ver" href="#{slug(s)}" data-tab="{slug(s)}">Ver tudo →</a></header>
   {extra}<ol>{li}</ol>
@@ -247,7 +261,7 @@ if _ec:
 
 paginas = ""
 for s in SECOES:
-    li = "".join(f'<li>{meta(i)}<h4>{a(i)}</h4>{resumo(i)}</li>' for i in por_sec[s])
+    li = "".join(f'<li class="{"cf" if i.get("img") else ""}"><div class="lt">{meta(i)}<h4>{a(i)}</h4>{resumo(i)}</div>{foto(i, 240, 160, "th th-l")}</li>' for i in por_sec[s])
     painel = ""
     if s == "Política":
         painel = '''<div class="painel contas" data-contas>''' + congresso_html + '''<div data-mapa-contas></div>

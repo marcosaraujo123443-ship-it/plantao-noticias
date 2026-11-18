@@ -4,6 +4,7 @@ data: 2026-11-07T09:30:00-03:00
 autor: Redação Plantão Informa
 rotulo: Análise
 editoria: Agro
+tldr: O boi gordo vive o melhor momento de preços em três décadas, com oferta curta de animais. | A Conab projeta safras recordes de soja e milho, mas a margem dos grãos segue apertada. | O Brasil importa cerca de 85% dos fertilizantes, e os bioinsumos avançam como alternativa. | As tarifas dos Estados Unidos e as cotas de exportação entram na conta do produtor.
 ---
 O pecuarista vive um momento raro. O indicador do boi gordo do Cepea/Esalq, referência para o estado de São Paulo, fechou a sexta-feira (6) em **R$ 392,70 por arroba**, nova máxima nominal. Em outubro, a média mensal foi de R$ 379,55, **o maior valor real desde o início da série, em 1994**, com alta de 7,5% sobre setembro e de quase 18% em um ano, já descontada a inflação. No mercado futuro da B3, o contrato de novembro é negociado acima de R$ 406, sinal de que o mercado espera preços firmes até o começo de 2027.
 

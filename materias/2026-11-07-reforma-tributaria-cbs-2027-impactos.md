@@ -4,6 +4,7 @@ data: 2026-11-07T09:40:00-03:00
 autor: Redação Plantão Informa
 rotulo: Análise
 editoria: Mercado
+tldr: O TCU calculou em 11,3% a alíquota da CBS, que substitui PIS e Cofins a partir de janeiro de 2027. | Somadas, CBS e IBS podem passar do teto previsto e ficar entre as alíquotas mais altas do mundo. | Varejo e distribuição precisam revisar preços, bonificações e o aproveitamento de créditos. | Os dois sistemas convivem por sete anos, e adaptar sistemas e contratos agora custa menos do que corrigir depois.
 ---
 Faltam menos de dois meses para a reforma tributária sair do papel de verdade. No fim de outubro, o Tribunal de Contas da União (TCU) calculou em **11,3%** a alíquota de referência da CBS, a Contribuição sobre Bens e Serviços, que a partir de 1º de janeiro de 2027 substitui o PIS e a Cofins. O número foi enviado ao Senado, que tem até 22 de dezembro para fixá-lo por resolução. Se o Senado não votar, vale o percentual do TCU.
 

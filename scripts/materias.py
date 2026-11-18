@@ -25,7 +25,7 @@ def corpo_html(texto):
         if img:
             out.append(f'<figure><img src="{img.group(2)}" alt="{e(img.group(1))}" loading="lazy" width="1200" height="640">'
                        f'<figcaption>{e(img.group(1))}</figcaption></figure>'); continue
-        if b.startswith("## "): out.append(f"<h2>{inline(b[3:])}</h2>")
+        if b.startswith("## "): out.append(f'<h2 id="{slug(b[3:])[:60]}">{inline(b[3:])}</h2>')
         elif b.startswith("### "): out.append(f"<h3>{inline(b[4:])}</h3>")
         elif all(l.strip().startswith("- ") for l in b.splitlines()):
             out.append("<ul>" + "".join(f"<li>{inline(l.strip()[2:])}</li>" for l in b.splitlines()) + "</ul>")
@@ -44,6 +44,9 @@ def ler_materias(pasta="materias"):
         m["dt"] = datetime.fromisoformat(m.get("data") or nome[:10])
         m["texto"] = texto
         m["html"] = corpo_html(texto)
+        # sumário (intertítulos "## ") e "Em 30 segundos" (campo tldr: itens separados por " | ")
+        m["sumario"] = [(slug(h)[:60], re.sub(r"\*\*(.+?)\*\*", r"\1", h)) for h in re.findall(r"^## (.+)$", texto, re.M)]
+        m["tldr"] = [x.strip() for x in m.get("tldr", "").split(" | ") if x.strip()]
         m["palavras"] = len(re.findall(r"\w+", texto))
         m["minutos"] = max(1, round(m["palavras"] / 200))
         m.setdefault("rotulo", "Análise"); m.setdefault("autor", "Redação Plantão Informa")

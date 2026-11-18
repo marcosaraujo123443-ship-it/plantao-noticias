@@ -4,6 +4,7 @@ data: 2026-11-03T22:30:00-03:00
 autor: Redação Plantão Informa
 rotulo: Análise
 editoria: Mercado
+tldr: André Lara Resende propõe levar a Selic a 7,5% em um ano e criar um conselho para definir as metas do Banco Central. | O efeito mais imediato tende a aparecer nos juros longos, no dólar e na inflação esperada. | A economia com juros da dívida só fecha se juros longos e inflação não subirem, e o novo conselho exigiria mudar a lei de autonomia do BC no Congresso. | Cenário mais provável: a ideia não é adotada como está, mas pressiona por cortes mais rápidos da Selic.
 ---
 Logo depois da reeleição do presidente Lula, uma proposta do economista André Lara Resende voltou ao centro do debate econômico. Um dos formuladores do Plano Real e ex-presidente do BNDES, ele defende reduzir a taxa básica de juros, hoje em 13,75% ao ano, para cerca de 7,5% em até 12 meses. Depois disso, a Selic ficaria numa faixa permanente entre 3% e 5,5%. A notícia de que ele poderia se reunir com o presidente bastou para deixar o mercado financeiro em alerta.
 

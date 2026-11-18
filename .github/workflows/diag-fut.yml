@@ -1,4 +1,4 @@
-name: diag-feeds
+name: diag-upgrade
 on: workflow_dispatch
 permissions:
   contents: write
@@ -8,20 +8,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          mkdir /tmp/out; i=0
-          while read u; do i=$((i+1)); curl -sL -m 30 -A "Mozilla/5.0 (compatible; PlantaoNoticias/1.0)" "$u" -o /tmp/out/feed$i.xml; echo "$i $u" >> /tmp/out/index.txt; done < .github/diag-urls.txt
-          python3 - <<'PY'
-          import json,re,urllib.request
-          d=json.load(open('noticias.json'))
-          seen=set();out={}
-          for it in d['itens']:
-              if it['fonte'] in seen: continue
-              seen.add(it['fonte'])
-              try:
-                  h=urllib.request.urlopen(urllib.request.Request(it['link'],headers={"User-Agent":"Mozilla/5.0 (compatible; PlantaoNoticias/1.0)"}),timeout=20).read(300000).decode('utf-8','ignore')
-                  m=re.search(r'<meta[^>]+property=["\']og:image["\'][^>]*>',h); out[it['fonte']]=m.group(0) if m else 'SEM'
-              except Exception as e: out[it['fonte']]=repr(e)
-          json.dump(out,open('/tmp/out/og.json','w'),ensure_ascii=False,indent=1)
-          PY
+          python3 scripts/noticias.py | tail -5
+          python3 scripts/gerar.py . mercado.json index.html
+          mkdir -p /tmp/out && cp noticias.json /tmp/out/
+          npm i playwright@1.47.2 >/dev/null 2>&1 && npx playwright install chromium >/dev/null 2>&1
+          (python3 -m http.server 8771 >/dev/null 2>&1 &) ; sleep 2
+          cat > s.js <<'JS'
+          const {chromium}=require('playwright');
+          (async()=>{const b=await chromium.launch();
+          for (const [nm,vp] of [['d',{width:1366,height:900}],['m',{width:390,height:844}]]){
+           const p=await b.newPage({viewport:vp,deviceScaleFactor:1});
+           await p.goto('http://localhost:8771/index.html',{waitUntil:'networkidle'}).catch(()=>{});
+           await p.waitForTimeout(4000);
+           await p.evaluate(()=>{const f=document.querySelector('.ferr');f&&f.scrollIntoView()});await p.waitForTimeout(1500);
+           await p.screenshot({path:`/tmp/out/${nm}-capa.png`});
+           await p.evaluate(()=>scrollBy(0,innerHeight*1.5));await p.waitForTimeout(2500);
+           await p.screenshot({path:`/tmp/out/${nm}-capa2.png`});
+           await p.evaluate(()=>{scrollTo(0,0);document.querySelector('[data-tab="futebol"]').click()});await p.waitForTimeout(3000);
+           await p.screenshot({path:`/tmp/out/${nm}-fut.png`});
+           const r=await p.evaluate(()=>{const im=[...document.querySelectorAll('.th img')];return {total:im.length,ok:im.filter(i=>i.complete&&i.naturalWidth>0).length,orig:im.filter(i=>!i.dataset.o).length}});
+           require('fs').writeFileSync(`/tmp/out/${nm}-imgs.json`,JSON.stringify(r));
+           await p.close()}
+          await b.close()})();
+          JS
+          node s.js
           cd /tmp/out && git init -q && git checkout -q -b diag-dados && git add . && git -c user.name=diag -c user.email=diag@x commit -qm diag
           git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" diag-dados

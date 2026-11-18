@@ -481,7 +481,45 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 .tp-sel select,[data-agro] .ag-pr select,.filtros-uf select,.calc-in input,.calc-in select{border-radius:var(--r-s)}
 .rd-nav button{border-radius:12px;transition:background .15s}.rd-nav button:hover:not(:disabled){background:color-mix(in srgb,var(--brand) 10%,var(--paper))}
 .faixa{padding-block:16px 0}
-main.gut{gap:38px}
+main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-columns:minmax(0,1fr)}.capa>*{min-width:0}
+
+/* ===== Fotos das notícias e capa em destaque ===== */
+.th{display:block;min-width:0;max-width:100%;overflow:hidden;background:color-mix(in srgb,var(--rule) 60%,var(--card));position:relative}
+.th img{display:block;width:100%;max-width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){a.th:hover img,.lead:hover .th img,.dest:hover .th img,.bloco li:hover .th img,.lista li:hover .th img{transform:scale(1.04)}}
+.lead.com-foto{padding:0;gap:0;min-width:0;grid-template-columns:minmax(0,1fr)}
+.lead.com-foto>:not(.th){margin-inline:24px}
+.lead.com-foto>.meta{margin-top:20px}.lead.com-foto>h2{margin-top:10px}.lead.com-foto>p{margin-top:10px;margin-bottom:24px}
+.lead.com-foto>h2:last-child{margin-bottom:24px}
+.th-lead{aspect-ratio:16/9}@media (min-width:901px){.th-lead{aspect-ratio:2/1}}
+.th-lead::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(transparent,rgba(7,20,40,.28));pointer-events:none}
+.dests{gap:0}
+.dest{grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:start}
+.dest>div{display:grid;gap:5px;min-width:0}
+.th-q{width:96px;height:96px;border-radius:12px;flex:none}
+.dest:not(:has(.th)){grid-template-columns:minmax(0,1fr)}
+.th-b{aspect-ratio:16/9;border-radius:12px;margin-bottom:10px}
+.bloco li:first-child h4{font-size:19.5px}
+.lista li.cf{grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:start}
+.lt{display:grid;gap:4px;min-width:0}
+.th-l{width:150px;aspect-ratio:3/2;border-radius:12px;margin-top:2px}
+@media (max-width:600px){.th-l{width:96px;aspect-ratio:1}.th-q{width:84px;height:84px}.lead.com-foto>:not(.th){margin-inline:16px}.lista li.cf{gap:12px}}
+@media (max-width:900px){.dests{margin-top:4px}}
+/* entrada suave ao rolar (só com JS e sem "reduzir movimento") */
+.js-rv .rv{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
+.js-rv .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js-rv .rv{opacity:1;transform:none;transition:none}}
+.blocos>.bloco{content-visibility:auto;contain-intrinsic-size:auto 640px}
+
+.vivo .ha{font:inherit;color:var(--ink-2);white-space:nowrap}.vivo{flex-wrap:wrap;row-gap:0}.faixa{min-width:0;max-width:100%}
+.mp{position:fixed;z-index:20;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:min(560px,calc(100% - 24px));display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:4px 12px;padding:10px 12px;border-radius:18px;background:color-mix(in srgb,var(--band) 92%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:var(--band-ink);box-shadow:0 18px 40px -14px rgba(0,0,0,.55);animation:mpin .3s cubic-bezier(.2,.7,.2,1)}
+@keyframes mpin{from{opacity:0;transform:translate(-50%,16px)}}
+.mp button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.mp-b{width:40px;height:40px;border-radius:50%;background:var(--brand)!important;color:#fff!important;font:700 14px var(--f-body)!important;display:grid;place-items:center}
+.mp-t{display:grid;text-align:left;min-width:0}.mp-t b{font:700 14px var(--f-body)}.mp-t small{font:500 12px var(--f-mono);opacity:.8}
+.mp-x{width:34px;height:34px;border-radius:50%;opacity:.75}.mp-x:hover{opacity:1;background:rgba(255,255,255,.1)!important}
+.mp-bar{grid-column:1/-1;height:3px;border-radius:3px;background:rgba(255,255,255,.18);overflow:hidden}.mp-bar i{display:block;height:100%;width:0;background:var(--brand);transition:width .3s linear}
+@media (prefers-reduced-motion:reduce){.mp{animation:none}}
 </style>
 
 <header class="topo">
@@ -516,12 +554,12 @@ main.gut{gap:38px}
     <ol class="tl" data-bl></ol>
   </section>
   <div class="pagina" id="pg-inicio" data-pg="inicio">
-    {{AGENDA}}
-    {{RESUMO}}
     <section class="capa" aria-label="Destaques">
       {{LEAD}}
       <div class="dests">{{DESTAQUES}}</div>
     </section>
+    {{RESUMO}}
+    {{AGENDA}}
     {{ANALISES}}
     <div class="blocos" style="margin-top:30px">{{BLOCOS}}</div>
   </div>
@@ -535,7 +573,7 @@ main.gut{gap:38px}
 
 <footer>
   <div class="gut">
-    <p><b>Plantão Informa</b> reúne {{TOTAL}} manchetes de {{NFONTES}} fontes: {{FONTES}}. Títulos pertencem aos veículos de origem; cada link leva à matéria original.</p>
+    <p><b>Plantão Informa</b> reúne {{TOTAL}} manchetes de {{NFONTES}} fontes: {{FONTES}}. Títulos e imagens pertencem aos veículos de origem; cada link leva à matéria original.</p>
     <p>Cotações com atraso, apenas informativas. Não são recomendação de investimento.</p>
     <p class="links-rod">Siga o Plantão: {{REDES_ROD}}</p>
     <p class="links-rod"><a href="contas/">Contas públicas</a> · <a href="tabelas/">Tabelas do futebol</a> · <a href="agro">Cotações do agro</a> · <a href="acoes">Ações</a> · <a href="fiis">Fundos imobiliários</a> · <a href="indicadores">Indicadores econômicos</a></p>
@@ -1262,7 +1300,32 @@ main.gut{gap:38px}
 })();
 (function(){
   function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-  (function(){var v=document.querySelector('[data-vivo]'); if(!v) return; function ver(){var t=Date.parse(v.dataset.upd); var velho=t&&Date.now()-t>2.5*3600e3; v.classList.toggle('velho',!!velho); v.title=velho?'A última atualização tem mais de 2 horas':'Sistema no ar: manchetes atualizadas de hora em hora'} ver(); setInterval(ver,60000)})();
+  (function(){var v=document.querySelector('[data-vivo]'); if(!v) return; function ver(){var t=Date.parse(v.dataset.upd); var velho=t&&Date.now()-t>2.5*3600e3; v.classList.toggle('velho',!!velho); v.title=velho?'A última atualização tem mais de 2 horas':'Sistema no ar: manchetes atualizadas de hora em hora';
+    var r=v.querySelector('.ha')||v.appendChild(Object.assign(document.createElement('small'),{className:'ha'})); var m=t?Math.max(0,Math.round((Date.now()-t)/60000)):null;
+    r.textContent=m==null?'':m<1?' · agora':m<60?' · há '+m+' min':m<1440?' · há '+Math.floor(m/60)+' h'+(m%60?' '+(m%60)+' min':''):''} ver(); setInterval(ver,60000)})();
+  /* entrada suave dos cartões ao rolar */
+  (function(){ if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var els=[].slice.call(document.querySelectorAll('.bloco,.anl-b,.lista li,.quadro,.ix')); if(!els.length) return;
+    document.documentElement.classList.add('js-rv');
+    var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{rootMargin:'0px 0px -6% 0px'});
+    var alt=innerHeight; els.forEach(function(el){var b=el.getBoundingClientRect(); if(b.top<alt&&b.bottom>0) el.classList.add('in'); el.classList.add('rv'); io.observe(el)});
+    /* abas trocadas: o que já está na tela aparece na hora */
+    document.addEventListener('click',function(ev){if(ev.target.closest('[data-tab]')) setTimeout(function(){els.forEach(function(el){var b=el.getBoundingClientRect(); if(b.top<innerHeight&&b.bottom>0) el.classList.add('in')})},60)});
+  })();
+  /* mini-player: o Resumo do Plantão continua visível no rodapé enquanto toca e o leitor navega */
+  (function(){ var box=document.querySelector('.ouca'), au=box&&box.querySelector('audio'); if(!au) return;
+    var mp=document.createElement('div'); mp.className='mp'; mp.hidden=true; mp.setAttribute('role','region'); mp.setAttribute('aria-label','Resumo do Plantão tocando');
+    mp.innerHTML='<button type="button" class="mp-b" data-mpb aria-label="Pausar">❚❚</button><button type="button" class="mp-t" data-mpv><b>Resumo do Plantão</b><small data-mpt>0:00</small></button><span class="mp-bar"><i data-mpi></i></span><button type="button" class="mp-x" data-mpx aria-label="Fechar">✕</button>';
+    document.body.appendChild(mp); var vis=true;
+    function f(t){t=Math.floor(t||0);return Math.floor(t/60)+':'+String(t%60).padStart(2,'0')}
+    function upd(){ mp.hidden=au.paused&&!mp.dataset.on||vis; var b=mp.querySelector('[data-mpb]'); b.textContent=au.paused?'▶':'❚❚'; b.setAttribute('aria-label',au.paused?'Tocar':'Pausar');
+      mp.querySelector('[data-mpt]').textContent=f(au.currentTime)+(au.duration?' / '+f(au.duration):''); mp.querySelector('[data-mpi]').style.width=(au.duration?au.currentTime/au.duration*100:0)+'%'; }
+    new IntersectionObserver(function(es){vis=es[0].isIntersecting; upd()}).observe(box);
+    ['play','pause','timeupdate','ended','loadedmetadata'].forEach(function(n){au.addEventListener(n,function(){ if(n==='play') mp.dataset.on=1; if(n==='ended') delete mp.dataset.on; upd()})});
+    mp.addEventListener('click',function(ev){ if(ev.target.closest('[data-mpb]')) au.paused?au.play():au.pause();
+      else if(ev.target.closest('[data-mpx]')){au.pause(); delete mp.dataset.on; upd()}
+      else if(ev.target.closest('[data-mpv]')){var t=document.querySelector('[data-tab="inicio"]'); if(t&&box.offsetParent===null) t.click(); box.scrollIntoView({behavior:'smooth',block:'center'})} });
+  })();
   /* Pregão da B3: 10h às 17h quando os EUA estão no horário de verão; 10h às 18h no resto do ano (horário de Brasília) */
   function pascoa(a){var b=a%19,c=Math.floor(a/100),d=a%100,e=Math.floor(c/4),f=c%4,g=Math.floor((c+8)/25),h=Math.floor((c-g+1)/3),i=(19*b+c-e-h+15)%30,k=Math.floor(d/4),l=d%4,m=(32+2*f+2*k-i-l)%7,n=Math.floor((b+11*i+22*m)/451),mes=Math.floor((i+m-7*n+114)/31),dia=(i+m-7*n+114)%31+1;return Date.UTC(a,mes-1,dia)}
   function iso(t){return new Date(t).toISOString().slice(0,10)}

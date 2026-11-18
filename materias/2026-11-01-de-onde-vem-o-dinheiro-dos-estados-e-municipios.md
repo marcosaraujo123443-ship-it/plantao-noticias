@@ -4,6 +4,7 @@ data: 2026-11-01T21:45:00-03:00
 autor: Redação Plantão Informa
 rotulo: Análise
 editoria: Contas públicas
+tldr: A carga tributária gira em torno de 32% do PIB; cerca de dois terços ficam com a União, um quarto com os estados e pouco mais de 7% com os municípios, antes dos repasses. | O ICMS é o imposto que mais arrecada no país e sustenta os estados; o FPE completa o caixa com parte do IR e do IPI. | Em cerca de 4 de cada 10 municípios, 90% ou mais da receita vem de repasses, como FPM, 25% do ICMS e 50% do IPVA. | Com a reforma, ICMS e ISS dão lugar ao IBS até 2033, cobrado no destino, onde o produto é consumido.
 ---
 Quando compramos um pãozinho, abastecemos o carro ou recebemos o salário, uma fatia desse dinheiro vai para os cofres públicos. No Brasil, a carga tributária gira em torno de 32% do Produto Interno Bruto (PIB), segundo a Receita Federal. A forma como esse "bolo" é dividido entre a União (governo federal), os estados e os municípios, porém, é complexa e cheia de regras.
 
