@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 UA = {"User-Agent": "Mozilla/5.0 (compatible; PlantaoNoticias/1.0)"}
 LIGAS = [("bra.1", "Brasileirão Série A"), ("bra.2", "Brasileirão Série B"), ("eng.1", "Premier League (Inglaterra)"),
          ("esp.1", "La Liga (Espanha)"), ("ita.1", "Serie A (Itália)"), ("ger.1", "Bundesliga (Alemanha)"),
-         ("fra.1", "Ligue 1 (França)"), ("por.1", "Liga Portugal"), ("uefa.champions", "Champions League"),
+         ("fra.1", "Ligue 1 (França)"), ("por.1", "Liga Portugal"), ("uefa.champions", "Champions League"), ("conmebol.libertadores", "Copa Libertadores"),
          ("arg.1", "Campeonato Argentino")]
 
 def get(url):
@@ -58,7 +58,62 @@ def jogo(ev):
     return {"id": ev.get("id"), "data": ev.get("date"), "estado": st.get("state"), "detalhe": st.get("shortDetail") or st.get("detail"),
             "casa": time_jogo(casa), "fora": time_jogo(fora), "local": (comp.get("venue") or {}).get("fullName"),
             "_adiado": st.get("name") == "STATUS_POSTPONED",
+            "_gols": [(minuto(x), (x.get("team") or {}).get("id")) for x in comp.get("details") or [] if x.get("scoringPlay") and not x.get("shootout")],
             "_temp": "{year}/{type}/{slug}".format(**{"year": "", "type": "", "slug": "", **(ev.get("season") or {})})}
+
+def minuto(x):
+    try: return int(str((x.get("clock") or {}).get("displayValue") or "0").split("'")[0])
+    except ValueError: return int(((x.get("clock") or {}).get("value") or 0) // 60)
+
+FAIXAS = ["0-15", "16-30", "31-45", "46-60", "61-75", "76-90"]
+def faixa(m): return 0 if m <= 15 else 1 if m <= 30 else 2 if m <= 45 else 3 if m <= 60 else 4 if m <= 75 else 5
+
+def pct(n, d): return round(100 * n / d) if d else None
+
+def resumo_jogos(lst, tid):
+    """Indicadores de um conjunto de jogos encerrados do time (lista já em ordem cronológica)."""
+    j = len(lst)
+    if not j: return None
+    gm = gs = v = e = btts = o15 = o25 = cs = fm = 0; marc, sofr, forma = [0] * 6, [0] * 6, ""
+    for g in lst:
+        casa = g["casa"]["id"] == tid
+        a, b = (g["casa"]["gols"], g["fora"]["gols"]) if casa else (g["fora"]["gols"], g["casa"]["gols"])
+        gm += a; gs += b; v += a > b; e += a == b
+        forma += "V" if a > b else "E" if a == b else "D"
+        btts += a > 0 and b > 0; o15 += a + b > 1; o25 += a + b > 2; cs += b == 0; fm += a == 0
+        for m, t in g.get("_gols", []):
+            (marc if t == tid else sofr)[faixa(m)] += 1
+    return {"j": j, "v": v, "e": e, "d": j - v - e, "gm": gm, "gs": gs, "mgm": round(gm / j, 2), "mgs": round(gs / j, 2),
+            "btts": pct(btts, j), "o15": pct(o15, j), "o25": pct(o25, j), "cs": pct(cs, j), "fm": pct(fm, j),
+            "forma": forma[-5:], "marc": marc, "sofr": sofr}
+
+def estatisticas(js):
+    """Raio-X de cada time nos últimos 10 jogos da temporada: geral, como mandante e como visitante."""
+    fim = sorted((g for g in js if g["estado"] == "post" and g["casa"]["gols"] is not None and g["fora"]["gols"] is not None), key=lambda g: g["data"])
+    out = {}
+    for tid in {g[l]["id"] for g in fim for l in ("casa", "fora") if g[l].get("id")}:
+        dele = [g for g in fim if tid in (g["casa"]["id"], g["fora"]["id"])]
+        out[tid] = {"geral": resumo_jogos(dele[-10:], tid),
+                    "casa": resumo_jogos([g for g in dele if g["casa"]["id"] == tid][-10:], tid),
+                    "fora": resumo_jogos([g for g in dele if g["fora"]["id"] == tid][-10:], tid)}
+    return out
+
+def tabela_lado(js, lado):
+    """Classificação só com os jogos como mandante (lado='casa') ou como visitante (lado='fora')."""
+    t = {}
+    outro = "fora" if lado == "casa" else "casa"
+    for g in js:
+        if g["estado"] != "post" or g["casa"]["gols"] is None or g["fora"]["gols"] is None: continue
+        a, b = g[lado]["gols"], g[outro]["gols"]; x = t.setdefault(g[lado]["id"], {"tid": g[lado]["id"], "j": 0, "v": 0, "e": 0, "d": 0, "gp": 0, "gc": 0, "f": ""})
+        x["j"] += 1; x["gp"] += a; x["gc"] += b
+        r = "V" if a > b else "E" if a == b else "D"; x[{"V": "v", "E": "e", "D": "d"}[r]] += 1; x["f"] += r
+    lst = []
+    for x in t.values():
+        x["pts"] = 3 * x["v"] + x["e"]; x["sg"] = x["gp"] - x["gc"]; x["ap"] = pct(x["pts"], 3 * x["j"]); x["forma"] = x.pop("f")[-5:]
+        lst.append(x)
+    lst.sort(key=lambda x: (-x["pts"], -x["v"], -x["sg"], -x["gp"]))
+    for i, x in enumerate(lst, 1): x["pos"] = i
+    return lst
 
 def ts(iso): return datetime.fromisoformat(iso.replace("Z", "+00:00")).timestamp()
 
@@ -175,14 +230,15 @@ def jogos(cod, n_times):
             if not tid: continue
             r = "V" if g[a]["gols"] > g[b]["gols"] else "D" if g[a]["gols"] < g[b]["gols"] else "E"
             forma.setdefault(tid, []).append(r)
+    extra = {"stats": estatisticas(js), "tab_casa": tabela_lado(js, "casa"), "tab_fora": tabela_lado(js, "fora")}
     rodadas = []
     for r in range(max(1, atual - 6), atual + 5):
         lista = [g for g in js if g["rodada"] == r]
         if not lista: continue
         for g in lista:
-            g.pop("_temp", None); g["casa"].pop("id", None); g["fora"].pop("id", None)
+            g.pop("_temp", None); g.pop("_gols", None)
         rodadas.append({"n": r, "jogos": lista})
-    return {"atual": atual, "rodadas": rodadas}, {k: "".join(v[-5:]) for k, v in forma.items()}
+    return {"atual": atual, "rodadas": rodadas}, {k: "".join(v[-5:]) for k, v in forma.items()}, extra
 
 def lideres(cod, n=10):
     """Artilharia e assistências da temporada (top 10)."""
@@ -219,12 +275,17 @@ def main():
             liga = {"id": cod, "nome": nome, "temporada": st.get("seasonDisplayName") or str(st.get("season") or ""),
                     "grupos": grupos}
             try:
-                liga["jogos"], forma = jogos(cod, sum(len(g["linhas"]) for g in grupos))
+                liga["jogos"], forma, extra = jogos(cod, sum(len(g["linhas"]) for g in grupos))
                 for g in grupos:
-                    for l in g["linhas"]: l["forma"] = forma.get(l.get("tid"), "")
+                    for l in g["linhas"]:
+                        l["forma"] = forma.get(l.get("tid"), "")
+                        if l.get("j") and l.get("pts") is not None: l["ap"] = round(100 * l["pts"] / (3 * l["j"]))
+                liga["stats"] = extra["stats"]
+                if len(grupos) == 1: liga["tab_casa"], liga["tab_fora"] = extra["tab_casa"], extra["tab_fora"]
             except Exception as e:
                 erros.append(f"{cod} jogos: {e}")
-                if anterior.get(cod, {}).get("jogos"): liga["jogos"] = anterior[cod]["jogos"]
+                for k in ("jogos", "stats", "tab_casa", "tab_fora"):
+                    if anterior.get(cod, {}).get(k): liga[k] = anterior[cod][k]
             try: liga["lideres"] = lideres(cod)
             except Exception as e:
                 erros.append(f"{cod} artilharia: {e}")

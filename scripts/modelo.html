@@ -538,6 +538,37 @@ main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-colu
 .exp-rod{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;margin:10px 0 0;font-size:12.5px;color:var(--ink-2)}.exp-rod a{font:700 14px var(--f-body);color:var(--brand);text-decoration:none}
 @media (max-width:600px){.exp{padding:16px}.exp-l li{grid-template-columns:auto minmax(0,1fr);gap:12px}.th-x{display:none}.exp h2{font-size:19.5px}}
 .exb h2 small{font:500 13px var(--f-body);color:var(--ink-2);margin-left:8px}@media (max-width:600px){.exb h2 small{display:block;margin:4px 0 0}}
+
+/* ===== Futebol: central de jogos, Raio-X e tabelas ===== */
+@media (min-width:1000px){.fut-g2{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;align-items:start}}
+.fut-g2{display:grid;gap:16px}.fut-col{display:grid;gap:16px;min-width:0}
+.jg-st{display:flex;flex-wrap:wrap;gap:6px;padding:10px 16px 2px}.jg-st button{display:inline-flex;align-items:center;gap:6px}.jg-st button:disabled{opacity:.45;cursor:default}
+.jg-st small{font:700 11px var(--f-mono);opacity:.75}
+.jg-st .pul{width:7px;height:7px;border-radius:50%;background:#94a3b8;position:relative}
+.jg-st .tem .pul{background:#dc2626}.jg-st .tem .pul::after{content:"";position:absolute;inset:0;border-radius:50%;background:#dc2626;animation:pulso 1.6s ease-out infinite}
+.jg li.jg-j.jg-cm{grid-template-rows:auto auto}
+.jg-mi{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;font-size:11.5px;color:var(--ink-2);padding-top:2px}.jg-mi b{color:var(--ink);font-family:var(--f-mono);font-weight:600}
+.fut-tv{display:flex;gap:6px;padding:8px 16px 0}.fut-col .quadro,.fut-g2>.quadro{min-width:0;grid-template-columns:minmax(0,1fr)}.jg .rx-f li{border-bottom:0;padding:1px 0}.rx-t i[class^=fm-]{display:inline-block;width:16px;height:16px;line-height:16px;text-align:center;border-radius:3px;font:700 9.5px var(--f-body);color:#fff;margin:0 1px;font-style:normal}.fut-g .tw{overflow-x:auto}@media (min-width:1000px){.fut-g2 .fut-t td,.fut-g2 .fut-t th{padding-inline:4px}.fut-g2 .fut-t{font-size:13.5px}.fut-g2 .fut-t td.fm i{width:15px;margin-right:1px}}@media (min-width:1000px) and (max-width:1300px){.fut-g2 .fut-t .ap{display:none}}.fut-tvn{margin:8px 0 2px;font-size:12.5px;color:var(--ink-2)}
+.fut-t td.ap{color:var(--ink-2)}
+.fut-t td.tm img,.jg-t img,.rx-t img{object-fit:contain;flex:none}
+.fut-aviso{margin-top:4px;font-size:12.5px}
+.rx-l{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+.rx-t{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:6px}
+.rx-t thead th{font:700 14px var(--f-body);padding:6px 4px 10px;text-align:center}.rx-t thead th img{vertical-align:-6px;margin-right:6px}
+.rx-t tbody th{font-weight:500;font-size:12.5px;color:var(--ink-2);text-align:center;padding:7px 8px;white-space:nowrap}
+.rx-t td{width:38%;padding:7px 4px;border-top:1px solid var(--rule-s);font-variant-numeric:tabular-nums}.rx-t tbody th{border-top:1px solid var(--rule-s)}
+.rx-t td:first-child{text-align:right}.rx-t td b{font-family:var(--f-mono);font-weight:600;margin:0 8px}
+.rx-b{display:inline-block;width:56px;height:6px;border-radius:6px;background:var(--rule);vertical-align:middle;overflow:hidden;position:relative}
+.rx-b i{position:absolute;top:0;bottom:0;background:var(--brand);border-radius:6px}.rx-t td:first-child .rx-b i{right:0}.rx-t td:last-child .rx-b i{left:0;background:var(--ink-2)}
+.rx-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px}
+.rx-f h6{font:700 13px var(--f-body);margin:0 0 6px}.rx-f ol{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.rx-f li{display:grid;grid-template-columns:52px minmax(0,1fr) 22px minmax(0,1fr) 22px;gap:6px;align-items:center;font-size:12px}
+.rx-f li span:first-child{font-family:var(--f-mono);color:var(--ink-2)}.rx-f li b{font-family:var(--f-mono);font-weight:600;text-align:right}
+.rx-fb{height:8px;border-radius:8px;background:color-mix(in srgb,var(--rule) 70%,transparent);overflow:hidden}.rx-fb i{display:block;height:100%;border-radius:8px}
+.rx-fb i.m,.rx-k.m{background:var(--fut)}.rx-fb i.s,.rx-k.s{background:var(--down)}
+.rx-k{display:inline-block;width:10px;height:10px;border-radius:3px;margin:0 4px 0 10px;vertical-align:-1px}
+.jd-h small{font:500 12px var(--f-body);color:var(--ink-2)}
+@media (max-width:520px){.rx-t td{width:31%}.rx-b{display:none}.rx-t{font-size:13px}.rx-t tbody th{white-space:normal;font-size:12px}.rx-t td b{margin:0 4px}}
 </style>
 
 <header class="topo">
@@ -703,7 +734,10 @@ main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-colu
   if((location.hash||'')==='#agro') window.carregarAgro();
 
   /* Tabelas do futebol (ESPN) */
-  var FUT=null, LIGA='bra.1';
+  var FUT=null, LIGA='bra.1', TV='geral', FST='todos';
+  var ESC0="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z' fill='%2394a3b8'/%3E%3C/svg%3E";
+  function escu(u,sz){ sz=sz||20; return '<img src="'+esc(u||ESC0)+'" width="'+sz+'" height="'+sz+'" alt="" loading="lazy" onerror="this.onerror=null;this.src=ESC0">'; }
+  window.ESC0=ESC0;
   try{LIGA=localStorage.getItem('plantao-liga')||'bra.1'}catch(e){}
   function tabelaFut(){
     var box=document.querySelector('[data-fut]'); if(!box||!FUT||!FUT.ligas) return;
@@ -717,18 +751,23 @@ main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-colu
                'bra.2':[[1,4,'Zona de acesso','#2e7d32'],[17,20,'Zona de rebaixamento','#c62828']]};
     if(ZONAS[lg.id]) lg.grupos.forEach(function(g){g.linhas.forEach(function(t){
       if(t.nota) return; ZONAS[lg.id].forEach(function(z){if(t.pos>=z[0]&&t.pos<=z[1]){t.nota=z[2];t.cor=z[3]}})})});
-    var leg={};
-    var html=lg.grupos.map(function(g){
-      return (g.nome?'<h4>'+esc(g.nome)+'</h4>':'')+'<div class="tw"><table class="fut-t"><thead><tr><th>#</th><th class="tm">Time</th><th>P</th><th>J</th><th>V</th><th class="xs">E</th><th class="xs">D</th><th class="xs">GP</th><th class="xs">GC</th><th>SG</th><th class="fm">Últ. 5</th></tr></thead><tbody>'+
-        g.linhas.map(function(t){
-          var cor=t.cor?('#'+String(t.cor).replace('#','')):''; if(t.nota&&cor) leg[t.nota]=cor;
-          return '<tr><td class="ps"'+(cor?' style="border-left-color:'+esc(cor)+'"':'')+(t.nota?' title="'+esc(t.nota)+'"':'')+'>'+t.pos+'</td><td class="tm">'+(t.escudo?'<img src="'+esc(t.escudo)+'" alt="" loading="lazy" onerror="this.remove()">':'')+esc(t.time)+'</td><td class="pt">'+(t.pts==null?'–':t.pts)+'</td><td>'+(t.j==null?'–':t.j)+'</td><td>'+(t.v==null?'–':t.v)+'</td><td class="xs">'+(t.e==null?'–':t.e)+'</td><td class="xs">'+(t.d==null?'–':t.d)+'</td><td class="xs">'+(t.gp==null?'–':t.gp)+'</td><td class="xs">'+(t.gc==null?'–':t.gc)+'</td><td>'+(t.sg==null?'–':(t.sg>0?'+':'')+t.sg)+'</td><td class="fm">'+forma(t.forma)+'</td></tr>'}).join('')+'</tbody></table></div>'}).join('');
+    var leg={}, temLado=!!(lg.tab_casa&&lg.tab_casa.length), fv=box.querySelector('[data-ftv]');
+    if(fv){ fv.hidden=!temLado; fv.querySelectorAll('[data-tv]').forEach(function(b){b.classList.toggle('on',b.dataset.tv===TV);b.setAttribute('aria-pressed',b.dataset.tv===TV)}); }
+    var tv=temLado?TV:'geral', info={}; lg.grupos.forEach(function(g){g.linhas.forEach(function(t){info[t.tid]=t})});
+    function linha(t,zona){
+      var cor=zona&&t.cor?('#'+String(t.cor).replace('#','')):''; if(zona&&t.nota&&cor) leg[t.nota]=cor;
+      var b=info[t.tid]||t, f=function(v){return v==null?'–':v};
+      return '<tr><td class="ps"'+(cor?' style="border-left-color:'+esc(cor)+'"':'')+(zona&&t.nota?' title="'+esc(t.nota)+'"':'')+'>'+t.pos+'</td><td class="tm">'+escu(b.escudo)+esc(b.time)+'</td><td class="pt">'+f(t.pts)+'</td><td>'+f(t.j)+'</td><td>'+f(t.v)+'</td><td class="xs">'+f(t.e)+'</td><td class="xs">'+f(t.d)+'</td><td class="xs">'+f(t.gp)+'</td><td class="xs">'+f(t.gc)+'</td><td>'+(t.sg==null?'–':(t.sg>0?'+':'')+t.sg)+'</td><td class="xs ap">'+(t.ap==null?'–':t.ap+'%')+'</td><td class="fm">'+forma(t.forma)+'</td></tr>'}
+    var cab='<thead><tr><th>#</th><th class="tm">Time</th><th>P</th><th>J</th><th>V</th><th class="xs">E</th><th class="xs">D</th><th class="xs">GP</th><th class="xs">GC</th><th>SG</th><th class="xs" title="Aproveitamento dos pontos">%</th><th class="fm">Últ. 5</th></tr></thead>';
+    var html=tv==='geral'?lg.grupos.map(function(g){
+      return (g.nome?'<h4>'+esc(g.nome)+'</h4>':'')+'<div class="tw"><table class="fut-t">'+cab+'<tbody>'+g.linhas.map(function(t){return linha(t,true)}).join('')+'</tbody></table></div>'}).join('')
+      :'<p class="fut-tvn">Só os jogos '+(tv==='casa'?'como mandante':'como visitante')+' nesta temporada.</p><div class="tw"><table class="fut-t">'+cab+'<tbody>'+(tv==='casa'?lg.tab_casa:lg.tab_fora).map(function(t){return linha(t,false)}).join('')+'</tbody></table></div>';
     jogosFut(lg); lideres(lg);
     var lk=Object.keys(leg);
     box.querySelector('[data-ftab]').innerHTML=(lk.length?'<div class="fut-leg">'+lk.map(function(k){return '<span><i style="background:'+esc(leg[k])+'"></i>'+esc(k)+'</span>'}).join('')+'</div>':'')+'<div class="fut-g">'+html+'</div>';
     if(FUT.atualizado_utc){
       var h=new Date(FUT.atualizado_utc).toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
-      box.querySelector('[data-fnota]').textContent='Atualizada em '+h+' (horário de Brasília), de hora em hora. Fonte: ESPN. P = pontos, J = jogos, V = vitórias, E = empates, D = derrotas, GP = gols pró, GC = gols contra, SG = saldo; Últ. 5 = últimos cinco jogos (V vitória, E empate, D derrota), do mais antigo ao mais recente.';
+      box.querySelector('[data-fnota]').textContent='Atualizada em '+h+' (horário de Brasília), de hora em hora. Fonte: ESPN. P = pontos, J = jogos, V = vitórias, E = empates, D = derrotas, GP = gols pró, GC = gols contra, SG = saldo; % = aproveitamento dos pontos; Últ. 5 = últimos cinco jogos (V vitória, E empate, D derrota), do mais antigo ao mais recente.';
     }
   }
   var RD={};   /* rodada exibida por campeonato */
@@ -742,9 +781,16 @@ main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-colu
     if(tt) tt.textContent=n+'ª rodada'+(n===J.atual?' · atual':'');
     nav[0].disabled=nums.indexOf(n)===0; nav[1].disabled=nums.indexOf(n)===nums.length-1;
     var o={timeZone:'America/Sao_Paulo'}, html='', dia0='';
-    function tm(t,lado,ven){ var img=t.escudo?'<img src="'+esc(t.escudo)+'" alt="" loading="lazy" onerror="this.remove()">':'';
+    function tm(t,lado,ven){ var img=escu(t.escudo);
       return '<span class="jg-t '+lado+(ven?' v':'')+'">'+(lado==='f'?img:'')+'<span>'+esc(t.nome||'')+'</span>'+(lado==='c'?img:'')+'</span>'; }
-    r.jogos.forEach(function(j){
+    var fb=document.querySelectorAll('[data-fst] [data-st]'), cont={todos:r.jogos.length,vivo:0,prox:0,fim:0};
+    r.jogos.forEach(function(j){cont[j.estado==='in'?'vivo':j.estado==='post'?'fim':'prox']++});
+    fb.forEach(function(b){var k=b.dataset.st; b.classList.toggle('on',k===FST); b.setAttribute('aria-pressed',k===FST); b.disabled=k!=='todos'&&!cont[k];
+      var n=b.querySelector('small')||b.appendChild(document.createElement('small')); n.textContent=cont[k]?' '+cont[k]:''; b.classList.toggle('tem',k==='vivo'&&cont.vivo>0)});
+    var lista=r.jogos.filter(function(j){return FST==='todos'||(FST==='vivo'?j.estado==='in':FST==='fim'?j.estado==='post':j.estado!=='in'&&j.estado!=='post')});
+    if(!lista.length) html='<li class="jg-vazio">Nenhum jogo nesta situação nesta rodada.</li>';
+    var ST=lg.stats||{};
+    lista.forEach(function(j){
       var d=new Date(j.data), dia=d.toLocaleDateString('pt-BR',Object.assign({weekday:'long',day:'2-digit',month:'2-digit'},o));
       if(dia!==dia0){ html+='<li class="jg-dia">'+esc(dia.charAt(0).toUpperCase()+dia.slice(1))+'</li>'; dia0=dia; }
       var hora=d.toLocaleTimeString('pt-BR',Object.assign({hour:'2-digit',minute:'2-digit'},o));
@@ -752,9 +798,12 @@ main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-colu
       var placar=(vivo||fim)?'<span class="jg-p">'+(j.casa.gols==null?'–':j.casa.gols)+' × '+(j.fora.gols==null?'–':j.fora.gols)+'</span>':'<span class="jg-p x">×</span>';
       var info=vivo?'<span class="jg-vivo">AO VIVO '+esc(j.detalhe||'')+'</span>':esc(hora)+(fim?'<br>encerrado':'');
       if(j.adiado) info+='<br><span class="jg-tag">adiado</span>';
-      var ab=JA===j.id;
-      html+='<li class="jg-j'+(ab?' ab':'')+'" data-ev="'+esc(j.id||'')+'" tabindex="0" role="button" aria-expanded="'+ab+'" title="'+esc((j.local?j.local+' · ':'')+'toque para ver os detalhes')+'"><span class="jg-d">'+info+'</span>'+tm(j.casa,'c',fim&&j.casa.venceu)+placar+tm(j.fora,'f',fim&&j.fora.venceu)+'</li>'+
-        (ab?'<li class="jg-det" data-det>'+(DET[j.id]?detalhe(DET[j.id],j):'<span class="sk g" style="width:60%"></span><span class="sk"></span><span class="sk" style="width:80%"></span><span class="sr">Carregando os detalhes do jogo…</span>')+'</li>':'');
+      var ab=JA===j.id, mi='';
+      var sc=ST[j.casa.id]&&ST[j.casa.id].casa, sf=ST[j.fora.id]&&ST[j.fora.id].fora;
+      if(!vivo&&!fim&&sc&&sf&&sc.j>=3&&sf.j>=3){ var m=function(k){return Math.round((sc[k]+sf[k])/2)};
+        mi='<span class="jg-mi" title="Média do histórico recente: mandante em casa e visitante fora"><span>Ambos marcam <b>'+m('btts')+'%</b></span><span>+2,5 gols <b>'+m('o25')+'%</b></span><span>Gols por jogo <b>'+((sc.mgm+sc.mgs+sf.mgm+sf.mgs)/2).toFixed(1).replace('.',',')+'</b></span></span>'; }
+      html+='<li class="jg-j'+(ab?' ab':'')+(mi?' jg-cm':'')+'" data-ev="'+esc(j.id||'')+'" tabindex="0" role="button" aria-expanded="'+ab+'" title="'+esc((j.local?j.local+' · ':'')+'toque para ver o Raio-X do jogo')+'"><span class="jg-d">'+info+'</span>'+tm(j.casa,'c',fim&&j.casa.venceu)+placar+tm(j.fora,'f',fim&&j.fora.venceu)+mi+'</li>'+
+        (ab?'<li class="jg-det" data-det>'+(DET[j.id]?detalhe(DET[j.id],j):(ST[j.casa.id]||ST[j.fora.id])?detalhe({_car:1},j):'<span class="sk g" style="width:60%"></span><span class="sk"></span><span class="sk" style="width:80%"></span><span class="sr">Carregando os detalhes do jogo…</span>')+'</li>':'');
     });
     ul.innerHTML=html;
     vigiar(lg,r);
@@ -814,7 +863,7 @@ main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-colu
       if(j&&st){ j.estado=st.state; j.detalhe=st.shortDetail; d.header.competitions[0].competitors.forEach(function(t){var l=t.homeAway==='home'?j.casa:j.fora; if(t.score!=null) l.gols=+t.score}); }
       jogosFut(lg);
       if(st&&st.state==='in') DTIMER=setTimeout(function(){ if(JA===id) carregarJogo(lg,id) },60000);
-    }).catch(function(){ var el=document.querySelector('[data-det]'); if(el) el.innerHTML='<p class="jg-car">Não foi possível carregar os detalhes agora.</p>'; });
+    }).catch(function(){ if(JA!==id) return; DET[id]={_erro:1}; jogosFut(lg); });
   }
   function nomeEv(k){
     var t=(k.type&&k.type.type)||'', p=(k.participants||[]).map(function(x){return x.athlete&&x.athlete.displayName}).filter(Boolean);
@@ -826,18 +875,39 @@ main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-colu
     return null;
   }
   function detalhe(d,j){
-    var c=d.header.competitions[0], casaId=(c.competitors.filter(function(t){return t.homeAway==='home'})[0]||{}).id;
-    var aba=DTAB[j.id]||(j.estado==='pre'?'conf':'lances'), h='';
-    var abas=[['lances','Lances'],['est','Estatísticas'],['esc','Escalações'],['conf','Confronto'],['not','Notícias']];
+    var c=d.header?d.header.competitions[0]:{competitors:[]}, casaId=(c.competitors.filter(function(t){return t.homeAway==='home'})[0]||{}).id||j.casa.id, semEspn=!d.header;
+    var lgx=FUT.ligas.filter(function(l){return l.id===LIGA})[0]||{}, SX=lgx.stats||{}, temPre=!!(SX[j.casa.id]||SX[j.fora.id]);
+    var aba=DTAB[j.id]||(j.estado==='pre'?(temPre?'pre':'conf'):'lances'), h='';
+    var abas=[['lances','Lances'],['est','Estatísticas'],['pre','Raio-X pré-jogo'],['conf','Confronto direto'],['esc','Escalações'],['not','Notícias']].filter(function(a){return a[0]!=='pre'||temPre});
     h+='<div class="seg jd-abas" role="group">'+abas.map(function(a){return '<button data-ja="'+a[0]+'" class="'+(a[0]===aba?'on':'')+'" aria-pressed="'+(a[0]===aba)+'">'+a[1]+'</button>'}).join('')+'</div>';
     var info=[]; var gi=d.gameInfo||{}; if(gi.venue) info.push(esc(gi.venue.fullName+(gi.venue.address&&gi.venue.address.city?' ('+gi.venue.address.city+')':'')));
     var tv=(d.broadcasts||[]).map(function(b){return (b.media&&b.media.shortName)||b.station||''}).filter(Boolean);
     if(tv.length) info.push('Onde assistir: '+esc(tv.join(', ')));
     if(gi.officials&&gi.officials[0]) info.push('Árbitro: '+esc(gi.officials[0].displayName||gi.officials[0].fullName));
     if(info.length) h+='<p class="jd-info">'+info.join(' · ')+'</p>';
+    if(semEspn&&aba!=='pre'){ h+='<p class="jg-car">'+(d._erro?'Não foi possível carregar os lances e as estatísticas agora.':'Carregando os detalhes do jogo…')+'</p>'; return h; }
     if(aba==='lances'){
       var ev=(d.keyEvents||[]).map(function(k){var n=nomeEv(k); return n&&{min:(k.clock&&k.clock.displayValue)||'',ic:n[0],tx:n[1],casa:k.team&&k.team.id===casaId}}).filter(Boolean);
       h+=ev.length?'<ol class="jd-lan">'+ev.map(function(e){return '<li class="'+(e.casa?'c':'f')+'"><span class="jd-min">'+esc(e.min)+'</span><span>'+e.ic+' '+esc(e.tx)+'</span></li>'}).join('')+'</ol>':'<p class="jg-car">'+(j.estado==='pre'?'O jogo ainda não começou.':'Sem lances registrados.')+'</p>';
+    }
+    if(aba==='pre'){
+      var A=SX[j.casa.id]||{}, B=SX[j.fora.id]||{}, LADO=DTAB['_l'+j.id]||'lado', a=LADO==='lado'?A.casa:A.geral, b=LADO==='lado'?B.fora:B.geral;
+      h+='<div class="seg rx-l" role="group" aria-label="Recorte"><button data-rxl="lado" class="'+(LADO==='lado'?'on':'')+'">Mandante em casa × visitante fora</button><button data-rxl="geral" class="'+(LADO==='geral'?'on':'')+'">Todos os jogos</button></div>';
+      if(!a||!b){ h+='<p class="jg-car">Ainda há poucos jogos para comparar.</p>'; }
+      else{
+        var pc=function(v){return v==null?'–':v+'%'}, nm=function(v){return v==null?'–':String(v.toFixed?v.toFixed(2):v).replace('.',',')};
+        var L=[['Jogos analisados','j',String],['Vitórias · empates · derrotas',null],['Média de gols marcados','mgm',nm],['Média de gols sofridos','mgs',nm],['Ambos marcam','btts',pc],['Mais de 1,5 gol','o15',pc],['Mais de 2,5 gols','o25',pc],['Sem sofrer gol','cs',pc],['Não marcou','fm',pc]];
+        h+='<table class="rx-t"><thead><tr><th>'+escu(j.casa.escudo,22)+esc(j.casa.nome)+'</th><th></th><th>'+escu(j.fora.escudo,22)+esc(j.fora.nome)+'</th></tr></thead><tbody>'+
+          '<tr><td>'+forma(a.forma)+'</td><th>Últimos 5</th><td>'+forma(b.forma)+'</td></tr>'+
+          L.map(function(x){ if(!x[1]) return '<tr><td>'+a.v+' · '+a.e+' · '+a.d+'</td><th>'+x[0]+'</th><td>'+b.v+' · '+b.e+' · '+b.d+'</td></tr>';
+            var va=a[x[1]], vb=b[x[1]], mx=x[2]===pc;
+            return '<tr><td>'+(mx?'<span class="rx-b"><i style="width:'+(va||0)+'%"></i></span>':'')+'<b>'+x[2](va)+'</b></td><th>'+x[0]+'</th><td><b>'+x[2](vb)+'</b>'+(mx?'<span class="rx-b"><i style="width:'+(vb||0)+'%"></i></span>':'')+'</td></tr>'}).join('')+'</tbody></table>';
+        var F=['0-15\'','16-30\'','31-45\'','46-60\'','61-75\'','76-90\''];
+        function faixas(t,s){ var mx=Math.max.apply(null,s.marc.concat(s.sofr).concat([1]));
+          return '<div class="rx-f"><h6>'+esc(t)+'</h6><ol>'+F.map(function(f,i){return '<li><span>'+f+'</span><span class="rx-fb"><i class="m" style="width:'+(s.marc[i]/mx*100)+'%"></i></span><b>'+s.marc[i]+'</b><span class="rx-fb"><i class="s" style="width:'+(s.sofr[i]/mx*100)+'%"></i></span><b>'+s.sofr[i]+'</b></li>'}).join('')+'</ol></div>'}
+        h+='<h5 class="jd-h">Gols por faixa de minuto <small><i class="rx-k m"></i>marcados <i class="rx-k s"></i>sofridos</small></h5><div class="rx-g">'+faixas(j.casa.nome,a)+faixas(j.fora.nome,b)+'</div>';
+        h+='<p class="jd-info">Últimos '+a.j+' e '+b.j+' jogos da temporada nesta competição. Dados da ESPN, calculados pelo Plantão Informa; estatística informativa, não é palpite.</p>';
+      }
     }
     if(aba==='est'){
       var T=(d.boxscore&&d.boxscore.teams)||[], ca=T.filter(function(t){return t.team.id===casaId})[0]||T[0], fo=T.filter(function(t){return t!==ca})[0];
@@ -882,6 +952,8 @@ main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-colu
   var NOTF=null;
   document.addEventListener('click',function(ev){
     if(!FUT||!FUT.ligas) return;
+    var rl=ev.target.closest('[data-rxl]');
+    if(rl){ DTAB['_l'+JA]=rl.dataset.rxl; var lg0=FUT.ligas.filter(function(l){return l.id===LIGA})[0]; if(lg0) jogosFut(lg0); return; }
     var a=ev.target.closest('[data-ja]');
     if(a){ DTAB[JA]=a.dataset.ja; var lg=FUT.ligas.filter(function(l){return l.id===LIGA})[0]; if(lg) jogosFut(lg); return; }
     var li=ev.target.closest('li[data-ev]'); if(li&&li.dataset.ev){
@@ -891,10 +963,15 @@ main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-colu
   });
   document.addEventListener('keydown',function(ev){var li=ev.target.closest&&ev.target.closest('li[data-ev]'); if(li&&(ev.key==='Enter'||ev.key===' ')){ev.preventDefault(); li.click()}});
   document.addEventListener('click',function(ev){
+    var s1=ev.target.closest('[data-st]'), t1=ev.target.closest('[data-tv]');
+    if(s1&&!s1.disabled){ FST=s1.dataset.st; var l1=FUT&&FUT.ligas&&FUT.ligas.filter(function(l){return l.id===LIGA})[0]; if(l1) jogosFut(l1); return; }
+    if(t1){ TV=t1.dataset.tv; tabelaFut(); return; }
+  });
+  document.addEventListener('click',function(ev){
     var b=ev.target.closest('[data-rd]'); if(!b||b.disabled) return;
     var lg=FUT&&FUT.ligas&&(FUT.ligas.filter(function(l){return l.id===LIGA})[0]||FUT.ligas[0]); if(!lg||!lg.jogos) return;
     var nums=lg.jogos.rodadas.map(function(r){return r.n}), i=nums.indexOf(RD[lg.id])+(+b.dataset.rd);
-    if(i>=0&&i<nums.length){ RD[lg.id]=nums[i]; jogosFut(lg); }
+    if(i>=0&&i<nums.length){ RD[lg.id]=nums[i]; FST='todos'; jogosFut(lg); }
   });
   document.addEventListener('change',function(ev){
     if(ev.target.matches('[data-liga]')){ LIGA=ev.target.value; try{localStorage.setItem('plantao-liga',LIGA)}catch(e){} tabelaFut(); }

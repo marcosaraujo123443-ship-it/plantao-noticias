@@ -345,14 +345,19 @@ for s in SECOES:
     if s == "Futebol":
         painel = '''<div class="painel" data-fut>
   <div class="filtros-uf fut-sel"><label>Campeonato <select data-liga aria-label="Escolher campeonato"></select></label></div>
+  <div class="fut-g2">
   <section class="quadro" data-jogos>
-    <header><h3>Jogos</h3>
+    <header><h3>Central de jogos</h3>
       <div class="rd-nav"><button data-rd="-1" aria-label="Rodada anterior">‹</button><b data-rdt>Rodada</b><button data-rd="1" aria-label="Próxima rodada">›</button></div></header>
+    <div class="seg jg-st" role="group" aria-label="Filtrar jogos" data-fst><button class="on" data-st="todos" aria-pressed="true">Todos</button><button data-st="vivo" aria-pressed="false"><i class="pul"></i>Ao vivo</button><button data-st="prox" aria-pressed="false">Próximos</button><button data-st="fim" aria-pressed="false">Encerrados</button></div>
     <ul class="jg" data-jgl>''' + SK_LISTA(5) + '''</ul>
+    <p class="nota">Toque em um jogo para abrir o Raio-X: lances, estatísticas, análise pré-jogo, confronto direto e escalações. Nos próximos jogos, os percentuais mostram o histórico recente dos dois times (mandante em casa e visitante fora).</p>
   </section>
+  <div class="fut-col">
   <section class="quadro">
     <header><h3>Classificação</h3>
       <p class="per" data-ftemp>''' + sk_txt("Carregando a tabela…", "40%") + '''</p></header>
+    <div class="seg fut-tv" role="group" aria-label="Tipo de tabela" data-ftv hidden><button class="on" data-tv="geral" aria-pressed="true">Geral</button><button data-tv="casa" aria-pressed="false">Mandante</button><button data-tv="fora" aria-pressed="false">Visitante</button></div>
     <div data-ftab><table class="tab-m"><tbody>''' + sk_linhas(8, 4) + '''</tbody></table></div>
     <a class="mais" data-flink href="tabelas/">Ver todas as tabelas →</a>
     <p class="nota" data-fnota></p>
@@ -362,6 +367,9 @@ for s in SECOES:
       <div class="seg" role="group" aria-label="Ranking"><button class="on" data-lk="gols" aria-pressed="true">Gols</button><button data-lk="assistencias" aria-pressed="false">Assistências</button></div></header>
     <ol class="lid" data-lidl>''' + SK_LISTA(4) + '''</ol>
   </section>
+  </div>
+  </div>
+  <p class="nota fut-aviso">Conteúdo de caráter exclusivamente jornalístico e estatístico. Os percentuais (ambos marcam, mais de 1,5 e de 2,5 gols, jogos sem sofrer gol) descrevem o desempenho passado dos times, calculados pelo Plantão Informa a partir dos dados públicos da ESPN, e não são palpites nem incentivo a apostas.</p>
 </div>'''
     if s == "Mercado":
         def grupo(gid, titulo, desc, corpo, cls="quadros"):
@@ -418,7 +426,7 @@ for s in SECOES:
   </section>
 </div>'''
     lista = f'<ol class="lista">{li or "<li><p>Sem notícias nesta atualização.</p></li>"}</ol>'
-    corpo = f'<div class="dupla">{painel}{lista}</div>' if s in ("Futebol", "Política", "Agro", "Mercado", "Concursos") or (s == "IA" and painel) else painel + lista
+    corpo = f'<div class="dupla">{painel}{lista}</div>' if s in ("Política", "Agro", "Mercado", "Concursos") or (s == "IA" and painel) else painel + lista
     paginas += f'''<section class="pagina" id="pg-{slug(s)}" data-pg="{slug(s)}" hidden>
   <div class="sec-t s-{slug(s)}"><h2>{e(s)}</h2><span>{len(por_sec[s])} notícias</span></div>
   {corpo}
