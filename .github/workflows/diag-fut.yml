@@ -1,0 +1,14 @@
+name: diag-fontes
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  d:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir /tmp/out; i=0
+          while read u; do i=$((i+1)); c=$(curl -sL -m 30 -A "Mozilla/5.0 (compatible; PlantaoNoticias/1.0)" -w "%{http_code} %{content_type}" "$u" -o /tmp/out/f$i.txt); n=$(grep -c "<item" /tmp/out/f$i.txt); echo "$i $c items=$n $u" >> /tmp/out/index.txt; done < .github/diag-urls.txt
+          cd /tmp/out && git init -q && git checkout -q -b diag-dados && git add . && git -c user.name=diag -c user.email=diag@x commit -qm diag
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" diag-dados
