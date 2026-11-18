@@ -111,6 +111,32 @@ if res and (upd - parse(res["gerado_utc"])).total_seconds() < 14 * 3600:
                   f'<a class="spot" href="{SPOTIFY}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.4a.6.6 0 0 1-.9.2c-2.4-1.5-5.4-1.8-9-1a.6.6 0 1 1-.3-1.2c3.9-.9 7.2-.5 9.9 1.1.3.2.4.6.3.9Zm1.2-2.7a.8.8 0 0 1-1 .3c-2.7-1.7-6.9-2.2-10.2-1.2a.8.8 0 0 1-.5-1.5c3.7-1.1 8.3-.6 11.4 1.4.4.2.5.7.3 1Zm.1-2.8C14.6 9 9.2 8.8 6.1 9.8a.9.9 0 1 1-.6-1.8c3.6-1.1 9.5-.9 13.3 1.4a.9.9 0 0 1-.9 1.5Z"/></svg>Ouça no Spotify</a></div>')
         resumo_html = resumo_html.replace("</h2>", "</h2>" + player, 1)
 
+# Plantão Express (express.py): as 5 notícias mais relevantes das últimas 12 h; some depois de 14 horas
+express_html = ""
+try: exq = json.loads((d / "express.json").read_text(encoding="utf-8"))
+except Exception: exq = None
+if exq and (datetime.now(timezone.utc) - datetime.strptime(exq["gerado_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)) < timedelta(hours=14):
+    _ed = "da manhã" if exq["edicao"] == "manha" else "da noite"
+    _au = exq.get("audio") or {}
+    _dur = _au.get("duracao") or 0
+    _pl = (f'<div class="ouca exp-a"><span class="ouca-t">&#9654; Ouça em {max(1, round(_dur / 60))} min</span>'
+           f'<audio controls preload="none" src="express.mp3?v={e(exq["chave"])}" data-alt="{e(_au["url"])}" '
+           f'onerror="if(this.dataset.alt){{this.src=this.dataset.alt;this.dataset.alt=\'\'}}" aria-label="Ouça o Plantão Express {_ed}"></audio>'
+           '<small class="ouca-ia">Voz gerada por inteligência artificial</small></div>') if _au.get("url") else ""
+    _lis = ""
+    for k, x in enumerate(exq["itens"], 1):
+        _tb = f' · também em {e(", ".join(x["tambem"]))}' if x.get("tambem") else ""
+        _imp = f'<p class="imp"><b>Por que importa:</b> {e(x["importa"])}</p>' if x.get("importa") else ""
+        _lis += (f'<li class="s-{slug(x["secao"])}"><span class="exp-n">{k}</span><div class="exp-t"><span class="sec">{e(x["secao"])}</span>'
+                 f'<h3><a href="{e(x["link"])}" target="_blank" rel="noopener">{e(x["titulo"])}</a></h3><p>{e(x["fato"])}</p>{_imp}'
+                 f'<small>Fonte: {e(x["fonte"])}{_tb}</small></div>{foto(x, 200, 200, "th th-x")}</li>')
+    _hr = parse(exq["gerado_utc"])
+    express_html = (f'<section class="exp" id="express" aria-label="Plantão Express"><header><span class="exp-tag">⚡ Plantão Express</span>'
+                    f'<h2>As 5 notícias das últimas 12 horas <small>edição {_ed} · {_hr:%H}h{_hr:%M}</small></h2></header>'
+                    + (f'<p class="exp-ab">{e(exq["abertura"])}</p>' if exq.get("abertura") else "") + _pl +
+                    f'<ol class="exp-l">{_lis}</ol><p class="exp-rod"><a href="express/">Edições anteriores →</a> '
+                    '<span>Seleção e texto feitos por inteligência artificial a partir das manchetes do Plantão; cada link leva à matéria original.</span></p></section>')
+
 # O que acompanhar hoje (agenda.py): plenários, Copom e jogos do dia
 agenda_html = ""
 try: ag = json.loads((d / "agenda.json").read_text(encoding="utf-8"))
@@ -234,6 +260,16 @@ if _mat:
                   f'<span class="anl-m">{e(m["autor"])} · {m["minutos"]} min de leitura</span></article>' for m in _mat)
     analises_html = (f'<section class="anl-b" aria-label="Análises do Plantão"><header><h2>Análises do Plantão</h2>'
                      f'<a class="ver" href="analises/">Ver todas →</a></header><div class="anl-g">{_it}</div></section>')
+# Explica Plantão (explicador.py): últimos guias de perguntas e respostas sobre leis, tributos e direitos
+try: _exp = ler_materias("explica")[:3]
+except Exception: _exp = []
+if _exp:
+    _MS = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
+    _it = "".join(f'<article class="anl-i"><span class="anl-r">{e(m.get("editoria", ""))} · {m["dt"].day} {_MS[m["dt"].month - 1]}</span>'
+                  f'<h3><a href="explica/{m["slug"]}">{e(m["titulo"])}</a></h3>' + (f'<p>{e(m["subtitulo"])}</p>' if m.get("subtitulo") else "") +
+                  f'<span class="anl-m">Perguntas e respostas · {m["minutos"]} min</span></article>' for m in _exp)
+    analises_html += (f'<section class="anl-b exb" aria-label="Explica Plantão"><header><h2>Explica Plantão <small>leis, tributos e direitos em perguntas e respostas</small></h2>'
+                      f'<a class="ver" href="explica/">Ver todos →</a></header><div class="anl-g">{_it}</div></section>')
 
 # As 20 maiores economias (economias.py, Banco Mundial)
 economias_html = ""
@@ -428,7 +464,7 @@ merc_json = json.dumps(mercado, ensure_ascii=False).replace("</", "<\\/")
 tpl = (Path(__file__).parent / "modelo.html").read_text(encoding="utf-8")
 out = tpl
 for k, v in {"DATA": f"{DIAS[upd.weekday()]}, {upd.day} de {MESES[upd.month-1]} de {upd.year}",
-             "HORA": f"{upd:%H:%M}", "REDES_TOPO": REDES_TOPO, "REDES_ROD": REDES_ROD, "UPD_ISO": data["atualizado_utc"], "LEAD": lead_html, "RESUMO": resumo_html, "AGENDA": agenda_html, "DESTAQUES": dest_html, "ANALISES": analises_html, "BLOCOS": blocos,
+             "HORA": f"{upd:%H:%M}", "REDES_TOPO": REDES_TOPO, "REDES_ROD": REDES_ROD, "UPD_ISO": data["atualizado_utc"], "LEAD": lead_html, "RESUMO": express_html + resumo_html, "AGENDA": agenda_html, "DESTAQUES": dest_html, "ANALISES": analises_html, "BLOCOS": blocos,
              "PAGINAS": paginas, "TABS": tabs, "HORARIOS": horarios, "FONTES": fontes_txt,
              "TOTAL": str(len(itens)), "NFONTES": str(len(fontes)), "MERCADO": merc_json,
              "FONTES_OPT": "".join(f'<option value="{e(f)}">{e(f)}</option>' for f in sorted(fontes, key=str.lower))}.items():

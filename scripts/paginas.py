@@ -74,7 +74,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .prog{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--brand);z-index:50;pointer-events:none}
 .r30{max-width:72ch;background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:16px 20px 12px;margin:0 0 20px;box-shadow:inset 4px 0 0 var(--brand),0 6px 20px -10px rgba(10,29,61,.18)}
 .r30 h2{font:800 12.5px system-ui;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);margin:0 0 8px;display:flex;align-items:center;gap:8px}
-.r30 ul{margin:0;padding-left:20px;font-size:16px;line-height:1.55}.r30 li{margin:0 0 8px}.r30 li::marker{color:var(--brand)}
+.r30 ol{margin:0;padding-left:22px;font-size:16px;line-height:1.55}.r30 ol li{margin:0 0 10px}.r30 ul{margin:0;padding-left:20px;font-size:16px;line-height:1.55}.r30 li{margin:0 0 8px}.r30 li::marker{color:var(--brand)}
 .sumario{max-width:72ch;border:1px solid var(--rule);border-radius:14px;margin:0 0 26px;background:var(--card)}
 .sumario summary{cursor:pointer;font:700 14px system-ui;padding:12px 16px;list-style:none;display:flex;justify-content:space-between}.sumario summary::-webkit-details-marker{display:none}
 .sumario summary::after{content:"▾";color:var(--ink2)}.sumario[open] summary::after{content:"▴"}
@@ -102,7 +102,7 @@ def leitura(m):
           "(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){x.textContent='Link copiado ✓'},function(){prompt('Copie o link:',u)})})})})();</script>")
     return js + tl + sm
 
-NAV = [("analises/", "Análises"), ("contas/", "Contas públicas"), ("tabelas/", "Tabelas do futebol"), ("agro.html", "Cotações do agro"),
+NAV = [("analises/", "Análises"), ("explica/", "Explica"), ("express/", "Express"), ("contas/", "Contas públicas"), ("tabelas/", "Tabelas do futebol"), ("agro.html", "Cotações do agro"),
        ("acoes.html", "Ações"), ("fiis.html", "Fundos imobiliários"), ("indicadores.html", "Indicadores econômicos")]
 PAGINAS = []
 NOTICIAS_SM = []   # matérias próprias para o news-sitemap (Google Notícias: só as das últimas 48 horas)
@@ -487,11 +487,75 @@ def analises():
            f'<p class="lead">Textos do Plantão Informa que explicam, com calma, os temas por trás das manchetes.</p><ul class="anl">{lis}</ul>',
            rodape="")
 
+def explica():
+    """Guias do Explica Plantão (explica/*.md, escritos pelo explicador.py) em explica/<slug>.html, com FAQPage."""
+    import urllib.parse
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from materias import ler_materias
+    lista = ler_materias("explica")
+    if not lista: return
+    MES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"]
+    data = lambda dt: f"{dt.day} de {MES[dt.month - 1]} de {dt.year}"
+    os.makedirs(os.path.join(OUT, "explica"), exist_ok=True)
+    for m in lista:
+        url = f"{SITE}explica/{m['slug']}"
+        perg = re.findall(r"^## (.+?)\n\n(.+?)(?=\n\n## |\n\nFonte oficial|\Z)", m["texto"], re.S | re.M)
+        faq = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+               {"@type": "Question", "name": q.strip(), "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"\s+", " ", r).strip()}}
+               for q, r in perg if q.strip().endswith("?")]}
+        ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": m["titulo"][:110], "description": m.get("subtitulo", ""),
+              "datePublished": m["dt"].isoformat(), "dateModified": m["dt"].isoformat(), "inLanguage": "pt-BR",
+              "author": {"@type": "Organization", "name": "Redação Plantão Informa"},
+              "publisher": {"@type": "Organization", "name": "Plantão Informa", "logo": {"@type": "ImageObject", "url": SITE + "logo.jpg"}},
+              "mainEntityOfPage": url, "image": SITE + "og.png", "articleSection": "Explica Plantão"}
+        txt_zap = urllib.parse.quote(f"*{m['titulo']}*\n\n{m.get('subtitulo', '')}\n\nEntenda no Plantão Informa: {url}")
+        corpo = (f'<span class="rot">Explica Plantão · {e(m.get("editoria", ""))}</span>'
+                 + (f'<p class="sub">{e(m["subtitulo"])}</p>' if m.get("subtitulo") else "")
+                 + f'<p class="byl">{data(m["dt"])} · {m["minutos"]} min de leitura · <a href="{e(m.get("fonte", ""))}" target="_blank" rel="noopener">texto oficial</a></p>'
+                 + leitura(m) + f'<article class="art">{m["html"]}</article>'
+                 + f'<div class="comp"><a class="zap" href="https://wa.me/?text={txt_zap}" target="_blank" rel="noopener">Compartilhar no WhatsApp</a>'
+                 + f'<button type="button" data-copia="{e(url)}">Copiar link</button><a href="index.html">Todos os guias</a></div>')
+        bc = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+              {"@type": "ListItem", "position": 1, "name": "Início", "item": SITE},
+              {"@type": "ListItem", "position": 2, "name": "Explica Plantão", "item": SITE + "explica/"},
+              {"@type": "ListItem", "position": 3, "name": m["titulo"], "item": url}]}
+        head = '<script type="application/ld+json">' + json.dumps([ld, bc] + ([faq] if faq["mainEntity"] else []), ensure_ascii=False).replace("</", "<\\/") + "</script>"
+        NOTICIAS_SM.append((url, m["titulo"], m["dt"]))
+        pagina(f"explica/{m['slug']}.html", m["titulo"], m.get("subtitulo") or m["titulo"], corpo, [("explica/", "Explica Plantão")],
+               None, "article", None, head, "Guia gerado por inteligência artificial a partir do texto oficial, com conferência automática dos números. Não substitui orientação profissional. ")
+    lis = "".join(f'<li><small>{e(m.get("editoria", ""))} · {data(m["dt"])}</small><br><a href="{m["slug"]}.html">{e(m["titulo"])}</a>'
+                  + (f'<p>{e(m["subtitulo"])}</p>' if m.get("subtitulo") else "") + "</li>" for m in lista)
+    pagina("explica/index.html", "Explica Plantão", "Mudanças em leis, tributos, regras trabalhistas e benefícios explicadas em perguntas e respostas.",
+           '<p class="lead">Mudanças em leis, tributos, regras trabalhistas, benefícios e direitos explicadas em perguntas e respostas, '
+           'a partir do Diário Oficial, da Receita Federal, do Planalto e dos tribunais superiores.</p><ul class="anl">' + lis + "</ul>", rodape="")
+
+def express_pag():
+    """Edições do Plantão Express (express_historico.json) em express/index.html."""
+    hist = ler("express_historico.json")
+    if not hist: return
+    blocos = ""
+    for h in reversed(hist[-20:]):
+        au = h.get("audio") or {}
+        pl = f'<audio controls preload="none" src="{e(au["url"])}" style="width:100%;max-width:520px;margin:6px 0 4px"></audio>' if au.get("url") else ""
+        lis = "".join(f'<li><b><a href="{e(x["link"])}" target="_blank" rel="noopener">{e(x["titulo"])}</a></b><br>{e(x["fato"])}'
+                      + (f' <i>Por que importa:</i> {e(x["importa"])}' if x.get("importa") else "")
+                      + f' <small>({e(x["fonte"])})</small></li>' for x in h["itens"])
+        blocos += (f'<section class="r30" id="{e(h["chave"])}"><h2>⚡ {e(h["titulo"])}</h2>'
+                   + (f'<p style="margin:0 0 8px;font-weight:600">{e(h["abertura"])}</p>' if h.get("abertura") else "") + pl + f'<ol>{lis}</ol></section>')
+    pagina("express/index.html", "Plantão Express", "As 5 notícias mais relevantes das últimas 12 horas, de manhã e à noite, em texto e áudio.",
+           '<p class="lead">As 5 notícias mais relevantes das últimas 12 horas, às 8h e às 21h, em texto e na voz do podcast do Plantão. '
+           'Seleção e texto feitos por inteligência artificial a partir das manchetes do Plantão Informa; cada link leva à matéria original.</p>' + blocos,
+           [], hist[-1]["gerado_utc"], rodape="")
+
 def main():
     try: analises()
     except Exception as ex: print("ERRO análises", ex)
     try: guias()
     except Exception as ex: print("ERRO guias", ex)
+    try: explica()
+    except Exception as ex: print("ERRO explica", ex)
+    try: express_pag()
+    except Exception as ex: print("ERRO express", ex)
     for nome, f in (("estados.json", contas), ("futebol.json", futebol), ("agro.json", agro), ("mercado.json", mercado),
                     ("indicadores.json", indicadores)):
         d = ler(nome)

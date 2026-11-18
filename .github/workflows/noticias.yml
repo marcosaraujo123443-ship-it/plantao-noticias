@@ -7,7 +7,7 @@ on:
   repository_dispatch:
     types: [noticias]   # disparado pelo agendador (agendador/worker.js)
   push:
-    paths: ["scripts/og.py", "scripts/resumo.py", "scripts/telegram.py", "scripts/noticias.py", "scripts/gerar.py", "scripts/modelo.html", "scripts/agenda.py", "scripts/audio.py", "scripts/ia_lancamentos.py", "scripts/brasil_mapa.json", "scripts/materias.py", "materias/**", ".github/workflows/noticias.yml"]
+    paths: ["scripts/og.py", "scripts/resumo.py", "scripts/telegram.py", "scripts/noticias.py", "scripts/gerar.py", "scripts/modelo.html", "scripts/agenda.py", "scripts/audio.py", "scripts/ia_lancamentos.py", "scripts/brasil_mapa.json", "scripts/materias.py", "scripts/express.py", "materias/**", "explica/**", ".github/workflows/noticias.yml"]
 permissions:
   contents: write
 concurrency:
@@ -42,6 +42,12 @@ jobs:
           pip install --quiet imageio-ffmpeg
           python3 scripts/audio.py
           bash scripts/publicar_audio.sh
+      - name: Plantão Express (5 notícias das últimas 12 h, às 8h e às 21h)
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/express.py
       - name: O que acompanhar hoje (agenda)
         continue-on-error: true
         run: python3 scripts/agenda.py
@@ -62,7 +68,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add noticias.json index.html telegram_enviados.json resumo.json og.png agenda.json $( [ -f audio.json ] && echo audio.json ) $( [ -f ia_lancamentos.json ] && echo ia_lancamentos.json ) $( [ -f podcast.json ] && echo podcast.json podcast.xml ) 2>/dev/null || git add noticias.json index.html telegram_enviados.json
+          git add noticias.json index.html telegram_enviados.json resumo.json og.png agenda.json $( [ -f audio.json ] && echo audio.json ) $( [ -f ia_lancamentos.json ] && echo ia_lancamentos.json ) $( [ -f podcast.json ] && echo podcast.json podcast.xml ) $( [ -f express.json ] && echo express.json express_historico.json ) 2>/dev/null || git add noticias.json index.html telegram_enviados.json
           git diff --cached --quiet && exit 0
           git commit -m "Notícias $(TZ=America/Sao_Paulo date +%d/%m\ %H:%M)"
           for i in 1 2 3 4; do git pull --rebase -q origin main && git push -q origin main && break; sleep 5; done

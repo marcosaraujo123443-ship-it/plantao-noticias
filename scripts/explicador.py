@@ -27,8 +27,14 @@ DOU_TIPOS = {"Lei", "Lei Complementar", "Medida Provisória", "Decreto", "Emenda
 DOU_ORGAOS = re.compile(r"Presidência da República|Receita Federal|Previdência|INSS|Trabalho e Emprego|Fazenda|Conselho Monetário|Banco Central|Defesa do Consumidor|Saúde Suplementar|ANS|Aneel|Anatel", re.I)
 
 def baixar(url, n=2_000_000):
-    with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=40) as r:
-        return r.read(n).decode("utf-8", "ignore")
+    try:
+        with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=40) as r:
+            return r.read(n).decode("utf-8", "ignore")
+    except Exception:   # alguns portais (como o do DOU) recusam o urllib e aceitam o curl
+        import subprocess
+        r = subprocess.run(["curl", "-sfL", "-m", "60", "-A", UA["User-Agent"], url], capture_output=True)
+        if r.returncode != 0: raise
+        return r.stdout[:n].decode("utf-8", "ignore")
 
 def texto_pagina(url):
     h = baixar(url)

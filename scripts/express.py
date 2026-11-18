@@ -109,7 +109,13 @@ def main():
         try: k = int(x.get("n")) - 1
         except Exception: continue
         if not (0 <= k < len(cand)) or k in usados or not (x.get("titulo") and x.get("fato")): continue
-        usados.add(k); i = cand[k]
+        i = cand[k]
+        # trava: números do texto precisam estar na manchete ou no resumo de origem
+        orig = {n.replace(".", "").replace(",", "") for n in re.findall(r"\d+(?:[.,]\d+)*", i["titulo"] + " " + (i.get("resumo") or ""))}
+        novos = [n for n in re.findall(r"\d+(?:[.,]\d+)*", " ".join(str(x.get(c, "")) for c in ("titulo", "fato", "importa")))
+                 if len(n.replace(".", "").replace(",", "")) > 1 and n.replace(".", "").replace(",", "") not in orig]
+        if novos: print("Item descartado pela trava de números:", novos, i["titulo"]); continue
+        usados.add(k)
         itens.append({"titulo": x["titulo"].strip().rstrip("."), "fato": x["fato"].strip(), "importa": (x.get("importa") or "").strip(),
                       "secao": i["secao"], "fonte": i["fonte"], "link": i["link"], "img": i.get("img"),
                       "tambem": [t["fonte"] for t in i.get("tambem", [])][:3]})
