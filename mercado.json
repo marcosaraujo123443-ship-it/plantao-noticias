@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-19T12:45:59Z",
+ "atualizado_utc": "2026-11-19T13:01:03Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -9,20 +9,20 @@
   },
   {
    "nome": "Dólar",
-   "valor": 5.8768,
-   "var": 0.4787306797975788,
+   "valor": 5.8788,
+   "var": 0.5129257283545297,
    "tipo": "brl"
   },
   {
    "nome": "Euro",
-   "valor": 6.4613,
-   "var": 0.6338971435691176,
+   "valor": 6.4658,
+   "var": 0.7039840513347606,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 374697.71584,
-   "var": 1.224874194847425,
+   "valor": 375211.000296,
+   "var": 1.3290539511267907,
    "tipo": "brl"
   },
   {
@@ -249,7 +249,7 @@
    "ticker": "CXSE3",
    "nome": "Caixa Seguridade",
    "preco": 20.5,
-   "var": -3.665413533834594
+   "var": 0.0
   },
   {
    "ticker": "CEAB3",
@@ -273,13 +273,13 @@
    "ticker": "CPLE3",
    "nome": "Copel",
    "preco": 15.28,
-   "var": -0.4560260586319198
+   "var": 0.0
   },
   {
    "ticker": "CSAN3",
    "nome": "Cosan",
    "preco": 3.13,
-   "var": -3.6923076923076947
+   "var": 0.0
   },
   {
    "ticker": "CPFE3",
@@ -297,7 +297,7 @@
    "ticker": "CURY3",
    "nome": "Cury",
    "preco": 25.3,
-   "var": -3.8388445458000686
+   "var": 0.0
   },
   {
    "ticker": "CVCB3",
@@ -309,13 +309,13 @@
    "ticker": "CYRE3",
    "nome": "Cyrela",
    "preco": 19.1,
-   "var": -2.5510204081632626
+   "var": 0.0
   },
   {
    "ticker": "DIRR3",
    "nome": "Direcional",
    "preco": 8.93,
-   "var": -2.297592997811826
+   "var": 0.0
   },
   {
    "ticker": "AXIA3",
@@ -345,7 +345,7 @@
    "ticker": "EGIE3",
    "nome": "Engie",
    "preco": 25.49,
-   "var": -1.316298877274491
+   "var": 0.0
   },
   {
    "ticker": "EQTL3",
@@ -537,7 +537,7 @@
    "ticker": "CSNA3",
    "nome": "CSN",
    "preco": 3.65,
-   "var": -3.183023872679047
+   "var": 0.0
   },
   {
    "ticker": "SLCE3",
@@ -646,6 +646,12 @@
    "nome": "EZTec",
    "preco": 9.32,
    "var": -2.3060796645702153
+  },
+  {
+   "ticker": "RAIZ4",
+   "nome": "Raízen",
+   "preco": 0.3,
+   "var": 0.0
   }
  ],
  "maiores": [
@@ -779,7 +785,7 @@
    "ticker": "CXSE3",
    "nome": "Caixa Seguridade",
    "preco": 20.5,
-   "var": -3.665413533834594,
+   "var": 0.0,
    "vm": 61500000000.0
   },
   {
@@ -949,7 +955,7 @@
    "pvp": 0.78,
    "vm": 2395490000.0,
    "liq": 7806060.0,
-   "var": -0.7530120481927693
+   "var": 0.0
   },
   {
    "papel": "GARE11",
@@ -1153,12 +1159,12 @@
   {
    "papel": "MCLO11",
    "segmento": "Logística",
-   "cotacao": 10.25,
+   "cotacao": 10.29,
    "dy": 9.72,
    "pvp": 0.74,
    "vm": 1282570000.0,
    "liq": 3709100.0,
-   "var": -0.38872691933915515
+   "var": 0.0
   },
   {
    "papel": "RBVA11",
@@ -1248,7 +1254,7 @@
    "pvp": 0.78,
    "vm": 1097390000.0,
    "liq": 2363880.0,
-   "var": -2.516411378555805
+   "var": 0.0
   },
   {
    "papel": "BRCR11",
@@ -1263,12 +1269,12 @@
   {
    "papel": "RBRR11",
    "segmento": "Multicategoria",
-   "cotacao": 63.0,
+   "cotacao": 0.0,
    "dy": 15.45,
    "pvp": 0.68,
    "vm": 1026920000.0,
    "liq": 3672710.0,
-   "var": 0.0
+   "var": -100.0
   },
   {
    "papel": "VRTA11",
@@ -1303,12 +1309,12 @@
   {
    "papel": "VCJR11",
    "segmento": "Outros",
-   "cotacao": 63.0,
+   "cotacao": 0.0,
    "dy": 17.5,
    "pvp": 0.66,
    "vm": 927610000.0,
    "liq": 2923210.0,
-   "var": 0.0
+   "var": -100.0
   },
   {
    "papel": "CVBI11",
@@ -1342,12 +1348,12 @@
   {
    "papel": "GTWR11",
    "segmento": "Escritórios",
-   "cotacao": 74.71,
+   "cotacao": 74.7,
    "dy": 14.3,
    "pvp": 0.74,
    "vm": 896400000.0,
    "liq": 1253420.0,
-   "var": -0.2536715620827912
+   "var": -0.2670226969292422
   },
   {
    "papel": "BTCI11",
@@ -1427,7 +1433,7 @@
    "pvp": 1.06,
    "vm": 708779000.0,
    "liq": 2466550.0,
-   "var": 0.48076923076922906
+   "var": 0.0
   },
   {
    "papel": "VGIA11",
@@ -1452,22 +1458,22 @@
   {
    "papel": "CPOF11",
    "segmento": "Outros",
-   "cotacao": 115.0,
+   "cotacao": 120.9,
    "dy": 4.84,
    "pvp": 0.94,
    "vm": 663654000.0,
    "liq": 27456600.0,
-   "var": 1.7699115044247815
+   "var": 0.0
   },
   {
    "papel": "BROF11",
    "segmento": "Multicategoria",
-   "cotacao": 55.78,
+   "cotacao": 55.59,
    "dy": 11.93,
    "pvp": 0.51,
    "vm": 645445000.0,
    "liq": 1899640.0,
-   "var": -1.639922412272965
+   "var": -1.974960324457764
   },
   {
    "papel": "VGHF11",
@@ -1506,7 +1512,7 @@
    "pvp": 1.03,
    "vm": 614278000.0,
    "liq": 1908550.0,
-   "var": -0.9090909090909038
+   "var": 0.0
   },
   {
    "papel": "BPML11",
