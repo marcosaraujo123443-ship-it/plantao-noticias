@@ -1,18 +1,7 @@
 {
- "data": "2026-11-18",
- "atualizado": "2026-11-18T23:01:16-0300",
+ "data": "2026-11-19",
+ "atualizado": "2026-11-19T01:01:24-0300",
  "itens": [
-  {
-   "hora": "00:00",
-   "tipo": "tempo",
-   "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (perigo) em BA, GO, MG, MT, TO",
-   "detalhe": [
-    "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
-   ],
-   "link": "#tempo",
-   "estado": ""
-  },
   {
    "hora": "10:00",
    "tipo": "politica",
@@ -20,45 +9,43 @@
    "titulo": "Sessão solene no Plenário",
    "detalhe": [],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
+   "estado": "Convocada"
   },
   {
-   "hora": "10:58",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Não Deliberativa Solene no Plenário",
-   "detalhe": [],
-   "link": "https://www.youtube.com/watch?v=VNnnyn6UKmA",
-   "estado": "Encerrada"
-  },
-  {
-   "hora": "14:00",
-   "tipo": "politica",
-   "rotulo": "Senado",
-   "titulo": "Sessão deliberativa ordinária no Plenário",
+   "hora": "19:30",
+   "tipo": "futebol",
+   "rotulo": "Brasileirão",
+   "titulo": "Vasco × Internacional",
    "detalhe": [
-    "PL 3481/2026: Altera o art. 67 da Lei nº 15.421, de 2026, para dispor sobre o ajuste dos calendários escolares em razão da…",
-    "PLP 299/2026: Altera a Lei Complementar nº 200, de 30 de agosto de 2023, para conferir ao Poder Executivo federal novos…",
-    "RQS 794/2026: Solicita a realização de Sessão Especial destinada a celebrar a trajetória de vida e de luta do Senador Paulo…"
+    "35ª rodada"
    ],
-   "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
+   "estado": "",
+   "link": "tabelas/"
   },
   {
-   "hora": "14:22",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Deliberativa no Plenário",
+   "hora": "19:30",
+   "tipo": "futebol",
+   "rotulo": "Brasileirão",
+   "titulo": "Vitória × Bragantino",
    "detalhe": [
-    "PL 396/2007: Dispõe sobre a responsabilidade na transição administrativa, após a proclamação dos resultados eleitorais, e…",
-    "PL 956/2015: Dispõe sobre a criação de Varas do Trabalho na jurisdição do Tribunal Regional do Trabalho da 4ª Região e dá…",
-    "PL 8332/2015: Dispõe sobre a criação de cargos de Juiz do Trabalho Substituto e de cargos de provimento efetivo no Tribunal…"
+    "35ª rodada"
    ],
-   "link": "https://www.youtube.com/watch?v=IoHM-JigCPA",
-   "estado": "Encerrada"
+   "estado": "",
+   "link": "tabelas/"
   },
   {
-   "hora": "17:19",
+   "hora": "21:30",
+   "tipo": "futebol",
+   "rotulo": "Brasileirão",
+   "titulo": "São Paulo × Fluminense",
+   "detalhe": [
+    "35ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "",
    "tipo": "tempo",
    "rotulo": "Alerta INMET",
    "titulo": "Tempestade (perigo) em MS, MT, RO",
@@ -67,100 +54,11 @@
    ],
    "link": "#tempo",
    "estado": ""
-  },
-  {
-   "hora": "19:30",
-   "tipo": "futebol",
-   "rotulo": "Brasileirão",
-   "titulo": "Coritiba × Santos",
-   "detalhe": [
-    "35ª rodada"
-   ],
-   "estado": "",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "20:00",
-   "tipo": "futebol",
-   "rotulo": "Brasileirão",
-   "titulo": "Remo × Chapecoense",
-   "detalhe": [
-    "35ª rodada"
-   ],
-   "estado": "",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "20:30",
-   "tipo": "futebol",
-   "rotulo": "Brasileirão",
-   "titulo": "Cruzeiro × Palmeiras",
-   "detalhe": [
-    "35ª rodada"
-   ],
-   "estado": "",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "20:30",
-   "tipo": "futebol",
-   "rotulo": "Brasileirão",
-   "titulo": "Flamengo × Athletico-PR",
-   "detalhe": [
-    "35ª rodada"
-   ],
-   "estado": "",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "21:30",
-   "tipo": "futebol",
-   "rotulo": "Brasileirão",
-   "titulo": "Corinthians × Botafogo",
-   "detalhe": [
-    "35ª rodada"
-   ],
-   "estado": "",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "21:30",
-   "tipo": "futebol",
-   "rotulo": "Brasileirão",
-   "titulo": "Grêmio × Bahia",
-   "detalhe": [
-    "35ª rodada"
-   ],
-   "estado": "",
-   "link": "tabelas/"
   }
  ],
  "outros_jogos": 0,
  "fontes": {
-  "camara": [
-   {
-    "hora": "10:58",
-    "tipo": "politica",
-    "rotulo": "Câmara",
-    "titulo": "Sessão Não Deliberativa Solene no Plenário",
-    "detalhe": [],
-    "link": "https://www.youtube.com/watch?v=VNnnyn6UKmA",
-    "estado": "Encerrada"
-   },
-   {
-    "hora": "14:22",
-    "tipo": "politica",
-    "rotulo": "Câmara",
-    "titulo": "Sessão Deliberativa no Plenário",
-    "detalhe": [
-     "PL 396/2007: Dispõe sobre a responsabilidade na transição administrativa, após a proclamação dos resultados eleitorais, e…",
-     "PL 956/2015: Dispõe sobre a criação de Varas do Trabalho na jurisdição do Tribunal Regional do Trabalho da 4ª Região e dá…",
-     "PL 8332/2015: Dispõe sobre a criação de cargos de Juiz do Trabalho Substituto e de cargos de provimento efetivo no Tribunal…"
-    ],
-    "link": "https://www.youtube.com/watch?v=IoHM-JigCPA",
-    "estado": "Encerrada"
-   }
-  ],
+  "camara": [],
   "senado": [
    {
     "hora": "10:00",
@@ -169,20 +67,7 @@
     "titulo": "Sessão solene no Plenário",
     "detalhe": [],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
-   },
-   {
-    "hora": "14:00",
-    "tipo": "politica",
-    "rotulo": "Senado",
-    "titulo": "Sessão deliberativa ordinária no Plenário",
-    "detalhe": [
-     "PL 3481/2026: Altera o art. 67 da Lei nº 15.421, de 2026, para dispor sobre o ajuste dos calendários escolares em razão da…",
-     "PLP 299/2026: Altera a Lei Complementar nº 200, de 30 de agosto de 2023, para conferir ao Poder Executivo federal novos…",
-     "RQS 794/2026: Solicita a realização de Sessão Especial destinada a celebrar a trajetória de vida e de luta do Senador Paulo…"
-    ],
-    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
+    "estado": "Convocada"
    }
   ],
   "copom": []
