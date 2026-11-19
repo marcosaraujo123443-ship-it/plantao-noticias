@@ -1,0 +1,62 @@
+{
+ "chave": "2026-11-18-noite",
+ "edicao": "noite",
+ "data": "2026-11-18",
+ "titulo": "Plantão Express da noite · quarta-feira, 18 de novembro",
+ "abertura": "As últimas 12 horas foram marcadas pelo avanço do ajuste fiscal no Congresso, desdobramentos de investigações no STF, novos investimentos automotivos e atualizações no cenário de saúde e esportivo.",
+ "gerado_utc": "2026-11-19T00:06:08Z",
+ "modelo": "gemini-flash-lite-latest",
+ "itens": [
+  {
+   "titulo": "Fachin vai encaminhar relatórios da PF sobre ministros à PGR",
+   "fato": "Segundo o g1, a presidência do STF informou que enviará à Procuradoria-Geral da República os relatórios entregues pela Polícia Federal nesta quarta-feira.",
+   "importa": "O documento traz informações relativas a autoridades citadas em mensagens e passará por avaliação do Ministério Público.",
+   "secao": "Política",
+   "fonte": "g1",
+   "link": "https://g1.globo.com/politica/noticia/2026/11/18/fachin-relatorios-da-pf-sobre-ministros-citados-em-mensagens-de-vorcaro-pgr.ghtml",
+   "img": "https://s2-g1.glbimg.com/L_LvTWNS8MIM_L7jCJ1UvU8uWfs=/1280x0/filters:format(jpeg)/https://thumbor.globoi.com/unsafe/fit-in/1280x720/s02.video.glbimg.com/deo/vi/81/47/15234781",
+   "tambem": [
+    "CNN Brasil"
+   ]
+  },
+  {
+   "titulo": "São Paulo recebe novas doses da vacina contra a mpox",
+   "fato": "Com o aumento no número de casos, o Ministério Saúde começou o envio de novas doses do imunizante para o estado de São Paulo.",
+   "importa": "A medida visa conter a disseminação da doença na região e define quem está apto a receber a vacinação.",
+   "secao": "Ciência e Saúde",
+   "fonte": "Agência Brasil",
+   "link": "https://agenciabrasil.ebc.com.br/saude/noticia/2026-11/sp-recebe-novas-doses-da-vacina-contra-mpox-saiba-quem-pode-receber",
+   "img": null,
+   "tambem": [
+    "g1"
+   ]
+  },
+  {
+   "titulo": "Jetour anuncia fábrica no Brasil com investimento de R$ 400 milhões",
+   "fato": "A montadora chinesa Jetour anunciou um aporte de R$ 400 milhões para produzir SUVs e um novo modelo elétrico no país.",
+   "importa": "O investimento amplia a presença do setor automotivo estrangeiro e fomenta a produção industrial local.",
+   "secao": "Mercado",
+   "fonte": "g1",
+   "link": "https://g1.globo.com/carros/noticia/2026/11/18/jetour-carro-lancamento.ghtml",
+   "img": "https://s2-g1.glbimg.com/aGuFHHvKlGMz4WbjNUJF-tlkFRc=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/j/S/DsAgm9SWKstyo9nRGaFg/img-20261118-wa0071.jpg",
+   "tambem": []
+  },
+  {
+   "titulo": "São Paulo abre conversas com banco por novos naming rights do Morumbi",
+   "fato": "Uma instituição financeira avalia apresentar proposta para assumir o nome do estádio são-paulino, cujo contrato atual termina em janeiro de 2027.",
+   "importa": "A mudança pode representar uma nova fonte de receitas comerciais para o clube nos próximos anos.",
+   "secao": "Futebol",
+   "fonte": "CNN Brasil",
+   "link": "https://www.cnnbrasil.com.br/esportes/futebol/sao-paulo/sao-paulo-abre-conversas-com-banco-por-novos-naming-rights-do-morumbi/",
+   "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/06/estadio-couto-pereira-e1717632088812.jpg?w=1200",
+   "tambem": [
+    "ge"
+   ]
+  }
+ ],
+ "audio": {
+  "url": "https://github.com/marcosaraujo123443-ship-it/plantao-noticias/releases/download/audio-2026-11/express-20261118-noite.mp3",
+  "duracao": 95,
+  "modelo": "gemini-3.8-flash-tts"
+ }
+}
