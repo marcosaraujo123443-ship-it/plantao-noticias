@@ -1,62 +1,75 @@
 {
- "chave": "2026-11-18-noite",
- "edicao": "noite",
- "data": "2026-11-18",
- "titulo": "Plantão Express da noite · quarta-feira, 18 de novembro",
- "abertura": "As últimas 12 horas foram marcadas pelo avanço do ajuste fiscal no Congresso, desdobramentos de investigações no STF, novos investimentos automotivos e atualizações no cenário de saúde e esportivo.",
- "gerado_utc": "2026-11-19T00:06:08Z",
+ "chave": "2026-11-19-manha",
+ "edicao": "manha",
+ "data": "2026-11-19",
+ "titulo": "Plantão Express da manhã · quinta-feira, 19 de novembro",
+ "abertura": "Confira os principais acontecimentos econômicos, políticos e esportivos das últimas 12 horas.",
+ "gerado_utc": "2026-11-19T11:08:50Z",
  "modelo": "gemini-flash-lite-latest",
  "itens": [
   {
-   "titulo": "Fachin vai encaminhar relatórios da PF sobre ministros à PGR",
-   "fato": "Segundo o g1, a presidência do STF informou que enviará à Procuradoria-Geral da República os relatórios entregues pela Polícia Federal nesta quarta-feira.",
-   "importa": "O documento traz informações relativas a autoridades citadas em mensagens e passará por avaliação do Ministério Público.",
-   "secao": "Política",
-   "fonte": "g1",
-   "link": "https://g1.globo.com/politica/noticia/2026/11/18/fachin-relatorios-da-pf-sobre-ministros-citados-em-mensagens-de-vorcaro-pgr.ghtml",
-   "img": "https://s2-g1.glbimg.com/L_LvTWNS8MIM_L7jCJ1UvU8uWfs=/1280x0/filters:format(jpeg)/https://thumbor.globoi.com/unsafe/fit-in/1280x720/s02.video.glbimg.com/deo/vi/81/47/15234781",
+   "titulo": "IPO da Anthropic avalia dona do Claude em US$ 1,5 trilhão",
+   "fato": "A oferta pública inicial da Anthropic superou recordes anteriores após a empresa aumentar a venda de ações para 980 milhões, estreando na bolsa avaliada em US$ 1,5 trilhão.",
+   "importa": "O movimento impacta os mercados globais e os índices futuros nos Estados Unidos.",
+   "secao": "Mercado",
+   "fonte": "CNN Brasil",
+   "link": "https://www.cnnbrasil.com.br/economia/money/mercado/ipo-da-anthropic-dona-do-claude-estreia-na-bolsa-avaliada-em-us-15-tri/",
+   "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/11/Duvida-entre-IA-e-mercados.png?w=1200",
+   "tambem": [
+    "InfoMoney",
+    "g1"
+   ]
+  },
+  {
+   "titulo": "Senado derruba 3 propostas da oposição em destaques do ajuste fiscal",
+   "fato": "O Plenário do Senado rejeitou propostas da oposição sobre gastos, previdência e tributos nos destaques do ajuste fiscal, e o texto seguiu para análise da Câmara.",
+   "importa": "A medida define os rumos das propostas fiscais no Congresso Nacional.",
+   "secao": "Futebol",
+   "fonte": "Gazeta Esportiva",
+   "link": "https://www.gazetaesportiva.com/times/corinthians/seedorf-acertos-goleada-corinthians-botafogo/",
+   "img": "https://static.gazetaesportiva.com/uploads/2026/11/HXdWJBaXMAAZWWV.webp",
    "tambem": [
     "CNN Brasil"
    ]
   },
   {
-   "titulo": "São Paulo recebe novas doses da vacina contra a mpox",
-   "fato": "Com o aumento no número de casos, o Ministério Saúde começou o envio de novas doses do imunizante para o estado de São Paulo.",
-   "importa": "A medida visa conter a disseminação da doença na região e define quem está apto a receber a vacinação.",
-   "secao": "Ciência e Saúde",
-   "fonte": "Agência Brasil",
-   "link": "https://agenciabrasil.ebc.com.br/saude/noticia/2026-11/sp-recebe-novas-doses-da-vacina-contra-mpox-saiba-quem-pode-receber",
-   "img": null,
+   "titulo": "Ajuste fiscal vai à pauta de sessão extraordinária na Câmara",
+   "fato": "O presidente da Câmara, Hugo Motta, anunciou em Buenos Aires que a proposta de ajuste fiscal entrará na pauta de uma sessão extraordinária na próxima segunda-feira.",
+   "importa": "O andamento da proposta mobiliza a agenda legislativa federal para a próxima semana.",
+   "secao": "Política",
+   "fonte": "Poder360",
+   "link": "https://www.poder360.com.br/poder-congresso/saiba-como-votou-cada-senador-nos-destaques-do-ajuste-fiscal/",
+   "img": "https://static.poder360.com.br/uploads/2026/11/Plenario-do-Senado-18-nov-2026-1200x675.jpg",
    "tambem": [
     "g1"
    ]
   },
   {
-   "titulo": "Jetour anuncia fábrica no Brasil com investimento de R$ 400 milhões",
-   "fato": "A montadora chinesa Jetour anunciou um aporte de R$ 400 milhões para produzir SUVs e um novo modelo elétrico no país.",
-   "importa": "O investimento amplia a presença do setor automotivo estrangeiro e fomenta a produção industrial local.",
-   "secao": "Mercado",
-   "fonte": "g1",
-   "link": "https://g1.globo.com/carros/noticia/2026/11/18/jetour-carro-lancamento.ghtml",
-   "img": "https://s2-g1.glbimg.com/aGuFHHvKlGMz4WbjNUJF-tlkFRc=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/j/S/DsAgm9SWKstyo9nRGaFg/img-20261118-wa0071.jpg",
-   "tambem": []
+   "titulo": "Lula assina decreto sobre fim da escala 6x1 e viaja a Mato Grosso",
+   "fato": "O presidente da República assinou um decreto sobre o fim da escala 6x1 e viajou para o Mato Grosso para compromissos sobre terra indígena e visita ao cacique Raoni.",
+   "importa": "O decreto altera regras trabalhistas e a agenda presidencial marca os compromissos oficiais do dia.",
+   "secao": "Política",
+   "fonte": "Agência Câmara",
+   "link": "https://www.camara.leg.br/noticias/1320935-proposta-de-ajuste-fiscal-entra-na-pauta-de-sessao-extraordinaria-da-camara-na-proxima-segunda-feira",
+   "img": "https://www.camara.leg.br/midias/image/2026/11/img20261111163654393-768x473.jpg",
+   "tambem": [
+    "g1"
+   ]
   },
   {
-   "titulo": "São Paulo abre conversas com banco por novos naming rights do Morumbi",
-   "fato": "Uma instituição financeira avalia apresentar proposta para assumir o nome do estádio são-paulino, cujo contrato atual termina em janeiro de 2027.",
-   "importa": "A mudança pode representar uma nova fonte de receitas comerciais para o clube nos próximos anos.",
-   "secao": "Futebol",
-   "fonte": "CNN Brasil",
-   "link": "https://www.cnnbrasil.com.br/esportes/futebol/sao-paulo/sao-paulo-abre-conversas-com-banco-por-novos-naming-rights-do-morumbi/",
-   "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/06/estadio-couto-pereira-e1717632088812.jpg?w=1200",
-   "tambem": [
-    "ge"
-   ]
+   "titulo": "Perdas do Ueno Bank chegam a US$ 1 bilhão, diz Banco Central",
+   "fato": "Segundo o Banco Central do Paraguai, as perdas causadas pela quebra do Ueno Bank podem alcançar cerca de US$ 1 bilhão no pior cenário estimado pelo novo presidente da instituição.",
+   "importa": "O colapso financeiro afeta o cenário econômico e o sistema bancário da região.",
+   "secao": "Mercado",
+   "fonte": "InfoMoney",
+   "link": "https://www.infomoney.com.br/business/da-carne-seca-ao-mercado-europeu-a-aposta-portuguesa-da-brasileira-alfama/",
+   "img": "https://www.infomoney.com.br/wp-content/uploads/2026/11/Image-43.jpg?fit=1200%2C675&quality=70&strip=all",
+   "tambem": []
   }
  ],
  "audio": {
-  "url": "https://github.com/marcosaraujo123443-ship-it/plantao-noticias/releases/download/audio-2026-11/express-20261118-noite.mp3",
-  "duracao": 95,
+  "url": "https://github.com/marcosaraujo123443-ship-it/plantao-noticias/releases/download/audio-2026-11/express-20261119-manha.mp3",
+  "duracao": 116,
   "modelo": "gemini-3.8-flash-tts"
  }
 }
