@@ -27,7 +27,26 @@ tema), preferindo as que mais veículos noticiaram. Para cada uma, escreva em po
 Regras rígidas: use só o que está no material, sem inventar números, nomes, datas ou consequências; se o material não
 diz por que importa, descreva o alcance do fato sem especular; tom jornalístico, neutro e apartidário, sem opinião;
 cite o veículo quando o fato for de um só ("segundo o g1"). Responda apenas com JSON:
-{"abertura": "uma frase que resume o período", "itens": [{"n": 3, "titulo": "...", "fato": "...", "importa": "..."}]}"""
+{"abertura": "uma frase que resume o período", "itens": [{"n": 3, "original": "a manchete original do item 3, copiada exatamente", "titulo": "...", "fato": "...", "importa": "..."}]}
+O campo "original" é obrigatório e deve ser a manchete do item escolhido copiada letra por letra."""
+
+PALAVRA = re.compile(r"[a-zà-ú0-9]{4,}")
+def palavras(t): return set(PALAVRA.findall((t or "").lower()))
+
+def casar(x, cand, usados):
+    """Liga o texto escrito pela IA à notícia de origem pelo conteúdo (o número que a IA devolve às vezes vem trocado).
+    Devolve o índice da notícia ou None se nenhuma bater com segurança."""
+    alvo_orig, alvo = palavras(x.get("original")), palavras(" ".join(str(x.get(c, "")) for c in ("titulo", "fato")))
+    melhor, nota_m = None, 0.0
+    for k, i in enumerate(cand):
+        if k in usados: continue
+        base = palavras(i["titulo"] + " " + (i.get("resumo") or ""))
+        if not base: continue
+        n1 = len(alvo_orig & palavras(i["titulo"])) / max(1, len(palavras(i["titulo"])))   # manchete original copiada
+        n2 = len(alvo & base) / max(1, min(len(alvo), len(base)))                          # conteúdo do texto escrito
+        nota = max(n1, n2) + (0.05 if str(k + 1) == str(x.get("n")) else 0)
+        if nota > nota_m: melhor, nota_m = k, nota
+    return melhor if nota_m >= 0.45 else None
 
 def edicao(agora):
     """('manha'|'noite', data da edição) ou (None, None) fora do horário. Atrasos são recuperados até 12h / 1h."""
@@ -106,9 +125,9 @@ def main():
     res = json.loads(m.group(0) if m else texto)
     itens, usados = [], set()
     for x in res.get("itens", []):
-        try: k = int(x.get("n")) - 1
-        except Exception: continue
-        if not (0 <= k < len(cand)) or k in usados or not (x.get("titulo") and x.get("fato")): continue
+        if not (x.get("titulo") and x.get("fato")): continue
+        k = casar(x, cand, usados)
+        if k is None: print("Item sem notícia de origem correspondente, descartado:", x.get("titulo")); continue
         i = cand[k]
         # trava: números do texto precisam estar na manchete ou no resumo de origem
         orig = {n.replace(".", "").replace(",", "") for n in re.findall(r"\d+(?:[.,]\d+)*", i["titulo"] + " " + (i.get("resumo") or ""))}
