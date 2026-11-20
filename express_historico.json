@@ -210,5 +210,81 @@
    "duracao": 110,
    "modelo": "gemini-3.8-flash-tts"
   }
+ },
+ {
+  "chave": "2026-11-20-manha",
+  "edicao": "manha",
+  "data": "2026-11-20",
+  "titulo": "Plantão Express da manhã · sexta-feira, 20 de novembro",
+  "abertura": "As principais movimentações políticas, econômicas e esportivas das últimas horas no Brasil e no mundo.",
+  "gerado_utc": "2026-11-20T11:09:41Z",
+  "modelo": "gemini-flash-lite-latest",
+  "itens": [
+   {
+    "titulo": "OAB pede julgamento presencial de Van Hattem no STF",
+    "fato": "A entidade discordou de decisão do ministro Flávio Dino e pediu para reverter o formato de julgamento, buscando garantir a manifestação de advogados em tempo real.",
+    "importa": "A medida busca assegurar a ampla defesa e a sustentação oral dos advogados no processo.",
+    "secao": "Política",
+    "fonte": "Poder360",
+    "link": "https://www.poder360.com.br/poder-justica/oab-discorda-de-dino-e-pede-que-stf-julgue-van-hattem-presencialmente/",
+    "img": "https://static.poder360.com.br/uploads/2026/10/Marcel-van-Hattem-Camara-Deputados-1set2026-1200x675.jpg",
+    "tambem": [
+     "CNN Brasil"
+    ]
+   },
+   {
+    "titulo": "PGR vai analisar quatro de dez relatórios da PF sobre ministros",
+    "fato": "O ministro Edson Fachin enviou à Procuradoria citações envolvendo Moraes, Kassio, Toffoli e Mendonça, enquanto outros seis documentos foram arquivados.",
+    "importa": "O andamento define quais citações envolvendo autoridades passarão pelo crivo do Ministério Público.",
+    "secao": "Política",
+    "fonte": "CNN Brasil",
+    "link": "https://www.cnnbrasil.com.br/politica/pgr-analisara-so-4-dos-10-relatorios-da-pf-sobre-ministros-do-stf-entenda/",
+    "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/12/PLENARIO-SESSAO-CONGRESSO-04-12-25.jpg?w=1200",
+    "tambem": [
+     "g1"
+    ]
+   },
+   {
+    "titulo": "Mega-Sena acumula e próximo prêmio chega a R$ 45 milhões",
+    "fato": "Nenhum apostador acertou as seis dezenas sorteadas no Concurso 3.088, realizado nesta quinta-feira.",
+    "importa": "O valor acumulado atrai apostadores de todo o país para o próximo sorteio.",
+    "secao": "Mercado",
+    "fonte": "Agência Brasil",
+    "link": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/mega-sena-acumula-e-premio-vai-para-r-45-milhoes",
+    "img": "https://agenciabrasil.ebc.com.br/ebc.png?id=1709492&o=rss",
+    "tambem": [
+     "g1"
+    ]
+   },
+   {
+    "titulo": "Calleri admite atuação ruim do São Paulo após derrota",
+    "fato": "O atacante deu razão às vaias da torcida após o revés para o Fluminense, em partida realizada nesta quinta-feira.",
+    "importa": "O resultado reflete o momento de instabilidade da equipe na reta final do Campeonato Brasileiro.",
+    "secao": "Futebol",
+    "fonte": "CNN Brasil",
+    "link": "https://www.cnnbrasil.com.br/esportes/futebol/sao-paulo/calleri-reconhece-atuacao-ruim-e-da-razao-a-torcida-vaias-certas/",
+    "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/11/sao-paulo-fluminense-brasileirao-3-e1795138745244.jpg?w=1200",
+    "tambem": [
+     "Gazeta Esportiva"
+    ]
+   },
+   {
+    "titulo": "EUA liberam quase 900 mil chips de IA para empresas chinesas",
+    "fato": "Dados de comissão da Câmara dos Representantes mostram que houve pedidos de licença para exportar milhões de semicondutores avançados.",
+    "importa": "A movimentação revela o fluxo de comércio internacional de tecnologia de ponta entre as maiores economias globais.",
+    "secao": "IA",
+    "fonte": "Olhar Digital",
+    "link": "https://olhardigital.com.br/2026/11/19/inteligencia-artificial/eua-liberaram-quase-900-mil-chips-de-ia-para-empresas-chinesas/",
+    "img": "https://olhardigital.com.br/wp-content/uploads/2026/10/china-ia-1-1-1024x576.jpg",
+    "tambem": [
+     "g1"
+    ]
+   }
+  ],
+  "audio": {
+   "url": "https://github.com/marcosaraujo123443-ship-it/plantao-noticias/releases/download/audio-2026-11/express-20261120-manha.mp3",
+   "duracao": 103,
+   "modelo": "gemini-3.8-flash-tts"
+  }
  }
 ]

@@ -1,77 +1,76 @@
 {
- "chave": "2026-11-19-noite",
- "edicao": "noite",
- "data": "2026-11-19",
- "titulo": "Plantão Express da noite · quinta-feira, 19 de novembro",
- "abertura": "As últimas horas foram marcadas por movimentações no mercado financeiro com a alta do dólar e a estreia de gigante de IA na bolsa, além de decisões políticas e econômicas de relevância nacional.",
- "gerado_utc": "2026-11-20T00:04:10Z",
+ "chave": "2026-11-20-manha",
+ "edicao": "manha",
+ "data": "2026-11-20",
+ "titulo": "Plantão Express da manhã · sexta-feira, 20 de novembro",
+ "abertura": "As principais movimentações políticas, econômicas e esportivas das últimas horas no Brasil e no mundo.",
+ "gerado_utc": "2026-11-20T11:09:41Z",
  "modelo": "gemini-flash-lite-latest",
  "itens": [
   {
-   "titulo": "Anthropic estreia na bolsa avaliada em US$ 1,76 trilhão",
-   "fato": "As ações da empresa estrearam com alta de 34% em relação ao preço do IPO, fechando a avaliação em US$ 1,76 trilhão, segundo a CNN Brasil.",
-   "importa": "Demonstra o forte apetite do mercado global por empresas do setor de tecnologia e inteligência artificial.",
-   "secao": "Mercado",
-   "fonte": "CNN Brasil",
-   "link": "https://www.cnnbrasil.com.br/economia/money/mercado/anthropic-encerra-estreia-na-bolsa-com-avaliacao-de-us-176-trilhao/",
-   "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/Reuters_Direct_Media/BrazilOnlineReportTechnologyNews/tagreuters.com2026binary_LYNXNPEMA91R0-BASEIMAGE-e1794341027996.jpg?w=1200",
-   "tambem": [
-    "g1",
-    "Tecnoblog"
-   ]
-  },
-  {
-   "titulo": "Dólar supera R$ 5,93 e fecha no maior valor desde abril de 2025",
-   "fato": "O dólar avançou pela sexta sessão consecutiva em meio a um dia de turbulência no mercado financeiro, segundo a Agência Brasil.",
-   "importa": "Afeta diretamente a inflação, o custo de importações e a economia nacional.",
-   "secao": "Mercado",
-   "fonte": "Agência Brasil",
-   "link": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/dolar-supera-r-593-e-fecha-no-maior-valor-desde-abril-de-2025",
-   "img": null,
-   "tambem": [
-    "g1"
-   ]
-  },
-  {
-   "titulo": "Relator do ajuste fiscal na Câmara mantém texto do Senado",
-   "fato": "O deputado Mauro Benevides apresentou seu parecer mantendo o texto original para acelerar a aprovação, com votação prevista para segunda-feira, segundo o g1.",
-   "importa": "Define as regras para o ajuste fiscal do governo federal com tramitação acelerada no Congresso.",
+   "titulo": "OAB pede julgamento presencial de Van Hattem no STF",
+   "fato": "A entidade discordou de decisão do ministro Flávio Dino e pediu para reverter o formato de julgamento, buscando garantir a manifestação de advogados em tempo real.",
+   "importa": "A medida busca assegurar a ampla defesa e a sustentação oral dos advogados no processo.",
    "secao": "Política",
-   "fonte": "g1",
-   "link": "https://g1.globo.com/politica/noticia/2026/11/19/relator-do-ajuste-fiscal-na-camara-mantem-texto-do-senado-projeto-deve-ser-votado-segunda-feira.ghtml",
-   "img": "https://s2-g1.glbimg.com/RVoT4Zq20buzERW89XU9RfNr7Lk=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/h/q/VYBfx7QyeiDzDUd6kiZw/kayo-magalhaes.jpg",
+   "fonte": "Poder360",
+   "link": "https://www.poder360.com.br/poder-justica/oab-discorda-de-dino-e-pede-que-stf-julgue-van-hattem-presencialmente/",
+   "img": "https://static.poder360.com.br/uploads/2026/10/Marcel-van-Hattem-Camara-Deputados-1set2026-1200x675.jpg",
    "tambem": [
     "CNN Brasil"
    ]
   },
   {
-   "titulo": "Fachin arquiva relatórios da PF sobre ministros e envia 4 à PGR",
-   "fato": "O presidente do STF recebeu dez documentos de investigações e decidiu arquivar parte das menções, enviando quatro delas à Procuradoria-Geral da República, conforme o InfoMoney.",
-   "importa": "Envolve investigações sensíveis sobre integrantes da mais alta Corte do país.",
+   "titulo": "PGR vai analisar quatro de dez relatórios da PF sobre ministros",
+   "fato": "O ministro Edson Fachin enviou à Procuradoria citações envolvendo Moraes, Kassio, Toffoli e Mendonça, enquanto outros seis documentos foram arquivados.",
+   "importa": "O andamento define quais citações envolvendo autoridades passarão pelo crivo do Ministério Público.",
    "secao": "Política",
-   "fonte": "InfoMoney",
-   "link": "https://www.infomoney.com.br/politica/fachin-manda-arquivar-relatorios-da-pf-sobre-mencao-a-6-ministros-4-vao-a-pgr/",
-   "img": "https://www.infomoney.com.br/wp-content/uploads/2025/12/54964066080_00a8562548_k.jpg?fit=1200%2C675&quality=70&strip=all",
+   "fonte": "CNN Brasil",
+   "link": "https://www.cnnbrasil.com.br/politica/pgr-analisara-so-4-dos-10-relatorios-da-pf-sobre-ministros-do-stf-entenda/",
+   "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/12/PLENARIO-SESSAO-CONGRESSO-04-12-25.jpg?w=1200",
    "tambem": [
     "g1"
    ]
   },
   {
-   "titulo": "Governo detalha cálculo da hora extra com escala 5x2",
-   "fato": "O Ministério do Trabalho explicou que a redução da jornada semanal e a garantia de descanso remunerado vão elevar o valor da hora trabalhada, segundo a Agência Brasil.",
-   "importa": "Impacta diretamente a remuneração de trabalhadores e as regras de cálculo para empregadores.",
+   "titulo": "Mega-Sena acumula e próximo prêmio chega a R$ 45 milhões",
+   "fato": "Nenhum apostador acertou as seis dezenas sorteadas no Concurso 3.088, realizado nesta quinta-feira.",
+   "importa": "O valor acumulado atrai apostadores de todo o país para o próximo sorteio.",
    "secao": "Mercado",
    "fonte": "Agência Brasil",
-   "link": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/veja-como-sera-o-calculo-da-hora-extra-com-escala-de-trabalho-5x2",
-   "img": null,
+   "link": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/mega-sena-acumula-e-premio-vai-para-r-45-milhoes",
+   "img": "https://agenciabrasil.ebc.com.br/ebc.png?id=1709492&o=rss",
+   "tambem": [
+    "g1"
+   ]
+  },
+  {
+   "titulo": "Calleri admite atuação ruim do São Paulo após derrota",
+   "fato": "O atacante deu razão às vaias da torcida após o revés para o Fluminense, em partida realizada nesta quinta-feira.",
+   "importa": "O resultado reflete o momento de instabilidade da equipe na reta final do Campeonato Brasileiro.",
+   "secao": "Futebol",
+   "fonte": "CNN Brasil",
+   "link": "https://www.cnnbrasil.com.br/esportes/futebol/sao-paulo/calleri-reconhece-atuacao-ruim-e-da-razao-a-torcida-vaias-certas/",
+   "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/11/sao-paulo-fluminense-brasileirao-3-e1795138745244.jpg?w=1200",
+   "tambem": [
+    "Gazeta Esportiva"
+   ]
+  },
+  {
+   "titulo": "EUA liberam quase 900 mil chips de IA para empresas chinesas",
+   "fato": "Dados de comissão da Câmara dos Representantes mostram que houve pedidos de licença para exportar milhões de semicondutores avançados.",
+   "importa": "A movimentação revela o fluxo de comércio internacional de tecnologia de ponta entre as maiores economias globais.",
+   "secao": "IA",
+   "fonte": "Olhar Digital",
+   "link": "https://olhardigital.com.br/2026/11/19/inteligencia-artificial/eua-liberaram-quase-900-mil-chips-de-ia-para-empresas-chinesas/",
+   "img": "https://olhardigital.com.br/wp-content/uploads/2026/10/china-ia-1-1-1024x576.jpg",
    "tambem": [
     "g1"
    ]
   }
  ],
  "audio": {
-  "url": "https://github.com/marcosaraujo123443-ship-it/plantao-noticias/releases/download/audio-2026-11/express-20261119-noite.mp3",
-  "duracao": 110,
+  "url": "https://github.com/marcosaraujo123443-ship-it/plantao-noticias/releases/download/audio-2026-11/express-20261120-manha.mp3",
+  "duracao": 103,
   "modelo": "gemini-3.8-flash-tts"
  }
 }
