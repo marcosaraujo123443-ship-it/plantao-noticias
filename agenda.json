@@ -1,6 +1,6 @@
 {
  "data": "2026-11-20",
- "atualizado": "2026-11-20T19:01:14-0300",
+ "atualizado": "2026-11-20T20:01:17-0300",
  "itens": [
   {
    "hora": "09:16",
@@ -31,5 +31,7 @@
   "senado": [],
   "copom": []
  },
- "erros": []
+ "erros": [
+  "copom: <HTTPError 304: 'Not Modified'>"
+ ]
 }
