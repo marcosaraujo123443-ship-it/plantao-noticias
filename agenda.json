@@ -1,6 +1,6 @@
 {
  "data": "2026-11-20",
- "atualizado": "2026-11-20T01:01:17-0300",
+ "atualizado": "2026-11-20T04:03:11-0300",
  "itens": [
   {
    "hora": "09:10",
@@ -32,6 +32,6 @@
   "copom": []
  },
  "erros": [
-  "copom: <HTTPError 304: 'Not Modified'>"
+  "camara: URLError(TimeoutError('timed out'))"
  ]
 }
