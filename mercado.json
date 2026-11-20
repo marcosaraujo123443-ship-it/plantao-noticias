@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-20T06:16:01Z",
+ "atualizado_utc": "2026-11-20T09:16:03Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -9,20 +9,20 @@
   },
   {
    "nome": "Dólar",
-   "valor": 5.9346,
-   "var": 0.4978662873399653,
+   "valor": 5.9318,
+   "var": 0.45045045045044585,
    "tipo": "brl"
   },
   {
    "nome": "Euro",
-   "valor": 6.5143,
-   "var": 0.45645904976330254,
+   "valor": 6.4989,
+   "var": 0.21897697657562443,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 366786.88477199996,
-   "var": -0.1614415434289751,
+   "valor": 366108.857142,
+   "var": -0.29895923996797746,
    "tipo": "brl"
   },
   {
@@ -646,12 +646,6 @@
    "nome": "EZTec",
    "preco": 9.24,
    "var": -0.8583690987124526
-  },
-  {
-   "ticker": "RAIZ4",
-   "nome": "Raízen",
-   "preco": 0.3,
-   "var": 0.0
   }
  ],
  "maiores": [
@@ -1259,12 +1253,12 @@
   {
    "papel": "RBRR11",
    "segmento": "Multicategoria",
-   "cotacao": 0.0,
+   "cotacao": 63.0,
    "dy": 15.45,
    "pvp": 0.68,
    "vm": 1026920000.0,
    "liq": 3595890.0,
-   "var": -100.0
+   "var": 0.0
   },
   {
    "papel": "BRCR11",
@@ -1289,12 +1283,12 @@
   {
    "papel": "TRXB11",
    "segmento": "Multicategoria",
-   "cotacao": 197.99,
+   "cotacao": 198.01,
    "dy": 16.21,
    "pvp": 1.85,
    "vm": 963424000.0,
    "liq": 17215100.0,
-   "var": 0.0
+   "var": 0.010101520278782417
   },
   {
    "papel": "RBRY11",
@@ -1309,12 +1303,12 @@
   {
    "papel": "VCJR11",
    "segmento": "Outros",
-   "cotacao": 0.0,
+   "cotacao": 63.0,
    "dy": 17.5,
    "pvp": 0.66,
    "vm": 927610000.0,
    "liq": 2856740.0,
-   "var": -100.0
+   "var": 0.0
   },
   {
    "papel": "CVBI11",
@@ -1478,12 +1472,12 @@
   {
    "papel": "BROF11",
    "segmento": "Multicategoria",
-   "cotacao": 54.63,
+   "cotacao": 54.42,
    "dy": 12.02,
    "pvp": 0.5,
    "vm": 634299000.0,
    "liq": 1899570.0,
-   "var": -0.7088331515812452
+   "var": -1.0905125408942173
   },
   {
    "papel": "CPLG11",
@@ -1587,12 +1581,12 @@
   {
    "papel": "TJKB11",
    "segmento": "Hospital",
-   "cotacao": 248.49,
+   "cotacao": 249.04,
    "dy": 13.53,
    "pvp": 0.89,
    "vm": 533390000.0,
    "liq": 965005.0,
-   "var": -2.55294117647058
+   "var": -2.3372549019607836
   }
  ],
  "vm_cache": {
