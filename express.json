@@ -1,73 +1,77 @@
 {
- "chave": "2026-11-19-manha",
- "edicao": "manha",
+ "chave": "2026-11-19-noite",
+ "edicao": "noite",
  "data": "2026-11-19",
- "titulo": "Plantão Express da manhã · quinta-feira, 19 de novembro",
- "abertura": "Confira os principais acontecimentos econômicos, políticos e esportivos das últimas 12 horas.",
- "gerado_utc": "2026-11-19T11:08:50Z",
+ "titulo": "Plantão Express da noite · quinta-feira, 19 de novembro",
+ "abertura": "As últimas horas foram marcadas por movimentações no mercado financeiro com a alta do dólar e a estreia de gigante de IA na bolsa, além de decisões políticas e econômicas de relevância nacional.",
+ "gerado_utc": "2026-11-20T00:04:10Z",
  "modelo": "gemini-flash-lite-latest",
  "itens": [
   {
-   "titulo": "IPO da Anthropic avalia dona do Claude em US$ 1,5 trilhão",
-   "fato": "A oferta pública inicial da Anthropic superou recordes anteriores após a empresa aumentar a venda de ações para 980 milhões, estreando na bolsa avaliada em US$ 1,5 trilhão.",
-   "importa": "O movimento impacta os mercados globais e os índices futuros nos Estados Unidos.",
+   "titulo": "Anthropic estreia na bolsa avaliada em US$ 1,76 trilhão",
+   "fato": "As ações da empresa estrearam com alta de 34% em relação ao preço do IPO, fechando a avaliação em US$ 1,76 trilhão, segundo a CNN Brasil.",
+   "importa": "Demonstra o forte apetite do mercado global por empresas do setor de tecnologia e inteligência artificial.",
    "secao": "Mercado",
    "fonte": "CNN Brasil",
-   "link": "https://www.cnnbrasil.com.br/economia/money/mercado/ipo-da-anthropic-dona-do-claude-estreia-na-bolsa-avaliada-em-us-15-tri/",
-   "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/11/Duvida-entre-IA-e-mercados.png?w=1200",
+   "link": "https://www.cnnbrasil.com.br/economia/money/mercado/anthropic-encerra-estreia-na-bolsa-com-avaliacao-de-us-176-trilhao/",
+   "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/Reuters_Direct_Media/BrazilOnlineReportTechnologyNews/tagreuters.com2026binary_LYNXNPEMA91R0-BASEIMAGE-e1794341027996.jpg?w=1200",
    "tambem": [
-    "InfoMoney",
-    "g1"
+    "g1",
+    "Tecnoblog"
    ]
   },
   {
-   "titulo": "Senado derruba 3 propostas da oposição em destaques do ajuste fiscal",
-   "fato": "O Plenário do Senado rejeitou propostas da oposição sobre gastos, previdência e tributos nos destaques do ajuste fiscal, e o texto seguiu para análise da Câmara.",
-   "importa": "A medida define os rumos das propostas fiscais no Congresso Nacional.",
-   "secao": "Política",
-   "fonte": "Poder360",
-   "link": "https://www.poder360.com.br/poder-congresso/saiba-como-votou-cada-senador-nos-destaques-do-ajuste-fiscal/",
-   "img": "https://static.poder360.com.br/uploads/2026/11/Plenario-do-Senado-18-nov-2026-1200x675.jpg",
-   "tambem": [
-    "g1"
-   ]
-  },
-  {
-   "titulo": "Ajuste fiscal vai à pauta de sessão extraordinária na Câmara",
-   "fato": "O presidente da Câmara, Hugo Motta, anunciou em Buenos Aires que a proposta de ajuste fiscal entrará na pauta de uma sessão extraordinária na próxima segunda-feira.",
-   "importa": "O andamento da proposta mobiliza a agenda legislativa federal para a próxima semana.",
-   "secao": "Política",
-   "fonte": "Agência Câmara",
-   "link": "https://www.camara.leg.br/noticias/1320935-proposta-de-ajuste-fiscal-entra-na-pauta-de-sessao-extraordinaria-da-camara-na-proxima-segunda-feira",
-   "img": "https://www.camara.leg.br/midias/image/2026/11/img20261111163654393-768x473.jpg",
-   "tambem": [
-    "g1"
-   ]
-  },
-  {
-   "titulo": "Lula assina decreto sobre fim da escala 6x1 e viaja a Mato Grosso",
-   "fato": "O presidente da República assinou um decreto sobre o fim da escala 6x1 e viajou para o Mato Grosso para compromissos sobre terra indígena e visita ao cacique Raoni.",
-   "importa": "O decreto altera regras trabalhistas e a agenda presidencial marca os compromissos oficiais do dia.",
-   "secao": "Política",
-   "fonte": "Poder360",
-   "link": "https://www.poder360.com.br/poder-governo/agenda-de-lula-leia-os-compromissos-do-presidente-nesta-5a-2/",
-   "img": "https://static.poder360.com.br/uploads/2026/07/capas-posts-agenda-Lula-eleicoes-ministros-STF-STJ-indicadores-site-Poder360-scaled.png",
-   "tambem": []
-  },
-  {
-   "titulo": "Perdas do Ueno Bank chegam a US$ 1 bilhão, diz Banco Central",
-   "fato": "Segundo o Banco Central do Paraguai, as perdas causadas pela quebra do Ueno Bank podem alcançar cerca de US$ 1 bilhão no pior cenário estimado pelo novo presidente da instituição.",
-   "importa": "O colapso financeiro afeta o cenário econômico e o sistema bancário da região.",
+   "titulo": "Dólar supera R$ 5,93 e fecha no maior valor desde abril de 2025",
+   "fato": "O dólar avançou pela sexta sessão consecutiva em meio a um dia de turbulência no mercado financeiro, segundo a Agência Brasil.",
+   "importa": "Afeta diretamente a inflação, o custo de importações e a economia nacional.",
    "secao": "Mercado",
+   "fonte": "Agência Brasil",
+   "link": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/dolar-supera-r-593-e-fecha-no-maior-valor-desde-abril-de-2025",
+   "img": null,
+   "tambem": [
+    "g1"
+   ]
+  },
+  {
+   "titulo": "Relator do ajuste fiscal na Câmara mantém texto do Senado",
+   "fato": "O deputado Mauro Benevides apresentou seu parecer mantendo o texto original para acelerar a aprovação, com votação prevista para segunda-feira, segundo o g1.",
+   "importa": "Define as regras para o ajuste fiscal do governo federal com tramitação acelerada no Congresso.",
+   "secao": "Política",
    "fonte": "g1",
-   "link": "https://g1.globo.com/economia/noticia/2026/11/19/perdas-do-ueno-bank-se-aproximam-de-us-1-bilhao-segundo-banco-central.ghtml",
-   "img": "https://s2-g1.glbimg.com/jsTEaHeyzVTXu7OYJHqx0X7QeM4=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/X/a/xXAlsrSL66Z7o6qfO2NA/2026-11-05t131316z-102853543-rc2ohoaq4evm-rtrmadp-3-paraguay-politics.jpg",
-   "tambem": []
+   "link": "https://g1.globo.com/politica/noticia/2026/11/19/relator-do-ajuste-fiscal-na-camara-mantem-texto-do-senado-projeto-deve-ser-votado-segunda-feira.ghtml",
+   "img": "https://s2-g1.glbimg.com/RVoT4Zq20buzERW89XU9RfNr7Lk=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/h/q/VYBfx7QyeiDzDUd6kiZw/kayo-magalhaes.jpg",
+   "tambem": [
+    "CNN Brasil"
+   ]
+  },
+  {
+   "titulo": "Fachin arquiva relatórios da PF sobre ministros e envia 4 à PGR",
+   "fato": "O presidente do STF recebeu dez documentos de investigações e decidiu arquivar parte das menções, enviando quatro delas à Procuradoria-Geral da República, conforme o InfoMoney.",
+   "importa": "Envolve investigações sensíveis sobre integrantes da mais alta Corte do país.",
+   "secao": "Política",
+   "fonte": "InfoMoney",
+   "link": "https://www.infomoney.com.br/politica/fachin-manda-arquivar-relatorios-da-pf-sobre-mencao-a-6-ministros-4-vao-a-pgr/",
+   "img": "https://www.infomoney.com.br/wp-content/uploads/2025/12/54964066080_00a8562548_k.jpg?fit=1200%2C675&quality=70&strip=all",
+   "tambem": [
+    "g1"
+   ]
+  },
+  {
+   "titulo": "Governo detalha cálculo da hora extra com escala 5x2",
+   "fato": "O Ministério do Trabalho explicou que a redução da jornada semanal e a garantia de descanso remunerado vão elevar o valor da hora trabalhada, segundo a Agência Brasil.",
+   "importa": "Impacta diretamente a remuneração de trabalhadores e as regras de cálculo para empregadores.",
+   "secao": "Mercado",
+   "fonte": "Agência Brasil",
+   "link": "https://agenciabrasil.ebc.com.br/economia/noticia/2026-11/veja-como-sera-o-calculo-da-hora-extra-com-escala-de-trabalho-5x2",
+   "img": null,
+   "tambem": [
+    "g1"
+   ]
   }
  ],
  "audio": {
-  "url": "https://github.com/marcosaraujo123443-ship-it/plantao-noticias/releases/download/audio-2026-11/express-20261119-manha.mp3",
-  "duracao": 116,
+  "url": "https://github.com/marcosaraujo123443-ship-it/plantao-noticias/releases/download/audio-2026-11/express-20261119-noite.mp3",
+  "duracao": 110,
   "modelo": "gemini-3.8-flash-tts"
  }
 }
