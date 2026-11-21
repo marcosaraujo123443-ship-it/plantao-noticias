@@ -286,5 +286,84 @@
    "duracao": 103,
    "modelo": "gemini-3.8-flash-tts"
   }
+ },
+ {
+  "chave": "2026-11-20-noite",
+  "edicao": "noite",
+  "data": "2026-11-20",
+  "titulo": "Plantão Express da noite · sexta-feira, 20 de novembro",
+  "abertura": "O Plantão Express destaca discussões sobre a escala 6x1, a internação de Jair Bolsonaro, anúncio de Donald Trump sobre o agro, final continental de futebol e avanços na medicina.",
+  "gerado_utc": "2026-11-21T00:02:32Z",
+  "modelo": "gemini-flash-latest",
+  "itens": [
+   {
+    "titulo": "Marinho afirma que contratações contêm custos com o fim da escala 6x1",
+    "fato": "O ministro Luiz Marinho declarou que novas contratações podem conter o impacto do pagamento de horas extras com a redução da escala. A alteração no cálculo busca manter a remuneração dos trabalhadores com menos horas trabalhadas, o que gera receio de encargos maiores entre empresários.",
+    "importa": "A discussão envolve possíveis mudanças diretas na rotina de trabalho e nos custos de contratação em todo o país.",
+    "secao": "Mercado",
+    "fonte": "CNN Brasil",
+    "link": "https://www.cnnbrasil.com.br/economia/money/macroeconomia/fim-da-escala-6x1-marinho-diz-que-contratacao-contem-impacto-de-hora-extra/",
+    "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/Reuters_Direct_Media/BrazilOnlineReportBusinessNews/tagreuters.com2026binary_LYNXMPEM060JA-BASEIMAGE.jpg?w=1200&h=534&crop=1",
+    "tambem": [
+     "Agência Brasil",
+     "g1"
+    ]
+   },
+   {
+    "titulo": "Jair Bolsonaro é internado em Brasília com dor e distensão abdominal",
+    "fato": "O ex-presidente Jair Bolsonaro passou mal nesta sexta-feira (20) e foi levado ao Hospital DF Star, em Brasília. Ele foi internado para receber atendimento médico após apresentar um quadro de dor e distensão abdominal.",
+    "importa": "O estado de saúde do ex-presidente é acompanhado de perto pelo cenário político nacional.",
+    "secao": "Política",
+    "fonte": "Agência Brasil",
+    "link": "https://agenciabrasil.ebc.com.br/politica/noticia/2026-11/bolsonaro-e-internado-com-quadro-de-dor-e-distens%C3%A3o-abdominal",
+    "img": null,
+    "tambem": [
+     "CNN Brasil",
+     "g1"
+    ]
+   },
+   {
+    "titulo": "Trump anuncia que Filipinas substituirão produtos agrícolas do Brasil",
+    "fato": "Donald Trump anunciou um acordo comercial prevendo que as Filipinas comprem produtos agrícolas dos Estados Unidos no lugar de fornecedores como o Brasil. A substituição está prevista para ocorrer a partir do início do próximo ano.",
+    "importa": "A alteração pode impactar mercados e o fluxo de exportações de produtores brasileiros para a Ásia.",
+    "secao": "Agro",
+    "fonte": "CNN Brasil",
+    "link": "https://www.cnnbrasil.com.br/agro/trump-diz-que-filipinas-trocarao-produtos-agricolas-do-brasil-pelos-dos-eua/",
+    "img": "https://admin.preprod.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/02/donald-trump_f0701e.jpg?w=1200",
+    "tambem": [
+     "Canal Rural",
+     "g1"
+    ]
+   },
+   {
+    "titulo": "Atlético-MG pode ter mudanças para a decisão contra o Boca Juniors",
+    "fato": "Segundo a CNN Brasil, o técnico Eduardo Domínguez faz mistério sobre a escalação do Atlético-MG, que tem cinco atletas no departamento médico. A equipe disputa a decisão contra o Boca Juniors neste sábado, em Barranquilla.",
+    "importa": "O confronto vale título continental para o clube brasileiro neste fim de semana.",
+    "secao": "Futebol",
+    "fonte": "CNN Brasil",
+    "link": "https://www.cnnbrasil.com.br/esportes/futebol/atletico-mineiro/dominguez-faz-misterio-e-atletico-mg-pode-ter-novidades-contra-o-boca/",
+    "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/11/dominguez-e1793583555227.webp?w=1200&h=372&crop=1",
+    "tambem": [
+     "Gazeta Esportiva"
+    ]
+   },
+   {
+    "titulo": "Vacina experimental eleva sobrevida em casos graves de leucemia",
+    "fato": "De acordo com a CNN Brasil, um ensaio clínico com 126 participantes indicou que uma vacina experimental gerou ganho de 9,3 meses na expectativa de vida. O estudo também registrou uma redução de 41% no risco de morte em pacientes com leucemia grave.",
+    "importa": "A pesquisa aponta novos caminhos clínicos para ampliar a sobrevida de pessoas em tratamento oncológico severo.",
+    "secao": "Ciência e Saúde",
+    "fonte": "CNN Brasil",
+    "link": "https://www.cnnbrasil.com.br/saude/vacina-experimental-aumenta-sobrevida-em-casos-de-leucemia-grave/",
+    "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/12/hiv.jpg?w=1200",
+    "tambem": [
+     "g1"
+    ]
+   }
+  ],
+  "audio": {
+   "url": "https://github.com/marcosaraujo123443-ship-it/plantao-noticias/releases/download/audio-2026-11/express-20261120-noite.mp3",
+   "duracao": 148,
+   "modelo": "gemini-3.8-flash-tts"
+  }
  }
 ]
