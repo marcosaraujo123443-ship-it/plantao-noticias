@@ -1,79 +1,75 @@
 {
- "chave": "2026-11-20-noite",
- "edicao": "noite",
- "data": "2026-11-20",
- "titulo": "Plantão Express da noite · sexta-feira, 20 de novembro",
- "abertura": "O Plantão Express destaca discussões sobre a escala 6x1, a internação de Jair Bolsonaro, anúncio de Donald Trump sobre o agro, final continental de futebol e avanços na medicina.",
- "gerado_utc": "2026-11-21T00:02:32Z",
- "modelo": "gemini-flash-latest",
+ "chave": "2026-11-21-manha",
+ "edicao": "manha",
+ "data": "2026-11-21",
+ "titulo": "Plantão Express da manhã · sábado, 21 de novembro",
+ "abertura": "As últimas horas trazem destaques sobre a saúde do ex-presidente Jair Bolsonaro, a decisão do Atlético-MG na Copa Sul-Americana, os mercados globais em queda, a Mega-Sena acumulada e um avanço histórico atribuído à inteligência artificial.",
+ "gerado_utc": "2026-11-21T11:05:37Z",
+ "modelo": "gemini-flash-lite-latest",
  "itens": [
   {
-   "titulo": "Marinho afirma que contratações contêm custos com o fim da escala 6x1",
-   "fato": "O ministro Luiz Marinho declarou que novas contratações podem conter o impacto do pagamento de horas extras com a redução da escala. A alteração no cálculo busca manter a remuneração dos trabalhadores com menos horas trabalhadas, o que gera receio de encargos maiores entre empresários.",
-   "importa": "A discussão envolve possíveis mudanças diretas na rotina de trabalho e nos custos de contratação em todo o país.",
-   "secao": "Mercado",
-   "fonte": "CNN Brasil",
-   "link": "https://www.cnnbrasil.com.br/economia/money/macroeconomia/fim-da-escala-6x1-marinho-diz-que-contratacao-contem-impacto-de-hora-extra/",
-   "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/Reuters_Direct_Media/BrazilOnlineReportBusinessNews/tagreuters.com2026binary_LYNXMPEM060JA-BASEIMAGE.jpg?w=1200&h=534&crop=1",
-   "tambem": [
-    "Agência Brasil",
-    "g1"
-   ]
-  },
-  {
-   "titulo": "Jair Bolsonaro é internado em Brasília com dor e distensão abdominal",
-   "fato": "O ex-presidente Jair Bolsonaro passou mal nesta sexta-feira (20) e foi levado ao Hospital DF Star, em Brasília. Ele foi internado para receber atendimento médico após apresentar um quadro de dor e distensão abdominal.",
-   "importa": "O estado de saúde do ex-presidente é acompanhado de perto pelo cenário político nacional.",
-   "secao": "Política",
-   "fonte": "Agência Brasil",
-   "link": "https://agenciabrasil.ebc.com.br/politica/noticia/2026-11/bolsonaro-e-internado-com-quadro-de-dor-e-distens%C3%A3o-abdominal",
-   "img": null,
-   "tambem": [
-    "CNN Brasil",
-    "g1"
-   ]
-  },
-  {
-   "titulo": "Trump anuncia que Filipinas substituirão produtos agrícolas do Brasil",
-   "fato": "Donald Trump anunciou um acordo comercial prevendo que as Filipinas comprem produtos agrícolas dos Estados Unidos no lugar de fornecedores como o Brasil. A substituição está prevista para ocorrer a partir do início do próximo ano.",
-   "importa": "A alteração pode impactar mercados e o fluxo de exportações de produtores brasileiros para a Ásia.",
-   "secao": "Agro",
-   "fonte": "CNN Brasil",
-   "link": "https://www.cnnbrasil.com.br/agro/trump-diz-que-filipinas-trocarao-produtos-agricolas-do-brasil-pelos-dos-eua/",
-   "img": "https://admin.preprod.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/02/donald-trump_f0701e.jpg?w=1200",
-   "tambem": [
-    "Canal Rural",
-    "g1"
-   ]
-  },
-  {
-   "titulo": "Atlético-MG pode ter mudanças para a decisão contra o Boca Juniors",
-   "fato": "Segundo a CNN Brasil, o técnico Eduardo Domínguez faz mistério sobre a escalação do Atlético-MG, que tem cinco atletas no departamento médico. A equipe disputa a decisão contra o Boca Juniors neste sábado, em Barranquilla.",
-   "importa": "O confronto vale título continental para o clube brasileiro neste fim de semana.",
+   "titulo": "Atlético-MG busca título inédito da Sul-Americana contra o Boca Juniors",
+   "fato": "O Atlético-MG enfrenta a equipe argentina neste sábado, em Barranquilla, na Colômbia, na grande final da competição.",
+   "importa": "O clube brasileiro busca conquistar um título inédito em sua história.",
    "secao": "Futebol",
    "fonte": "CNN Brasil",
-   "link": "https://www.cnnbrasil.com.br/esportes/futebol/atletico-mineiro/dominguez-faz-misterio-e-atletico-mg-pode-ter-novidades-contra-o-boca/",
-   "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/11/dominguez-e1793583555227.webp?w=1200&h=372&crop=1",
+   "link": "https://www.cnnbrasil.com.br/esportes/futebol/futebol-internacional/sulamericana/atletico-mg-so-venceu-boca-juniors-uma-vez-na-historia-veja-retrospecto/",
+   "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/11/FotoJet-2026-11-19T134104.827.webp?w=1200",
    "tambem": [
+    "ge",
     "Gazeta Esportiva"
    ]
   },
   {
-   "titulo": "Vacina experimental eleva sobrevida em casos graves de leucemia",
-   "fato": "De acordo com a CNN Brasil, um ensaio clínico com 126 participantes indicou que uma vacina experimental gerou ganho de 9,3 meses na expectativa de vida. O estudo também registrou uma redução de 41% no risco de morte em pacientes com leucemia grave.",
-   "importa": "A pesquisa aponta novos caminhos clínicos para ampliar a sobrevida de pessoas em tratamento oncológico severo.",
-   "secao": "Ciência e Saúde",
+   "titulo": "Bolsonaro passa por exames e cirurgia é avaliada",
+   "fato": "O ex-presidente foi internado com dor e distensão abdominal, e uma tomografia apontou comprometimento no intestino delgado.",
+   "importa": "Acompanha o estado de saúde de uma das principais figuras da política nacional.",
+   "secao": "Política",
    "fonte": "CNN Brasil",
-   "link": "https://www.cnnbrasil.com.br/saude/vacina-experimental-aumenta-sobrevida-em-casos-de-leucemia-grave/",
-   "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/12/hiv.jpg?w=1200",
+   "link": "https://www.cnnbrasil.com.br/politica/bolsonaro-passara-por-novos-exames-e-cirurgia-e-possibilidade-diz-carlos/",
+   "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/01/338008624_9017120281692410_7250385511321277543_n.jpg?w=1200",
+   "tambem": [
+    "Poder360"
+   ]
+  },
+  {
+   "titulo": "Mega-Sena pode pagar R$ 45 milhões neste domingo",
+   "fato": "O sorteio do concurso 3089 acontece neste domingo, com prazo de apostas encerrando às 22h de sábado.",
+   "importa": "Define o prêmio milionário para apostadores de todo o país.",
+   "secao": "Mercado",
+   "fonte": "CNN Brasil",
+   "link": "https://www.cnnbrasil.com.br/economia/seu-bolso/loterias/mega-sena-3089/",
+   "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/Reuters_Direct_Media/BrazilOnlineReportWorldNews/tagreuters.com2026binary_LYNXMPEM4I1IN-BASEIMAGE.jpg?w=1200",
    "tambem": [
     "g1"
    ]
+  },
+  {
+   "titulo": "Pesquisador usa IA para provar enigma matemático",
+   "fato": "Um matemático da Anthropic afirmou ter utilizado o chatbot Claude para provar a Hipótese de Riemann.",
+   "importa": "Demonstra o avanço do uso de inteligência artificial na resolução de problemas complexos.",
+   "secao": "IA",
+   "fonte": "g1",
+   "link": "https://g1.globo.com/educacao/noticia/2026/11/20/matematico-da-anthropic-afirma-ter-provado-a-hipotese-de-riemann-um-dos-mais-famosos-enigmas-da-matematica.ghtml",
+   "img": "https://s2-g1.glbimg.com/ApbSiLXQqg2xa841pQ3xo4rJirA=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/7/E/GHhrgsQ6uUvrVkoz3cmA/assistentes-ia.jpg",
+   "tambem": [
+    "Olhar Digital"
+   ]
+  },
+  {
+   "titulo": "Mercados globais despencam e geram alerta",
+   "fato": "Uma queda generalizada nas ações de tecnologia desencadeou uma onda global de aversão ao risco nos mercados.",
+   "importa": "Indica forte instabilidade no cenário econômico internacional com reflexos potenciais locais.",
+   "secao": "Mercado",
+   "fonte": "InfoMoney",
+   "link": "https://www.infomoney.com.br/mercados/mercados-globais-desabam-em-feriado-na-b3-e-goldman-alerta-quedas-devem-continuar/",
+   "img": "https://www.infomoney.com.br/wp-content/uploads/2019/10/shutterstock_351882113-1.png?fit=1200%2C675&quality=70&strip=all",
+   "tambem": []
   }
  ],
  "audio": {
-  "url": "https://github.com/marcosaraujo123443-ship-it/plantao-noticias/releases/download/audio-2026-11/express-20261120-noite.mp3",
-  "duracao": 148,
+  "url": "https://github.com/marcosaraujo123443-ship-it/plantao-noticias/releases/download/audio-2026-11/express-20261121-manha.mp3",
+  "duracao": 116,
   "modelo": "gemini-3.8-flash-tts"
  }
 }

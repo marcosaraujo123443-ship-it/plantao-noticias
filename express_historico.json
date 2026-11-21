@@ -365,5 +365,80 @@
    "duracao": 148,
    "modelo": "gemini-3.8-flash-tts"
   }
+ },
+ {
+  "chave": "2026-11-21-manha",
+  "edicao": "manha",
+  "data": "2026-11-21",
+  "titulo": "Plantão Express da manhã · sábado, 21 de novembro",
+  "abertura": "As últimas horas trazem destaques sobre a saúde do ex-presidente Jair Bolsonaro, a decisão do Atlético-MG na Copa Sul-Americana, os mercados globais em queda, a Mega-Sena acumulada e um avanço histórico atribuído à inteligência artificial.",
+  "gerado_utc": "2026-11-21T11:05:37Z",
+  "modelo": "gemini-flash-lite-latest",
+  "itens": [
+   {
+    "titulo": "Atlético-MG busca título inédito da Sul-Americana contra o Boca Juniors",
+    "fato": "O Atlético-MG enfrenta a equipe argentina neste sábado, em Barranquilla, na Colômbia, na grande final da competição.",
+    "importa": "O clube brasileiro busca conquistar um título inédito em sua história.",
+    "secao": "Futebol",
+    "fonte": "CNN Brasil",
+    "link": "https://www.cnnbrasil.com.br/esportes/futebol/futebol-internacional/sulamericana/atletico-mg-so-venceu-boca-juniors-uma-vez-na-historia-veja-retrospecto/",
+    "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/11/FotoJet-2026-11-19T134104.827.webp?w=1200",
+    "tambem": [
+     "ge",
+     "Gazeta Esportiva"
+    ]
+   },
+   {
+    "titulo": "Bolsonaro passa por exames e cirurgia é avaliada",
+    "fato": "O ex-presidente foi internado com dor e distensão abdominal, e uma tomografia apontou comprometimento no intestino delgado.",
+    "importa": "Acompanha o estado de saúde de uma das principais figuras da política nacional.",
+    "secao": "Política",
+    "fonte": "CNN Brasil",
+    "link": "https://www.cnnbrasil.com.br/politica/bolsonaro-passara-por-novos-exames-e-cirurgia-e-possibilidade-diz-carlos/",
+    "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/01/338008624_9017120281692410_7250385511321277543_n.jpg?w=1200",
+    "tambem": [
+     "Poder360"
+    ]
+   },
+   {
+    "titulo": "Mega-Sena pode pagar R$ 45 milhões neste domingo",
+    "fato": "O sorteio do concurso 3089 acontece neste domingo, com prazo de apostas encerrando às 22h de sábado.",
+    "importa": "Define o prêmio milionário para apostadores de todo o país.",
+    "secao": "Mercado",
+    "fonte": "CNN Brasil",
+    "link": "https://www.cnnbrasil.com.br/economia/seu-bolso/loterias/mega-sena-3089/",
+    "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/Reuters_Direct_Media/BrazilOnlineReportWorldNews/tagreuters.com2026binary_LYNXMPEM4I1IN-BASEIMAGE.jpg?w=1200",
+    "tambem": [
+     "g1"
+    ]
+   },
+   {
+    "titulo": "Pesquisador usa IA para provar enigma matemático",
+    "fato": "Um matemático da Anthropic afirmou ter utilizado o chatbot Claude para provar a Hipótese de Riemann.",
+    "importa": "Demonstra o avanço do uso de inteligência artificial na resolução de problemas complexos.",
+    "secao": "IA",
+    "fonte": "g1",
+    "link": "https://g1.globo.com/educacao/noticia/2026/11/20/matematico-da-anthropic-afirma-ter-provado-a-hipotese-de-riemann-um-dos-mais-famosos-enigmas-da-matematica.ghtml",
+    "img": "https://s2-g1.glbimg.com/ApbSiLXQqg2xa841pQ3xo4rJirA=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/7/E/GHhrgsQ6uUvrVkoz3cmA/assistentes-ia.jpg",
+    "tambem": [
+     "Olhar Digital"
+    ]
+   },
+   {
+    "titulo": "Mercados globais despencam e geram alerta",
+    "fato": "Uma queda generalizada nas ações de tecnologia desencadeou uma onda global de aversão ao risco nos mercados.",
+    "importa": "Indica forte instabilidade no cenário econômico internacional com reflexos potenciais locais.",
+    "secao": "Mercado",
+    "fonte": "InfoMoney",
+    "link": "https://www.infomoney.com.br/mercados/mercados-globais-desabam-em-feriado-na-b3-e-goldman-alerta-quedas-devem-continuar/",
+    "img": "https://www.infomoney.com.br/wp-content/uploads/2019/10/shutterstock_351882113-1.png?fit=1200%2C675&quality=70&strip=all",
+    "tambem": []
+   }
+  ],
+  "audio": {
+   "url": "https://github.com/marcosaraujo123443-ship-it/plantao-noticias/releases/download/audio-2026-11/express-20261121-manha.mp3",
+   "duracao": 116,
+   "modelo": "gemini-3.8-flash-tts"
+  }
  }
 ]
