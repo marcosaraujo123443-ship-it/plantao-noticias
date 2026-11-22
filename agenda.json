@@ -1,53 +1,64 @@
 {
- "data": "2026-11-21",
- "atualizado": "2026-11-21T23:59:11-0300",
+ "data": "2026-11-22",
+ "atualizado": "2026-11-22T01:01:22-0300",
  "itens": [
   {
-   "hora": "08:56",
-   "tipo": "tempo",
-   "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (perigo) em GO, MG, MS, MT, PR, SC…",
-   "detalhe": [
-    "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
-   ],
-   "link": "#tempo",
-   "estado": ""
-  },
-  {
-   "hora": "16:30",
+   "hora": "16:00",
    "tipo": "futebol",
    "rotulo": "Brasileirão",
-   "titulo": "Palmeiras 1 × 1 Flamengo",
+   "titulo": "Athletico-PR × Remo",
    "detalhe": [
     "36ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
-   "hora": "17:30",
+   "hora": "16:00",
    "tipo": "futebol",
-   "rotulo": "Brasileirão",
-   "titulo": "Bahia 0 × 1 Coritiba",
+   "rotulo": "Série B",
+   "titulo": "Criciúma × Fortaleza",
    "detalhe": [
-    "36ª rodada"
+    "39ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
-   "hora": "21:00",
+   "hora": "18:30",
    "tipo": "futebol",
    "rotulo": "Brasileirão",
-   "titulo": "Chapecoense 0 × 0 Cruzeiro",
+   "titulo": "Fluminense × Mirassol",
    "detalhe": [
     "36ª rodada"
    ],
-   "estado": "ao vivo",
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "18:30",
+   "tipo": "futebol",
+   "rotulo": "Série B",
+   "titulo": "Atlético-GO × Vila Nova",
+   "detalhe": [
+    "39ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "19:30",
+   "tipo": "futebol",
+   "rotulo": "Brasileirão",
+   "titulo": "Bragantino × Vasco",
+   "detalhe": [
+    "36ª rodada"
+   ],
+   "estado": "",
    "link": "tabelas/"
   }
  ],
- "outros_jogos": 28,
+ "outros_jogos": 19,
  "fontes": {
   "camara": [],
   "senado": [],
