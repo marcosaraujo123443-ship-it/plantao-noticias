@@ -91,6 +91,9 @@ jobs:
           echo "tipo=$t" >> "$GITHUB_OUTPUT"; echo "Post: $t"
       - name: Instalar Pillow e ffmpeg
         run: pip install --quiet pillow imageio-ffmpeg
+      - name: Narração do Resumo (para o reel narrado)
+        if: steps.tipo.outputs.tipo == 'reel'
+        run: git fetch -q --depth 1 origin audio && git show FETCH_HEAD:plantao.mp3 > plantao.mp3 || echo "::warning::sem narração; o reel sai só com trilha"
       - name: Gerar os cards
         id: gerar
         run: python3 scripts/instagram.py gerar ${{ steps.tipo.outputs.tipo }}

@@ -72,9 +72,12 @@ def chave_e_legenda(tipo):
         r = cards.ler("resumo.json")
         if agora - utc(r["gerado_utc"]) > timedelta(hours=8): return None, "resumo antigo (mais de 8 h)"
         q = utc(r["gerado_utc"]).astimezone(BRT)
-        leg = (f"▶️ O Resumo do Plantão em 40 segundos · {q:%d/%m}\n\n{r['abertura']}\n\n"
+        import instagram_video
+        narrado = bool(instagram_video.narracao())
+        leg = (f"{'🎧 Ouça' if narrado else '▶️ Veja'} o Resumo do Plantão · {q:%d/%m}, {q:%H}h\n\n{r['abertura']}\n\n"
                "🔗 Notícias de hora em hora, cotações e tabelas no site: link na bio.\n\n"
-               "Resumo feito com auxílio de inteligência artificial a partir de veículos confiáveis.\n\n" + final(tipo))
+               + ("Resumo escrito e narrado com auxílio de inteligência artificial a partir de veículos confiáveis.\n\n" if narrado else
+                  "Resumo feito com auxílio de inteligência artificial a partir de veículos confiáveis.\n\n") + final(tipo))
         return "reel " + r["gerado_utc"], leg
     if tipo == "mercado":
         m = cards.ler("mercado.json")
