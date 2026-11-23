@@ -90,22 +90,37 @@ uma regra com impacto prático amplo (impostos, salário, FGTS, aposentadoria, b
 trânsito, saúde suplementar etc.). Evite atos internos, nomeações, casos individuais sem efeito geral, eventos e
 campanhas. Se nenhum servir, responda {"n": 0}. Responda só com JSON: {"n": 3, "tema": "uma frase"}"""
 
-GUIA = """Você escreve o "Explica Plantão", guia prático de perguntas e respostas do site Plantão Informa, em português do
-Brasil, para leigos. Recebe o texto de uma fonte oficial (ato do Diário Oficial, nota de órgão público ou notícia de
-tribunal). Regras rígidas, sem exceção:
-- Use SOMENTE o que está no texto. Não invente nem complete números, datas, valores, percentuais, prazos, nomes ou
-  regras. Se algo importante não está no texto, diga "a fonte não informa" ou deixe de fora.
-- Não dê conselho jurídico individual; explique a regra. Tom neutro, frases curtas, sem juridiquês (explique termos).
-- Cite o número do ato e o órgão como aparecem no texto.
+GUIA = """Você é editor do "Explica Plantão", do site Plantão Informa: guias que explicam a leigos, com profundidade, o
+que muda com uma lei, norma, decisão judicial ou regra tributária e quais os impactos prováveis na vida das pessoas,
+das empresas e das contas públicas. Escreva em português do Brasil, frases claras, explicando todo termo técnico.
+Recebe o texto de uma fonte oficial (ato do Diário Oficial, nota de órgão público ou notícia de tribunal).
+
+Regras rígidas:
+- FATOS (o que a regra diz, quem decidiu, datas, valores, prazos, números, nomes): use SOMENTE o que está no texto.
+  Não invente nem complete. Se faltar, diga "a fonte não informa".
+- IMPACTOS: você pode e deve raciocinar sobre as consequências práticas prováveis, com base no seu conhecimento de
+  como o sistema funciona no Brasil (Judiciário, tributos, trabalho, Previdência, consumo), mas:
+  * escreva como possibilidade ("tende a", "pode", "deve facilitar"), nunca como fato consumado;
+  * NÃO use nenhum número, valor, data, percentual ou nome que não esteja no texto da fonte;
+  * mostre os dois lados quando houver (quem ganha, quem perde, riscos, efeitos colaterais).
+- Nada de conselho jurídico individual; explique a regra e o que costuma estar em jogo. Tom neutro e apartidário.
+
 Responda só com JSON:
-{"titulo": "título objetivo, até 90 caracteres, no formato de pergunta ou de 'o que muda com'",
- "subtitulo": "1 frase com o essencial",
- "tldr": ["3 ou 4 frases curtas com o essencial"],
- "perguntas": [{"p": "pergunta que o leitor faria", "r": "resposta de 1 a 3 frases"}],
+{"titulo": "título objetivo, até 90 caracteres, em forma de pergunta ou 'o que muda com'",
+ "subtitulo": "1 ou 2 frases com o essencial e por que importa",
+ "tldr": ["4 ou 5 frases curtas: o que mudou, para quem, desde quando, principal impacto"],
+ "contexto": "2 a 4 frases: como era antes e qual problema a regra ou decisão resolve (só o que o texto permite afirmar; o resto como explicação geral, sem números)",
+ "o_que_muda": ["3 a 6 pontos objetivos do que efetivamente muda, segundo o texto"],
+ "impactos": {"pessoas": "2 a 4 frases sobre efeitos prováveis para o cidadão comum",
+              "empresas": "2 a 4 frases para empresas, empregadores, bancos ou profissionais (ou 'Efeito pequeno ou indireto para empresas.')",
+              "governo": "1 a 3 frases sobre efeitos para o governo, a Justiça ou as contas públicas (ou 'Efeito pequeno ou indireto.')"},
+ "exemplo": "um exemplo prático em 2 a 4 frases, com uma pessoa ou empresa fictícia em situação típica, sem números que não estejam no texto",
+ "perguntas": [{"p": "pergunta que o leitor faria", "r": "resposta completa de 2 a 4 frases"}],
+ "o_que_fazer": ["2 a 4 orientações práticas gerais: o que conferir, onde buscar informação oficial, quando procurar um profissional"],
  "quem": "quem é afetado, em 1 ou 2 frases",
  "quando": "a partir de quando vale, como está no texto, ou 'a fonte não informa'",
- "atencao": "limitações e cuidados: o que ainda depende de regulamentação, exceções, o que a fonte não esclarece"}
-Escreva de 5 a 8 perguntas, das mais práticas para as mais específicas."""
+ "atencao": "limites: o que ainda depende de regulamentação ou de outras decisões, exceções e o que a fonte não esclarece"}
+Escreva de 6 a 9 perguntas, das mais práticas para as mais específicas, sem repetir o que já está em "o_que_muda"."""
 
 NUM = re.compile(r"\d+(?:[.,]\d+)*")
 def numeros_ok(guia, fonte):
@@ -136,37 +151,75 @@ def main():
     c = cand[k - 1]; print("Escolhido:", c["titulo"], "·", c["link"])
     fonte = texto_pagina(c["link"])
     if len(fonte) < 400: raise SystemExit("Texto da fonte curto demais: " + fonte[:200])
-    guia = None
-    for tentativa in range(2):
-        pedido = f"Fonte: {c['fonte']}\nEndereço: {c['link']}\nTítulo: {c['titulo']}\n\nTexto:\n{fonte}"
-        if tentativa: pedido += "\n\nATENÇÃO: na versão anterior apareceram números que não estão no texto: " + ", ".join(faltam) + ". Remova-os."
-        texto, modelo = perguntar({"temperature": 0.1, "max_tokens": 6000, "messages": [{"role": "system", "content": GUIA}, {"role": "user", "content": pedido}]}, chave)
-        g = json.loads(re.search(r"\{.*\}", texto, re.S).group(0))
-        faltam = numeros_ok(g, fonte + " " + c["titulo"])
-        if not faltam and g.get("titulo") and len(g.get("perguntas", [])) >= 4: guia = g; break
-        print("Trava de números:", faltam)
+    guia, modelo = escrever(c, fonte, chave)
     reg["links"] = (reg["links"] + [c["link"]])[-400:]
     if not guia:
         json.dump(reg, open("explica_registro.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         raise SystemExit("Guia descartado pela trava de números.")
-    os.makedirs(PASTA, exist_ok=True)
-    tl = " | ".join(x.strip().replace("|", "/") for x in guia.get("tldr", []) if x.strip())
-    corpo = []
-    for q in guia["perguntas"]:
-        corpo += [f"## {q['p'].strip()}", q["r"].strip()]
-    if guia.get("quem"): corpo += ["## Quem é afetado?", guia["quem"].strip()]
-    if guia.get("quando"): corpo += ["## A partir de quando vale?", guia["quando"].strip()]
-    if guia.get("atencao"): corpo += ["## Atenção: limites e o que ainda falta saber", guia["atencao"].strip()]
-    corpo += [f"Fonte oficial: [{c['titulo']}]({c['link']}) ({c['fonte']}).",
-              "Guia escrito automaticamente por inteligência artificial a partir do texto da fonte oficial acima, com conferência "
-              "automática dos números. Não substitui a leitura do texto oficial nem a orientação de um advogado ou contador."]
     nome = f"{agora:%Y-%m-%d}-{slug(guia['titulo'])[:70].strip('-')}"
-    cab = [f"titulo: {guia['titulo'].strip()}", f"subtitulo: {guia.get('subtitulo', '').strip()}", f"data: {agora.isoformat(timespec='minutes')}",
-           "autor: Redação Plantão Informa", "rotulo: Explica Plantão", f"editoria: {c['fonte']}", f"fonte: {c['link']}", f"tldr: {tl}", f"modelo: {modelo}"]
-    open(os.path.join(PASTA, nome + ".md"), "w", encoding="utf-8").write("\n".join(l.replace("\n", " ") for l in cab) + "\n---\n" + "\n\n".join(corpo) + "\n")
+    gravar(nome, guia, c, agora, modelo)
     reg["ultimo"] = agora.date().isoformat()
     json.dump(reg, open("explica_registro.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("Guia publicado:", nome)
 
+def escrever(c, fonte, chave):
+    """Pede o guia (até 3 tentativas) e só aceita se passar na trava de números."""
+    faltam, modelo = [], None
+    for tentativa in range(3):
+        pedido = f"Fonte: {c['fonte']}\nEndereço: {c['link']}\nTítulo: {c['titulo']}\n\nTexto:\n{fonte}"
+        if faltam: pedido += "\n\nATENÇÃO: na versão anterior apareceram números que não estão no texto: " + ", ".join(faltam) + ". Reescreva sem eles."
+        texto, modelo = perguntar({"temperature": 0.2, "max_tokens": 9000, "messages": [{"role": "system", "content": GUIA}, {"role": "user", "content": pedido}]}, chave)
+        try: g = json.loads(re.search(r"\{.*\}", texto, re.S).group(0))
+        except Exception: print("Resposta fora do formato"); continue
+        faltam = numeros_ok(g, fonte + " " + c["titulo"])
+        if not faltam and g.get("titulo") and len(g.get("perguntas", [])) >= 5 and g.get("impactos"): return g, modelo
+        print("Trava de números:", faltam)
+    return None, modelo
+
+def gravar(nome, guia, c, quando, modelo):
+    os.makedirs(PASTA, exist_ok=True)
+    lim = lambda t: str(t or "").strip()
+    tl = " | ".join(lim(x).replace("|", "/") for x in guia.get("tldr", []) if lim(x))
+    corpo = []
+    if lim(guia.get("contexto")): corpo += ["## Entenda o contexto", lim(guia["contexto"])]
+    if guia.get("o_que_muda"): corpo += ["## O que muda", "\n".join(f"- {lim(x)}" for x in guia["o_que_muda"] if lim(x))]
+    imp = guia.get("impactos") or {}
+    if any(lim(v) for v in imp.values()):
+        corpo += ["## Os impactos prováveis"]
+        for k, rot in (("pessoas", "Para você"), ("empresas", "Para empresas e profissionais"), ("governo", "Para o governo e a Justiça")):
+            if lim(imp.get(k)): corpo += [f"**{rot}:** {lim(imp[k])}"]
+    if lim(guia.get("exemplo")): corpo += ["## Na prática: um exemplo", lim(guia["exemplo"])]
+    for q in guia.get("perguntas", []):
+        if lim(q.get("p")) and lim(q.get("r")): corpo += [f"## {lim(q['p'])}", lim(q["r"])]
+    if lim(guia.get("quem")): corpo += ["## Quem é afetado?", lim(guia["quem"])]
+    if lim(guia.get("quando")): corpo += ["## A partir de quando vale?", lim(guia["quando"])]
+    if guia.get("o_que_fazer"): corpo += ["## O que fazer agora", "\n".join(f"- {lim(x)}" for x in guia["o_que_fazer"] if lim(x))]
+    if lim(guia.get("atencao")): corpo += ["## Atenção: limites e o que ainda falta saber", lim(guia["atencao"])]
+    corpo += [f"Fonte oficial: [{c['titulo']}]({c['link']}) ({c['fonte']}).",
+              "Guia escrito com apoio de inteligência artificial a partir do texto da fonte oficial acima, com conferência automática "
+              "dos números. Os impactos são uma análise das consequências prováveis, não uma previsão. Não substitui a leitura do texto "
+              "oficial nem a orientação de um advogado ou contador."]
+    cab = [f"titulo: {lim(guia['titulo'])}", f"subtitulo: {lim(guia.get('subtitulo'))}", f"data: {quando.isoformat(timespec='minutes')}",
+           "autor: Redação Plantão Informa", "rotulo: Explica Plantão", f"editoria: {c['fonte']}", f"fonte: {c['link']}",
+           f"fonte_titulo: {c['titulo']}", f"tldr: {tl}", f"modelo: {modelo}"]
+    open(os.path.join(PASTA, nome + ".md"), "w", encoding="utf-8").write("\n".join(l.replace("\n", " ") for l in cab) + "\n---\n" + "\n\n".join(corpo) + "\n")
+
+def refazer(chave):
+    """Reescreve os guias já publicados com o modelo atual (mesmo arquivo e data)."""
+    import glob
+    for arq in sorted(glob.glob(os.path.join(PASTA, "*.md"))):
+        cab = dict(l.split(": ", 1) for l in open(arq, encoding="utf-8").read().split("\n---\n")[0].splitlines() if ": " in l)
+        link = cab.get("fonte"); tit = cab.get("fonte_titulo")
+        if not tit:
+            m = re.search(r"Fonte oficial: \[(.+?)\]\(", open(arq, encoding="utf-8").read()); tit = m.group(1) if m else cab.get("titulo", "")
+        c = {"fonte": cab.get("editoria", ""), "link": link, "titulo": tit}
+        try: fonte = texto_pagina(link)
+        except Exception as ex: print("Sem acesso à fonte:", arq, ex); continue
+        guia, modelo = escrever(c, fonte, chave)
+        if not guia: print("Mantido (trava):", arq); continue
+        gravar(os.path.basename(arq)[:-3], guia, c, datetime.fromisoformat(cab["data"]), modelo)
+        print("Refeito:", arq)
+
 if __name__ == "__main__":
-    main()
+    if os.environ.get("EXPLICA_REFAZER"): refazer(os.environ["GEMINI_API_KEY"].strip())
+    else: main()

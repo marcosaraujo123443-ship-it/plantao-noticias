@@ -1,0 +1,18 @@
+name: diag-explica
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  d:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          EXPLICA_REFAZER: "1"
+        run: |
+          mkdir -p /tmp/out
+          python3 scripts/explicador.py 2>&1 | tee /tmp/out/log.txt || true
+          cp -r explica /tmp/out/
+          cd /tmp/out && git init -q && git checkout -q -b diag-dados && git add . && git -c user.name=diag -c user.email=diag@x commit -qm diag
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" diag-dados
