@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-23T09:32:57Z",
+ "atualizado_utc": "2026-11-23T11:33:21Z",
  "votacoes": [
   {
    "casa": "Câmara",
@@ -158,5 +158,7 @@
    "link": "https://www25.senado.leg.br/web/atividade/materias/-/materia/172997"
   }
  ],
- "erros": []
+ "erros": [
+  "Câmara: <HTTPError 504: 'Gateway Timeout'>"
+ ]
 }
