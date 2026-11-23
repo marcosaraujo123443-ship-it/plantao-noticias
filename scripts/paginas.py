@@ -102,7 +102,7 @@ def leitura(m):
           "(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){x.textContent='Link copiado ✓'},function(){prompt('Copie o link:',u)})})})})();</script>")
     return js + tl + sm
 
-NAV = [("analises/", "Análises"), ("explica/", "Explica"), ("express/", "Express"), ("contas/", "Contas públicas"), ("tabelas/", "Tabelas do futebol"), ("agro.html", "Cotações do agro"),
+NAV = [("analises/", "Análises"), ("explica/", "Explica"), ("contas/", "Contas públicas"), ("tabelas/", "Tabelas do futebol"), ("agro.html", "Cotações do agro"),
        ("acoes.html", "Ações"), ("fiis.html", "Fundos imobiliários"), ("indicadores.html", "Indicadores econômicos")]
 PAGINAS = []
 NOTICIAS_SM = []   # matérias próprias para o news-sitemap (Google Notícias: só as das últimas 48 horas)
@@ -554,8 +554,6 @@ def main():
     except Exception as ex: print("ERRO guias", ex)
     try: explica()
     except Exception as ex: print("ERRO explica", ex)
-    try: express_pag()
-    except Exception as ex: print("ERRO express", ex)
     for nome, f in (("estados.json", contas), ("futebol.json", futebol), ("agro.json", agro), ("mercado.json", mercado),
                     ("indicadores.json", indicadores)):
         d = ler(nome)

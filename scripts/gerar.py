@@ -472,7 +472,7 @@ merc_json = json.dumps(mercado, ensure_ascii=False).replace("</", "<\\/")
 tpl = (Path(__file__).parent / "modelo.html").read_text(encoding="utf-8")
 out = tpl
 for k, v in {"DATA": f"{DIAS[upd.weekday()]}, {upd.day} de {MESES[upd.month-1]} de {upd.year}",
-             "HORA": f"{upd:%H:%M}", "REDES_TOPO": REDES_TOPO, "REDES_ROD": REDES_ROD, "UPD_ISO": data["atualizado_utc"], "LEAD": lead_html, "RESUMO": express_html + resumo_html, "AGENDA": agenda_html, "DESTAQUES": dest_html, "ANALISES": analises_html, "BLOCOS": blocos,
+             "HORA": f"{upd:%H:%M}", "REDES_TOPO": REDES_TOPO, "REDES_ROD": REDES_ROD, "UPD_ISO": data["atualizado_utc"], "LEAD": lead_html, "RESUMO": resumo_html, "AGENDA": agenda_html, "DESTAQUES": dest_html, "ANALISES": analises_html, "BLOCOS": blocos,
              "PAGINAS": paginas, "TABS": tabs, "HORARIOS": horarios, "FONTES": fontes_txt,
              "TOTAL": str(len(itens)), "NFONTES": str(len(fontes)), "MERCADO": merc_json,
              "FONTES_OPT": "".join(f'<option value="{e(f)}">{e(f)}</option>' for f in sorted(fontes, key=str.lower))}.items():
