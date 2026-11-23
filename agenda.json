@@ -1,78 +1,91 @@
 {
- "data": "2026-11-22",
- "atualizado": "2026-11-22T23:01:18-0300",
+ "data": "2026-11-23",
+ "atualizado": "2026-11-23T01:01:19-0300",
  "itens": [
   {
-   "hora": "08:20",
-   "tipo": "tempo",
-   "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (perigo) em MS, PR, RS, SC, SP",
-   "detalhe": [
-    "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
-   ],
-   "link": "#tempo",
-   "estado": ""
+   "hora": "10:00",
+   "tipo": "politica",
+   "rotulo": "Senado",
+   "titulo": "Sessão especial no Plenário",
+   "detalhe": [],
+   "link": "https://www25.senado.leg.br/web/atividade/plenario",
+   "estado": "Agendada"
   },
   {
-   "hora": "16:00",
-   "tipo": "futebol",
-   "rotulo": "Brasileirão",
-   "titulo": "Athletico-PR 4 × 2 Remo",
+   "hora": "18:00",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Deliberativa no Plenário",
    "detalhe": [
-    "36ª rodada"
+    "REQ 4504/2026: Requer, nos termos do artigo 155 do Regimento Interno, tramitação sob o regime urgência do Projeto de Lei…",
+    "PLP 299/2026: Altera a Lei Complementar nº?200, de 30 de agosto de 2023, a Lei Complementar nº?176, de 29 de dezembro de…",
+    "PL 724/2003: Altera a Lei nº 9.503, de 23 de setembro de 1997, que \"Institui o Código de Trânsito Brasileiro\", para dispor…"
    ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "16:00",
-   "tipo": "futebol",
-   "rotulo": "Série B",
-   "titulo": "Criciúma 1 × 0 Fortaleza",
-   "detalhe": [
-    "39ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "18:30",
-   "tipo": "futebol",
-   "rotulo": "Brasileirão",
-   "titulo": "Fluminense 1 × 0 Mirassol",
-   "detalhe": [
-    "36ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "18:30",
-   "tipo": "futebol",
-   "rotulo": "Série B",
-   "titulo": "Atlético-GO 1 × 1 Vila Nova",
-   "detalhe": [
-    "39ª rodada"
-   ],
-   "estado": "ao vivo",
-   "link": "tabelas/"
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
   },
   {
    "hora": "19:30",
    "tipo": "futebol",
    "rotulo": "Brasileirão",
-   "titulo": "Bragantino 1 × 0 Vasco",
+   "titulo": "Internacional × Vitória",
    "detalhe": [
     "36ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "20:00",
+   "tipo": "futebol",
+   "rotulo": "Brasileirão",
+   "titulo": "Botafogo × São Paulo",
+   "detalhe": [
+    "36ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "21:00",
+   "tipo": "futebol",
+   "rotulo": "Brasileirão",
+   "titulo": "Santos × Grêmio",
+   "detalhe": [
+    "36ª rodada"
+   ],
+   "estado": "",
    "link": "tabelas/"
   }
  ],
- "outros_jogos": 19,
+ "outros_jogos": 4,
  "fontes": {
-  "camara": [],
-  "senado": [],
+  "camara": [
+   {
+    "hora": "18:00",
+    "tipo": "politica",
+    "rotulo": "Câmara",
+    "titulo": "Sessão Deliberativa no Plenário",
+    "detalhe": [
+     "REQ 4504/2026: Requer, nos termos do artigo 155 do Regimento Interno, tramitação sob o regime urgência do Projeto de Lei…",
+     "PLP 299/2026: Altera a Lei Complementar nº?200, de 30 de agosto de 2023, a Lei Complementar nº?176, de 29 de dezembro de…",
+     "PL 724/2003: Altera a Lei nº 9.503, de 23 de setembro de 1997, que \"Institui o Código de Trânsito Brasileiro\", para dispor…"
+    ],
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
+   }
+  ],
+  "senado": [
+   {
+    "hora": "10:00",
+    "tipo": "politica",
+    "rotulo": "Senado",
+    "titulo": "Sessão especial no Plenário",
+    "detalhe": [],
+    "link": "https://www25.senado.leg.br/web/atividade/plenario",
+    "estado": "Agendada"
+   }
+  ],
   "copom": []
  },
  "erros": []
