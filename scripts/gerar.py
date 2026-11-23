@@ -82,7 +82,7 @@ resumo_html = ""
 if res and (upd - parse(res["gerado_utc"])).total_seconds() < 14 * 3600:
     hr = parse(res["gerado_utc"])
     pars = "".join(f'<p><a href="#{slug(x["secao"])}" data-tab="{slug(x["secao"])}" class="s-{slug(x["secao"])}">{e(x["secao"])}</a> {e(x["texto"])}</p>' for x in res["secoes"])
-    resumo_html = (f'<section class="resumo" aria-label="Resumo do Plantão"><h2>Resumo do Plantão <time datetime="{e(res["gerado_utc"])}">{hr:%H}h{hr:%M}</time></h2>'
+    resumo_html = (f'<section class="resumo" id="resumo" aria-label="Resumo do Plantão"><h2>Resumo do Plantão <time datetime="{e(res["gerado_utc"])}">{hr:%H}h{hr:%M}</time></h2>'
                    f'<p class="abre">{e(res["abertura"])}</p>{pars}'
                    '<p class="ia">Resumo escrito automaticamente por inteligência artificial a partir das notícias desta página. '
                    'Confira os detalhes nas matérias originais.</p>' + "{{COMPARTILHAR}}" + '</section>')

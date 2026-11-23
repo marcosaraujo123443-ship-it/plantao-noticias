@@ -590,6 +590,12 @@ main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-colu
   .cp-hero.capa{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px}
 }
 @media (min-width:1000px) and (max-width:1199px){.cp-hero.capa{grid-template-columns:minmax(0,1fr)}.cp-hero .dests{display:grid;grid-template-columns:1fr 1fr;column-gap:20px}}
+
+.ferr .bt-res{display:inline-flex;align-items:center;gap:8px;background:var(--brand);border-color:var(--brand);color:#fff;font-weight:700}
+.ferr .bt-res:hover{filter:brightness(1.08)}.ferr .bt-res svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.ferr .bt-res svg rect{fill:currentColor;stroke:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ferr .bt-res{color:#1a0a0e}}:root[data-theme="dark"] .ferr .bt-res{color:#1a0a0e}
+#resumo{scroll-margin-top:70px}
 </style>
 
 <header class="topo">
@@ -617,6 +623,7 @@ main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-colu
   <div class="ferr" role="search">
     <input type="search" data-q placeholder="Buscar nas manchetes…" aria-label="Buscar nas manchetes" autocomplete="off">
     <select data-fonte aria-label="Filtrar por veículo"><option value="">Todos os veículos</option>{{FONTES_OPT}}</select>
+    <button type="button" class="bt-res" data-irresumo hidden title="Ir ao Resumo do Plantão e ouvir a narração"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="7" rx="1.5"/><rect x="17" y="13" width="4" height="7" rx="1.5"/></svg>Resumo do Plantão</button>
     <button type="button" data-foco aria-pressed="false" title="Só títulos e horários, em ordem cronológica">Modo foco</button>
   </div>
   <section class="busca" data-busca hidden aria-live="polite">
@@ -1428,6 +1435,11 @@ main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-colu
   (function(){var v=document.querySelector('[data-vivo]'); if(!v) return; function ver(){var t=Date.parse(v.dataset.upd); var velho=t&&Date.now()-t>2.5*3600e3; v.classList.toggle('velho',!!velho); v.title=velho?'A última atualização tem mais de 2 horas':'Sistema no ar: manchetes atualizadas de hora em hora';
     var r=v.querySelector('.ha')||v.appendChild(Object.assign(document.createElement('small'),{className:'ha'})); var m=t?Math.max(0,Math.round((Date.now()-t)/60000)):null;
     r.textContent=m==null?'':m<1?' · agora':m<60?' · há '+m+' min':m<1440?' · há '+Math.floor(m/60)+' h'+(m%60?' '+(m%60)+' min':''):''} ver(); setInterval(ver,60000)})();
+  /* Botão "Resumo do Plantão" no topo: leva ao resumo (na aba Início) e começa a narração */
+  (function(){ var b=document.querySelector('[data-irresumo]'), r=document.getElementById('resumo'); if(!b||!r) return; b.hidden=false;
+    b.addEventListener('click',function(){ var t=document.querySelector('[data-tab="inicio"]'); if(r.offsetParent===null&&t) t.click();
+      setTimeout(function(){ r.scrollIntoView({behavior:'smooth',block:'start'}); var a=r.querySelector('audio'); if(a&&a.paused){ var p=a.play(); if(p&&p.catch) p.catch(function(){}); } },80); });
+  })();
   /* entrada suave dos cartões ao rolar */
   (function(){ if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var els=[].slice.call(document.querySelectorAll('.bloco,.anl-b,.lista li,.quadro,.ix')); if(!els.length) return;
