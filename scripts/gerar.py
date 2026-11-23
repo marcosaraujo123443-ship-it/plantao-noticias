@@ -261,14 +261,15 @@ if _mat:
     analises_html = (f'<section class="anl-b" aria-label="Análises do Plantão"><header><h2>Análises do Plantão</h2>'
                      f'<a class="ver" href="analises/">Ver todas →</a></header><div class="anl-g">{_it}</div></section>')
 # Explica Plantão (explicador.py): últimos guias de perguntas e respostas sobre leis, tributos e direitos
-try: _exp = ler_materias("explica")[:3]
+explica_html = ""
+try: _exp = ler_materias("explica")[:4]
 except Exception: _exp = []
 if _exp:
     _MS = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
     _it = "".join(f'<article class="anl-i"><span class="anl-r">{e(m.get("editoria", ""))} · {m["dt"].day} {_MS[m["dt"].month - 1]}</span>'
                   f'<h3><a href="explica/{m["slug"]}">{e(m["titulo"])}</a></h3>' + (f'<p>{e(m["subtitulo"])}</p>' if m.get("subtitulo") else "") +
                   f'<span class="anl-m">Perguntas e respostas · {m["minutos"]} min</span></article>' for m in _exp)
-    analises_html += (f'<section class="anl-b exb" aria-label="Explica Plantão"><header><h2>Explica Plantão <small>leis, tributos e direitos em perguntas e respostas</small></h2>'
+    explica_html = (f'<section class="anl-b exb" aria-label="Explica Plantão"><header><h2>Explica Plantão <small>leis, tributos e direitos em perguntas e respostas</small></h2>'
                       f'<a class="ver" href="explica/">Ver todos →</a></header><div class="anl-g">{_it}</div></section>')
 
 # As 20 maiores economias (economias.py, Banco Mundial)
@@ -472,7 +473,7 @@ merc_json = json.dumps(mercado, ensure_ascii=False).replace("</", "<\\/")
 tpl = (Path(__file__).parent / "modelo.html").read_text(encoding="utf-8")
 out = tpl
 for k, v in {"DATA": f"{DIAS[upd.weekday()]}, {upd.day} de {MESES[upd.month-1]} de {upd.year}",
-             "HORA": f"{upd:%H:%M}", "REDES_TOPO": REDES_TOPO, "REDES_ROD": REDES_ROD, "UPD_ISO": data["atualizado_utc"], "LEAD": lead_html, "RESUMO": resumo_html, "AGENDA": agenda_html, "DESTAQUES": dest_html, "ANALISES": analises_html, "BLOCOS": blocos,
+             "HORA": f"{upd:%H:%M}", "REDES_TOPO": REDES_TOPO, "REDES_ROD": REDES_ROD, "UPD_ISO": data["atualizado_utc"], "LEAD": lead_html, "RESUMO": resumo_html, "AGENDA": agenda_html, "DESTAQUES": dest_html, "ANALISES": analises_html, "EXPLICA": explica_html, "BLOCOS": blocos,
              "PAGINAS": paginas, "TABS": tabs, "HORARIOS": horarios, "FONTES": fontes_txt,
              "TOTAL": str(len(itens)), "NFONTES": str(len(fontes)), "MERCADO": merc_json,
              "FONTES_OPT": "".join(f'<option value="{e(f)}">{e(f)}</option>' for f in sorted(fontes, key=str.lower))}.items():

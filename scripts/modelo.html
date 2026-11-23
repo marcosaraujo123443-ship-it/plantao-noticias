@@ -27,7 +27,7 @@
 body{background:var(--paper);color:var(--ink);font:16px/1.55 var(--f-body);margin:0}
 a{color:inherit}
 a:focus-visible,button:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:2px}
-.gut{max-width:1180px;margin:0 auto;padding-inline:16px}
+.gut{max-width:1280px;margin:0 auto;padding-inline:16px}
 .s-politica{--c:var(--pol)} .s-ia{--c:var(--ia)} .s-futebol{--c:var(--fut)} .s-agro{--c:var(--agro)} .s-mercado{--c:var(--merc)} .s-concursos{--c:var(--conc)} .s-ciencia-e-saude{--c:var(--cien)}
 
 /* Cabeçalho */
@@ -569,6 +569,27 @@ main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-colu
 .rx-k{display:inline-block;width:10px;height:10px;border-radius:3px;margin:0 4px 0 10px;vertical-align:-1px}
 .jd-h small{font:500 12px var(--f-body);color:var(--ink-2)}
 @media (max-width:520px){.rx-t td{width:31%}.rx-b{display:none}.rx-t{font-size:13px}.rx-t tbody th{white-space:normal;font-size:12px}.rx-t td b{margin:0 4px}}
+
+/* ===== Capa em duas colunas: notícias agregadas à esquerda, conteúdo próprio à direita ===== */
+.capa2{display:grid;gap:22px;grid-template-columns:minmax(0,1fr)}
+.capa2>*{min-width:0}
+.cp-t{margin:0;font-size:12.5px;color:var(--ink-2);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.cp-t span{font:800 12px var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--brand)}
+.cp-dir,.cp-esq{display:grid;gap:18px;align-content:start;grid-template-columns:minmax(0,1fr)}
+.cp-dir>.anl-b,.cp-dir>.resumo,.cp-esq>.agenda{margin:0}
+.cp-dir .anl-g{grid-template-columns:minmax(0,1fr);gap:0;margin-top:8px}
+.cp-dir .anl-i{padding:12px 0;border-top:1px solid var(--rule-s)}.cp-dir .anl-i:first-child{border-top:0;padding-top:4px}
+.cp-dir .anl-i h3{font-size:18px}.cp-dir .anl-i p{font-size:14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.cp-dir .anl-b h2{font-size:19px}.cp-dir .exb h2 small{display:block;margin:3px 0 0}
+.cp-dir .resumo{padding:16px 18px}.cp-dir .resumo .ouca{flex-wrap:wrap}.cp-dir .resumo audio{width:100%}
+.cp-esq .blocos{grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+@media (min-width:1000px){
+  .capa2{grid-template-columns:minmax(0,1fr) minmax(300px,370px);gap:22px 28px}
+  .cp-hero{grid-column:1;grid-row:1}.cp-esq{grid-column:1;grid-row:2}
+  .cp-dir{grid-column:2;grid-row:1/3}
+  .cp-hero.capa{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px}
+}
+@media (min-width:1000px) and (max-width:1199px){.cp-hero.capa{grid-template-columns:minmax(0,1fr)}.cp-hero .dests{display:grid;grid-template-columns:1fr 1fr;column-gap:20px}}
 </style>
 
 <header class="topo">
@@ -603,14 +624,23 @@ main.gut{gap:38px;grid-template-columns:minmax(0,1fr)}.pagina{grid-template-colu
     <ol class="tl" data-bl></ol>
   </section>
   <div class="pagina" id="pg-inicio" data-pg="inicio">
-    <section class="capa" aria-label="Destaques">
+    <div class="capa2">
+    <section class="capa cp-hero" aria-label="Destaques">
       {{LEAD}}
       <div class="dests">{{DESTAQUES}}</div>
     </section>
-    {{RESUMO}}
-    {{AGENDA}}
-    {{ANALISES}}
-    <div class="blocos" style="margin-top:30px">{{BLOCOS}}</div>
+    <aside class="cp-dir" aria-label="Conteúdo próprio do Plantão">
+      <p class="cp-t"><span>Do Plantão</span> matérias, guias e resumos próprios</p>
+      {{EXPLICA}}
+      {{ANALISES}}
+      {{RESUMO}}
+    </aside>
+    <div class="cp-esq">
+      <p class="cp-t"><span>Das redações</span> as principais notícias dos veículos parceiros</p>
+      {{AGENDA}}
+      <div class="blocos">{{BLOCOS}}</div>
+    </div>
+    </div>
   </div>
   {{PAGINAS}}
 </main>
