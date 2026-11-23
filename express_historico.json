@@ -579,5 +579,83 @@
    "duracao": 125,
    "modelo": "gemini-3.8-flash-tts"
   }
+ },
+ {
+  "chave": "2026-11-22-noite",
+  "edicao": "noite",
+  "data": "2026-11-22",
+  "titulo": "Plantão Express da noite · domingo, 22 de novembro",
+  "abertura": "As principais notícias das últimas horas incluem saúde pública, política, economia e esportes no Brasil e no exterior.",
+  "gerado_utc": "2026-11-23T00:02:15Z",
+  "modelo": "gemini-flash-lite-latest",
+  "itens": [
+   {
+    "titulo": "Bolsonaro segue internado na UTI sem previsão de alta",
+    "fato": "O ex-presidente permanece internado na UTI do hospital DF Star, em Brasília, desde sexta-feira (20), sem previsão de alta médica.",
+    "importa": "O estado de saúde do ex-presidente é monitorado por boletins médicos oficiais.",
+    "secao": "Política",
+    "fonte": "InfoMoney",
+    "link": "https://www.infomoney.com.br/politica/bolsonaro-segue-internado-na-uti-e-sem-previsao-de-alta-diz-boletim-medico/",
+    "img": "https://www.infomoney.com.br/wp-content/uploads/2025/12/2025-12-23T152216Z_613812178_RC2V1HAEN3OD_RTRMADP_3_BRAZIL-BOLSONARO.jpg?fit=1200%2C675&quality=70&strip=all",
+    "tambem": [
+     "Agência Brasil",
+     "g1"
+    ]
+   },
+   {
+    "titulo": "Mosquito com Wolbachia reduz em 68% infecções por dengue",
+    "fato": "Uma pesquisa realizada com mais de 5.700 crianças em Belo Horizonte comprovou que o uso de mosquitos Aedes aegypti portadores da bactéria Wolbachia reduziu em 68% as infecções por dengue durante a maior epidemia do país.",
+    "importa": "A pesquisa demonstra a eficácia de uma nova estratégia de combate às arboviroses na saúde pública.",
+    "secao": "Ciência e Saúde",
+    "fonte": "CNN Brasil",
+    "link": "https://www.cnnbrasil.com.br/saude/mosquito-com-bacteria-reduziu-em-68-infeccoes-por-dengue-em-belo-horizonte/",
+    "img": "https://admin.alpha.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/02/WhatsApp-Image-2024-02-14-at-19.46.08.jpeg?w=1200",
+    "tambem": [
+     "g1"
+    ]
+   },
+   {
+    "titulo": "Mega-Sena acumula e próximo prêmio vai a R$ 65 milhões",
+    "fato": "O concurso 3.089 da Mega-Sena foi realizado na manhã deste domingo (22), em São Paulo, e o prêmio acumulou, indo para R$ 65 milhões.",
+    "importa": "O valor acumulado atrai apostadores de todo o país para o próximo concurso.",
+    "secao": "Mercado",
+    "fonte": "g1",
+    "link": "https://g1.globo.com/loterias/mega-sena/noticia/2026/11/22/mega-sena-3089-confira-os-numeros-sorteados.ghtml",
+    "img": "https://s2-g1.glbimg.com/iZhcWFwxbQkGi-rFNCwkCL6HrcU=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/z/Z/WyyfKZSXiUMGvXMR4GBg/captura-de-tela-2026-11-22-110233.png",
+    "tambem": [
+     "Agência Brasil"
+    ]
+   },
+   {
+    "titulo": "COP31 termina sem consenso sobre combustíveis fósseis",
+    "fato": "As negociações da COP31 foram encerradas na manhã deste domingo (22) após dois dias adicionais, mantendo a falta de acordo sobre a redução do uso de combustíveis fósseis.",
+    "importa": "O impasse reflete as dificuldades globais em firmar compromissos ambientais multilaterais.",
+    "secao": "Agro",
+    "fonte": "Canal Rural",
+    "link": "https://www.canalrural.com.br/internacional/cop31-termina-sem-consenso-sobre-a-reducao-do-uso-de-combustiveis-fosseis/",
+    "img": "https://imagens-cdn.canalrural.com.br/2026/11/COP31.jpeg",
+    "tambem": [
+     "Olhar Digital"
+    ]
+   },
+   {
+    "titulo": "São Paulo vence Paulistão Feminino Sub-17",
+    "fato": "O São Paulo conquistou o título do Paulistão Feminino Sub-17 disputando a partida com camisas de treino e numeração feita à mão.",
+    "importa": "A conquista destaca o desempenho da equipe de base feminina do clube.",
+    "secao": "Futebol",
+    "fonte": "CNN Brasil",
+    "link": "https://www.cnnbrasil.com.br/esportes/futebol/sao-paulo/sao-paulo-conquista-paulistao-feminino-sub-17-com-uniforme-improvisado/",
+    "img": "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/07/copafeminina-e1785025646499.webp?w=1200",
+    "tambem": [
+     "Agência Brasil",
+     "ge"
+    ]
+   }
+  ],
+  "audio": {
+   "url": "https://github.com/marcosaraujo123443-ship-it/plantao-noticias/releases/download/audio-2026-11/express-20261122-noite.mp3",
+   "duracao": 109,
+   "modelo": "gemini-3.8-flash-tts"
+  }
  }
 ]
