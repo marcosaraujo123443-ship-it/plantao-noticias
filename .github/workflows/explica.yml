@@ -5,6 +5,11 @@ on:
     - cron: "17 14 * * 1-5"   # 11h17 de Brasília
     - cron: "47 17 * * 1-5"   # 14h47: nova tentativa se a primeira não achou nada
   workflow_dispatch:
+    inputs:
+      refazer:
+        description: "Reescrever os guias no formato antigo (1) ou todos (todos)"
+        required: false
+        default: ""
 permissions:
   contents: write
 concurrency:
@@ -21,6 +26,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           EXPLICA_FORCAR: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}
+          EXPLICA_REFAZER: ${{ github.event.inputs.refazer }}
         run: python3 scripts/explicador.py
       - name: Publicar
         run: |

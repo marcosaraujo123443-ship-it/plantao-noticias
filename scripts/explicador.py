@@ -208,6 +208,7 @@ def refazer(chave):
     """Reescreve os guias já publicados com o modelo atual (mesmo arquivo e data)."""
     import glob
     for arq in sorted(glob.glob(os.path.join(PASTA, "*.md"))):
+        if "## Entenda o contexto" in open(arq, encoding="utf-8").read() and os.environ.get("EXPLICA_REFAZER") != "todos": continue
         cab = dict(l.split(": ", 1) for l in open(arq, encoding="utf-8").read().split("\n---\n")[0].splitlines() if ": " in l)
         link = cab.get("fonte"); tit = cab.get("fonte_titulo")
         if not tit:
