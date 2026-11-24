@@ -1,12 +1,23 @@
 {
- "data": "2026-11-23",
- "atualizado": "2026-11-23T23:32:21-0300",
+ "data": "2026-11-24",
+ "atualizado": "2026-11-24T01:01:27-0300",
  "itens": [
   {
-   "hora": "09:00",
+   "hora": "00:00",
    "tipo": "tempo",
    "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (perigo) em MS, PR, RS, SC",
+   "titulo": "Tempestade (grande perigo) em MS, PR, RS, SC",
+   "detalhe": [
+    "Chuva superior a 60 mm/h ou maior que 100 mm/dia, ventos superiores a 100 km/h, e queda de granizo. Grande risco de danos em edificações,…"
+   ],
+   "link": "#tempo",
+   "estado": ""
+  },
+  {
+   "hora": "00:00",
+   "tipo": "tempo",
+   "rotulo": "Alerta INMET",
+   "titulo": "Tempestade (perigo) em MS, PR, RS, SC, SP",
    "detalhe": [
     "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
    ],
@@ -14,15 +25,13 @@
    "estado": ""
   },
   {
-   "hora": "09:30",
-   "tipo": "tempo",
-   "rotulo": "Alerta INMET",
-   "titulo": "Chuvas Intensas (perigo) em ES, MG, RJ, SP",
-   "detalhe": [
-    "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h). Risco de corte de energia elétrica, queda de galhos de árvores,…"
-   ],
-   "link": "#tempo",
-   "estado": ""
+   "hora": "09:00",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Não Deliberativa Solene no Plenário",
+   "detalhe": [],
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
   },
   {
    "hora": "10:00",
@@ -31,70 +40,187 @@
    "titulo": "Sessão especial no Plenário",
    "detalhe": [],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
+   "estado": "Agendada"
   },
   {
-   "hora": "18:32",
+   "hora": "11:00",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Não Deliberativa Solene no Plenário",
+   "detalhe": [],
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
+  },
+  {
+   "hora": "13:55",
    "tipo": "politica",
    "rotulo": "Câmara",
    "titulo": "Sessão Deliberativa no Plenário",
    "detalhe": [
-    "REQ 4504/2026: Requer, nos termos do artigo 155 do Regimento Interno, tramitação sob o regime urgência do Projeto de Lei…",
-    "PEP 1/0: Parecer às Emendas de Plenário proferido pelo Relator Dep. Mauro Benevides Filho (UNIÃO/CE) pela: • Comissão…",
-    "PEP 1/0: Parecer às Emendas de Plenário proferido pelo Relator Dep. Mauro Benevides Filho (UNIÃO/CE) pela: • Comissão…"
+    "PL 724/2003: Altera a Lei nº 9.503, de 23 de setembro de 1997, que \"Institui o Código de Trânsito Brasileiro\", para dispor…",
+    "PL 7103/2014: Modifica a Lei nº 12.288,de 20 de julho de 2010 (Estatuto da Igualdade Racial), para incluir o quesito cor ou…",
+    "PL 294/2015: Altera as Leis nos 8.212 e 8.213, ambas de 24 de julho de 1991, que dispõem sobre os Planos de Custeio e de…"
    ],
-   "link": "https://www.youtube.com/watch?v=JnMcX2L3MDk",
-   "estado": "Em Andamento"
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
   },
   {
-   "hora": "19:30",
-   "tipo": "futebol",
-   "rotulo": "Brasileirão",
-   "titulo": "Internacional 2 × 5 Vitória",
+   "hora": "14:00",
+   "tipo": "politica",
+   "rotulo": "Senado",
+   "titulo": "Sessão deliberativa ordinária no Plenário",
    "detalhe": [
-    "36ª rodada"
+    "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
+    "PL 5894/2025: Institui o Plano Nacional de Cultura (PNC) para o decênio 2026-2036; e altera a Lei nº 14.399, de 8 de julho…",
+    "PL 1134/2025: Altera a Lei nº 9.503, de 23 de setembro de 1997 (Código de Trânsito Brasileiro), para dispor sobre os…"
    ],
-   "estado": "encerrado",
+   "link": "https://www25.senado.leg.br/web/atividade/plenario",
+   "estado": "Agendada"
+  },
+  {
+   "hora": "14:45",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Bodo/Glimt × LASK Linz",
+   "detalhe": [
+    "5ª rodada"
+   ],
+   "estado": "",
    "link": "tabelas/"
   },
   {
-   "hora": "20:00",
+   "hora": "14:45",
    "tipo": "futebol",
-   "rotulo": "Brasileirão",
-   "titulo": "Botafogo 1 × 1 São Paulo",
+   "rotulo": "Champions",
+   "titulo": "Galatasaray × Aston Villa",
    "detalhe": [
-    "36ª rodada"
+    "5ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
-   "hora": "21:00",
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Arsenal × Borussia Dortmund",
+   "detalhe": [
+    "5ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Como × AEK Athens",
+   "detalhe": [
+    "5ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Feyenoord × FC Porto",
+   "detalhe": [
+    "5ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Man City × Napoli",
+   "detalhe": [
+    "5ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "RB Leipzig × Lens",
+   "detalhe": [
+    "5ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Real Madrid × PSV",
+   "detalhe": [
+    "5ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "S Bratislava × Betis",
+   "detalhe": [
+    "5ª rodada"
+   ],
+   "estado": "",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "18:00",
    "tipo": "futebol",
    "rotulo": "Brasileirão",
-   "titulo": "Santos 0 × 2 Grêmio",
+   "titulo": "Chapecoense × Palmeiras",
    "detalhe": [
-    "36ª rodada"
+    "37ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   }
  ],
- "outros_jogos": 4,
+ "outros_jogos": 0,
  "fontes": {
   "camara": [
    {
-    "hora": "18:32",
+    "hora": "11:00",
+    "tipo": "politica",
+    "rotulo": "Câmara",
+    "titulo": "Sessão Não Deliberativa Solene no Plenário",
+    "detalhe": [],
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
+   },
+   {
+    "hora": "09:00",
+    "tipo": "politica",
+    "rotulo": "Câmara",
+    "titulo": "Sessão Não Deliberativa Solene no Plenário",
+    "detalhe": [],
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
+   },
+   {
+    "hora": "13:55",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Deliberativa no Plenário",
     "detalhe": [
-     "REQ 4504/2026: Requer, nos termos do artigo 155 do Regimento Interno, tramitação sob o regime urgência do Projeto de Lei…",
-     "PEP 1/0: Parecer às Emendas de Plenário proferido pelo Relator Dep. Mauro Benevides Filho (UNIÃO/CE) pela: • Comissão…",
-     "PEP 1/0: Parecer às Emendas de Plenário proferido pelo Relator Dep. Mauro Benevides Filho (UNIÃO/CE) pela: • Comissão…"
+     "PL 724/2003: Altera a Lei nº 9.503, de 23 de setembro de 1997, que \"Institui o Código de Trânsito Brasileiro\", para dispor…",
+     "PL 7103/2014: Modifica a Lei nº 12.288,de 20 de julho de 2010 (Estatuto da Igualdade Racial), para incluir o quesito cor ou…",
+     "PL 294/2015: Altera as Leis nos 8.212 e 8.213, ambas de 24 de julho de 1991, que dispõem sobre os Planos de Custeio e de…"
     ],
-    "link": "https://www.youtube.com/watch?v=JnMcX2L3MDk",
-    "estado": "Em Andamento"
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
    }
   ],
   "senado": [
@@ -105,7 +231,20 @@
     "titulo": "Sessão especial no Plenário",
     "detalhe": [],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
+    "estado": "Agendada"
+   },
+   {
+    "hora": "14:00",
+    "tipo": "politica",
+    "rotulo": "Senado",
+    "titulo": "Sessão deliberativa ordinária no Plenário",
+    "detalhe": [
+     "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
+     "PL 5894/2025: Institui o Plano Nacional de Cultura (PNC) para o decênio 2026-2036; e altera a Lei nº 14.399, de 8 de julho…",
+     "PL 1134/2025: Altera a Lei nº 9.503, de 23 de setembro de 1997 (Código de Trânsito Brasileiro), para dispor sobre os…"
+    ],
+    "link": "https://www25.senado.leg.br/web/atividade/plenario",
+    "estado": "Agendada"
    }
   ],
   "copom": []
