@@ -1,6 +1,6 @@
 {
  "data": "2026-11-24",
- "atualizado": "2026-11-24T10:01:26-0300",
+ "atualizado": "2026-11-24T11:01:45-0300",
  "itens": [
   {
    "hora": "00:00",
@@ -31,7 +31,7 @@
    "titulo": "Sessão Não Deliberativa Solene no Plenário",
    "detalhe": [],
    "link": "https://www.camara.leg.br/agenda",
-   "estado": "Em Andamento"
+   "estado": "Encerrada"
   },
   {
    "hora": "10:00",
@@ -40,7 +40,7 @@
    "titulo": "Sessão especial no Plenário",
    "detalhe": [],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Agendada"
+   "estado": "Em andamento"
   },
   {
    "hora": "11:00",
@@ -207,7 +207,7 @@
     "titulo": "Sessão Não Deliberativa Solene no Plenário",
     "detalhe": [],
     "link": "https://www.camara.leg.br/agenda",
-    "estado": "Em Andamento"
+    "estado": "Encerrada"
    },
    {
     "hora": "13:55",
@@ -231,7 +231,7 @@
     "titulo": "Sessão especial no Plenário",
     "detalhe": [],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Agendada"
+    "estado": "Em andamento"
    },
    {
     "hora": "14:00",
@@ -249,5 +249,7 @@
   ],
   "copom": []
  },
- "erros": []
+ "erros": [
+  "copom: <HTTPError 304: 'Not Modified'>"
+ ]
 }
