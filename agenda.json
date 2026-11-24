@@ -1,6 +1,6 @@
 {
  "data": "2026-11-24",
- "atualizado": "2026-11-24T09:01:27-0300",
+ "atualizado": "2026-11-24T10:01:26-0300",
  "itens": [
   {
    "hora": "00:00",
@@ -25,13 +25,13 @@
    "estado": ""
   },
   {
-   "hora": "09:00",
+   "hora": "09:20",
    "tipo": "politica",
    "rotulo": "Câmara",
    "titulo": "Sessão Não Deliberativa Solene no Plenário",
    "detalhe": [],
    "link": "https://www.camara.leg.br/agenda",
-   "estado": "Convocada"
+   "estado": "Em Andamento"
   },
   {
    "hora": "10:00",
@@ -201,13 +201,13 @@
     "estado": "Convocada"
    },
    {
-    "hora": "09:00",
+    "hora": "09:20",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Não Deliberativa Solene no Plenário",
     "detalhe": [],
     "link": "https://www.camara.leg.br/agenda",
-    "estado": "Convocada"
+    "estado": "Em Andamento"
    },
    {
     "hora": "13:55",
@@ -249,7 +249,5 @@
   ],
   "copom": []
  },
- "erros": [
-  "copom: <HTTPError 304: 'Not Modified'>"
- ]
+ "erros": []
 }
