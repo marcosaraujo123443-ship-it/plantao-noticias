@@ -1,6 +1,6 @@
 {
  "data": "2026-11-24",
- "atualizado": "2026-11-24T18:02:55-0300",
+ "atualizado": "2026-11-24T19:01:31-0300",
  "itens": [
   {
    "hora": "00:00",
@@ -103,62 +103,7 @@
    "hora": "17:00",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "Arsenal × Borussia Dortmund",
-   "detalhe": [
-    "5ª rodada"
-   ],
-   "estado": "",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Como × AEK Athens",
-   "detalhe": [
-    "5ª rodada"
-   ],
-   "estado": "",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Feyenoord × FC Porto",
-   "detalhe": [
-    "5ª rodada"
-   ],
-   "estado": "",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Man City × Napoli",
-   "detalhe": [
-    "5ª rodada"
-   ],
-   "estado": "",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "RB Leipzig × Lens",
-   "detalhe": [
-    "5ª rodada"
-   ],
-   "estado": "",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Real Madrid 0 × 0 PSV",
+   "titulo": "Arsenal 1 × 1 Borussia Dortmund",
    "detalhe": [
     "5ª rodada"
    ],
@@ -169,7 +114,62 @@
    "hora": "17:00",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "S Bratislava 0 × 0 Betis",
+   "titulo": "Como 0 × 0 AEK Athens",
+   "detalhe": [
+    "5ª rodada"
+   ],
+   "estado": "ao vivo",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Feyenoord 0 × 1 FC Porto",
+   "detalhe": [
+    "5ª rodada"
+   ],
+   "estado": "ao vivo",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Man City 0 × 1 Napoli",
+   "detalhe": [
+    "5ª rodada"
+   ],
+   "estado": "ao vivo",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "RB Leipzig 2 × 1 Lens",
+   "detalhe": [
+    "5ª rodada"
+   ],
+   "estado": "ao vivo",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "Real Madrid 1 × 1 PSV",
+   "detalhe": [
+    "5ª rodada"
+   ],
+   "estado": "ao vivo",
+   "link": "tabelas/"
+  },
+  {
+   "hora": "17:00",
+   "tipo": "futebol",
+   "rotulo": "Champions",
+   "titulo": "S Bratislava 0 × 2 Betis",
    "detalhe": [
     "5ª rodada"
    ],
@@ -180,11 +180,11 @@
    "hora": "18:00",
    "tipo": "futebol",
    "rotulo": "Brasileirão",
-   "titulo": "Chapecoense × Palmeiras",
+   "titulo": "Chapecoense 1 × 0 Palmeiras",
    "detalhe": [
     "37ª rodada"
    ],
-   "estado": "",
+   "estado": "ao vivo",
    "link": "tabelas/"
   }
  ],
@@ -249,5 +249,7 @@
   ],
   "copom": []
  },
- "erros": []
+ "erros": [
+  "copom: <HTTPError 304: 'Not Modified'>"
+ ]
 }
