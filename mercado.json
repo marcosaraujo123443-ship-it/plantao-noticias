@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-24T02:12:18Z",
+ "atualizado_utc": "2026-11-24T03:15:59Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -15,25 +15,19 @@
   },
   {
    "nome": "Euro",
-   "valor": 6.4714,
-   "var": 0.09125357667620904,
+   "valor": 6.4676,
+   "var": 0.032480086613562165,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 360823.04523199995,
-   "var": -0.5830800434234673,
+   "valor": 352474.94659,
+   "var": -2.883216538163391,
    "tipo": "brl"
   },
   {
    "nome": "Selic",
    "valor": 13.75,
-   "var": null,
-   "tipo": "pct"
-  },
-  {
-   "nome": "IPCA 12m",
-   "valor": 4.63,
    "var": null,
    "tipo": "pct"
   }
@@ -1761,6 +1755,7 @@
   }
  },
  "erros": [
-  "moedas (awesomeapi): HTTP Error 429: Too Many Requests"
+  "moedas (awesomeapi): HTTP Error 429: Too Many Requests",
+  "IPCA 12m: HTTP Error 304: Not Modified"
  ]
 }
