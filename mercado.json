@@ -1,28 +1,28 @@
 {
- "atualizado_utc": "2026-11-24T12:46:03Z",
+ "atualizado_utc": "2026-11-24T13:01:04Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
    "valor": 164796.05,
-   "var": -0.9498880971368417,
+   "var": 0.0,
    "tipo": "pts"
   },
   {
    "nome": "Dólar",
-   "valor": 5.8861,
-   "var": -0.7285851618234807,
+   "valor": 5.8738,
+   "var": -0.9360295481759984,
    "tipo": "brl"
   },
   {
    "nome": "Euro",
-   "valor": 6.4553,
-   "var": -0.15776042069444163,
+   "valor": 6.4441,
+   "var": -0.3309875493001324,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 355615.971403,
-   "var": -1.2986522880226836,
+   "valor": 354624.85993800004,
+   "var": -1.3676266497198664,
    "tipo": "brl"
   },
   {
@@ -646,6 +646,12 @@
    "nome": "EZTec",
    "preco": 9.26,
    "var": 0.21645021645020357
+  },
+  {
+   "ticker": "RAIZ4",
+   "nome": "Raízen",
+   "preco": 0.3,
+   "var": 0.0
   }
  ],
  "maiores": [
@@ -994,12 +1000,12 @@
   {
    "papel": "BRCO11",
    "segmento": "Logística",
-   "cotacao": 102.71,
+   "cotacao": 103.0,
    "dy": 10.63,
    "pvp": 0.9,
    "vm": 1856190000.0,
    "liq": 9371620.0,
-   "var": -1.107259772771041
+   "var": -0.8280377431157282
   },
   {
    "papel": "KNCA11",
@@ -1143,12 +1149,12 @@
   {
    "papel": "MCLO11",
    "segmento": "Logística",
-   "cotacao": 10.2,
+   "cotacao": 10.27,
    "dy": 9.74,
    "pvp": 0.74,
    "vm": 1280080000.0,
    "liq": 3873490.0,
-   "var": -0.8746355685131157
+   "var": -0.19436345966957758
   },
   {
    "papel": "HGCR11",
@@ -1263,12 +1269,12 @@
   {
    "papel": "RBRR11",
    "segmento": "Multicategoria",
-   "cotacao": 63.0,
+   "cotacao": 0.0,
    "dy": 15.45,
    "pvp": 0.68,
    "vm": 1026920000.0,
    "liq": 3515410.0,
-   "var": 0.0
+   "var": -100.0
   },
   {
    "papel": "BRCR11",
@@ -1313,12 +1319,12 @@
   {
    "papel": "VCJR11",
    "segmento": "Outros",
-   "cotacao": 63.0,
+   "cotacao": 0.0,
    "dy": 17.5,
    "pvp": 0.66,
    "vm": 927610000.0,
    "liq": 2771720.0,
-   "var": 0.0
+   "var": -100.0
   },
   {
    "papel": "CVBI11",
@@ -1352,12 +1358,12 @@
   {
    "papel": "HSLG11",
    "segmento": "Logística",
-   "cotacao": 69.8,
+   "cotacao": 69.79,
    "dy": 12.37,
    "pvp": 0.63,
    "vm": 883546000.0,
    "liq": 1768470.0,
-   "var": -1.7593244194229363
+   "var": -1.7733990147783096
   },
   {
    "papel": "PSEC11",
@@ -1462,12 +1468,12 @@
   {
    "papel": "BROF11",
    "segmento": "Multicategoria",
-   "cotacao": 54.02,
+   "cotacao": 54.19,
    "dy": 12.11,
    "pvp": 0.5,
    "vm": 629190000.0,
    "liq": 1505190.0,
-   "var": -1.116602599304406
+   "var": -0.8054182683507327
   },
   {
    "papel": "XPCI11",
