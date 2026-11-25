@@ -1,6 +1,6 @@
 {
  "data": "2026-11-24",
- "atualizado": "2026-11-24T20:01:16-0300",
+ "atualizado": "2026-11-24T21:01:52-0300",
  "itens": [
   {
    "hora": "00:00",
@@ -58,11 +58,11 @@
    "titulo": "Sessão deliberativa ordinária no Plenário",
    "detalhe": [
     "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
-    "PL 5894/2025: Institui o Plano Nacional de Cultura (PNC) para o decênio 2026-2036; e altera a Lei nº 14.399, de 8 de julho…",
-    "PL 1134/2025: Altera a Lei nº 9.503, de 23 de setembro de 1997 (Código de Trânsito Brasileiro), para dispor sobre os…"
+    "PL 5809/2025: Altera a Lei nº 9.605, de 12 de fevereiro de 1998 (Lei dos Crimes Ambientais), para tipificar o crime de…",
+    "RQS 750/2026: Solicita a realização de Sessão Especial destinada à cerimônia de premiação da Oficina Legislativa 2026,…"
    ],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Em andamento"
+   "estado": "Encerrada"
   },
   {
    "hora": "14:16",
@@ -180,11 +180,11 @@
    "hora": "18:00",
    "tipo": "futebol",
    "rotulo": "Brasileirão",
-   "titulo": "Chapecoense × Palmeiras",
+   "titulo": "Chapecoense 3 × 0 Palmeiras",
    "detalhe": [
     "37ª rodada"
    ],
-   "estado": "",
+   "estado": "encerrado",
    "link": "tabelas/"
   }
  ],
@@ -240,14 +240,16 @@
     "titulo": "Sessão deliberativa ordinária no Plenário",
     "detalhe": [
      "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
-     "PL 5894/2025: Institui o Plano Nacional de Cultura (PNC) para o decênio 2026-2036; e altera a Lei nº 14.399, de 8 de julho…",
-     "PL 1134/2025: Altera a Lei nº 9.503, de 23 de setembro de 1997 (Código de Trânsito Brasileiro), para dispor sobre os…"
+     "PL 5809/2025: Altera a Lei nº 9.605, de 12 de fevereiro de 1998 (Lei dos Crimes Ambientais), para tipificar o crime de…",
+     "RQS 750/2026: Solicita a realização de Sessão Especial destinada à cerimônia de premiação da Oficina Legislativa 2026,…"
     ],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Em andamento"
+    "estado": "Encerrada"
    }
   ],
   "copom": []
  },
- "erros": []
+ "erros": [
+  "copom: <HTTPError 304: 'Not Modified'>"
+ ]
 }
