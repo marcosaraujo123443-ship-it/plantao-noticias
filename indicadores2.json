@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-25T05:40:22Z",
+ "atualizado_utc": "2026-11-25T21:27:10Z",
  "itens": {
   "caged": {
    "id": "caged",
@@ -1150,9 +1150,9 @@
    "tag": "EUA · Inflação",
    "titulo": "PCE núcleo",
    "sub": "A inflação preferida do Fed · BEA",
-   "ref": "2026-09",
-   "ref_txt": "setembro de 2026",
-   "valor": "3,1%",
+   "ref": "2026-10",
+   "ref_txt": "outubro de 2026",
+   "valor": "3,3%",
    "cor": "ruim",
    "selo": [
     "▲ ACELERA",
@@ -1162,7 +1162,7 @@
    "apoio": [
     [
      "Anterior",
-     "3,03%",
+     "3,14%",
      "período anterior"
     ],
     [
@@ -1172,16 +1172,12 @@
     ],
     [
      "Um ano antes",
-     "2,82%",
-     "set/25"
+     "2,70%",
+     "out/25"
     ]
    ],
    "graf_tit": "Últimos 12 meses · %",
    "graf": [
-    [
-     "out/25",
-     2.704820055566337
-    ],
     [
      "nov/25",
      2.7212091395204308
@@ -1220,11 +1216,15 @@
     ],
     [
      "ago/26",
-     3.034442461664799
+     3.0470761018903003
     ],
     [
      "set/26",
-     3.1211596029620203
+     3.1424294942492548
+    ],
+    [
+     "out/26",
+     3.26111744583808
     ]
    ],
    "graf_fmt": "num1",
@@ -1240,7 +1240,7 @@
    "sub": "Crescimento anualizado no trimestre · BEA",
    "ref": "2026-07-01",
    "ref_txt": "3º trimestre de 2026",
-   "valor": "+3,4%",
+   "valor": "+4,3%",
    "cor": "bom",
    "selo": [
     "▲ ACELERA",
@@ -1255,7 +1255,7 @@
     ],
     [
      "Média de 4 trimestres",
-     "2,1%",
+     "2,3%",
      "anualizado"
     ],
     [
@@ -1304,7 +1304,7 @@
     ],
     [
      "3T/26",
-     3.4
+     4.3
     ]
    ],
    "graf_fmt": "num1",
@@ -1318,9 +1318,9 @@
    "tag": "EUA · Mercado",
    "titulo": "Juro de 10 anos dos EUA",
    "sub": "Rendimento do título do Tesouro americano",
-   "ref": "2026-11-23",
-   "ref_txt": "23/11/2026",
-   "valor": "4,92%",
+   "ref": "2026-11-24",
+   "ref_txt": "24/11/2026",
+   "valor": "4,91%",
    "cor": "neutro",
    "selo": [
     "▼ CAI",
@@ -1392,7 +1392,7 @@
     ],
     [
      "nov/26",
-     4.92
+     4.91
     ]
    ],
    "graf_fmt": "num1",
