@@ -1,23 +1,12 @@
 {
- "data": "2026-11-24",
- "atualizado": "2026-11-24T23:01:21-0300",
+ "data": "2026-11-25",
+ "atualizado": "2026-11-25T00:00:26-0300",
  "itens": [
   {
    "hora": "00:00",
    "tipo": "tempo",
    "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (grande perigo) em MS, PR, RS, SC",
-   "detalhe": [
-    "Chuva superior a 60 mm/h ou maior que 100 mm/dia, ventos superiores a 100 km/h, e queda de granizo. Grande risco de danos em edificações,…"
-   ],
-   "link": "#tempo",
-   "estado": ""
-  },
-  {
-   "hora": "00:00",
-   "tipo": "tempo",
-   "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (perigo) em MS, PR, RS, SC, SP",
+   "titulo": "Tempestade (perigo) em ES, MG, MS, PR, RJ, SC…",
    "detalhe": [
     "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
    ],
@@ -25,13 +14,13 @@
    "estado": ""
   },
   {
-   "hora": "09:20",
+   "hora": "09:00",
    "tipo": "politica",
    "rotulo": "Câmara",
    "titulo": "Sessão Não Deliberativa Solene no Plenário",
    "detalhe": [],
    "link": "https://www.camara.leg.br/agenda",
-   "estado": "Encerrada"
+   "estado": "Convocada"
   },
   {
    "hora": "10:00",
@@ -40,16 +29,29 @@
    "titulo": "Sessão especial no Plenário",
    "detalhe": [],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
+   "estado": "Agendada"
   },
   {
-   "hora": "11:19",
+   "hora": "11:00",
    "tipo": "politica",
    "rotulo": "Câmara",
    "titulo": "Sessão Não Deliberativa Solene no Plenário",
    "detalhe": [],
-   "link": "https://www.youtube.com/watch?v=P8x_KxV9etk",
-   "estado": "Encerrada"
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
+  },
+  {
+   "hora": "13:55",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Deliberativa no Plenário",
+   "detalhe": [
+    "PL 724/2003: Altera a Lei nº 9.503, de 23 de setembro de 1997, que \"Institui o Código de Trânsito Brasileiro\", para dispor…",
+    "PL 294/2015: Altera as Leis nos 8.212 e 8.213, ambas de 24 de julho de 1991, que dispõem sobre os Planos de Custeio e de…",
+    "PL 479/2015: Altera a Lei nº 9.394, de 20 de dezembro de 1996 (Lei de Diretrizes e Bases da Educação - LDB), para dispor…"
+   ],
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
   },
   {
    "hora": "14:00",
@@ -57,170 +59,157 @@
    "rotulo": "Senado",
    "titulo": "Sessão deliberativa ordinária no Plenário",
    "detalhe": [
-    "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
-    "PL 5809/2025: Altera a Lei nº 9.605, de 12 de fevereiro de 1998 (Lei dos Crimes Ambientais), para tipificar o crime de…",
-    "RQS 750/2026: Solicita a realização de Sessão Especial destinada à cerimônia de premiação da Oficina Legislativa 2026,…"
+    "PL 351/2019: Institui a Força Nacional do Sistema Único de Saúde (FN-SUS).",
+    "PL 5807/2025: Altera o Decreto-Lei nº 2.848, de 7 de dezembro de 1940 (Código Penal), para tipificar o crime de posse de…",
+    "PL 1257/2021: Altera a Lei nº 10.741, de 1º de outubro de 2003 (Estatuto da Pessoa Idosa), para assegurar o acesso a…"
    ],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
-  },
-  {
-   "hora": "14:16",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Deliberativa no Plenário",
-   "detalhe": [
-    "PL 724/2003: Altera a Lei nº 9.503, de 23 de setembro de 1997, que \"Institui o Código de Trânsito Brasileiro\", para dispor…",
-    "PPP 1/0: Parecer proferido em Plenário pela Relatora Dep. Talíria Petrone (PSOL/RJ) pela: • Comissão de Constituição e…",
-    "PPP 1/0: Parecer proferido em Plenário pela Relatora Dep. Talíria Petrone (PSOL/RJ) pela: • Comissão de Constituição e…"
-   ],
-   "link": "https://www.youtube.com/watch?v=zuhFH1z5Bn8",
-   "estado": "Encerrada"
+   "estado": "Agendada"
   },
   {
    "hora": "14:45",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "Bodo/Glimt 1 × 0 LASK Linz",
+   "titulo": "Sabah × Barcelona",
    "detalhe": [
     "5ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "14:45",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "Galatasaray 1 × 0 Aston Villa",
+   "titulo": "Slavia Prague × Villareal",
    "detalhe": [
     "5ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "17:00",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "Arsenal 1 × 1 Borussia Dortmund",
+   "titulo": "Atl Madrid × Viking FK",
    "detalhe": [
     "5ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "17:00",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "Como 1 × 0 AEK Athens",
+   "titulo": "Club Brugge × Liverpool",
    "detalhe": [
     "5ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "17:00",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "Feyenoord 0 × 1 FC Porto",
+   "titulo": "Inter × Stuttgart",
    "detalhe": [
     "5ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "17:00",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "Man City 2 × 2 Napoli",
+   "titulo": "Lille × Bayern",
    "detalhe": [
     "5ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "17:00",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "RB Leipzig 3 × 1 Lens",
+   "titulo": "PSG × Roma",
    "detalhe": [
     "5ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "17:00",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "Real Madrid 5 × 1 PSV",
+   "titulo": "Shakhtar × Fenerbahçe",
    "detalhe": [
     "5ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
    "hora": "17:00",
    "tipo": "futebol",
    "rotulo": "Champions",
-   "titulo": "S Bratislava 0 × 2 Betis",
+   "titulo": "Sporting × Man Utd",
    "detalhe": [
     "5ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   },
   {
-   "hora": "18:00",
+   "hora": "20:00",
    "tipo": "futebol",
    "rotulo": "Brasileirão",
-   "titulo": "Chapecoense 3 × 0 Palmeiras",
+   "titulo": "Atlético-MG × Corinthians",
    "detalhe": [
-    "37ª rodada"
+    "36ª rodada"
    ],
-   "estado": "encerrado",
+   "estado": "",
    "link": "tabelas/"
   }
  ],
- "outros_jogos": 0,
+ "outros_jogos": 1,
  "fontes": {
   "camara": [
    {
-    "hora": "11:19",
-    "tipo": "politica",
-    "rotulo": "Câmara",
-    "titulo": "Sessão Não Deliberativa Solene no Plenário",
-    "detalhe": [],
-    "link": "https://www.youtube.com/watch?v=P8x_KxV9etk",
-    "estado": "Encerrada"
-   },
-   {
-    "hora": "09:20",
+    "hora": "11:00",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Não Deliberativa Solene no Plenário",
     "detalhe": [],
     "link": "https://www.camara.leg.br/agenda",
-    "estado": "Encerrada"
+    "estado": "Convocada"
    },
    {
-    "hora": "14:16",
+    "hora": "09:00",
+    "tipo": "politica",
+    "rotulo": "Câmara",
+    "titulo": "Sessão Não Deliberativa Solene no Plenário",
+    "detalhe": [],
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
+   },
+   {
+    "hora": "13:55",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Deliberativa no Plenário",
     "detalhe": [
      "PL 724/2003: Altera a Lei nº 9.503, de 23 de setembro de 1997, que \"Institui o Código de Trânsito Brasileiro\", para dispor…",
-     "PPP 1/0: Parecer proferido em Plenário pela Relatora Dep. Talíria Petrone (PSOL/RJ) pela: • Comissão de Constituição e…",
-     "PPP 1/0: Parecer proferido em Plenário pela Relatora Dep. Talíria Petrone (PSOL/RJ) pela: • Comissão de Constituição e…"
+     "PL 294/2015: Altera as Leis nos 8.212 e 8.213, ambas de 24 de julho de 1991, que dispõem sobre os Planos de Custeio e de…",
+     "PL 479/2015: Altera a Lei nº 9.394, de 20 de dezembro de 1996 (Lei de Diretrizes e Bases da Educação - LDB), para dispor…"
     ],
-    "link": "https://www.youtube.com/watch?v=zuhFH1z5Bn8",
-    "estado": "Encerrada"
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
    }
   ],
   "senado": [
@@ -231,7 +220,7 @@
     "titulo": "Sessão especial no Plenário",
     "detalhe": [],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
+    "estado": "Agendada"
    },
    {
     "hora": "14:00",
@@ -239,12 +228,12 @@
     "rotulo": "Senado",
     "titulo": "Sessão deliberativa ordinária no Plenário",
     "detalhe": [
-     "PL 6461/2019: Institui o Estatuto do Aprendiz; e altera a Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº…",
-     "PL 5809/2025: Altera a Lei nº 9.605, de 12 de fevereiro de 1998 (Lei dos Crimes Ambientais), para tipificar o crime de…",
-     "RQS 750/2026: Solicita a realização de Sessão Especial destinada à cerimônia de premiação da Oficina Legislativa 2026,…"
+     "PL 351/2019: Institui a Força Nacional do Sistema Único de Saúde (FN-SUS).",
+     "PL 5807/2025: Altera o Decreto-Lei nº 2.848, de 7 de dezembro de 1940 (Código Penal), para tipificar o crime de posse de…",
+     "PL 1257/2021: Altera a Lei nº 10.741, de 1º de outubro de 2003 (Estatuto da Pessoa Idosa), para assegurar o acesso a…"
     ],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
+    "estado": "Agendada"
    }
   ],
   "copom": []
