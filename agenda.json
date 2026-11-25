@@ -1,6 +1,6 @@
 {
  "data": "2026-11-25",
- "atualizado": "2026-11-25T14:07:23-0300",
+ "atualizado": "2026-11-25T15:06:02-0300",
  "itens": [
   {
    "hora": "00:00",
@@ -41,19 +41,6 @@
    "estado": "Encerrada"
   },
   {
-   "hora": "13:55",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Deliberativa no Plenário",
-   "detalhe": [
-    "PL 724/2003: Altera a Lei nº 9.503, de 23 de setembro de 1997, que \"Institui o Código de Trânsito Brasileiro\", para dispor…",
-    "PL 294/2015: Altera as Leis nos 8.212 e 8.213, ambas de 24 de julho de 1991, que dispõem sobre os Planos de Custeio e de…",
-    "PL 479/2015: Altera a Lei nº 9.394, de 20 de dezembro de 1996 (Lei de Diretrizes e Bases da Educação - LDB), para dispor…"
-   ],
-   "link": "https://www.camara.leg.br/agenda",
-   "estado": "Convocada"
-  },
-  {
    "hora": "14:00",
    "tipo": "politica",
    "rotulo": "Senado",
@@ -64,7 +51,20 @@
     "PL 1257/2021: Altera a Lei nº 10.741, de 1º de outubro de 2003 (Estatuto da Pessoa Idosa), para assegurar o acesso a…"
    ],
    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Agendada"
+   "estado": "Em andamento"
+  },
+  {
+   "hora": "14:21",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Deliberativa no Plenário",
+   "detalhe": [
+    "PL 724/2003: Altera a Lei nº 9.503, de 23 de setembro de 1997, que \"Institui o Código de Trânsito Brasileiro\", para dispor…",
+    "PL 294/2015: Altera as Leis nos 8.212 e 8.213, ambas de 24 de julho de 1991, que dispõem sobre os Planos de Custeio e de…",
+    "PL 479/2015: Altera a Lei nº 9.394, de 20 de dezembro de 1996 (Lei de Diretrizes e Bases da Educação - LDB), para dispor…"
+   ],
+   "link": "https://www.youtube.com/watch?v=JFncPQLO0X4",
+   "estado": "Em Andamento"
   },
   {
    "hora": "14:45",
@@ -199,7 +199,7 @@
     "estado": "Encerrada"
    },
    {
-    "hora": "13:55",
+    "hora": "14:21",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Deliberativa no Plenário",
@@ -208,8 +208,8 @@
      "PL 294/2015: Altera as Leis nos 8.212 e 8.213, ambas de 24 de julho de 1991, que dispõem sobre os Planos de Custeio e de…",
      "PL 479/2015: Altera a Lei nº 9.394, de 20 de dezembro de 1996 (Lei de Diretrizes e Bases da Educação - LDB), para dispor…"
     ],
-    "link": "https://www.camara.leg.br/agenda",
-    "estado": "Convocada"
+    "link": "https://www.youtube.com/watch?v=JFncPQLO0X4",
+    "estado": "Em Andamento"
    }
   ],
   "senado": [
@@ -233,7 +233,7 @@
      "PL 1257/2021: Altera a Lei nº 10.741, de 1º de outubro de 2003 (Estatuto da Pessoa Idosa), para assegurar o acesso a…"
     ],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Agendada"
+    "estado": "Em andamento"
    }
   ],
   "copom": []
