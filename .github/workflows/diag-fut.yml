@@ -8,9 +8,6 @@ jobs:
     steps:
       - run: |
           mkdir -p /tmp/out; cd /tmp/out
-          curl -sSL -D feed.h https://plantaoinforma.com.br/podcast.xml -o feed.xml; echo "bytes $(wc -c < feed.xml)" > rel.txt
-          grep -o '<pubDate>[^<]*' feed.xml | head -5 >> rel.txt
-          grep -o 'enclosure url="[^"]*"' feed.xml | head -4 | sed 's/enclosure url="//;s/"$//' | while read u; do echo "== $u" >> rel.txt; curl -sSIL -A "Spotify/1.0" "$u" | grep -iE "^HTTP|content-type|content-length" >> rel.txt; done
-          curl -sSL -A "Mozilla/5.0" https://open.spotify.com/show/5td62B4h3rU8rFQnyomgti -o spotify.html; grep -o '"name":"[^"]\{0,90\}' spotify.html | head -15 >> rel.txt || true
+          curl -sSL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36" https://open.spotify.com/embed/show/5td62B4h3rU8rFQnyomgti -o embed.html
           git init -q && git checkout -q -b diag-dados && git add . && git -c user.name=diag -c user.email=diag@x commit -qm diag
           git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" diag-dados
