@@ -1,239 +1,96 @@
 {
- "data": "2026-11-25",
- "atualizado": "2026-11-25T23:01:18-0300",
+ "data": "2026-11-26",
+ "atualizado": "2026-11-26T01:01:20-0300",
  "itens": [
   {
    "hora": "00:00",
    "tipo": "tempo",
    "rotulo": "Alerta INMET",
-   "titulo": "Tempestade (perigo) em ES, MG, MS, PR, RJ, SC…",
+   "titulo": "Chuvas Intensas (perigo) em ES, GO, MG, MS, RJ, SP",
    "detalhe": [
-    "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h), e queda de granizo. Risco de corte de energia elétrica,…"
+    "Chuva entre 30 e 60 mm/h ou 50 e 100 mm/dia, ventos intensos (60-100 km/h). Risco de corte de energia elétrica, queda de galhos de árvores,…"
    ],
    "link": "#tempo",
    "estado": ""
   },
   {
-   "hora": "09:29",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Não Deliberativa Solene no Plenário",
-   "detalhe": [],
-   "link": "https://www.youtube.com/watch?v=RrSbRzvQuYc",
-   "estado": "Encerrada"
-  },
-  {
    "hora": "10:00",
-   "tipo": "politica",
-   "rotulo": "Senado",
-   "titulo": "Sessão especial no Plenário",
-   "detalhe": [],
-   "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
-  },
-  {
-   "hora": "11:32",
-   "tipo": "politica",
-   "rotulo": "Câmara",
-   "titulo": "Sessão Não Deliberativa Solene no Plenário",
-   "detalhe": [],
-   "link": "https://www.youtube.com/watch?v=e2OR3TjOBVU",
-   "estado": "Encerrada"
-  },
-  {
-   "hora": "14:00",
-   "tipo": "politica",
-   "rotulo": "Senado",
-   "titulo": "Sessão deliberativa ordinária no Plenário",
-   "detalhe": [
-    "PL 351/2019: Institui a Força Nacional do Sistema Único de Saúde (FN-SUS).",
-    "RQS 812/2026: Solicita calendário especial para a Proposta de Emenda à Constituição nº 1, de 2025.",
-    "RQS 814/2026: Requer urgência para o Projeto de Lei nº 2.896, de 2022, nos termos dos arts. 336, III, e 338, III, do…"
-   ],
-   "link": "https://www25.senado.leg.br/web/atividade/plenario",
-   "estado": "Encerrada"
-  },
-  {
-   "hora": "14:21",
    "tipo": "politica",
    "rotulo": "Câmara",
    "titulo": "Sessão Deliberativa no Plenário",
    "detalhe": [
     "PL 724/2003: Altera a Lei nº 9.503, de 23 de setembro de 1997, que \"Institui o Código de Trânsito Brasileiro\", para dispor…",
     "PL 294/2015: Altera as Leis nos 8.212 e 8.213, ambas de 24 de julho de 1991, que dispõem sobre os Planos de Custeio e de…",
-    "PPP 1/0: Parecer proferido em Plenário pelo Relator Dep. Thiago de Joaldo (REPUBLIC/SE) pela: • Comissão de Finanças e…"
+    "PL 3944/2023: Altera a Lei nº 12.288, de 20 de julho de 2010, para reconhecer os impactos desproporcionais da crise…"
    ],
-   "link": "https://www.youtube.com/watch?v=JFncPQLO0X4",
-   "estado": "Encerrada"
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
   },
   {
-   "hora": "14:45",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Sabah 1 × 4 Barcelona",
-   "detalhe": [
-    "5ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
+   "hora": "14:00",
+   "tipo": "politica",
+   "rotulo": "Câmara",
+   "titulo": "Sessão Não Deliberativa Solene no Plenário",
+   "detalhe": [],
+   "link": "https://www.camara.leg.br/agenda",
+   "estado": "Convocada"
   },
   {
-   "hora": "14:45",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Slavia Prague 0 × 1 Villareal",
-   "detalhe": [
-    "5ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Atl Madrid 2 × 0 Viking FK",
-   "detalhe": [
-    "5ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Club Brugge 0 × 3 Liverpool",
-   "detalhe": [
-    "5ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Inter 2 × 0 Stuttgart",
-   "detalhe": [
-    "5ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Lille 2 × 1 Bayern",
-   "detalhe": [
-    "5ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "PSG 2 × 2 Roma",
-   "detalhe": [
-    "5ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Shakhtar 0 × 1 Fenerbahçe",
-   "detalhe": [
-    "5ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
-  },
-  {
-   "hora": "17:00",
-   "tipo": "futebol",
-   "rotulo": "Champions",
-   "titulo": "Sporting 2 × 2 Man Utd",
-   "detalhe": [
-    "5ª rodada"
-   ],
-   "estado": "encerrado",
-   "link": "tabelas/"
+   "hora": "15:00",
+   "tipo": "politica",
+   "rotulo": "Senado",
+   "titulo": "Sessão especial no Plenário",
+   "detalhe": [],
+   "link": "https://www25.senado.leg.br/web/atividade/plenario",
+   "estado": "Agendada"
   },
   {
    "hora": "20:00",
    "tipo": "futebol",
    "rotulo": "Brasileirão",
-   "titulo": "Atlético-MG 0 × 0 Corinthians",
+   "titulo": "São Paulo × Remo",
    "detalhe": [
-    "36ª rodada"
+    "37ª rodada"
    ],
-   "estado": "ao vivo",
+   "estado": "",
    "link": "tabelas/"
   }
  ],
- "outros_jogos": 1,
+ "outros_jogos": 0,
  "fontes": {
   "camara": [
    {
-    "hora": "11:32",
+    "hora": "14:00",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Não Deliberativa Solene no Plenário",
     "detalhe": [],
-    "link": "https://www.youtube.com/watch?v=e2OR3TjOBVU",
-    "estado": "Encerrada"
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
    },
    {
-    "hora": "09:29",
-    "tipo": "politica",
-    "rotulo": "Câmara",
-    "titulo": "Sessão Não Deliberativa Solene no Plenário",
-    "detalhe": [],
-    "link": "https://www.youtube.com/watch?v=RrSbRzvQuYc",
-    "estado": "Encerrada"
-   },
-   {
-    "hora": "14:21",
+    "hora": "10:00",
     "tipo": "politica",
     "rotulo": "Câmara",
     "titulo": "Sessão Deliberativa no Plenário",
     "detalhe": [
      "PL 724/2003: Altera a Lei nº 9.503, de 23 de setembro de 1997, que \"Institui o Código de Trânsito Brasileiro\", para dispor…",
      "PL 294/2015: Altera as Leis nos 8.212 e 8.213, ambas de 24 de julho de 1991, que dispõem sobre os Planos de Custeio e de…",
-     "PPP 1/0: Parecer proferido em Plenário pelo Relator Dep. Thiago de Joaldo (REPUBLIC/SE) pela: • Comissão de Finanças e…"
+     "PL 3944/2023: Altera a Lei nº 12.288, de 20 de julho de 2010, para reconhecer os impactos desproporcionais da crise…"
     ],
-    "link": "https://www.youtube.com/watch?v=JFncPQLO0X4",
-    "estado": "Encerrada"
+    "link": "https://www.camara.leg.br/agenda",
+    "estado": "Convocada"
    }
   ],
   "senado": [
    {
-    "hora": "10:00",
+    "hora": "15:00",
     "tipo": "politica",
     "rotulo": "Senado",
     "titulo": "Sessão especial no Plenário",
     "detalhe": [],
     "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
-   },
-   {
-    "hora": "14:00",
-    "tipo": "politica",
-    "rotulo": "Senado",
-    "titulo": "Sessão deliberativa ordinária no Plenário",
-    "detalhe": [
-     "PL 351/2019: Institui a Força Nacional do Sistema Único de Saúde (FN-SUS).",
-     "RQS 812/2026: Solicita calendário especial para a Proposta de Emenda à Constituição nº 1, de 2025.",
-     "RQS 814/2026: Requer urgência para o Projeto de Lei nº 2.896, de 2022, nos termos dos arts. 336, III, e 338, III, do…"
-    ],
-    "link": "https://www25.senado.leg.br/web/atividade/plenario",
-    "estado": "Encerrada"
+    "estado": "Agendada"
    }
   ],
   "copom": []
