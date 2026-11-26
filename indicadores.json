@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-26T05:27:15Z",
+ "atualizado_utc": "2026-11-26T21:13:10Z",
  "fonte": "Banco Central (SGS)",
  "series": {
   "ipca": {
@@ -156,10 +156,6 @@
    "tipo": "mensal",
    "dados": [
     {
-     "mes": "2024-10",
-     "valor": 0.54
-    },
-    {
      "mes": "2024-11",
      "valor": 0.62
     },
@@ -295,6 +291,12 @@
      "valor": 0.32,
      "doze": 4.62,
      "ano": 4.15
+    },
+    {
+     "mes": "2026-11",
+     "valor": 0.22,
+     "doze": 4.64,
+     "ano": 4.38
     }
    ]
   },
@@ -854,7 +856,7 @@
    "fonte": "B3/Banco Central",
    "tipo": "nivel",
    "atual": 13.65,
-   "data": "24/11/2026"
+   "data": "25/11/2026"
   }
  },
  "copom": [
