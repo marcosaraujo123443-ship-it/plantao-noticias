@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-27T12:45:58Z",
+ "atualizado_utc": "2026-11-27T13:01:03Z",
  "indicadores": [
   {
    "nome": "Ibovespa",
@@ -9,27 +9,21 @@
   },
   {
    "nome": "Dólar",
-   "valor": 5.5112,
-   "var": -2.4790756109213885,
+   "valor": 5.4807,
+   "var": -3.018774441279004,
    "tipo": "brl"
   },
   {
    "nome": "Euro",
-   "valor": 6.0455,
-   "var": -2.504515546381114,
+   "valor": 6.0273,
+   "var": -2.7980260611533914,
    "tipo": "brl"
   },
   {
    "nome": "Bitcoin",
-   "valor": 338669.136984,
-   "var": 1.578816433166197,
+   "valor": 337249.72264199995,
+   "var": 1.7159991701923838,
    "tipo": "brl"
-  },
-  {
-   "nome": "Selic",
-   "valor": 13.75,
-   "var": null,
-   "tipo": "pct"
   }
  ],
  "acoes": [
@@ -37,7 +31,7 @@
    "ticker": "PETR4",
    "nome": "Petrobras",
    "preco": 43.19,
-   "var": 4.424564796905228
+   "var": 0.0
   },
   {
    "ticker": "VALE3",
@@ -103,7 +97,7 @@
    "ticker": "PRIO3",
    "nome": "PRIO",
    "preco": 62.45,
-   "var": 3.2231404958677823
+   "var": 0.0
   },
   {
    "ticker": "RENT3",
@@ -127,7 +121,7 @@
    "ticker": "RADL3",
    "nome": "Raia Drogasil",
    "preco": 17.46,
-   "var": 13.156189241736893
+   "var": 0.0
   },
   {
    "ticker": "LREN3",
@@ -435,7 +429,7 @@
    "ticker": "POMO4",
    "nome": "Marcopolo",
    "preco": 3.62,
-   "var": 5.5393586005830775
+   "var": 0.0
   },
   {
    "ticker": "MRVE3",
@@ -459,19 +453,19 @@
    "ticker": "PCAR3",
    "nome": "GPA",
    "preco": 3.62,
-   "var": 2.840909090909083
+   "var": 0.0
   },
   {
    "ticker": "PETR3",
    "nome": "Petrobras",
    "preco": 49.09,
-   "var": 5.1402869993574685
+   "var": 0.0
   },
   {
    "ticker": "PETR4",
    "nome": "Petrobras",
    "preco": 43.19,
-   "var": 4.424564796905228
+   "var": 0.0
   },
   {
    "ticker": "RECV3",
@@ -483,19 +477,19 @@
    "ticker": "PRIO3",
    "nome": "PRIO",
    "preco": 62.45,
-   "var": 3.2231404958677823
+   "var": 0.0
   },
   {
    "ticker": "PSSA3",
    "nome": "Porto Seguro",
    "preco": 43.06,
-   "var": 2.8175740210124145
+   "var": 0.0
   },
   {
    "ticker": "RADL3",
    "nome": "Raia Drogasil",
    "preco": 17.46,
-   "var": 13.156189241736893
+   "var": 0.0
   },
   {
    "ticker": "RDOR3",
@@ -507,7 +501,7 @@
    "ticker": "RAIL3",
    "nome": "Rumo",
    "preco": 17.9,
-   "var": 5.108631826189058
+   "var": 0.0
   },
   {
    "ticker": "SBSP3",
@@ -640,6 +634,12 @@
    "nome": "EZTec",
    "preco": 10.29,
    "var": 9.35175345377257
+  },
+  {
+   "ticker": "RAIZ4",
+   "nome": "Raízen",
+   "preco": 0.3,
+   "var": 0.0
   }
  ],
  "maiores": [
@@ -647,7 +647,7 @@
    "ticker": "PETR4",
    "nome": "Petrobras",
    "preco": 43.19,
-   "var": 4.424564796905228,
+   "var": 0.0,
    "vm": 556664000000.0
   },
   {
@@ -983,7 +983,7 @@
    "pvp": 0.84,
    "vm": 2004810000.0,
    "liq": 5199370.0,
-   "var": 0.6156019779997912
+   "var": 0.0
   },
   {
    "papel": "BRCO11",
@@ -1023,7 +1023,7 @@
    "pvp": 0.61,
    "vm": 1740940000.0,
    "liq": 5787340.0,
-   "var": 5.076142131979688
+   "var": 0.0
   },
   {
    "papel": "KNHF11",
@@ -1232,7 +1232,7 @@
    "pvp": 0.74,
    "vm": 1170410000.0,
    "liq": 3618310.0,
-   "var": 1.3254786450662692
+   "var": 0.0
   },
   {
    "papel": "CPSH11",
@@ -1257,12 +1257,12 @@
   {
    "papel": "RBRR11",
    "segmento": "Multicategoria",
-   "cotacao": 63.0,
+   "cotacao": 0.0,
    "dy": 15.45,
    "pvp": 0.68,
    "vm": 1026920000.0,
    "liq": 3259080.0,
-   "var": 0.0
+   "var": -100.0
   },
   {
    "papel": "BRCR11",
@@ -1292,7 +1292,7 @@
    "pvp": 0.79,
    "vm": 999214000.0,
    "liq": 5134570.0,
-   "var": 0.449293966623876
+   "var": 0.0
   },
   {
    "papel": "TRXB11",
@@ -1327,12 +1327,12 @@
   {
    "papel": "VCJR11",
    "segmento": "Outros",
-   "cotacao": 63.0,
+   "cotacao": 0.0,
    "dy": 17.5,
    "pvp": 0.66,
    "vm": 927610000.0,
    "liq": 2609500.0,
-   "var": 0.0
+   "var": -100.0
   },
   {
    "papel": "CVBI11",
@@ -1361,7 +1361,7 @@
    "pvp": 0.65,
    "vm": 840668000.0,
    "liq": 2590130.0,
-   "var": 1.9866071428571441
+   "var": 0.0
   },
   {
    "papel": "BTCI11",
@@ -1520,7 +1520,7 @@
    "pvp": 0.88,
    "vm": 595937000.0,
    "liq": 2079540.0,
-   "var": 0.0004347863894471615
+   "var": 0.0
   },
   {
    "papel": "FATN11",
@@ -1560,7 +1560,7 @@
    "pvp": 0.59,
    "vm": 558903000.0,
    "liq": 1626110.0,
-   "var": 0.8793141349747069
+   "var": 0.0
   },
   {
    "papel": "ADSH11",
@@ -1750,6 +1750,7 @@
  },
  "erros": [
   "moedas (awesomeapi): HTTP Error 429: Too Many Requests",
+  "Selic: HTTP Error 304: Not Modified",
   "IPCA 12m: HTTP Error 304: Not Modified"
  ]
 }
