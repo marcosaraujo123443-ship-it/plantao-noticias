@@ -1,6 +1,6 @@
 {
  "data": "2026-11-27",
- "atualizado": "2026-11-27T15:01:15-0300",
+ "atualizado": "2026-11-27T16:01:16-0300",
  "itens": [
   {
    "hora": "09:40",
@@ -61,5 +61,7 @@
   ],
   "copom": []
  },
- "erros": []
+ "erros": [
+  "copom: <HTTPError 304: 'Not Modified'>"
+ ]
 }
