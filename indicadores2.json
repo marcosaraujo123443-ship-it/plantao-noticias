@@ -1,5 +1,5 @@
 {
- "atualizado_utc": "2026-11-27T05:20:51Z",
+ "atualizado_utc": "2026-11-27T20:56:23Z",
  "itens": {
   "caged": {
    "id": "caged",
@@ -93,9 +93,9 @@
    "tag": "Brasil · Crédito",
    "titulo": "Inadimplência das famílias",
    "sub": "Crédito livre · atrasos acima de 90 dias",
-   "ref": "2026-09",
-   "ref_txt": "setembro de 2026",
-   "valor": "8,1%",
+   "ref": "2026-10",
+   "ref_txt": "outubro de 2026",
+   "valor": "8,2%",
    "cor": "ruim",
    "selo": [
     "▲ RECORDE DA SÉRIE",
@@ -105,26 +105,22 @@
    "apoio": [
     [
      "Mês anterior",
-     "8,0%",
-     "ago/26"
+     "8,1%",
+     "set/26"
     ],
     [
      "Um ano antes",
      "6,9%",
-     "set/25"
+     "out/25"
     ],
     [
      "Em 12 meses",
-     "+1,2 p.p.",
+     "+1,3 p.p.",
      "variação"
     ]
    ],
    "graf_tit": "Inadimplência mês a mês · %",
    "graf": [
-    [
-     "out/25",
-     6.86
-    ],
     [
      "nov/25",
      6.94
@@ -159,7 +155,7 @@
     ],
     [
      "jul/26",
-     7.78
+     7.79
     ],
     [
      "ago/26",
@@ -167,7 +163,11 @@
     ],
     [
      "set/26",
-     8.09
+     8.1
+    ],
+    [
+     "out/26",
+     8.2
     ]
    ],
    "graf_fmt": "num1",
@@ -268,38 +268,34 @@
    "tag": "Brasil · Construção",
    "titulo": "Custo da construção",
    "sub": "INCC-M · FGV",
-   "ref": "2026-10",
-   "ref_txt": "outubro de 2026",
-   "valor": "+0,35%",
+   "ref": "2026-11",
+   "ref_txt": "novembro de 2026",
+   "valor": "+0,30%",
    "cor": "ruim",
    "selo": [
-    "▲ ALTA NO MÊS",
-    "ruim"
+    "▼ DESACELERA",
+    "bom"
    ],
-   "frase": "em outubro de 2026, ante +0,25% no mês anterior. Mede materiais, equipamentos e mão de obra da construção.",
+   "frase": "em novembro de 2026, ante +0,35% no mês anterior. Mede materiais, equipamentos e mão de obra da construção.",
    "apoio": [
     [
      "Em 12 meses",
-     "+6,75%",
+     "+6,77%",
      "acumulado"
     ],
     [
      "No ano",
-     "+6,22%",
+     "+6,54%",
      "desde janeiro de 2026"
     ],
     [
-     "Out/25",
-     "+0,21%",
+     "Nov/25",
+     "+0,28%",
      "mesmo mês do ano passado"
     ]
    ],
    "graf_tit": "Variação mês a mês · %",
    "graf": [
-    [
-     "nov/25",
-     0.28
-    ],
     [
      "dez/25",
      0.21
@@ -343,6 +339,10 @@
     [
      "out/26",
      0.35
+    ],
+    [
+     "nov/26",
+     0.3
     ]
    ],
    "graf_fmt": "num2",
